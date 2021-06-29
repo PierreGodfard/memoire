@@ -1,0 +1,2126 @@
+\documentclass{amsart}
+% package
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+%\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+\usepackage{cite}
+\usepackage{amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{calc}
+\usepackage{mathtools}
+\usepackage{relsize}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{tikz-cd}
+
+
+\tikzcdset{arrow style=tikz}
+
+% Pour les liens hypertexte
+\usepackage[hidelinks]{hyperref}
+\newcommand{\sref}[2]{\hyperref[#2]{#1 \ref*{#2}}}
+
+% Numérotation des théorèmes, propositions, définitions, lemmes, remarques consécutives par subsection
+\theoremstyle{plain}
+\newtheorem{theo}{Théorème}[section]
+\newtheorem{theodefi}[theo]{Théorème\,-\,définition}
+\newtheorem{prop}[theo]{Proposition}
+\newtheorem{propdefi}[theo]{Proposition\,-\,définition}
+\newtheorem{coro}[theo]{Corollaire}
+\newtheorem{lem}[theo]{Lemme}
+\newtheorem{lemdefi}[theo]{Lemme\,-\,définition}
+\newtheorem{conj}[theo]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{defi}[theo]{Définition}
+\newtheorem{ex}[theo]{Exemple}
+\newtheorem{cstr}[theo]{Construction}
+
+\theoremstyle{remark}
+\newtheorem{rem}[theo]{Remarque}
+
+\renewcommand{\proofname}{Démonstration}
+
+\renewcommand{\descriptionlabel}[1]{%
+  \hspace\labelsep \upshape\bfseries #1%
+}
+
+% Commande ensemble de nombres
+\newcommand{\ensemblenombre }[1]{\mathbb{#1}}
+\newcommand{\N}{\ensemblenombre{N}}
+\newcommand{\Np}{\ensemblenombre{N}\setminus\{0\}}
+\newcommand{\Z}{\ensemblenombre{Z}}
+\newcommand{\Q}{\ensemblenombre{Q}}
+
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\Ring}[1]{\mathcal{O}_{#1}}
+
+\newcommand{\Ob}[1]{\mathrm{Ob}\:#1}
+\newcommand{\Hom}[3]{\mathrm{Hom}_{#1}(#2,#3)}
+\newcommand{\Iso}[3]{\mathrm{Iso}_{#1}(#2,#3)}
+\newcommand{\Isos}[1]{\mathrm{Isos}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}({#1})}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\op}{^\mathrm{op}}
+\newcommand{\Fon}[2]{\mathrm{Fon}(#1,#2)}
+\newcommand{\Ens}{\mathrm{Ens}}
+\newcommand{\DEns}{\widehat{\mathbf{\Delta}}}
+\newcommand{\DCat}{\mathbf{\Delta}}
+\newcommand{\Cat}{\mathrm{Cat}}
+\newcommand{\CatEx}{\mathrm{CatEx}}
+\newcommand{\Ab}{\mathrm{Ab}}
+\newcommand{\mylim}{\mathrm{lim}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\hocolim}[2]{\mathrm{hocolim}_{#1}\:{#2}}
+\newcommand{\Top}{\mathrm{Top}}
+\newcommand{\Grp}{\mathrm{Grp}}
+\newcommand{\Supp}[1]{\mathrm{Supp}({#1})}
+
+\newcommand{\sk}[2]{\mathrm{sk}_{#1}\;{#2}}
+
+\newcommand{\Ho}[1]{\mathrm{Ho}({#1})}
+\newcommand{\Sing}{\mathrm{Sing}}
+\newcommand{\xlongrightrightarrows}[2]{\mathop{\rightrightarrows}_{#1}^{#2}}
+
+
+\newcommand{\coend}[2]{\bigsqcup_{\phi:[n]\ra [m]}{#1}_m\times {#2}^n\xlongrightrightarrows{\sqcup\phi^*\times\id}{\sqcup\id\times\phi_*}\bigsqcup_{[n]}{#1}_n\times {#2}^n}
+
+\newcommand{\GL}[2]{\mathrm{GL}_{#1}(#2)}
+\newcommand{\End}[2]{\mathrm{End}_{#1}(#2)}
+
+\newcommand{\Proj}[1]{\mathrm{P}({#1})}
+\newcommand{\Pgr}[1]{\mathrm{Pgr}({#1})}
+\newcommand{\Modf}[1]{\mathrm{Modf}({#1})}
+\newcommand{\Tor}{\mathrm{Tor}}
+\newcommand{\fTor}[4]{\mathrm{Tor}_{#1}^{#2}({#3},{#4})}
+
+\newcommand{\xrightarrowtail}[1]{\overset{#1}{\rightarrowtail}}
+\newcommand{\xtwoheadrightarrow}[1]{\overset{#1}{\twoheadrightarrow}}
+\newcommand{\xtwoheadleftarrow}[1]{\overset{#1}{\twoheadleftarrow}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\exa}[3]{0\ra {#1}\ra {#2}\ra {#3}\ra 0}
+\newcommand{\exac}[3]{{#1}\rightarrowtail {#2}\twoheadrightarrow {#3}}
+\newcommand{\exaname}[5]{0\ra {#1}\xrightarrow{#2} {#3}\xrightarrow{#4} {#5}\ra 0}
+\newcommand{\exacname}[5]{{#1}\xrightarrowtail{#2} {#3}\xtwoheadrightarrow{#4} {#5}}
+
+\newcommand{\myker}[1]{\mathrm{ker}({#1})}
+\newcommand{\coker}[1]{\mathrm{coker}({#1})}
+\newcommand{\im}[1]{\mathrm({#1})}
+
+\newcommand{\Spec}[1]{\mathrm{Spec}({#1})}
+\newcommand{\Open}[1]{\mathrm{D}({#1})}
+
+% Commande "ensemble tel que"
+\newcommand{\enstq}[2]{\left\{#1\,\middle|\,#2\right\}}
+
+
+\title{K-théorie algébrique}
+\author{Pierre Godfard}
+\date{}
+
+
+\begin{document}
+\renewcommand{\abstractname}{Introduction}
+\begin{abstract}
+  [TBD]
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+\section{\texorpdfstring{Les groupes $K_0$, $K_1$ et $K_2$}{Les groupes KO, K1 et K2}}\label{sectionK0}
+
+Dans cette section, nous allons définir et étudier les groupes $K_0$, $K_1$ et $K_2$ associés à un anneau. Nous définirons également le $K_0$ d'une catégorie exacte.
+
+\subsection{\texorpdfstring{Les groupes $K_0$  et $K'_0$ d'un anneau}{Les groupes K0  et K'0 d'un anneau}}
+
+Pour $A$ un anneau, nous noterons $\Proj{A}$ la catégorie des modules projectifs de type fini sur $A$ et $\Modf{A}$ la catégorie des modules de type fini sur $A$.
+Si $A$ n'est pas commutatif, les modules sur $A$ seront toujours par défaut des $A$-modules à gauche.
+
+\begin{defi}[$K_0$  et $K'_0$]
+  Le groupe abélien $K_0(A)$ est le groupe de Grothendieck de $\Proj{A}$~: le quotient du groupe abélien libre $\bigoplus_P \Z\cdot [P]$ engendré par les objets de $\Proj{A}$,
+  par les relations $[R] = [P] + [Q]$ pour chaque suite exacte $0\ra P\ra R\ra Q\ra 0$.
+
+  On définit de même le groupe $K'_0(A)$ comme le groupe de Grothendieck de $\Modf{A}$.
+\end{defi}
+
+On appelle $K_0(A)$ le groupe de $K$-théorie de $A$ et $K'_0(A)$ le groupe de $K'$-théorie de $A$. En général, pour utiliser $K'_0(A)$,
+on préfère se restreindre au cas où $A$ est noethérien, de telle sorte que $\Modf{A}$ soit une catégorie abélienne.
+
+\begin{rem}
+  Les catégories $\Proj{A}$ et $\Modf{A}$ ont un ensemble de classes d'isomorphisme. Or si $f:M\ra M'$ est un isomorphisme, les suites exactes $\exa{0}{0}{0}$ et $\exa{M}{M'}{0}$,
+  induisent $0=[0]$ et $[M]=[M']$ dans les groupes de Grothendieck. Donc les éléments des groupes $K_0(A)$  et $K'_0(A)$ forment des ensembles.
+\end{rem}
+
+Le foncteur $\Proj{A}\times \Proj{A}\lra \Proj{A},\;(P,Q)\mapsto P\oplus Q$ induit un morphisme $\oplus:K_0(A)\times K_0(A)\lra K_0(A)$.
+Or pour tout $M$ et $N$ $A$-modules, on a une suite exacte $\exa{M}{M\oplus N}{N}$. Donc $\oplus$ est l'addition. De même avec $\Modf{A}$ et $K'_0$.
+
+Si $A$ est commutatif, le foncteur $\Proj{A}\times \Proj{A}\lra \Proj{A},\;(P,Q)\mapsto P\otimes Q$ passe également aux quotients en un morphisme
+$\otimes:K_0(A)\times K_0(A)\lra K_0(A)$ (les modules projectifs sont plats).
+
+De même, $\Proj{A}\times \Modf{A}\lra \Modf{A},\;(P,M)\mapsto P\otimes M$ induit $\otimes:K_0(A)\times K'_0(A)\lra K'_0(A)$.
+On vérifie aisément que~:
+\begin{prop}
+  Si $A$ est commutatif, l'application $\otimes:K_0(A)\times K_0(A)\lra K_0(A)$ est bilinéaire et induit sur $K_0(A)$ une structure d'anneau de neutre $[0]$ et d'unité $[A]$.
+
+  Dans ce cas, $\otimes:K_0(A)\times K'_0(A)\lra K'_0(A)$ fait de $K_0'(A)$ un $K_0(A)$-module.
+\end{prop}
+
+Ces definitions sont fonctorielles en $A$. En effet, si $f:A\ra B$ est un morphisme d'anneaux, le foncteur $-\otimes_A B:\Proj{A}\ra \Proj{B}$
+induit un morphisme $f^*:K_0(A)\ra K_0(B)$, et on a, si $g:B\ra C$, $(gf)^*=g^*f^*$. Le morphisme $f^*$ est un morphisme d'anneau si $A$ et $B$ sont commutatifs.
+De même, si $f:A\ra B$ est un morphisme plat, $-\otimes_A B:\Modf{A}\ra \Modf{B}$ induit un morphisme $f^*:K'_0(A)\ra K'_0(B)$ (de $K_0(A)$-modules si $A$ et $B$ sont commutatifs).
+La notation "contravariante" $f^*$ s'explique par la definition de la $K$-théorie d'un schema.
+
+Si $f:A\ra B$ est un morphisme projectif et fini (c'est-à-dire que $B$ est un $A$ module projectif de type fini),
+alors le foncteur d'oubli $(-)_A:\Proj{B}\ra \Proj{A}, M\mapsto M$ induit un morphisme \textbf{de groupe} $f_*:K_0(B)\ra K_0(A)$.
+De même, si $f:A\lra B$ est un morphisme fini, le foncteur d'oubli $(-)_A:\Modf{B}\ra \Modf{A}$ induit un morphisme \textbf{de groupe} $f_*:K'_0(B)\ra K'_0(A)$.
+
+Si $f_*$ et $f^*$ sont définis pour $K_0$, et si $A$ et $B$ sont commutatifs, l'isomorphisme entre les foncteurs
+$(P,N)\mapsto (P\otimes_AN)\otimes B$ et $(P,N)\mapsto P\otimes_B(N\otimes B)$
+induit la formule de projection suivante. Pour tout $a$ dans $K_0(A)$ et $b$ dans $K_0(B)$~:
+$$f_*(b\cdot f^*(a))=f_*(b)\cdot a\text{ dans }K_0(A)$$
+De même, si $f_*$ est défini pour $K_0$ et $K'_0$, et $f^*$ est défini pour $K'_0$, alors pour tout $a$ dans $K'_0(A)$ et $b$ dans $K_0(B)$~:
+$$f_*(b\cdot f^*(a))=f_*(b)\cdot a\text{ dans }K'_0(A)$$
+
+On peut étendre le cadre où $f_*$ en $K$-théorie et $f^*$ en $K'$-théorie sont définis.
+Pour les definitions de la dimension projective et de la dimension $\Tor$, voir le \cite[Chp.4]{Weib2}.
+
+\begin{defi}
+  Un morphisme d'anneau $f:A\ra B$ est dit de dimension $\Tor$ finie si $B$ est un $A$-module de dimension $\Tor$ finie.
+\end{defi}
+
+Pour étendre $f^*$, nous utilisons le résultat suivant.
+
+\begin{prop}\label{KprimeTordimfinie}
+  Soit $f:A\ra B$ de dimension $\Tor$ finie avec $A$ noethérien.
+  Soit $\mathcal{M}$ la sous-catégorie pleine de $\Modf{A}$ des modules $M$ tels que $\fTor{i}{A}{B}{M}=0$ pour tout $i\geq 1$. On note $K'_0(\mathcal{M})$
+  son groupe de Grothendieck. Alors l'inclusion $\mathcal{M}\ra \Modf{A}$ induit un isomorphisme $K'_0(\mathcal{M})\ra K'_0(A)$.
+\end{prop}
+
+\begin{proof}
+  Nous allons décrire un morphisme inverse $K'_0(A)\ra K'_0(\mathcal{M})$. On note $n<\infty$ la dimension $\Tor$ de $B$ sur $A$. Soit $M$ un $A$-module de type fini.
+  On se donne $P_*\ra M$ une résolution projective de $M$ par des $A$-modules de type fini (possible car $A$ est noethérien).
+  On pose $\tilde{M} := \coker{d:P_{n+1}\ra P_n}$. Par décalage, $\tilde{M}$ est un objet de $\mathcal{M}$.
+  On obtient donc une résolution finie $0\ra \tilde{M}\ra P_{n-1}\ra \dotsb\ra P_0\ra M\ra 0$ de $M$ par des objets de $\mathcal{M}$, que l'on note $Q_*\ra M$.
+  On pose alors~:
+  $$u(M) := \sum_{i=0}^n (-1)^i[Q_i]\in K'_0(\mathcal{M})$$
+  Montrons que $u(M)$ est indépendant de la résolution $P_*\ra M$. Soit $P'_*\ra M$ une autre résolution. On montre facilement qu'il existe une troisième
+  résolution $P''_*\ra M$ et deux morphismes $a:P''_*\ra P_*$ et $a':P''_*\ra P_*$ surjectifs en chaque degrés, par exemple en prenant une résolution
+  projective du complexe $P\times_{M[0]}P'$ par des modules de type fini.
+  Alors $\myker{a}_*\ra 0$ est une résolution de $0$ par des objets de $\mathcal{M}$.
+  On note $\tilde{M}:= \coker{d:P_{n+1}\ra P_n}$, $\tilde{M''}:= \coker{d:P''_{n+1}\ra P''_n}$ et $\tilde{K}:= \coker{d:\myker{a}_{n+1}\ra \myker{a}_n}$.
+  Alors $\exa{\tilde{K}}{\tilde{M''}}{\tilde{M}}$ est exacte. En effet la suite est exacte à droite par le lemme du serpent et exacte à gauche car $\tilde{K}$ et
+  $\tilde{M''}$ s'injectent dans $P''_{n-1}$. Si on note $Q''_*\ra M$ la résolution finie associée à $P''_*$ et $K_*\ra 0$ celle associée à $\myker{a}_*\ra 0$,
+  on a~:
+  $$\sum_{i=0}^n (-1)^i[Q_i]=\sum_{i=0}^n (-1)^i[Q''_i]-\sum_{i=0}^n (-1)^i[K_i]=\sum_{i=0}^n (-1)^i[Q''_i]\text{ dans }K'_0(\mathcal{M})$$
+  Montrons maintenant que si $\exa{M'}{M}{M''}$ est une suite exacte dans $\Modf{M}$, alors $u(M) = u(M'')+u(M')$.
+  Par le lemme du fer à cheval, on dispose de résolutions respectant la suite exacte~:
+  \begin{center}
+    \begin{tikzcd}
+      0\rar & P'_* \rar\dar & P_* \rar\dar & P''_* \rar\dar & 0\\
+      0\rar & M'   \rar     & M   \rar     & M''   \rar     & 0
+    \end{tikzcd}
+  \end{center}
+  Par le même argument que ci-dessus $\exa{\tilde{M'}}{\tilde{M}}{\tilde{M''}}$ est exacte, et donc $\exa{Q'_*}{Q_*}{Q''_*}$ est exacte.
+  Il est alors clair que $u(M) = u(M'')+u(M')$.
+
+  On vérifie immédiatement que $u$ est inverse à droite et à gauche de $K'_0(\mathcal{M})\ra K'_0(A)$.
+\end{proof}
+
+Ainsi, avec les hypothèses et notations de la proposition, le foncteur $-\otimes_A B:\mathcal{M}\ra \Modf{B}$ induit un morphisme $K'_0(\mathcal{M})\ra K'_0(B)$
+et donc un morphisme $f^*:K'_0(A)\ra K'_0(B)$. Si $B$ est plat sur $A$, on retrouve la définition plus haut.
+
+Pour étendre $f_*$, on donne une formule explicite.
+
+\begin{propdefi}
+  Soit $f:A\ra B$ fini et de dimension $\Tor$ finie avec $A$ noethérien. Alors tout $B$ module projectif $P$ admet
+  une $A$-résolution projective finie par des modules de type fini $Q_*\ra P$. On pose~:
+  $$f_*([P]) := \sum_{i} (-1)^i[Q_i]\in K_0(A)$$
+  Alors $f_*:K_0(B)\ra K_0(A)$ est un morphisme de groupe.
+\end{propdefi}
+
+On remarque que la définition ci-dessus étend la définition plus haut dans le cas où $f$ est projectif de type fini.
+
+\begin{proof}
+  Soit $n$ la dimension $\Tor$ de $B$ sur $A$. Comme $A$ est noethérien, pour tout module de type fini $M$ sur $A$, sa dimension projective
+  est égale à sa dimension $\Tor$. De plus, pour tout $B$-module projectif de type fini $P$, $\Tor\dim(P)=n$. Donc tout tel module $P$ admet une
+  $A$-résolution projective finie par des modules de type fini $Q_*\ra P$. 
+
+  Montrons que $\sum_{i} (-1)^i[Q_i]$ est indépendant de la résolution $Q_*\ra P$. Comme dans la \sref{proposition}{KprimeTordimfinie}, on peut
+  supposer qu'il existe $u:Q'_*\ra Q_*$ surjection entre les deux résolutions considérées. Alors,
+  $K:=\myker{u}_*$ est un complexe fini acyclique de modules projectifs de type fini. Donc~:
+  $$\sum_{i} (-1)^i[Q'_i]=\sum_{i} (-1)^i[Q_i]+\sum_{i} (-1)^i[K_i]=\sum_{i} (-1)^i[Q_i]$$
+
+  Montrons maintenant que si $\exa{P'}{P}{P''}$ est une suite exacte dans $\Proj{B}$, alors $f_*[P] = f_*[P'']+f_*[P']$.
+  Par le lemme du fer à cheval, on dispose de résolutions finies respectant la suite exacte~:
+  \begin{center}
+    \begin{tikzcd}
+      0\rar & Q'_* \rar\dar & Q_* \rar\dar & Q''_* \rar\dar & 0\\
+      0\rar & P'   \rar     & P   \rar     & P''   \rar     & 0
+    \end{tikzcd}
+  \end{center}
+  On a alors clairement $f_*[P] = f_*[P'']+f_*[P']$.  
+\end{proof}
+
+On peut maintenant étendre la formule de projection.
+
+\begin{prop}[formule de projection]
+  Soit $f:A\ra B$ fini et de dimension $\Tor$ finie, avec $A$ et $B$ commutatifs et $A$ noethérien.
+  Alors pour tout $a$ dans $K_0'(A)$ et $b$ dans $K_0(B)$~:
+  $$f_*(b\cdot f^*(a))=f_*(b)\cdot a\text{ dans }K'_0(A)$$
+  De même, pour tout $a$ dans $K_0(A)$ et $b$ dans $K_0(B)$~:
+  $$f_*(b\cdot f^*(a))=f_*(b)\cdot a\text{ dans }K_0(A)$$
+\end{prop}
+
+\begin{proof}
+  On reprend les notations de la \sref{proposition}{KprimeTordimfinie}. On démontre la première formule, la seconde se démontre de façon similaire.
+  On se ramène au cas où $a=[M]$ avec $M$ dans $\mathcal{M}$ et $b=[P]$ avec $P$ dans $\Proj{B}$. On se donne $Q_*\ra P$ une résolution
+  finie de $P$ par des $A$-modules projectifs de type fini. Or $M\otimes_A Q_*\ra M\otimes_A P$ est exacte
+  car pour tout $i>0$, $\fTor{i}{A}{M}{P} = 0$. Donc~:
+  \begin{align*}
+    f_*(b\cdot f^*(a)) &= [P\otimes_B (B\otimes_A M)] \\
+                       &= [P\otimes_A M] \\
+                       &= \sum_i(-1)^i[Q_i\otimes_A M] \\
+                       &= (\sum_i(-1)^i[Q_i])\cdot [M] \\
+                       &= f_*(b)\cdot a
+  \end{align*}
+\end{proof}
+
+
+Nous allons maintenant nous intéresser au cas particulier des anneaux réguliers. Nous verrons que si $A$ est régulier, alors $K_0(A)$ et $K'_0(A)$ coïncident.
+
+\begin{defi}
+  Un anneau noethérien (à gauche) $A$ est dit proj-régulier si tout $A$-module de type fini est de dimension projective finie.
+\end{defi}
+
+Dans le cas commutatif, cette definition coïncide avec la definition usuelle d'anneau régulier (cf. le \sref{corollaire}{regulierprojregulier} ci-dessous).
+
+\begin{theo}\label{thmanneauxreguliers}
+  Soit $(A,\mathfrak{m})$ un anneau local commutatif noethérien. S'équivalent~:
+  \begin{description}
+    \item[(i)] $A$ est de dimension projective finie~;
+    \item[(ii)] $A$ est local régulier ($\mathrm{Krull}\dim A = \dim_{A/\mathfrak{m}} \mathfrak{m}/\mathfrak{m}^2$)~;
+    \item[(iii)] $k:=A/\mathfrak{m}$ est de dimension projective finie sur $A$.
+  \end{description} 
+  Et dans ce cas, la dimension projective de $A$ est la dimension projective de $k:=A/\mathfrak{m}$ comme $A$-module.
+\end{theo}
+
+Nous renvoyons au \cite[Chp.4]{Weib2} pour la démonstration et les différentes propriétés élémentaires de la dimension projective qui seront utilisées par la suite.
+
+\begin{coro}\label{regulierprojregulier}
+  Un anneau commutatif noethérien $A$ est proj-régulier si et seulement si il est régulier (ie. pour tout $\mathfrak{m}$ idéal maximal,
+  $\mathrm{ht}\:\mathfrak{m} = \dim_{A/\mathfrak{m}} \mathfrak{m}/\mathfrak{m}^2$).
+\end{coro}
+
+\begin{proof}
+  $\mathbf{(\Leftarrow)}$ Soit $P_*\ra M$ une résolution projective par des modules de type fini d'un $A$-module de type fini $M$. On note $Z_n:=\coker{d:P_n\ra P_{n-1}}$.
+  Comme pour tout $\mathfrak{m}$ idéal maximal, $M_\mathfrak{m}$ est de dimension projective finie, il existe $n\geq 0$ tel que $(Z_n)_\mathfrak{m}$ soit projectif.
+  Mais, comme $A$ est noethérien, $Z_n$ est de présentation finie. Donc $(Z_n)_\mathfrak{m}$ est un $A_\mathfrak{m}$-module libre de type fini.
+  Donc, il existe $f_\mathfrak{m}\in A\backslash\mathfrak{m}$ tel que $(Z_n)_{f_\mathfrak{m}}$ soit libre, et donc projectif. Or si $(Z_n)_{f_\mathfrak{m}}$
+  est projectif, $(Z_m)_{f_\mathfrak{m}}$ est aussi projectif pour tout $m\geq n$. Donc, comme $\Spec{A}$ est quasi-compact, il existe $n\geq 0$ et $f_1,\dotsc,f_l$
+  tels que $\Spec{A}=\bigcup_i\Open{f_i}$ et $(Z_n)_{f_i}$ soit projectif de type fini pour tout $i$. Alors $Z_n$ est projectif,
+  et $M$ est de dimension projective finie sur $A$.
+
+  $\mathbf{(\Rightarrow)}$ Soit $\mathfrak{m}$ un idéal maximal. Alors $A/\mathfrak{m}$ est de dimension projective finie sur $A$ et donc aussi sur $A_\mathfrak{m}$.
+  Donc, d'après le \sref{théorème}{thmanneauxreguliers}, $A_\mathfrak{m}$ vérifie $\mathrm{Krull}\dim A_\mathfrak{m} = \dim_{A/\mathfrak{m}} \mathfrak{m}/\mathfrak{m}^2$.
+  On a donc bien $\mathrm{ht}\:\mathfrak{m} = \dim_{A/\mathfrak{m}} \mathfrak{m}/\mathfrak{m}^2$.
+\end{proof}
+
+
+\begin{theo}\label{KegalKprimeAnneauxReguliers}
+  Soit $A$ un anneau commutatif noethérien régulier. Alors le foncteur naturel $\Proj{A}\ra\Modf{A}$ induit un isomorphisme $K_0(A)\ra K'_0(A)$.
+\end{theo}
+
+\begin{proof}
+  Nous allons décrire un inverse $u:K'_0(A)\ra K_0(A)$. Soit $M$ un $A$-module de type fini, et soit $P_*\ra M$ une résolution finie par des $A$-modules projectifs.
+  On pose $u(M):=\sum_i(-1)^i[P_i]$.
+
+  Montrons que $u(M)$ ne dépend pas de la résolution. Comme dans la preuve de la \sref{proposition}{KprimeTordimfinie}, il suffit
+  de se restreindre au cas où il existe $a:P'_*\ra P_*$ surjection entre deux résolutions de $M$. Alors $\myker{a}_*\ra 0$ est une résolution projective.
+  On a alors $\sum_i(-1)^i[P_i]=\sum_i(-1)^i[P'_i]-\sum_i(-1)^i[\myker{a}_i]=\sum_i(-1)^i[P'_i]$.
+
+  Montrons maintenant que si $\exa{M'}{M}{M''}$ est une suite exacte dans $\Modf{M}$, alors $u(M) = u(M'')+u(M')$.
+  Par le lemme du fer à cheval, on dispose de résolutions finies respectant la suite exacte~:
+  \begin{center}
+    \begin{tikzcd}
+      0\rar & P'_* \rar\dar & P_* \rar\dar & P''_* \rar\dar & 0\\
+      0\rar & M'   \rar     & M   \rar     & M''   \rar     & 0
+    \end{tikzcd}
+  \end{center}
+  On a alors clairement $u(M) = u(M'')+u(M')$.
+\end{proof}
+
+On remarque que ce théorème ressemble beaucoup à la \sref{proposition}{KprimeTordimfinie}. Ces deux résultats sont encore vraie en $K$-théorie supérieure,
+et sont des applications d'un même résultat (voir [lien vers plus loin]).
+
+
+\subsection{\texorpdfstring{Les groupes $K_0$ et $K'_0$ d'un schéma}{Les groupes K0 et K'0 d'un schéma}}
+
+On peut étendre la definition des groupes de $K$ et $K'$-théorie des anneaux commutatifs aux schémas.
+Pour $X$ un schéma, nous noterons $\Proj{X}$ la catégorie des modules projectifs localement de type fini sur $X$
+et $\Modf{X}$ la catégorie des modules quasi-cohérents localement de type fini sur $X$.
+
+\begin{defi}[$K_0$  et $K'_0$]
+  Soit $X$ un schéma.
+  Le groupe abélien $K_0(X)$ est le groupe de Grothendieck de $\Proj{X}$~: le quotient du groupe abélien libre $\bigoplus_\mathcal{P} \Z\cdot [\mathcal{P}]$
+  engendré par les objets de $\Proj{X}$,
+  par les relation $[\mathcal{R}] = [\mathcal{P}] + [\mathcal{Q}]$ pour chaque suite exacte $0\ra \mathcal{P}\ra \mathcal{R}\ra \mathcal{Q}\ra 0$.
+
+  On définit de même le groupe $K'_0(X)$ comme le groupe de Grothendieck de $\Modf{X}$.
+\end{defi}
+
+De même que pour les anneaux, nous avons les propriétés suivantes~:
+\begin{description}
+  \item[(i)] $(K_0(X),\oplus,\otimes)$ est un anneau et le produit tensoriel fait de $K'_0(X)$ un $K_0(X)$-module~;
+  \item[(ii)] Si $f:X\ra Y$ est un morphisme de schéma, le foncteur $f^*:\Proj{Y}\ra\Proj{X}$ induit un morphisme d'anneau~:
+    $$f^*:K_0(Y)\lra K_0(X)$$
+  \item[(ii')] Si $f:X\ra Y$ est un morphisme plat, le foncteur $f^*:\Modf{Y}\ra\Modf{X}$ induit un morphisme d'anneau~:
+    $$f^*:K'_0(Y)\lra K'_0(X)$$
+  \item[(iii)] Si $f:X\ra Y$ est un morphisme fini localement libre, le foncteur $f_*:\Proj{X}\ra\Proj{Y}$ induit un morphisme \textbf{de groupe}~:
+    $$f_*:K_0(X)\lra K_0(Y)$$
+    Et on a la formule de projection, pour tout $x$ dans $K_0(X)$ et $y$ dans $K_0(Y)$~:
+    $$f_*(x\cdot f^*(y))=f_*(x)\cdot y\text{ dans }K_0(Y)$$
+  \item[(iii')] Si $f:X\ra Y$ est un morphisme fini, le foncteur $f_*:\Modf{X}\ra\Modf{Y}$ induit un morphisme~:
+    $$f_*:K'_0(X)\lra K'_0(Y)$$
+    Et si $f$ est localement libre, on a la formule de projection, pour tout $x$ dans $K_0(Y)$ et $y$ dans $K'_0(Y)$~:
+    $$f_*(x\cdot f^*(y))=f_*(x)\cdot y\text{ dans }K'_0(Y)$$
+\end{description}
+
+
+[à terminer, ajouter les morphismes propres et les morphismes de Tor dimension finie]
+
+Nous allons maintenant aborder le cas des schémas réguliers. Si les résultats sont assez similaires au cas des anneaux,
+les schémas posent le problème de l'existence de résolutions par des fibrés vectoriels.
+
+\begin{defi}
+  Un schéma $X$ est dit régulier si l'anneau local $\Ring{X,x}$ est régulier pour tout point $x$ dans $X$.
+\end{defi}
+
+\begin{rem}
+  Un schéma, et même un anneau, dont les anneaux locaux sont réguliers n'est pas nécessairement noethérien. Par exemple, c'est le cas du localisé
+  de $k[X_1,X_2,X_3,\dotsc]$ par le complémentaire de l'union $\bigcup_n(X_{n^2},\dotsc,X_{(n+1)^2-1})$ (contre-exemple dû à Nagata).
+\end{rem}
+
+\begin{lem}\label{RegulierSepareQuotient}
+  Soit $X$ un schéma noethérien, régulier et séparé. Alors tout faisceau cohérent sur $X$ est quotient d'un fibré vectoriel.
+\end{lem}
+
+La démonstration ci-dessous utilise des propriétés des diviseurs de Cartier et de Weil. Pour plus d'information, voir \cite[chp. 11]{Gort}.
+
+\begin{proof}
+  \begin{description}
+    \item[(a)] Si $(A,\mathfrak{m})$ est local noethérien et normal, alors~:
+    $$\dim(A)\leq 1 \Leftrightarrow \Spec{A}\backslash \{\mathfrak{m}\}\text{ est affine}$$
+    En effet, si $\dim(A)=0$, c'est clair. Si $\dim(A)=1$, il existe $f\in \mathfrak{m}$ qui évite les idéaux premiers minimaux de $A$.
+    On a alors $\Spec{A}\backslash \{\mathfrak{m}\}=\Spec{A_f}$. Si $\dim(A)\geq 2$, par le lemme de Hartogs (\cite[6.45]{Gort}),
+    $$\Ring{\Spec{A}}(\Spec{A})\ra \Ring{\Spec{A}}(\Spec{A}\backslash \{\mathfrak{m}\})$$
+    est un isomorphisme, donc $\Spec{A}\backslash \{\mathfrak{m}\}$ ne peut être affine.
+    
+    \item[(b)] Si $X$ est localement noethérien et normal, et si $U\hookrightarrow X$ est une immersion ouverte affine, alors toutes les composantes
+    irréductibles de $X\backslash U$ sont de codimension $\leq 1$ dans $X$.
+    
+    En effet, si $\xi\in X\backslash U$ est le point générique d'une composante irréductible, on pose 
+    $V=\Spec{\Ring{X,\xi}}\backslash\{\mathfrak{m}_{X,\xi}\}$. Par l'hypothèse, c'est un ouvert affine et $\Ring{X,\xi}$ est noethérien normal.
+    Donc par (a), $\dim(\Ring{X,\xi})\leq 1$.
+    
+    \item[(c)] Soit $U\subseteq X$ affine avec $X$ noethérien, régulier et séparé. Alors il existe un fibré en droite $\mathcal{L}$ et $f\in \mathcal{L}(X)$
+    tels que $U=\Open{f}$.
+    
+    Pour démontrer ce point nous pouvons supposer $X$ intègre et $U$ non vide. Comme $X$ est séparé, $U\hookrightarrow X$ est affine.
+    Ainsi, $X\backslash U$ est de codimension pure $1$. Donc, par définition, il existe un diviseur de Weil effectif $D$ tel que
+    $X\backslash U=\Supp{D}$. Comme $X$ est régulier, il existe un diviseur de Cartier effectif $\tilde{D}$ dont le diviseur
+    de Weil associé est $D$. Alors avec $f:=1_{\tilde{D}}\in \Ring{\tilde{D}}(X)$ la section associée à $1\in\mathrm{K}(X)$ et 
+    $\mathcal{L}:=\Ring{\tilde{D}}(X)$, on a $U=\Open{f}$.
+
+    \item[(d)] Conclusion~:
+
+    On pose $X=\bigcup_{i\in I} U_i$ avec $I$ fini et chaque $U_i$ affine. Pour chaque $i$, à l'aide de (c), on se donne $\mathcal{L}_i$
+    et $f_i\in\mathcal{L}_i(X)$ tels que $U_i=\Open{f_i}$.
+
+    Soit $\mathcal{F}$ un faisceau cohérent sur $X$. Pour chaque $i\in I$, on note $a_{i1},\dotsc,a_{in_i}$ une famille de générateurs de
+    $\mathcal{F}(U_i)$. Il existe alors, pour chaque $i$, $m_i\geq 0$ tel que pour tout $j$, $a_{ij}\otimes f_i^{m_i}=b_{ij\mid\Open{f_i}}$
+    avec $b_{ij}\in \mathcal{F}\otimes \mathcal{L}^{\otimes m_i}(X)$.
+
+    Les $b_{ij}$ induisent des surjections $\Ring{X}^{n_i}\lra \mathcal{F}\otimes\mathcal{L}^{\otimes m_i}$ sur $U_i$ et donc une surjection~:
+    $$\phi:\bigoplus_{i\in I}\Ring{X}^{n_i}\otimes\mathcal{L}^{\otimes -m_i}\lra \mathcal{F}$$
+  \end{description}
+\end{proof}
+
+\begin{lem}\label{resolutionsVB}
+  Soit $X$ un schéma noethérien, régulier et séparé. Alors tout complexe fini de modules cohérents sur $X$ 
+  admet une résolution finie par des fibrés vectoriels.  
+\end{lem}
+
+\begin{proof}
+  Soit $\mathcal{F}_*$ un complexe de modules cohérents sur $X$, concentré en degrés $\{k,\dotsc,l-1\}$. Alors, d'après le 
+  \sref{lemme}{RegulierSepareQuotient}, ce complexe admet une résolution $\mathcal{E}_*\ra \mathcal{F}_*$ par des fibrés vectoriels.
+  Soit $X=\bigcup_{i\in I} U_i$ un recouvrement fini par des ouverts affines.
+  Alors, sur chaque ouvert $U_i$, on a une résolution $\mathcal{E}(U_i)_*\ra \mathcal{F}(U_i)_*$ du complexe de
+  $\Ring{X}(U_i)$-modules de type fini $\mathcal{F}(U_i)_*$. Or comme $\Ring{X}(U_i)$ est régulier, $\im{\mathcal{E}(U_i)_{l+1}\ra \mathcal{E}_l(U_i))}$
+  est de dimension projective finie. Donc, il existe $n_i\geq 0$ tel que pour tout 
+  $m\geq n_i$, $\coker{\mathcal{E}_{m+1}(U_i)\ra \mathcal{E}_m(U_i)}$ soit projectif.
+  Si on choisi $n\geq n_i$ pour tout $i$, alors 
+  $\coker{\mathcal{E}_{n+1}(U_i)\ra \mathcal{E}_n(U_i)}\ra \mathcal{E}_{n-1}(U_i)\ra\dotsb\ra \mathcal{E}_0(U_i)\ra \mathcal{F}_*$ est une 
+  résolution finie de $\mathcal{F}$ par des fibrés vectoriels.
+\end{proof}
+
+
+\begin{lem}\label{ferAChevalVB}
+  Soit $\exa{\mathcal{F}'}{\mathcal{F}}{\mathcal{F}''}$ une suite exacte de modules cohérents sur un schéma $X$ noethérien régulier séparé.
+  Alors il existe des résolutions finies par des fibrés vectoriels respectant la suite exacte~:
+  \begin{center}
+    \begin{tikzcd}
+      0\rar & \mathcal{P}'_* \rar\arrow[d, "u'"] & \mathcal{P}_* \rar\arrow[d, "u"] & \mathcal{P}''_* \rar\arrow[d, "u''"] & 0\\
+      0\rar & \mathcal{F}'   \rar                & \mathcal{F}   \rar               & \mathcal{F}''   \rar                 & 0
+    \end{tikzcd}
+  \end{center}
+\end{lem}
+
+\begin{proof}
+  Montrons d'abord le résultat suivante~:
+  
+  (*)~: Soit $\exa{\mathcal{F}'}{\mathcal{F}}{\mathcal{F}''}$ une suite exacte de modules cohérents. Alors, on peut la compléter en un diagramme~:
+  \begin{center}
+    \begin{tikzcd}
+      0\rar & \mathcal{P}' \rar\arrow[d, "u'"] & \mathcal{P} \rar\arrow[d, "u"] & \mathcal{P}'' \rar\arrow[d, "u''"] & 0\\
+      0\rar & \mathcal{F}' \rar                & \mathcal{F} \rar               & \mathcal{F}'' \rar                 & 0
+    \end{tikzcd}
+  \end{center}
+  où les flèches verticales sont surjectives et les modules $\mathcal{P}'$,$\mathcal{P}$ et $\mathcal{P}''$ sont des fibrés vectoriels.
+  
+  Montrons l'existence d'un tel diagramme. D'après le \sref{lemme}{RegulierSepareQuotient}, il existe des surjections $v:\mathcal{P}''\ra\mathcal{F}$
+  et $u':\mathcal{P}'\ra\mathcal{F}'$ avec $\mathcal{P}''$ et $\mathcal{P}'$ fibré vectoriels.
+  On pose alors $\mathcal{P}:=\mathcal{P}'\oplus\mathcal{P}''$ et on complète le diagramme de manière évidente avec
+  $\exa{\mathcal{P}'}{\mathcal{P}'\oplus\mathcal{P}''}{\mathcal{P}''}$ induit par le scindage, $u:=u'\oplus v$ et 
+  $u'':=(\mathcal{F}\ra\mathcal{F}'')\circ v$.
+
+  Maintenant, en appliquant (*) successivement aux la suite exacte $\exa{\myker{u'}}{\myker{u}}{\myker{u''}}$, on obtient des résolutions 
+  respectant la suite exacte $\exa{\mathcal{F}'}{\mathcal{F}}{\mathcal{F}''}$. D'après la preuve du \sref{lemme}{resolutionsVB}, nous
+  pouvons tronquer ces résolutions à un range $n\geq 0$. Il reste à montrer que la suite~:
+  $$\exa{\coker{\mathcal{P}'_{n+1}\ra\mathcal{P}'_{n}}}{\coker{\mathcal{P}_{n+1}\ra\mathcal{P}_{n}}}{\coker{\mathcal{P}''_{n+1}\ra\mathcal{P}''_{n}}}$$
+  est exacte. Elle est exacte à droite par le lemme du serpent, et à gauche car les deux premiers termes s'injectent dans $\mathcal{P}_{n-1}$.
+\end{proof}
+
+\begin{theo}
+  Soit $X$ un schéma noethérien, régulier et séparé. Alors le foncteur $\Proj{X}\ra \Modf{X}$ induit un isomorphisme de groupes
+  $K_0(X)\simeq K'_0(X)$.
+\end{theo}
+
+\begin{proof}
+  la preuve est essentiellement la même que pour le \sref{théorème}{KegalKprimeAnneauxReguliers}. Il faut pour appliquer la preuve montrer deux
+  lemmes dans le cadre des modules sur le schéma $X$~: l'existence de résolutions finies pour les complexes finis de modules cohérents, c'est le
+  \sref{lemme}{resolutionsVB} ci-dessus~; l'existence de résolutions finies respectant les suites exactes, 
+  c'est le \sref{lemme}{ferAChevalVB} ci-dessus.
+\end{proof}
+
+
+\subsection{\texorpdfstring{Categories exactes et leurs $K_0$}{Categories exactes et leurs K0}}
+
+Dans les deux sous-sections précédentes, nous avons défini les groupes de Grothendieck de différentes catégories~:
+$\Proj{A}$, $\Modf{A}$, $\Proj{X}$, $\Modf{X}$, ou encore $\mathcal{M}$ de la \sref{proposition}{KprimeTordimfinie}.
+Ces catégories ont en commun d'être des sous-catégories d'une catégorie abélienne admettant des extension.
+
+\begin{defi}
+  Une catégorie exacte plongée est une sous-catégorie pleine $\M$ d'une catégorie abélienne $\A$ admettant des extensions. C'est-à-dire, pour 
+  toute suite exacte $\exa{M'}{M}{M''}$ dans $\A$ telle que $M'$ et $M''$ soient dans $\M$, il existe un objet $\tilde{M}$ de $\M$ isomorphe à $M$.
+\end{defi}
+
+Soit $\M\hookrightarrow\A$ une catégorie exacte plongée. On note $\E$ la classe des suites $\exa{M'}{M}{M''}$ d'objets de $\M$ exactes dans $\A$.
+On appelle monomorphisme admissible un morphisme $M'\lra M$ dans $\M$ qui apparaît comme le premier morphisme d'un élément $\exa{M'}{M}{M''}$ de $\E$.
+On le notera alors $M'\mono M$.
+On appelle épimorphisme admissible un morphisme $M\lra M''$ dans $\M$ qui apparaît comme le second morphisme d'un élément $\exa{M'}{M}{M''}$ de $\E$.
+On le notera alors $M\epi M''$.
+Alors $\M$ est additive et $\M$ et $\E$ vérifient les propriétés suivantes.
+\begin{description}
+  \item[(a1)] Si $\exa{M'}{M}{M''}$ est une suite dans $\M$ isomorphe à une suite exacte de $\E$, alors $\exa{M'}{M}{M''}$ est dans $\E$.
+  \item[(a2)] Pour tous $M'$ et $M''$ dans $\M$, la suite naturelle $\exa{M'}{M'\oplus M''}{M''}$ est dans $\E$.
+  \item[(a3)] Pour tout $\exaname{M'}{i}{M}{j}{M''}$ dans $\E$, $i$ est le noyau de $j$ dans $\M$ et $j$ est le conoyau de $i$ dans $\M$.
+  \item[(b1)] Les monomorphismes admissibles sont stables par poussé en avant par un morphisme quelconque de $\mathcal{M}$. Les épimorphismes admissibles sont
+              stables par tiré en arrière par un morphisme quelconque de $\mathcal{M}$.
+  \item[(b2)] Les monomorphismes admissibles sont stables par composition. Les épimorphismes admissibles sont stables par composition. 
+\end{description}
+
+\begin{proof}
+  Les points (a1)-(a3) sont immédiats. Soit $j:M\ra M''$ un épimorphisme admissible et $i:M'\ra M$ son noyau. Soit $f:N\ra M''$ un morphisme.
+  Alors on a le diagramme suivant avec des lignes exactes dans $\A$ et le carré de droite est cartésien.
+  \begin{center}
+    \begin{tikzcd}
+      0\rar & M' \rar\dar & M\times_{M''}N \rar\dar & N   \rar\dar & 0\\
+      0\rar & M' \rar     & M              \rar     & M'' \rar     & 0
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.125}, draw=none, from=1-3, to=2-4]
+    \end{tikzcd}
+  \end{center}
+  Or, $N$ et $M'$ sont des objets de $\M$. Donc il existe $P$ dans $\M$ isomorphe à $M\times_{M''}N$. Ceci démontre (b1).
+
+  Soit $j:M\ra M''$ et $p:M''\ra M'''$ deux épimorphismes admissibles. On note $i:N\ra M''$ le noyau de $p$.
+  On a alors à nouveau le diagramme ci-dessus. On vérifie immédiatement que $M\times_{M''}N\ra M$ est le noyau de $p\circ j$.
+\end{proof}
+
+\begin{defi}[catégorie exacte]
+  Une catégorie exacte est une catégorie additive $\M$ muni d'une classe $\E$ de suites $\exa{M'}{M}{M''}$ dans $\M$ vérifiant les axiomes
+  (a1),(a2),(a3),(b1) et (b2).
+  Un foncteur $F:\M\ra \M'$ entre catégories exactes est un foncteur additif préservant les suites exactes (ie. $F$ envoie $\E$ dans $\E'$).
+\end{defi}
+
+\begin{ex}
+  Les catégories suivantes sont exactes~:
+  \begin{itemize}
+    \item une catégorie abélienne $\A$ munie de ses suites exactes~;
+    \item une catégorie additive $\mathcal{N}$ munie des suites exactes scindés~;
+    \item si $\M$ est une catégorie exacte, la catégorie $\M\op$ est exacte~;
+    \item $\Proj{A}$ ou $\Modf{A}$ pour $A$ un anneau~;
+    \item $\Proj{X}$ ou $\Modf{X}$ pour $X$ un schéma.
+  \end{itemize}
+\end{ex}
+
+\begin{prop}
+  Soit $\M$ une catégorie exacte et $\E$ son ensemble de suites exactes. Alors~:
+  \begin{description}
+    \item[(c1)] Si $f:M\ra M''$ a un noyau dans $\M$ et si $N\xrightarrow{u} M\xrightarrow{f} M''$ est un épimorphisme admissible,
+                alors $f$ est un épimorphisme admissible.
+    \item[(c2)] Si $f:M'\ra M$ a un conoyau dans $\M$ et si $M'\xrightarrow{f} M\xrightarrow{u} N$ est un monomorphisme admissible,
+    alors $f$ est un monomorphisme admissible.
+  \end{description}
+\end{prop}
+
+Nous ne démontrons pas ici cette proposition. La démonstration est élémentaire et relativement courte. Elle est rédigée dans \cite[A.1]{Kell}.
+[Frédéric~: mettre la preuve en annexe~?]
+
+\begin{theo}[plongement]\label{plongementExacte}
+  Pour toute catégorie exacte $\M$, il existe une catégorie abélienne $\A$ et un foncteur $i:\M\ra \A$ additif, exact et pleinement fidèle.
+\end{theo}
+
+Ce théorème sera admis ici, car sa démonstration a peu de rapport avec le reste du mémoire. Il permet d'utiliser les propriétés des catégories
+abéliennes quand on travaille avec des catégories exactes (lemme du serpent par exemple).
+[Frédéric~: voir un moyen de se débarrasser du thm ou de le démontrer facilement~?]
+
+Un autre exemple important de catégories exactes est le suivant.
+
+\begin{propdefi}
+  Soit $\M$ une catégorie exacte et $\E$ la classe de ses suites exactes. Alors $\E$ a une structure naturelle de catégorie additive où les
+  morphismes de $\exac{M'}{M}{M''}$ vers $\exac{N'}{N}{N''}$ sont les diagrammes commutatifs~:
+  \begin{center}
+    \begin{tikzcd}
+      M' \arrow[r,tail]\dar & M \arrow[r,two heads]\dar & M'' \dar \\
+      N' \arrow[r,tail]     & N \arrow[r,two heads]     & N''
+    \end{tikzcd}
+  \end{center}
+  On a alors $3$ foncteur $s,t,q:\E\ra \M$ donnés par~:
+  \[
+    \begin{array}{llcl}
+      s:&\exac{M'}{M}{M''}&\mapsto& M' \\
+      t:&\exac{M'}{M}{M''}&\mapsto& M  \\
+      q:&\exac{M'}{M}{M''}&\mapsto& M''
+    \end{array}
+  \]
+  On note $\mathcal{F}$ l'ensemble des suites $S=\exa{E'}{E}{E''}$ dans $\E$ tels que $s(S)$, $t(S)$
+  et $q(S)$ soient exactes.
+  
+  Alors $\mathcal{F}$ fait de $\E$ une catégorie exacte et les foncteurs $s,t,q:\E\ra \M$ sont exactes.
+\end{propdefi}
+
+\begin{proof}
+  Les propriétés (a1), (a2) et (a3) sont faciles à vérifier.
+  Par le lemme "3x3" des catégories abéliennes et le \sref{théorème de plongement}{plongementExacte},
+  $i:E'\ra E$ est un épimorphisme admissible dans $\E$ si et seulement si $s(i)$, $t(i)$ et $q(i)$ sont des épimorphismes 
+  admissibles dans $\M$. De même pour les monomorphismes admissibles. Or la composition, le tiré en arrière et le poussé en avant se calculent
+  termes à termes. Ceci montre (b1) et (b2). 
+\end{proof}
+
+Nous pouvons maintenant définir le $K_0$ d'une catégorie exacte.
+
+\begin{defi}[$K_0$ d'une catégorie exacte]
+  Soit $\M$ une catégorie exacte de suites exactes $\E$ telle que les classes d'isomorphisme de $\M$ forment un ensemble.
+  On définit le groupe de $K$-théorie de $\M$, $K_0(\M)$, comme le quotient du groupe libre $\bigoplus_M\Z\cdot [M]$ sur les objets de $\M$, par les relations
+  $[M]=[M']+[M'']$ pour chaque suite $\exac{M'}{M}{M''}$ dans $\E$.
+\end{defi}
+
+\begin{rem}
+  La exacte $\exac{0}{0}{0}$ implique $0=[0]$ dans $K_0(\M)$. Pour chaque isomorphisme $\eta:M\ra\tilde{M}$,
+  la suite $\exacname{0}{}{M}{\eta}{\tilde{M}}$ est isomorphe à $\exacname{0}{}{0\oplus M}{0\oplus\id}{M}$
+  qui est dans $\E$. Ceci montre que $[M]=[\tilde{M}]$ dans $K_0(\M)$. Ainsi, si les classes d'isomorphisme de $\M$ forment un ensemble,
+  $K_0(\M)$ est un ensemble.
+\end{rem}
+
+\begin{prop}\label{CatExColimites}
+  Soit $\M_{(-)}:I\ra \CatEx$, $i\mapsto \M_i$ un foncteur d'une catégorie filtrante $I$ dans la catégorie des petites catégories exactes
+  et des foncteurs exactes. Alors la colimite $\M:=\colim_i\M_i$ existe. La catégorie sous-jacente est la colimite dans la catégorie des catégories
+  et l'ensemble $\E$ des suites exactes est donnée par la colimite $\colim_i\E_i$, où $\E_i$ est l'ensembles des suites exactes dans $\M_i$.
+  En d'autres termes $\exacname{M'}{k}{M}{p}{M''}$ est dans $\E$ si et seulement si seulement si pour un certain
+  rang $i$ dans $\Ob{I}$, il existe $M'_i$,$M_i$,$M''_i$,$k_i$ et $p_i$  induisant respectivement $M'$,$M$,$M''$,$k$ et $p$ dans $\M$,
+  tels que $\exacname{M'_i}{k_i}{M_i}{p_i}{M''_i}$ soit exacte dans $\M_i$.
+\end{prop}
+\begin{proof}
+  On pose $\M$ la colimite de $\M_{(-)}$ dans la catégorie des petites catégories. On pose $\E$ la colimite $\colim_i\E_i$.
+  Montrons que $\M$ est exacte. Il sera alors immédiat que $\M$ est la colimite dans $\CatEx$.
+  Comme tout diagramme fini est réalisé à un rang $i$ dans $\Ob{i}$, les axiomes (a1),(a2) et (a3) passent à la colimite.
+  L'axiome (b2) passe de même clairement à la colimite. L'axiome (b1) est vérifié par le \sref{lemme}{tireEnArriereExact} suivant. 
+\end{proof}
+
+\begin{lem}\label{tireEnArriereExact}
+  Soit $F:\M\ra\M'$ un foncteur exact entre catégories exactes. Soit $j:M\twoheadrightarrow M''$ un épimorphisme admissible dans $\M$ et $f:N\ra M''$
+  un morphisme. Alors le carré~:
+  \begin{center}
+    \begin{tikzcd}
+      F(M\times_{M''}N) \arrow[two heads, r] \arrow[d] & F(N) \arrow[d, "F(f)"] \\
+      F(M)              \arrow[two heads, r, "F(j)"]           & F(M'') 
+    \end{tikzcd}
+  \end{center}
+  est cartésien. En d'autres termes, les foncteurs exactes préservent les tirés en arrière des épimorphismes admissibles.
+\end{lem}
+
+\begin{proof}
+  On note $i:M'\ra M$ le noyau de $j$.
+  On note $\alpha: F(M\times_{M''}N)\ra F(M)\times_{F(M'')}F(N)$ le morphisme canonique. Montrons que $\alpha$ a noyau nul.
+  Soit $u:P\ra F(M\times_{M''}N)$ tel que $\alpha\circ u=0$. Alors comme $\exac{F(M')}{F(M\times_{M''}N)}{F(N)}$ est exacte,
+  $u$ se factorise en $v: P\ra F(M')$ par $F(M')\rightarrowtail F(M\times_{M''}N)$. Or, $F(i)\circ v=0$, donc $v=0$ car
+  $F(i)$ est un noyau.
+  Or la composition de $\alpha$ avec $F(M)\times_{F(M'')}F(N)\ra F(N)$ est un épimorphisme admissible. Donc par (c1), 
+  $\alpha$ est un épimorphisme admissible de noyau nul. Par (a3) c'est donc un isomorphisme.
+\end{proof}
+
+\begin{prop}\label{CatExColimitesK0}
+  Soit $\M_{(-)}:I\ra \CatEx$, $i\mapsto \M_i$ un foncteur d'une catégorie filtrante $I$ dans la catégorie des petites catégories exactes.
+  On note $\M$ sa colimite. Alors l'application induite $\colim_i K_0(\M_i)\ra K_0(\M)$ est un isomorphisme.
+\end{prop}
+
+\begin{proof}
+  On a $\bigoplus_{M\in\Ob{\M}} \Z = \colim_i \bigoplus_{M\in\Ob{\M_i}}\Z$ et le sous-groupe $<[M']+[M'']-[M]>_{\exac{M'}{M}{M''}}$
+  de $\bigoplus_{M\in\Ob{\M}}\Z$ est colimite des sous-groupes corresponds des $\bigoplus_{M\in\Ob{\M_i}}\Z$.
+\end{proof}
+
+Nous allons maintenant appliquer ce résultat de colimite pour effectuer un calcul.
+
+\begin{defi}
+  Soit $A=A_0\oplus A_1\oplus\dotsb$ un anneau gradué en degrés positifs. On note $\Pgr{A}$ la catégorie des $A$-modules $\Z$-gradués de type fini
+  et projectifs
+  (en tant que modules gradués\footnote{ce qui est équivalent à projectif en tant que $A$-module, voir \cite[pp.636-637]{Bass}. Ce ne sera pas utile ici}).
+  C'est une catégorie exacte.
+  On notera $t:\Pgr{A}\ra \Pgr{A}$, $(P_n)_n\mapsto (P_{n-1})_n$ le foncteur exact de décalage. On notera également par $t$ l'automorphisme induit
+  sur $K_0(\Pgr{A})$.
+\end{defi}
+
+\begin{prop}
+  Soit $A=A_0\oplus A_1\oplus\dotsb$ un anneau gradué en degrés positifs.
+  L'automorphisme $t$ fait de $K_0(\Pgr{A})$ un $\Z[t,t^{-1}]$-module. On a un isomorphisme de $\Z[t,t^{-1}]$-modules~:
+  \[
+  \begin{array}{llll}
+    \phi:&\Z[t,t^{-1}]\otimes_{\Z}K_0(A_0) &\ra    & K_0(\Pgr{A}) \\
+         &1\otimes x                       &\mapsto& (A\otimes_{A_0}-)_*x
+  \end{array}
+  \]
+\end{prop}
+
+\begin{proof}
+  Pour $k$ dans $\Z$, on note $F_k$ le foncteur $\Pgr{A}\ra\Pgr{A}$, $P\mapsto <P_n>_{n\leq q}$, où $<P_n>_{n\leq q}$ est le sous-module de $P$
+  engendré par les éléments homogènes de degrés $n\leq q$.
+  Pour $q\geq 0$, on note $\Pgr{A}_q$ la sous-catégorie pleine de $\Pgr{A}$ des $P$ tels que $F_{-q-1}P=0$ et $F_qP=P$.
+  On définit le foncteur exact $T:\Pgr{A}\ra \Pgr{A_0}$, $P\mapsto A_0\otimes_A P$. Pour tout $P$ et tout $n$, nous allons vérifier que le morphisme
+  canonique suivant est un isomorphisme~:
+  \[
+  \begin{array}{lll}
+    A[-n]\otimes_{A_0}T(P)_n &\ra& F_nP/F_{n-1}P \\
+    a_m\otimes \overline{b_n}&\mapsto &\overline{a_m\cdot b_n}
+  \end{array}
+  \]
+  pour $a_m$ et $b_n$ homogènes de degrés $m$ et $n$. On dispose d'un épimorphisme naturel de $A_0$-modules gradués $f:P\ra T(P)$.
+  Or $T(P)$ est un $A_0$-module gradué projectif.
+  Soit $g:T(P)\ra P$ une section. On note $h:T(P)\otimes_{A_0}A\ra P$ le morphisme de $A$-modules gradués de type fini induit.
+  Le morphisme $T(h)$ s'identifie à $\id_{T(P)}$. Donc $T(\coker{h})$ est nul. Or $\coker{h}$ est de type fini et donc inférieurement borné.
+  Donc $\coker{h}=0$. Donc $h$ est surjectif. Comme $P$ est projectif, on a $T(P)\otimes_{A_0}A\simeq \myker{h}\oplus P$. Mais par cet isomorphisme,
+  $T(T(P)\otimes_{A_0}A)$ est isomorphe à $T(P)$. Donc $T(\myker{h})=0$. Or, comme quotient de $P$, $\myker{h}$ est de type fini et donc borné
+  inférieurement. Donc $\myker{h}=0$. Ainsi on a un isomorphisme non-canonique $T(P)\otimes_{A_0}A\simeq P$. Via cet isomorphisme,
+  $F_nP\simeq \oplus_{q\leq n} A[-q]\otimes_{A_0} T(P)_q$. On a donc bien $A[-n]\otimes_{A_0}T(P)_n\simeq F_nP/F_{n-1}P$, et ce morphisme correspond
+  à celui défini plus haut car $h$ est induit par une section de $P\ra T(P)$.
+
+  Nous pouvons maintenant calculer $K_0(\Pgr{A}_q)$. Soit $P$ un objet de $\Pgr{A}_q$. On a une filtration de $P$~:
+  $$0=F_{-q-1}P\subseteq F_{-q}\subseteq \dotsb \subseteq F_qP=P$$
+  Et donc, au vu de l'isomorphisme ci-dessus~:
+  $$[P]=\sum_{n=-q}^q [F_nP/F_{n-1}P]=\sum_{n=-q}^q [A[-n]\otimes_{A_0}T(P)_n]=\sum_{n=-q}^q [\phi(t^n\otimes T(P)_n)]$$
+  Ainsi, si on pose $\chi_q: K_0(\Pgr{A}_q)\ra \bigoplus_{n=-q}^q K_0(A_0)$, $P\mapsto \oplus_n T(P)_n$, 
+  on a que $\phi_q$ et $\chi_q$ sont réciproques, où $\phi_q$ est la restriction de $\phi$ à $\bigoplus_{n=-q}^q \Z\cdot t^n\otimes K_0(A_0)$.
+  Donc $\phi_q$ est un isomorphisme. Par la \sref{proposition}{CatExColimitesK0}, $\phi$ est un isomorphisme.
+\end{proof}
+
+\subsection{\texorpdfstring{Les groupes $K_1$ et $K_2$ d'un anneau}{Les groupes K1 et K2 d'un anneau}}
+
+\section{\texorpdfstring{Définition de la $K$-théorie supérieure}{Définition de la K-théorie supérieure}}
+
+Cette section est dédiée à la construction $Q$ de la $K$-théorie supérieure, dûe à Daniel Quillen. La référence principale est l'article
+original de Quillen \cite{Quil}.
+
+\subsection{\texorpdfstring{La construction $Q$ de Quillen}{La construction Q de Quillen}}
+
+Dans cette sous-section, $\M$ désigne une petite catégorie exacte.
+
+\begin{propdefi}\label{propBicartesien}
+  Un diagramme dans $\M$ de la forme~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      A \arrow[d, two heads, "p'"] \arrow[r, tail, "i"] & B \arrow[d, two heads, "p"] \\
+      B \arrow[r, tail, "i'"]                           & C
+    \end{tikzcd}
+  \end{center}
+  est cartésien si et seulement si il est cocartésien. Si c'est le cas, $p$ et $p'$ ont même noyau, et $i$ et $i'$ ont même conoyau.
+  
+  On appellera un tel diagramme bicartésien.
+
+  De plus, tout diagramme cartésien de la forme $(1)$ ci-dessous ou cocartésien de la forme $(2)$ ci-dessous est bicartésien.
+  \begin{center}
+    \begin{tikzcd}[column sep = small, row sep = small]
+      \cdot \arrow[dd] \arrow[rr] &     & \cdot \arrow[dd, two heads] & \cdot \arrow[dd, two heads] \arrow[rr, tail] &     & \cdot \arrow[dd] \\
+                                  & (1) &                             &                                              & (2) &                  \\
+      \cdot \arrow[rr, tail]      &     & \cdot                       & \cdot \arrow[rr]                             &     & \cdot
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.125, rotate=180}, draw=none, from=3-6, to=1-4]
+    \end{tikzcd}
+  \end{center}
+\end{propdefi}
+
+\begin{proof}
+  Supposons seulement que le diagramme soit cartésien, que $i'$ soit un monomorphisme admissible et $p$ un épimorphisme admissible (cas $(1)$).
+  On note $k:N\rightarrowtail B$ le noyau de $p$. Un morphisme $u:P\ra A$ qui vérifie
+  $(P\xrightarrow{u} A\ra C)=0$ s'identifie à un morphisme $P\ra B$ qui vérifie $(P\ra B\ra D)=0$, c'est à dire un morphisme $P\ra N$.
+  Donc $p$ et $p'$ ont même noyau. De plus, par l'axiome (b1), $p'$ est un épimorphisme admissible.
+
+  Maintenant, un couple de morphismes $u:C\ra P$, $v:B\ra P$ s'identifie à un morphisme $v:B\ra P$ tel que $A\ra B\ra P$ se factorise
+  par $C$. C'est-à-dire, comme $p$ et $p'$ ont même noyau, un morphisme de $w:D\ra P$. Ainsi, le diagramme est cocartésien.
+  
+  Montrons que $i$ est un monomorphisme admissible. Soit $j':D\twoheadrightarrow Q$ le conoyau de $i'$. Un morphisme $u:P\ra B$
+  vérifie $j'\circ p\circ u=0$ si et seulement si $p\circ u$ se factorise par $i':C\ra D$ si et seulement si $u$ se factorise par $i$.
+  Donc $i$ est le noyau de $j'\circ p$, qui est un épimorphisme admissible. Donc $i$ est un monomorphisme admissible.
+  
+  Les autres énoncés sont duaux de ceux démontrés.
+\end{proof}
+
+%Or les deux premières colonnes sont exactes, donc par le \sref{théorème de plongement}{plongementExacte} et le lemme "$3\times 3$" des catégories
+%abéliennes, on a que $v$ est un isomorphisme. Ainsi, $i$ et $i'$ on même conoyau.
+
+%\begin{center}
+%  \begin{tikzcd}
+%    N \arrow[d, tail, "k'"]      \arrow[r, equal]     & N \arrow[d, tail, "k"]      \arrow[r]                 & 0 \arrow[d]      \\
+%    A \arrow[d, two heads, "p'"] \arrow[r, tail, "i"] & B \arrow[d, two heads, "p"] \arrow[r, two heads,"j"]  & M \arrow[d, "v"] \\
+%    B \arrow[r, tail, "i'"]                           & C                           \arrow[r, two heads,"j'"] & M'
+%  \end{tikzcd}
+%\end{center}
+
+\begin{defi}[catégorie $Q\M$]
+  On définit la catégorie $Q\M$ comme la catégorie dont~:
+  \begin{enumerate}
+    \item les objets sont les objets de $\M$~;
+    \item l'ensemble $\Hom{Q\M}{M}{M'}$ est l'ensemble des diagrammes~:
+          $$M\twoheadleftarrow N \rightarrowtail M'$$
+          à isomorphisme près, où un isomorphisme entre $M\twoheadleftarrow N \rightarrowtail M'$ et $M\twoheadleftarrow N' \rightarrowtail M'$
+          est la donnée d'un isomorphisme $\eta:N\ra N'$ dans $\M$ faisant commuter le diagramme~:
+          \begin{center}
+            \begin{tikzcd}[row sep = small]
+                & N \arrow[dd, "\eta"] \arrow[dl, two heads] \arrow[dr, tail] &    \\
+              M &                                                             & M' \\
+                & N'                   \arrow[ul, two heads] \arrow[ur, tail] &    \\
+            \end{tikzcd}
+          \end{center}
+    \item la composition de $M\twoheadleftarrow N \rightarrowtail M'$ et $M'\twoheadleftarrow N' \rightarrowtail M''$ est donnée par le diagramme~:
+    \begin{center}
+      \begin{tikzcd}
+          &                                          & N\times_{M'}N'\arrow[dl, two heads] \arrow[dr, tail] &                                        &     \\
+        M & N \arrow[l, two heads] \arrow[r, tail]   & M'                                                   & N'\arrow[l, two heads] \arrow[r, tail] & M'' \\
+      \end{tikzcd}
+    \end{center}
+  \end{enumerate}
+\end{defi}
+
+\begin{rem}
+  La composition dans $Q\M$ est bien définie par fonctorialité des limites. L'associativité est facile à vérifier.
+\end{rem}
+
+\begin{defi}
+  Pour $i:M\rightarrowtail M'$, on note $i_!:M\ra M'$ le morphisme associé dans $Q\M$. Un tel morphisme sera appelé une injection.
+
+  Pour $j:M\twoheadrightarrow M''$, on note $j^!:M''\ra M$ le morphisme associé dans $Q\M$. Un tel morphisme sera appelé une surjection.
+\end{defi}
+
+\begin{prop}
+  Tout morphisme $u$ de $Q\M$ se factorise en $u=i_!j^!$ uniquement à unique isomorphisme près. De même,
+  $u$ se factorise uniquement sous la forme $u=j^!i_!$ à unique isomorphisme près.
+
+  Un morphisme $u$ est un isomorphe si et seulement si c'est une injection et une surjection.
+
+  De plus, on a $\Iso{Q\M}{M}{M'}\simeq \Iso{\M}{M}{M'}$.
+\end{prop}
+
+\begin{proof}
+  Le premier point est la définition. Le second point découle de la bijection entre factorisations $u=j^!i_!$ et $u=i_!j^!$ induite par les propriétés
+  des carrés bicartésiens (\sref{proposition}{propBicartesien}).
+
+  La caractérisation des isomorphismes est immédiate dès que l'on remarque~:
+  si $u'=\tilde{i}_!\tilde{j}^!$ est inverse de $u=i_!j^!$, on pose $a_!b^!=\tilde{j}^!i_!$. Alors $\id=u'u= (\tilde{i}a)_!(bj)^!$~;
+  donc $\tilde{i}a$ et $bj$ sont des isomorphismes dans $\M$, donc $\tilde{i}$ et $j$ également.
+\end{proof}
+
+Une conséquence immédiate de la proposition ci-dessus et de la \sref{proposition}{propBicartesien} est la propriété universelle
+vérifiée par $Q\M$ dans $\Cat$.
+
+\begin{prop}[Propriété universelle de $Q\M$]\label{propUnivQM}
+  La donnée d'un foncteur $F:Q\M\ra D$ avec $D$ une petite catégorie est équivalente à la donnée~:
+  \begin{enumerate}
+    \item d'une application $F:\Ob\M\ra \Ob D$~;
+    \item de morphismes $Fi_!:FM'\ra FM$ pour chaque $i:M\rightarrowtail M'$~;
+    \item de morphismes $Fj^!:FM''\ra FM$ pour chaque $j:M\twoheadrightarrow M''$~;
+    \item tels que $F(ii')_!=Fi_!\circ Fi'_!$ et $F(jj')^!=Fj'^!\circ Fj^!$~;
+    \item et tels que pour chaque diagramme bicartésien~:
+    \begin{center}
+      \begin{tikzcd}[column sep = large, row sep = large]
+        \cdot \arrow[d, two heads, "j'"] \arrow[r, tail, "i'"] & \cdot \arrow[d, two heads, "j"] \\
+        \cdot \arrow[r, tail, "i"]                             & \cdot
+      \end{tikzcd}
+    \end{center}
+    On ai $Fj^!\circ Fi_!=Fi'_!\circ Fj'^!$.
+  \end{enumerate}
+\end{prop}
+
+Nous allons maintenant donner une autre interprétation des morphismes.
+
+\begin{propdefi}
+  On appelle sous-objet de $M\in \Ob \M$ une classe d'isomorphisme de monomorphismes admissibles $M'\rightarrowtail M$, et quotient de $M$
+  une classe d'isomorphisme d'épimorphismes admissibles $M\twoheadrightarrow M''$. Les sous-objets sont en bijection avec les quotients via les
+  suites exactes.
+
+  On définit une relation d'ordre sur les sous-objets de $M$ par $M_0\leq M_1$ si et seulement si il existe $M_0\rightarrowtail M_1$ monomorphisme
+  admissible au-dessus  de $M$.
+  
+  L'ensemble partiellement ordonné des niveaux de $M$ est définie par~:
+  \begin{itemize}
+    \item[$\bullet$] Objets~: couples $(M_0,M_1)$ de sous objets avec $M_0\leq M_1$~;
+    \item[$\bullet$] Morphismes~: $(M_0,M_1)\leq (M'_0,M'_1)$ si et seulement si $M'_0\leq M_0\leq M_1\leq M'_1$. 
+  \end{itemize}
+
+  On a une équivalence entre $Q\M\downarrow M$ et la catégorie des niveaux donnée par~:
+  $$(M_0,M_1)\mapsto (M_1/M_0\twoheadleftarrow M_1\rightarrowtail M)$$
+\end{propdefi}
+
+La démonstration est immédiate.
+
+\begin{prop}
+  On a un isomorphisme naturel de catégories~:
+  \[
+    \begin{array}{ccc}
+      Q\M\op                                        &\simeq & Q\M \\
+      M                                             &\mapsto& M   \\
+      M\xtwoheadleftarrow{p} N\xrightarrowtail{i} M' &\mapsto& M \xrightarrowtail{p\op} N\xtwoheadleftarrow{i\op}M'
+    \end{array}
+  \]
+\end{prop}
+
+Nous pouvons maintenant donner une définition de la $K$-théorie supérieure. Pour cela, nous allons considérer la catégorie
+$Q\M$ comme un ensemble simplicial. Pour des rappels sur ce point et sur les groupes d'homotopie des ensembles simpliciaux, voir le début de
+la \sref{sous-section suivante}{thmAetB}.
+
+\begin{defi}[$K$-théorie supérieure]
+  Soit $\M$ une catégorie exacte et $O$ un objet nul de $\M$. On définit, pour $n\geq 0$, le $n$-ème groupe de $K$-théorie de $\M$ comme~:
+  $$K_n(\M):=\pi_n(Q\M,O)$$
+\end{defi}
+
+\begin{rem}
+  Comme $Q\M$ est connexe, la classe d'isomorphisme de $K_n(\M)$ est indépendante de $O$. Il faut cependant en dire un tout petit peu plus
+  pour faire de $K_n$ un foncteur de $\CatEx$ dans $\Ab$, ce sera fait dans la \sref{sous-section}{premieresprops}.
+  Il reste également à vérifier que la nouvelle définition de $K_0$ coïncide avec celle donnée dans la \sref{section}{sectionK0}. C'est l'objet
+  du théorème ci-dessous.
+\end{rem}
+
+Nous allons maintenant étudier le groupoïde associé à $Q\M$. Soit $O\in \Ob\M$ un objet nul.
+
+Nous notons, pour $M$ objet de $Q\M$, $i_M:O\rightarrowtail M$ et $j_M:M\twoheadrightarrow O$ les uniques morphismes.
+La démonstration du théorème utilise la \sref{proposition}{pi1categorie}.
+\begin{theo}
+  L'application~:
+  $$
+  \begin{array}{lcl}
+    K_0(\M) &\ra     & \pi_1(Q\M,O) \\
+    {[{M}]}     &\mapsto & [i_{M!}]^{-1}[j_M^!]
+  \end{array}
+  $$
+  induit un isomorphisme de groupes.
+\end{theo}
+
+\begin{proof}
+  L'idée de la preuve est de montrer qu'on dispose d'une équivalence de catégorie~:
+  $$[K_0(\M),\Isos{\Ens}]\simeq [Q\M,\Isos{\Ens}]$$
+  Où $\Isos{\Ens}$ est la catégorie des bijections entre ensembles.
+  Pour cela, on remarque dans un premier temps que $[Q\M,\Isos{\Ens}]$ est équivalente à sa sous-catégorie pleine $\mathcal{F}$,
+  formée des foncteurs $F$ tels que~:
+  $$\forall M,\; F(M)=F(O)\text{ et }F(i_{M!})=\id_{F(O)}$$
+  En effet, un foncteur réciproque à l'inclusion est donné par~·
+  $$\gamma:F\mapsto (u:M\ra M'\mapsto F(i_{M'!})^{-1}\circ F(u)\circ F(i_{M!}))$$
+  Étudions les éléments de $\mathcal{F}$. Si $i:M\rightarrowtail M'$, $ii_{M'}=i_M$, et donc $F(i_!)=id_{F(O)}$. 
+  Soit $\exacname{M'}{i}{M}{j}{M''}$ une suite exacte. On a un carré bicartésien~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      M' \arrow[d, two heads, "j_M"] \arrow[r, tail, "i"] & M \arrow[d, two heads, "j"] \\
+      0  \arrow[r, tail, "i_{M''}"]                       & M''
+    \end{tikzcd}
+  \end{center}
+  On a donc $j^!i_{M''!}=i_!j_{M'}^!$, puis $F(j^!)=F(j_{M'}^!)$. De plus $j_M^!=j^!j_{M''}^!$. Donc $F(j_M^!)=F(j_{M'}^!)F(j_{M''}^!)$.
+  Nous disposons donc d'un morphisme naturel en $F$~:
+  $$
+    \begin{array}{lcl}
+      K_0(\M) &\ra     & \Aut{F(O)} \\
+      {[{M}]} &\mapsto & F(j_M^!)
+    \end{array}
+  $$
+  Ainsi, nous avons un foncteur:
+  $$ \alpha : \mathcal{F}\ra [K_0(\M),\Ens]$$
+  On remarque également que les éléments $F$ de $\mathcal{F}$ sont entièrement déterminés par $F(O)$ et leurs valeurs sur les $j_M^!$.
+  Nous allons maintenant décrire un morphisme réciproque. 
+  
+  Soit $S$ un $K_0(\M)$-ensemble. On pose~:
+  \[
+    \begin{array}{cccc}
+      F_S: & Q\M                                       &\ra    & \Isos{\Ens} \\
+           & M                                         &\mapsto& S   \\
+           & i_!                                       &\mapsto& id_S \\
+           & j^!                                       &\mapsto& [\myker{j}]\cdot(-)
+    \end{array}
+  \]
+  Vérifions que $F_S$ est un foncteur. Si $\cdot\xtwoheadrightarrow{j}\cdot\xtwoheadrightarrow{j'}\cdot$, la suite
+  $\exacname{\myker{j}}{}{\myker{j'j}}{j}{\myker{j'}}$
+  est exacte, donc $F((jj')^!)=F(j^!)F(j'^!)$. Si on a un carré bicartésien~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      \cdot \arrow[d, two heads, "j'"] \arrow[r, tail, "i'"] & \cdot \arrow[d, two heads, "j"] \\
+      \cdot \arrow[r, tail, "i"]                             & \cdot
+    \end{tikzcd}
+  \end{center}
+  On a $\myker{j}\simeq\myker{j'}$ et donc $F(i'_!j'^!)=F(j^!i_!)$. Ainsi, par la propriété universelle de $Q\M$ énoncée dans la
+  \sref{proposition}{propUnivQM}, $F_S$ est un foncteur.
+  On dispose donc d'un foncteur~:
+  $$\beta: [K_0(\M),\Ens]\ra \mathcal{F}$$
+  Or on voit que $\alpha$ et $\beta$ sont réciproques. En effet, on a un isomorphisme naturel $\alpha(\beta(S))\simeq S$ 
+  induit par $\myker{j_M}\simeq M$.
+  De même, on a un isomorphisme naturel $\beta(\alpha(F))\simeq F$ induit par les $F(j^!)=F(j^!_{M'})$ et $\myker{j}\simeq M'$
+  pour $\exacname{M'}{i}{M}{j}{M''}$ exacte.
+
+  On note $\delta:[Q\M,\Isos{\Ens}] \ra [\pi_1(Q\M,O),\Ens]$ l'équivalence naturelle. L'équivalence~:
+  $$\delta\circ(\mathcal{F}\ra [Q\M,\Isos{\Ens}])\circ\beta:[K_0(\M),\Ens]\ra [\pi_1(Q\M,O),\Ens]$$
+  Est induite par un isomorphe de groupe $\phi: \pi_1(Q\M,O)\ra K_0(\M)$ (résultat classique sur les actions de groupe).
+  On vérifie, en appliquant l'équivalence au $K_0(\M)$-ensemble $K_0(\M)$, que $\phi$ envoie $[i_{M!}]^{-1}[j_M^!]$ sur ${[{M}]}$.
+  Ce qui conclut.
+\end{proof}
+
+\subsection{Les théorèmes A et B de Quillen}\label{thmAetB}
+
+Comme la définition de la $K$-théorie supérieure repose sur de la topologie, cette section donne quelques rappels sans démonstrations
+et prouve $2$ théorèmes (dits A et B) sur lesquels reposeront la majorité des résultats sur la construction $Q$.
+
+On note, pour $C$ une catégorie et $x$ un objet de $C$, $C\downarrow x$ la catégorie au-dessus de $x$ des couples $(y,u:y\ra x)$.
+De même, on note $C\uparrow x$ la catégorie au-dessous de $x$ des couples $(y,u:x\ra y)$.
+
+Pour $f:C\ra D$ un foncteur et $d$ un objet de $D$, on note $f\downarrow d$ la catégorie des couples $(c,u:fc\ra d)$. La catégorie
+$f\downarrow d$ est le tiré en arrière de $D\downarrow d$ par $f$. De même pour $f\uparrow d$. On note parfois
+$C\downarrow d$ pour $f\downarrow d$, quand le foncteur $f$ est évident, par exemple quand $C$ est une sous-catégorie pleine de $D$.
+
+Pour $f:C\ra D$ un foncteur et $d$ un objet de $D$, on note $f^{-1}d$ la sous-catégorie de $C$ formée des objets $c$ tels que $fc=d$ et des
+morphismes $u:c\ra c'$ tels que $fu=\id_d$.
+
+\begin{propdefi}
+  Le foncteur nerf $N:\Cat\ra \DEns$ est défini par
+  $$NC_\bullet:=\Hom{\Cat}{[\bullet]}{C}$$
+  où $[\bullet]$ désigne la catégorie cosimpliciale
+  $\DCat\ra \Cat,[n]\mapsto (0\ra 1\ra\dotsb\ra n)$.
+  Ce foncteur est pleinement fidèle et admet un adjoint à gauche $\tau_{\leq 1}:\DEns\ra\Cat$.
+\end{propdefi}
+
+Pour la démonstration, voir le \cite[chp. 1]{Goer}.
+
+Dans la suite, comme $N$ est pleinement fidèle, nous l'omettrons et notérons $C$ pour l'ensemble simplicial associé à une catégorie $C$.
+
+Nous admettrons les structures de modèles de Kan-Quillen sur $\DEns$ et $\Top$.
+
+Nous noterons $|\bullet|:\DEns\ra \Top$ le foncteur réalisation et $\Sing:\Top\ra \DEns$ le foncteur complexe singulier.
+Pour simplifier des démonstrations, nous utiliserons l'équivalence de Quillen~:
+\begin{center}
+  \begin{tikzcd}
+    {|\bullet|:\Ho{\DEns}} \ar[r,bend left,""{name=A, below}] & {\Ho{\Top}:\Sing} \ar[l,bend left,""{name=B,above}] \ar[from=A, to=B, phantom,"\perp"]
+  \end{tikzcd}
+\end{center}
+
+Pour $X$ ensemble simplicial et $x\in X_0$, nous noterons $\pi_n(X,x)$ pour $\pi_n(|X|,x)$. Nous utiliserons également les groupes d'homotopie
+simpliciaux sur les complexes de Kan.
+
+Voir \cite[chp. 1]{Goer} pour plus d'informations sur ces sujets.
+
+Nous allons maintenant nous intéresser aux propriétés homotopiques des catégories.
+
+\begin{prop}
+  \begin{description}
+    \item[(1)] Une transformation naturelle $\theta:f\Rightarrow g$ entre $f$ et $g:C\ra D$ induit une homotopie~:
+              $$C\times \Delta^1\ra D$$ 
+    \item[(2)] Si $f:C\ra D$ a un adjoint à droite ou à gauche, alors $f$ est une équivalence d'homotopie~;
+    \item[(3)] Une catégorie $C$ avec un objet initial ou final est contractile. 
+  \end{description}
+\end{prop}
+
+\begin{proof}
+  \begin{description}
+    \item[(1)] $N:\Cat\ra \DEns$ préserve les produits et la donnée de $\theta$ est équivalente à celle d'un
+              foncteur $C\times (0\ra 1) \ra D$~;
+    \item[(2)] On note $f':D\ra C$ l'adjoint. On a alors par (1) des homotopies $ff'\simeq \id_D$ et $f'f\simeq \id_C$~;
+    \item[(3)] Le foncteur $C\ra (*)$ a alors un adjoint à droite ou à gauche. 
+  \end{description}
+\end{proof}
+
+\begin{prop}
+  \begin{description}
+    \item[(1)] Si $C_{(-)}:I\ra \Cat$ est un foncteur avec $I$ petite catégorie filtrante et $C$ sa colimite, l'application naturelle~·
+              $$\colim_I NC_{(-)}\lra NC\text{ est un isomorphisme.}$$ 
+    \item[(2)] Dans ce même contexte, si on se donne des objets compatibles $(x_i\in C_i)_{i\in I}$ et $x\in C$ associé, les applications naturelles~:
+              $$\colim_{i\in I} \pi_n(C_{i},x_i)\lra \pi_n(C,x)\text{ sont des isomorphismes.}$$
+    \item[(3)] Une catégorie $I$ filtrante est contractile. 
+  \end{description}
+\end{prop}
+
+\begin{proof}
+  \begin{description}
+    \item[(1)] Il suffit de montrer que $\colim_I NC_{(-)}$ est une catégorie, c'est à dire qu'il a la propriété d'unique extension le long
+               des $\Lambda_k^n\ra\Delta^n$. Or, si $f:\Lambda_k^n\ra \colim_I NC_{(-)}$ est une application, comme $\Lambda_k^n$ est un objet
+               compacte de $\DEns$, $f$ proviens de $f_i:\Lambda_k^n\ra C_i$ pour un certain $i\in \Ob I$. On peut alors l'étendre en
+               $g_i:\Delta^n\ra C_i$, lequel induit $g:\Delta^n\ra \colim_I NC_{(-)}$. Si $g$ et $g'$ conviennent, alors ils proviennent
+               respectivement de $g_j:\Delta^n\ra C_j$ et $g'_j:\Delta^n\ra C_j$, pour un même $j$ car $I$ est filtrante.
+               Quitte à changer $j$, on peut supposer que $g_{j|\Lambda_k^n}=g'_{j'|\Lambda_k^n}$. Or $C_j$ est une catégorie, 
+               donc $g_j=g_j'$ et $g=g'$.
+    \item[(2)] Le foncteur remplacement fibrant $R:\DEns\ra \DEns$ induit par l'application de l'argument du petit objet aux inclusions
+               $\Lambda_k^n\ra\Delta^n$ commute aux colimites filtrantes. En effet, comme on l'a vu ci-dessus~:
+               $$\Hom{\DEns}{\Lambda_k^n}{C}\simeq \colim_i\Hom{\DEns}{\Lambda_k^n}{C_i}$$
+               Donc, avec $\mathcal{J}=\{\Lambda_k^n\ra\Delta^n\}$, et $G^*$ la construction du petit objet,
+               on a $G^1(\mathcal{J},C\ra *)=\colim_i G^1(\mathcal{J},C_i\ra *)$, et donc par induction et passage à la colimite~:
+               $RC = \colim_i RC_i$.
+
+               Nous nous sommes donc ramené à montrer que les groupes d'homotopie simpliciaux commutent aux colimites filtrantes de complexes de Kan.
+               Ce qui se montre de manière équivalente au (1).
+    \item[(3)] On pose $F$ le foncteur $I\ra \Cat,\;i\mapsto I\downarrow i$. On a $I=\colim_I F$. Or chaque $I\downarrow i$ a un objet final et 
+               est donc contractile. Donc par (2), $I$ est contractile.
+  \end{description}
+\end{proof}
+
+Il existe une autre manière de décrire le $\pi_1$ d'une catégorie. On note $\pi:\Cat \ra \mathrm{Groupoides}$ l'adjoint à gauche de l'oubli.
+
+\begin{prop}\label{pi1categorie}
+  Soit $C$ une catégorie et $\pi C$ le groupoïde engendré. pour $x$ un objet de $C$, on a un isomorphisme~:
+  $$\mathrm{Aut}_{\pi C}(x)\simeq \pi_1(C,x)$$
+\end{prop}
+
+\begin{proof}
+  On note $X$ l'ensemble simplicial obtenu en ajoutant un $2$-simplexe $\sigma_a$ à $C$ le long de chaque application $(a,\id,-):\Lambda_2^2\ra C$,
+  pour $a$ morphisme de $C$. On a alors $\tau_{\leq 1}X=\pi C$. On utilise alors le résultat suivant~:
+  
+  $(*)$ Si $X$ est un ensemble simplicial tel que $\tau_{\leq 1} X$ est un groupoïde, si et $f:\Lambda_k^2\ra X$ une application,
+  on note $g:X\ra Y$ le poussé en avant de $\Lambda_k^2\ra \Delta^2$ le long de $f$. Alors $\tau_{\leq 1}g$ est un isomorphisme.
+  
+  Par $(*)$, on dispose d'un remplacement fibrant $K$ de $X$, et donc de $C$, tel que $\tau_{\leq 1} K=\pi C$. Or c'est un résultat classique sur
+  les complexes de Kan que $\tau_{\leq 1} K= \pi_{\leq 1} K$. Donc, on a~:
+  $$\pi_1(C,x)=\pi_1(K,x)=\mathrm{Aut}_{\pi_{\leq 1} K}(x)=\mathrm{Aut}_{\pi C}(x)$$
+
+  Il reste à montrer $(*)$. Pour cela, par exemple si $k=2$, on note $f=(a,b,-)$ et $(a,b,c):\Delta^2\ra Y$ l'extension.
+  On a $\tau_{\leq 1}Y=(\tau_{\leq 1}X)[c]/(ac=b)$. Or, dans $\tau_{\leq 1}Y$, $[c] = [a]^{-1}[b]\in \tau_{\leq 1}X$.
+  Donc $\tau_{\leq 1}Y=\tau_{\leq 1}X$.
+\end{proof}
+
+Pour la suites, nous aurons besoins de deux résultats sur les ensembles bisimpliciaux.
+
+\begin{defi}
+  Un ensemble bisimplicial est un foncteur~:
+  $$\DCat\op\times\DCat\op\lra \Ens$$
+  Pour $X_{\bullet\bullet}$ un ensemble bisimplicial, on appelle sa réalisation $|X|$ le coégalisateur suivant dans $\DEns$~:
+  $$\coend{X}{\Delta}$$
+  Où $X_n$ désigne l'ensemble simplicial $X_{n,\bullet}$.
+  
+  Sa diagonale est l'ensemble simplicial $d(X):[n]\mapsto X_{n,n}$
+\end{defi}
+
+\begin{prop}
+  Soit $X$ un ensemble bisimplicial. Alors les applications~:
+  $$\alpha_n:X_n\times \Delta^n\ra d(X),\;(x_m,\phi:[m]\ra [n])\mapsto (\phi\times \id_{[m]})^*(x_m)$$
+  induisent un isomorphisme $|X|\ra d(X)$.
+\end{prop}
+
+\begin{proof}
+  Soit $\phi:[n]\ra [m]$ et $(x,\chi:[r]\ra [n])\in X_{m,r}\times \Delta^n_r$. Alors~:
+  $$\alpha_n(\phi^*x,\chi)=((\phi\chi)\times \id)^*x=\alpha_m(x,\phi\chi)$$
+  Donc les $\alpha_n$ induisent bien une application $|X|\ra d(X)$. Cette dernière est clairement fonctorielle en $X$.
+  Or $X\mapsto |X|$ et $X\mapsto d(X)$ commutent aux colimites, et dans la catégorie $[\DCat\op\times\DCat\op,\Ens]$
+  des ensembles bisimpliciaux, tout ensemble $X$ est colimite de $\DCat\times\DCat\downarrow X$, où l'inclusion
+  $\DCat\times\DCat\ra [\DCat\op\times\DCat\op,\Ens]$ est donnée par Yoneda.
+  Donc, nous sommes ramenées à $X_{\bullet_1\bullet_2}=\Delta^r_{\bullet_1}\times\Delta^s_{\bullet_2}$. Or~:
+  $$d(\Delta^r_{\bullet_1}\times\Delta^s_{\bullet_2})=\Delta^r\times\Delta^s$$
+  Et~:
+  \begin{align*}
+    |\Delta^r_{\bullet_1}\times\Delta^s_{\bullet_2}|_l&=\mathrm{coeq}\Big(\bigsqcup_{\phi:[n]\ra [m]}\Delta^r_m\times\Delta^s_l\times\Delta^n_l
+    \xlongrightrightarrows{\sqcup\phi^*\times\id}{\sqcup\id\times\phi_*}
+    \bigsqcup_{[n]}\Delta^r_n\times\Delta^s_l\times\Delta^n_l\Big)\\
+    &=\mathrm{coeq}\Big(\bigsqcup_{\phi:[n]\ra [m]}\Delta^r_m\times\Delta^n_l
+     \xlongrightrightarrows{\sqcup\phi^*\times\id}{\sqcup\id\times\phi_*}
+     \bigsqcup_{[n]}\Delta^r_n\times\Delta^n_l\Big)\times \Delta^s_l\\
+     &=\mathrm{coeq}\Big(\bigsqcup_{\phi:[n]\ra [m]}\Delta_m^r\times\Delta^n
+     \xlongrightrightarrows{\sqcup\phi^*\times\id}{\sqcup\id\times\phi_*}
+     \bigsqcup_{[n]}\Delta_n^r\times\Delta^n\Big)_l\times \Delta^s_l\\
+     &=\Delta^r_l\times \Delta^s_l
+  \end{align*}
+  Où la dernière égalité est une égalité classique sur les extensions de Yoneda. Plus précisément, on utilise que si $C$ est une petite
+  catégorie et $X$ un objet de $[C\op,\Ens]$, $Y:C\ra [C\op,\Ens]$ le plongement de Yoneda, et $\Pi:C\downarrow X\ra C$
+  l'oubli, alors~:
+  $$X=\colim_C Y\circ\Pi=\mathrm{coeq}\Big(\bigsqcup_{\phi:c\ra d} X(d)\times Y(c)
+  \xlongrightrightarrows{\sqcup X(\phi)\times\id}{\sqcup\id\times Y(\phi)}
+  \bigsqcup_{c} X(c)\times Y(c) \Big)$$
+  On vérifie facilement que $|\Delta^r_{\bullet_1}\times\Delta^s_{\bullet_2}|\ra d(\Delta^r_{\bullet_1}\times\Delta^s_{\bullet_2})$
+  est l'identité via ces deux identifications.
+\end{proof}
+
+\begin{lem}\label{diagonalequiv}
+  Soit $\phi:X_{\bullet\bullet}\ra Y_{\bullet\bullet}$ un morphisme entre ensembles bisimpliciaux. Si pour tout $n\geq 0$,
+  $\phi_n:X_{n\bullet}\ra Y_{n\bullet}$ est une équivalence d'homotopie faible, alors $d(\phi):d(X)\ra d(Y)$ est une équivalence d'homotopie faible.
+\end{lem}
+
+\begin{proof}\cite[IV.1.7]{Goer}
+  Introduisons d'abord quelques notations.
+  Soit $Z$ un ensemble bisimplicial. Pour $p\geq 0$ on note $d(Z)^{(p)}$ l'image de $\bigsqcup_ {n\leq p} Z_n\times\Delta^n$ dans $d(Z)$.
+  Pour $r\geq 0$ et $p\geq 0$, on note $s_{[r]}Z_p=\bigcup_{i\leq r}s_i(Z_p)\subset Z_{p+1}$. On a alors les $3$ diagrammes cocartésiens suivants~:
+  \begin{center}
+    \begin{tikzcd}[column sep=0.2ex,row sep=scriptsize]
+      s_{[r]}Z_{p-1} \arrow[dd, hook] \arrow[rr, "s_{r+1}"] &   &s_{[r]}Z_p \arrow[dd, hook] \\
+                                                            &(*)& \\
+      Z_p \arrow[rr, "s_{r+1}"]                             &   &s_{[r+1]}Z_p
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.125, rotate=180}, draw=none, from=3-3, to=1-1]\\
+
+      (s_{[p]}Z_p\times\Delta^{p+1})\cup (Z_{p+1}\times\partial\Delta^{p+1}) \arrow[dd, hook] \arrow[rr] & &d(Z)^{(p)} \arrow[dd, hook] \\
+      &(**)&\\
+      Z_{p+1}\times \Delta^{p+1} \arrow[rr]                                                           & &d(Z)^{(p+1)}
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.125, rotate=180}, draw=none, from=6-3, to=4-1]\\
+
+      s_{[p]}Z_p\times\partial \Delta^{p+1} \arrow[dd, hook] \arrow[rr] & &Z_{p+1}\times\partial\Delta^{p+1} \arrow[dd, hook] \\
+      &(***)&\\
+      s_{[p]}Z_p\times\Delta^{p+1} \arrow[rr]                                                           & &(s_{[p]}Z_p\times\Delta^{p+1})\cup (Z_{p+1}\times\partial\Delta^{p+1})
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.125, rotate=180}, draw=none, from=9-3, to=7-1]\\
+    \end{tikzcd}
+  \end{center}
+  Montrons par récurrence sur $p$ que $d(X)^{(p)}\ra d(Y)^{(p)}$ est une équivalence d'homotopie faible. Cela conclura, car les $d(X)^{(p)}$
+  filtrent $d(X)$.
+
+  Pour initialiser, on remarque que $d(X)^{(p)}=d(\sk{p}{X})$, et en particulier, $d(X)^{(0)}=X_0$.
+
+  Soit $p\geq 0$, et supposons que $d(X^{(i)})\ra d(Y^{(i)})$ soit une équivalence d'homotopie faible pour tout $i\leq p$.
+  \begin{description}
+    \item[(1)] En appliquant successivement $(*)$ et le \sref{lemme de collage}{lemmedecollage}, on a que $s_{[r]}X_p\ra s_{[r]}Y_p$
+              est une équivalence d'homotopie faible pour tout $r\leq p$~;
+    \item[(2)] En utilisant $(***)$ et le \sref{lemme de collage}{lemmedecollage}, on a que~:
+              $$(s_{[p]}X_p\times\Delta^{p+1})\cup (X_{p+1}\times\partial\Delta^{p+1})\ra (s_{[p]}Y_p\times\Delta^{p+1})\cup (Y_{p+1}\times\partial\Delta^{p+1})$$
+              est une équivalence faible~;
+    \item[(3)] Par $(**)$ et le \sref{lemme de collage}{lemmedecollage},
+    $$d(X^{(p+1)})\ra d(Y^{(p+1)})$$
+    est une équivalence faible.
+  \end{description}
+  Ceci conclut la récurrence.
+\end{proof}
+
+Nous faisons ici quelques rappels sur les foncteurs (pré)(co)fibrés.
+
+\begin{defi}[foncteur (pré)fibré]
+  Un foncteur $f:C\ra D$ est préfibré si pour tout $y$ objet de $D$, le foncteur pleinement fidèle~:
+  $$f^{-1}(y)\ra f\uparrow y,\; x\mapsto (x,\id_y)$$
+  admet un adjoint à droite, alors noté $(x,v:y\ra fx)\mapsto v^*x$.
+
+  Alors, si $v:y\ra y'$, on peut restreindre cet adjoint à $f^{-1}(y')$, et on obtient un foncteur~:
+  $$v^*:f^{-1}(y')\lra f^{-1}(y)$$
+  que l'on appelle changement de base de $y'$ à $y$.
+
+  Un foncteur $f:C\ra D$ est fibré s'il est préfibré, et si pour tout $u$ et $v$ composables dans $D$,
+  l'application naturelle $u^*v^*\ra (vu)^*$ est un isomorphisme.
+\end{defi}
+
+On ajoute ci-dessous la définition complètement duale de foncteur (pré)cofibré.
+
+\begin{defi}[foncteur (pré)cofibré]
+  Un foncteur $f:C\ra D$ est précofibré si pour tout $y$ objet de $D$, le foncteur pleinement fidèle~:
+  $$f^{-1}(y)\ra f\downarrow y,\; x\mapsto (x,\id_y)$$
+  admet un adjoint à gauche, alors noté $(x,v:fx\ra y)\mapsto v_*x$.
+
+  Alors, si $v:y'\ra y$, on peut restreindre cet adjoint à $f^{-1}(y')$, et on obtient un foncteur~:
+  $$v_*:f^{-1}(y')\lra f^{-1}(y)$$
+  que l'on appelle changement de cobase de $y'$ à $y$.
+
+  Un foncteur $f:C\ra D$ est cofibré s'il est précofibré, et si pour tout $u$ et $v$ composables dans $D$,
+  l'application naturelle $(vu)_*\ra v_*u_*$ est un isomorphisme.
+\end{defi}
+
+\begin{rem}
+  Pour $f:C\ra D$ (pré)(co)cofibré, on dit souvent que $C$ est une catégorie (pré)(co)cofibrée au-dessus de $D$.
+\end{rem}
+
+\begin{rem}
+  Les définitions ci-dessus sont celles de \cite[§1]{Quil}. Ces définitions ont l'avantage de faire directement apparaître le résultat suivant
+  (et son dual évident)~:
+
+  $(*)$ Si $f:C\ra D$ est préfibré, alors pour tout $y$ objet de $D$, $f^{-1}y\ra f\uparrow y$ est une équivalence d'homotopie.
+
+  Pour comprendre l'existence des applications naturelles
+  $u^*v^*\ra (vu)^*$, il peut être commode de voir l'adjonction à l'aide des morphismes (pré)cartésiens. Soit $f:C\ra D$.
+  
+  Un morphisme $\xi:\tilde{z}\ra z$ dans $C$ est $f$-précartésien si pour tout $w:x\ra z$ avec $f(w)=f(\xi)$, il existe
+  un unique $u:x\ra \tilde{z}$ tel que $w=\xi u$ et $f(u)=\id_{f\tilde{z}}$.
+
+  \begin{center}
+    \begin{tikzcd}[row sep=large,column sep=large]
+      x & {\tilde{z}} & z \\
+      {f\tilde{z}} & {f\tilde{z}} & fz
+      \arrow[maps to, from=1-1, to=2-1]
+      \arrow[maps to, from=1-2, to=2-2]
+      \arrow[maps to, from=1-3, to=2-3]
+      \arrow["w", bend left=20, from=1-1, to=1-3]
+      \arrow["\xi"', from=1-2, to=1-3]
+      \arrow["\id"', from=2-1, to=2-2]
+      \arrow["f\xi"', from=2-2, to=2-3]
+      \arrow["{\exists ! u}"', dashed, from=1-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+  
+  Un morphisme $\xi:\tilde{z}\ra z$ dans $C$ est $f$-cartésien si pour tout $w:x\ra z$ et $a:fx\ra f\tilde{z}$ avec $f(w)=f(\xi)a$, il existe
+  un unique $u:x\ra \tilde{z}$ tel que $w=\xi u$ et $f(u)=a$.
+
+  \begin{center}
+    \begin{tikzcd}[row sep=large,column sep=large]
+      x & {\tilde{z}} & z \\
+      {fx} & {f\tilde{z}} & fz
+      \arrow[maps to, from=1-1, to=2-1]
+      \arrow[maps to, from=1-2, to=2-2]
+      \arrow[maps to, from=1-3, to=2-3]
+      \arrow["w", bend left=20, from=1-1, to=1-3]
+      \arrow["\xi"', from=1-2, to=1-3]
+      \arrow["a"', from=2-1, to=2-2]
+      \arrow["f\xi"', from=2-2, to=2-3]
+      \arrow["{\exists ! u}"', dashed, from=1-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+
+  Soit maintenant $y$ un objet de $D$.
+  Alors $f^{-1}(y)\ra f\uparrow y$ admet un adjoint à droite si et seulement si pour tout $z$ objet de $C$ et $v:y\ra fz$,
+  il existe $\xi:v^* z\ra z$ $f$-précartésien avec $f(\xi)=v$.
+
+  \begin{center}
+    \begin{tikzcd}[row sep=large,column sep=large]
+      {\exists v^*z} & z \\
+      y & fz
+      \arrow["v", from=2-1, to=2-2]
+      \arrow[maps to, from=1-2, to=2-2]
+      \arrow[maps to, from=1-1, to=2-1]
+      \arrow["\xi", from=1-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+
+  Il est maintenant aisé de vérifier que $f$ est fibré si et seulement si pour tout $y$ objet de $D$, $z$ objet de $C$ et $v:y\ra fz$,
+  il existe $\xi:v^* z\ra z$ $f$-cartésien avec $f(\xi)=v$.
+\end{rem}
+
+\begin{propdefi}[catégorie (co)fibrée associée à un préfaisceau]
+  Soit $p:C\op\ra\Ens$ un foncteur avec $C$ une petite catégorie (souvent appelé préfaisceau sur $C$). On définit la catégorie fibrée
+  $$f:F(p)\ra C$$
+  dont les objets sont les couples $(c,x)$ avec $x\in p(C)$, et les morphismes de $(c,x)$ dans $(d,y)$ sont les morphismes
+  $u:c\ra d$ dans $C$ tels que $p(u)(y)=x$.
+
+  On appelle $f:F(p)\ra C$ la catégorie fibrée associée à $p$.
+
+  De même, à partir d'un foncteur $q:C\ra \Ens$, on construit la catégorie cofibrée
+  $$g:G(q)\ra C$$
+  dont les objets sont les couples $(c,x)$ avec $x\in q(C)$, et les morphismes de $(c,x)$ dans $(d,y)$ sont les morphismes
+  $u:c\ra d$ dans $C$ tels que $p(u)(x)=y$.
+
+  On appelle $g:G(q)\ra C$ la catégorie cofibrée associée à $q$.
+\end{propdefi}
+
+Nous pouvons maintenant énoncé un premier résultat sur le type d'homotopie de catégories.
+
+\begin{theo}[Théorème A de Quillen]\label{theoremeA}
+  Soit $f:C\ra D$ un foncteur entre petites catégories. Si pour tout objet $y$ de $D$, $f\uparrow y$ est une catégorie contractile,
+  alors $f$ est une équivalence d'homotopie.
+\end{theo}
+
+\begin{proof}
+  On note $S(f)$ la catégorie cofibrée au dessus de $D\op\times C$ définie par le foncteur~:
+  \begin{align*}
+    D\op\times C &\ra     \Ens \\
+    (y,x)        &\mapsto \Hom{D}{y}{fx}
+  \end{align*}
+  On dispose de foncteurs~:
+  $$D\op\overset{p_2}{\longleftarrow} S(f) \overset{p_1}{\lra} C$$
+  L'ensemble simplicial $S(f)$ est la diagonale de l'ensemble bisimplicial $T(f)$ défini par~:
+  $$T(f)_{pq}:=\{(y_p\ra\dotsb\ra y_0\ra fx_0,\;x_0\ra\dotsb\ra x_q)\}$$
+  
+  On dispose d'un morphisme d'ensembles bisimpliciaux $m:T(f)_{\bullet_1\bullet_2}\ra C_{\bullet_2}$, où $(C_{\bullet_2})_{pq}=NC_q$.
+  Alors, $d(m)$ s'identifie à $p_1:S(f)\ra C$. Or, on a, pour $q\geq 0$~:
+  $$m_{\bullet q}:\bigsqcup_{x_0\ra\dotsb\ra x_q} (D\downarrow f(x_0))\op \ra \bigsqcup_{x_0\ra\dotsb\ra x_q} *$$
+  C'est une équivalence d'homotopie, car chaque $(D\downarrow f(x_0))\op$ a un objet initial et est donc contractile.
+  Ainsi, par le \sref{lemme}{diagonalequiv}, $d(m)=p_1:S(f)\ra C$ est une équivalence d'homotopie.
+
+  De même, on dispose d'un morphisme d'ensembles bisimpliciaux $n:T(f)_{\bullet_1\bullet_2}\ra D\op_{\bullet_1}$. Et pour tout $p\geq 0$~:
+  $$n_{p\bullet}:\bigsqcup_{y_p\ra\dotsb\ra y_0} f\uparrow y_0 \ra \bigsqcup_{y_p\ra\dotsb\ra y_0} *$$
+  Or, par hypothèse, chaque $f\uparrow y_0$ est contractile. Donc $n_{p\bullet}$ est une équivalence faible.
+  Donc, par le \sref{lemme}{diagonalequiv}, $d(n)=p_2:S(f)\ra D\op$ est une équivalence d'homotopie.
+
+  Or, la factorisation~:
+  $$D\op\times C \overset{\id\times f}{\lra} D\op\times D\overset{\Hom{D}{-}{-}}{\lra} \Ens$$
+  induit le diagramme commutatif suivant dans $\Cat$~:
+  \begin{center}
+    \begin{tikzcd}[row sep=large,column sep=large]
+      D\op & {S(f)} & C \\
+      D\op & {S(\id_D)} & D
+      \arrow[equal, from=1-1, to=2-1]
+      \arrow["f", from=1-3, to=2-3]
+      \arrow["{p_1}","\sim"', from=1-2, to=1-3]
+      \arrow["{p_2}"',"\sim", from=1-2, to=1-1]
+      \arrow["\sim"',from=2-2, to=2-1]
+      \arrow["\sim",from=2-2, to=2-3]
+      \arrow["{f_*}", from=1-2, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  Par les résultats ci-dessus, les flèches avec des $\sim$ sont des équivalences d'homotopie faibles.
+  Donc $f$ également.
+\end{proof}
+
+\begin{rem}
+  Le théorème A admet la forme duale suivante~:
+
+  Si $f:C\ra D$ un foncteur entre petites catégories et si pour tout objet $y$ de $D$, $f\downarrow y$ est une catégorie contractile,
+  alors $f$ est une équivalence d'homotopie.
+\end{rem}
+
+\begin{coro}
+  Si $f:C\ra D$ un foncteur pré(co)fibré entre petites catégories et si pour tout objet $y$ de $D$, $f^{-1}(y)$ est une catégorie contractile,
+  alors $f$ est une équivalence d'homotopie.
+\end{coro}
+\begin{proof}
+  Dans ce cas $f^{-1}(y)\ra f\uparrow y$ ou $f^{-1}(y)\ra f\downarrow y$ est une équivalence faible d'homotopie. On peut donc utiliser
+  le \sref{théorème}{theoremeA}.
+\end{proof}
+
+Pour énoncé le théorème B de Quillen, nous aurons besoin du formalisme des carrés homotopiquement cartésiens dans $\DEns$.
+Nous avons fait le choix de le mettre dans \sref{l'annexe}{carrehomotopiquementcart}.
+
+\begin{defi}
+  Soit $Z:I\ra \DEns$ un foncteur avec $I$ petite catégorie. On définit l'ensemble bisimplicial~:
+  $$\mathrm{BE}_IZ_{m,n}:=\bigsqcup_{i_0\ra\dotsb\ra i_m}Z(i_0)_n$$
+  Et on note sa diagonale~:
+  $$\hocolim{I}{Z}:=d(\mathrm{BE}_IZ)$$
+\end{defi}
+
+\begin{lem}\label{lemmetheoremeB}
+  Soit $X:I\ra \DEns$ un foncteur, avec $I$ une petite catégorie, tel que pour tout $\alpha:i\ra j$ dans $I$,
+  $X(\alpha): X(i)\ra X(j)$ soit une équivalence d'homotopie faible. Alors pour tout $j$ objet de $I$, le diagramme cartésien~:
+  \begin{center}
+    \begin{tikzcd}[column sep=0.2ex,row sep=small]
+      {X(j)} && {\hocolim{I}{X}} \\
+      & {(D)} \\
+      {*} && I
+      \arrow["j", from=3-1, to=3-3]
+      \arrow[from=1-1, to=3-1]
+      \arrow["\pi", from=1-3, to=3-3]
+      \arrow[from=1-1, to=1-3]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=3-3]
+    \end{tikzcd}
+  \end{center}
+  est homotopiquement cartésien.
+\end{lem}
+
+\begin{rem}
+  Le diagramme $(D)$ est la diagonale du diagramme cartésien suivant d'ensembles bisimpliciaux~:
+  \begin{center}
+    \begin{tikzcd}[column sep=large,row sep=large]
+      {X(j)_n} & {\Big(\displaystyle\bigsqcup_{i_0\ra\dotsb\ra i_n}X(i_0)\Big)_n} \\
+      {*} & {\Big(\displaystyle\bigsqcup_{i_0\ra\dotsb\ra i_n}*\Big)_n}
+      \arrow["j\ra\dotsb\ra j", from=2-1, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow["\pi", from=1-2, to=2-2]
+      \arrow["j\ra\dotsb\ra j",from=1-1, to=1-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+\end{rem}
+
+\begin{proof}
+  \cite[IV.5.7]{Goer}. On remarque d'abord le fait suivant~:
+
+  $(*)$ le tiré en arrière par $\pi$ commute aux colimites dans $\DEns\downarrow I$.
+  
+  En effet, il suffit, pour montrer $(*)$, de vérifier que $-\times_x y$ commute aux sommes disjointes et coégalisateurs dans $\Ens\downarrow x$,
+  ce qui est facile.
+
+  On factorise $j$ à l'aide de l'argument du petit objet appliqué à $\mathcal{J}=\{\Lambda_k^n\ra\Delta^n\}$ en
+  \begin{tikzcd}
+    {*} & U & I
+    \arrow["i", "\sim"', hook, from=1-1, to=1-2]
+    \arrow["p", two heads, from=1-2, to=1-3]
+  \end{tikzcd}.
+  Notre objectif est de montrer que l'application induite $X(j)\ra U\times_I\hocolim{I}{X}$ est acyclique.
+  Par la \sref{proposition}{criterehomocartesienpropreadroite}, ceci conclura.
+
+  Or $i$ est construit comme un élément de $\mathcal{J}-\mathrm{Cell}$ colimite de poussés en avant de la forme~:
+  \begin{center}
+    \begin{tikzcd}[column sep=large,row sep=large]
+      {\bigsqcup\Lambda_k^n} & {G^m(\mathcal{J},j)} \\
+      {\bigsqcup\Delta^n} & {G^{m+1}(\mathcal{J},j)}
+      \arrow["\sim" sloped, hook, from=1-1, to=2-1]
+      \arrow["\sim" sloped, hook, from=1-2, to=2-2]
+      \arrow[from=1-1, to=1-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05, rotate=180}, draw=none, from=2-2, to=1-1]
+    \end{tikzcd}  
+  \end{center}
+  Et donc, par $(*)$, en tirant en arrière par $\pi$~:
+  \begin{center}
+    \begin{tikzcd}[column sep=large,row sep=large]
+      {\bigsqcup\Lambda_k^n\times_I\hocolim{I}{X}} & {G^m(\mathcal{J},j)\times_I\hocolim{I}{X}} \\
+      {\bigsqcup\Delta^n\times_I\hocolim{I}{X}} & {G^{m+1}(\mathcal{J},j)\times_I\hocolim{I}{X}}
+      \arrow["u", hook, from=1-1, to=2-1]
+      \arrow["v", hook, from=1-2, to=2-2]
+      \arrow[from=1-1, to=1-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05, rotate=180}, draw=none, from=2-2, to=1-1]
+    \end{tikzcd}  
+  \end{center}
+  Or, le produit fibré dans $\Ens$, et donc également dans $\DEns$, préserve les injections. Donc $u$ est une cofibration.
+  Il nous reste à montrer que $u$ est acyclique. Car alors $v$ sera également une cofibration acyclique, et par passage à la colimite,
+  $i_*:X(j)\ra U\times_I\hocolim{I}{X}$ également.
+
+  Nous sommes donc ramené au problème suivant~:
+
+  $(**)$ si 
+  \begin{tikzcd}
+    {\Lambda^k_n} & {\Delta^n} & I
+    \arrow["w", "\sim" ',hook, from=1-1, to=1-2]
+    \arrow["\sigma", from=1-2, to=1-3]
+  \end{tikzcd}
+  alors $w_*:\Lambda^k_n\times_I\hocolim{I}{X}\ra \Delta^n\times_I\hocolim{I}{X}$ est une cofibration acyclique.
+
+  Or $\sigma: \Delta^n\ra I$ correspond à un foncteur $\sigma: [n]\ra I$. De plus, le carré cartésien suivant d'ensembles bisimpliciaux
+  \begin{center}
+    \begin{tikzcd}[column sep=large,row sep=large]
+      {\Big(\displaystyle\bigsqcup_{u_0\ra\dotsb\ra u_n}X(\sigma(u_0))\Big)_n} & {\Big(\displaystyle\bigsqcup_{i_0\ra\dotsb\ra i_n}X(i_0)\Big)_n} \\
+      {\Big(\displaystyle\bigsqcup_{u_0\ra\dotsb\ra u_n}*\Big)_n} & {\Big(\displaystyle\bigsqcup_{i_0\ra\dotsb\ra i_n}*\Big)_n}
+      \arrow["\sigma", from=2-1, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow["\pi", from=1-2, to=2-2]
+      \arrow["\sigma",from=1-1, to=1-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  induit un isomorphisme $\Delta^n\times_I\hocolim{I}{X}\simeq \hocolim{[n]}{X\circ \sigma}$. On a alors le diagramme suivant d'ensembles bisimpliciaux
+  \begin{center}
+    \begin{tikzcd}[column sep=large,row sep=large]
+      {\displaystyle\bigsqcup_{u_0\ra\dotsb\ra u_r\in\Lambda_k^n}X(\sigma(0))} & {\displaystyle\bigsqcup_{u_0\ra\dotsb\ra u_r\in\Delta^n}X(\sigma(0))} \\
+      {\displaystyle\bigsqcup_{u_0\ra\dotsb\ra u_r\in\Lambda_k^n}X(\sigma(u_0))} & {\displaystyle\bigsqcup_{u_0\ra\dotsb\ra u_r\in\Delta^n}X(\sigma(u_0))} \\
+      {\displaystyle\bigsqcup_{u_0\ra\dotsb\ra u_r\in\Lambda_k^n}*} & {\displaystyle\bigsqcup_{u_0\ra\dotsb\ra u_r\in\Delta^n}*}
+      \arrow[from=2-1, to=3-1]
+      \arrow[from=2-2, to=3-2]
+      \arrow["w", from=3-1, to=3-2]
+      \arrow["{w_*}", from=2-1, to=2-2]
+      \arrow["{\theta_*}", from=1-1, to=2-1]
+      \arrow["{\theta_*}", from=1-2, to=2-2]
+      \arrow["j", from=1-1, to=1-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=2-1, to=3-2]
+    \end{tikzcd}
+  \end{center}
+  Où $\theta:X(\sigma(0))\ra X\circ\sigma$ est transformation naturelle évidente. Alors $\theta_*$ est une équivalence faible terme à terme par hypothèse.
+  D'après le \sref{lemme}{diagonalequiv}, $d(\theta_*)$ est une équivalence faible. Or $d(j)$ s'identifie à
+  $\Lambda_k^n\times X(\sigma(0))\ra \Delta^n\times X(\sigma(0))$, qui est une équivalence faible.
+  Donc $d(w_*)$ est une équivalence faible, ce qui conclut.
+\end{proof}
+
+\begin{theo}[Théorème B de Quillen]\label{theoremeB}
+  Soit $f:C\ra D$ un foncteur entre petites catégories. Si pour tout $u:y\ra y'$ dans $D$, $u^*:f\uparrow y'\ra f\uparrow y$
+  est une équivalence faible d'homotopie, alors pour tout objet $y$ de $D$, le diagramme cartésien~:
+  \begin{center}
+    \begin{tikzcd}[column sep=large,row sep=large]
+      {f\uparrow y} & {C} \\
+      {D\uparrow y} & D
+      \arrow["j'", from=2-1, to=2-2]
+      \arrow["f_*", from=1-1, to=2-1]
+      \arrow["f", from=1-2, to=2-2]
+      \arrow["j", from=1-1, to=1-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  est homotopiquement cartésien.
+
+  En particulier, on dispose, pour tout $x$ objet de $f^{-1}(y)$, d'une suite exacte~:
+  $$\dotsb\ra \pi_{i+1}(D,y)\ra \pi_{i}(f\uparrow y,\bar{x})\overset{j_*}{\ra} \pi_{i}(C,x)\overset{f_*}{\ra} \pi_{i}(D,y)\ra \dotsb$$
+  où $\bar{x}=(x,\id_y)$.
+\end{theo}
+
+\begin{rem}
+  Le théorème A découle du théorème B via la suite exacte. La suite exacte est une conséquence directe du diagramme homotopiquement
+  cartésien car $D\uparrow y$ est contractile.
+\end{rem}
+
+\begin{proof}
+  On reprend le cadre de la démonstration du \sref{théorème}{theoremeA}~: $S(f)$, $T(f)$ et le diagramme suivant.
+  \begin{center}
+    \begin{tikzcd}[row sep=large,column sep=large]
+      D\op & {S(f)} & C \\
+      D\op & {S(\id_D)} & D
+      \arrow[equal, from=1-1, to=2-1]
+      \arrow["f", from=1-3, to=2-3]
+      \arrow["{p_1}","\sim"', from=1-2, to=1-3]
+      \arrow["{p_2}"', from=1-2, to=1-1]
+      \arrow["\sim"',from=2-2, to=2-1]
+      \arrow["\sim",from=2-2, to=2-3]
+      \arrow["{f_*}", from=1-2, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  On rappel que $p_2=d(n:T(f)\ra D\op)$ où $n$ est donné par~:
+  $$n_{p\bullet}:\bigsqcup_{y_p\ra\dotsb\ra y_0} f\uparrow y_0 \ra \bigsqcup_{y_p\ra\dotsb\ra y_0} *$$
+  Donc $p_2=\hocolim{D\op}{N(f\uparrow -)}\ra D\op$. Donc, par le \sref{lemme}{lemmetheoremeB}, le carré
+  \begin{center}
+    \begin{tikzcd}[column sep=large,row sep=large]
+      {f\uparrow y} & {S(f)} \\
+      {*} & D\op
+      \arrow["y", from=2-1, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow["p_2", from=1-2, to=2-2]
+      \arrow[from=1-1, to=1-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  est homotopiquement cartésien.
+  Or, on a le diagramme commutatif suivant~:
+  \begin{center}
+    \begin{tikzcd}[column sep=tiny,row sep=tiny]
+      {f\uparrow y} && {S(f)} && C \\
+      &(1)&& (2)&\\
+      {D\uparrow y} && {S(\id_D)} && D \\
+      &(3)&&& \\
+      {*} && D\op
+      \arrow["\sim", from=1-3, to=1-5]
+      \arrow["\sim", from=3-3, to=3-5]
+      \arrow["f", from=1-5, to=3-5]
+      \arrow["{f_*}", from=1-3, to=3-3]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-3, to=3-5]
+      \arrow[from=1-1, to=1-3]
+      \arrow[from=3-1, to=3-3]
+      \arrow[from=1-1, to=3-1]
+      \arrow["\sim" sloped, from=3-1, to=5-1]
+      \arrow["\sim" sloped, from=3-3, to=5-3]
+      \arrow["y", from=5-1, to=5-3]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=3-1, to=5-3]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=3-3]
+    \end{tikzcd}
+  \end{center}
+  où les flèches notées $\sim$ sont des équivalences faibles. Le carré formé par $(1)$ et $(3)$ est homotopiquement cartésien,
+  donc celui formé par $(1)$ également, et donc celui formé par $(1)$ et $(2)$ aussi. C'est le résultat recherché.
+\end{proof}
+
+\begin{rem}
+  Le théorème B admet la forme duale suivante~:
+
+  Soit $f:C\ra D$ un foncteur entre petites catégories. Si pour tout $u:y\ra y'$ dans $D$, $u_*:f\downarrow y\ra f\downarrow y'$
+  est une équivalence faible d'homotopie, alors pour tout objet $y$ de $D$, le diagramme cartésien~:
+  \begin{center}
+    \begin{tikzcd}[column sep=large,row sep=large]
+      {f\downarrow y} & {C} \\
+      {D\downarrow y} & D
+      \arrow["j'", from=2-1, to=2-2]
+      \arrow["f_*", from=1-1, to=2-1]
+      \arrow["f", from=1-2, to=2-2]
+      \arrow["j", from=1-1, to=1-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  est homotopiquement cartésien.
+\end{rem}
+
+\begin{coro}
+  Si $f:C\ra D$ un foncteur préfibré (respectivement précofibré) entre petites catégories et si pour tout $u:y\ra y'$ dans $D$,
+  $u^*:f^{-1} y'\ra f^{-1} y$ (respectivement $u_*:f^{-1} y\ra f^{-1} y'$)
+  est une équivalence faible d'homotopie, alors pour tout objet $y$ de $D$, $f^{-1}(y)$ est la fibre homotopique de $f$ au dessus de $y$.
+  On a alors, pour tout $x$ objet de $f^{-1}(y)$, une suite exacte~:
+  $$\dotsb\ra \pi_{i+1}(D,y)\ra \pi_{i}(f^{-1} y,x)\overset{j_*}{\ra} \pi_{i}(C,x)\overset{f_*}{\ra} \pi_{i}(D,y)\ra \dotsb$$
+\end{coro}
+\begin{proof}
+  Dans ce cas $f^{-1}(y)\ra f\uparrow y$ ou $f^{-1}(y)\ra f\downarrow y$ est une équivalence faible d'homotopie. Plaçons nous dans 
+  le premier cas, le second est similaire. On a un carré~:
+  \begin{center}
+    \begin{tikzcd}[column sep=large,row sep=large]
+      {f^{-1}y'} & {f\uparrow y'} \\
+      {f^{-1}y}  & {f\uparrow y}
+      \arrow["\sim", from=2-1, to=2-2]
+      \arrow["u^*","\sim"' sloped, from=1-1, to=2-1]
+      \arrow["u^*", from=1-2, to=2-2]
+      \arrow["\sim", from=1-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+  Les deux foncteurs induits de $f^{-1}y'$ dans $f\uparrow y$ sont~:
+  \[
+    \begin{array}{lcl}
+      F:x'&\mapsto& (x',u: y\ra y'=fx)\\
+      G:x'&\mapsto& (u^*x',\id_y)             
+    \end{array}
+  \]
+  Or on dispose d'une transformation naturelle $G\Rightarrow F,\; u^*x'\ra x'$ induite par l'adjonction.
+  Donc le carré commute à homotopie près. Donc $u^*:f\uparrow y'\ra f\uparrow y$ est une équivalence d'homotopie. On peut maintenant appliquer le théorème B.
+\end{proof}
+
+\subsection{Premières propriétés}\label{premieresprops}
+
+\section{\texorpdfstring{Construction $+$ et théorème "$+=Q$"}{Construction + et théorème "+=Q"}}
+
+\subsection{\texorpdfstring{La construction $+$ en topologie}{La construction + en topologie}}
+
+\subsection{\texorpdfstring{La construction $+$ de la $K$-théorie}{La construction + de la K-théorie}}
+
+\subsection{\texorpdfstring{La $K$-théorie des corps finis}{La K-théorie des corps finis}}
+
+\subsection{\texorpdfstring{Le théorème "$+=Q$"}{Le théorème "+=Q"}}
+
+\section{\texorpdfstring{Propriétés de la $K$-théorie supérieure}{Propriétés de la K-théorie supérieure}}
+
+\section{\texorpdfstring{La $K$-théorie des schémas}{La K-théorie des schémas}}
+
+\appendix
+
+\section{Catégories modèles}
+
+\subsection{Argument du petit objet, notations}
+
+Nous ne démontrons pas ici en détail l'argument du petit objet, voir \cite[Chp.1]{Goer} pour cela.
+La raison d'être de cette sous-section est de fixer des notations.
+
+Soit $C$ une catégorie cocomplète et $\mathcal{J}=\enstq{u_i:A_i\ra B_i}{i\in I}$ un ensemble de morphismes dans $C$ tels que
+chaque $A_i$ soit $\N$-petit.
+
+Soit $h:X\ra Y$ un morphisme dans $C$. Nous noterons $G^1(\mathcal{J},h)$ la colimite~:
+\begin{center}
+  \begin{tikzcd}[column sep = large, row sep = large]
+    {\displaystyle\bigsqcup_{D}A_{i_{D}}} & X \\
+    {\displaystyle\bigsqcup_{D}B_{i_{D}}} & {G^1(\mathcal{J},h)}
+    \arrow["{u_{i_{D}}}", from=1-1, to=2-1]
+    \arrow["{f_D}", from=1-1, to=1-2]
+    \arrow["h_1", from=1-2, to=2-2]
+    \arrow[from=2-1, to=2-2]
+    \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=2-2, to=1-1]
+  \end{tikzcd}
+\end{center}
+où l'union porte sur l'ensemble des diagrammes commutatifs $D$ de la forme~:
+\begin{center}
+  \begin{tikzcd}[column sep = large, row sep = large]
+    {A_{i_{D}}} & X \\
+    {B_{i_{D}}} & Y
+    \arrow["{u_{i_{D}}}", from=1-1, to=2-1]
+    \arrow["{f_D}", from=1-1, to=1-2]
+    \arrow["h", from=1-2, to=2-2]
+    \arrow["g_D", from=2-1, to=2-2]
+    \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=2-2, to=1-1]
+  \end{tikzcd}
+\end{center}
+Les $g_D$ induisent un morphisme $p_1:G^1(\mathcal{J},h)\ra Y$.
+
+On pose alors successivement~:
+\begin{description}
+  \item[] $G^{n+1}(\mathcal{J},h)=G^1(\mathcal{J},h^n)$~;
+  \item[] $h_{n+1}: X\ra G^{n+1}(\mathcal{J},h)$~;
+  \item[] $p_{n+1}:G^{n+1}(\mathcal{J},h)\ra Y$.
+\end{description}
+On note~:
+\begin{description}
+  \item[] $G^{\infty}(\mathcal{J},h):=\colim_n G^n(\mathcal{J},h)$~;
+  \item[] $h_\infty:X\ra G^{\infty}(\mathcal{J},h)$~;
+  \item[] $p_\infty:G^{\infty}(\mathcal{J},h)\ra Y$.
+\end{description}
+
+On a alors $h=p_\infty\circ h_\infty$ avec $h_\infty$ dans $\mathcal{J}-\mathrm{Cell}$ et $p_\infty$ dans $\mathcal{J}^\square$.
+
+Chaque $G^n(\mathcal{J},-)$ et $G^\infty(\mathcal{J},-)$ sont des foncteurs $C^{0\ra 1}\ra C$ et les $h_\infty$ et $p_\infty$
+s'assemblent en des transformation naturelles $(p_0:C^{0\ra 1}\ra C)\Rightarrow G^\infty(\mathcal{J},-)$ et
+$G^\infty(\mathcal{J},-)\Rightarrow (p_1:C^{0\ra 1}\ra C)$.
+
+
+\subsection{Carrés homotopiquement cartésiens d'ensembles simpliciaux}
+\label{carrehomotopiquementcart}
+
+Le but de cette sous-section est d'introduire la notion de carré homotopiquement cartésien.
+Seront admis les notions d'adjonction de Quillen, voir \cite[1.6]{Idri}.
+
+Nous commençons cependant par des remarques valables dans des catégories modèles générales.
+Puis nous traiterons le cas particulier de la catégorie des ensembles simpliciaux.
+
+\begin{prop}[structure de Reedy]
+  Soit $C$ une catégorie modèle. On note $I$ la catégorie à $3$ objets et $2$ morphismes~:
+  \begin{center}
+    \begin{tikzcd}
+      & 1 \\
+      2 & 0
+      \arrow[from=1-2, to=2-2]
+      \arrow[from=2-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  Alors il existe une structure de modèle sur $C^I$ telle que ~:
+  \begin{description}
+    \item[(W)] les équivalences faibles se vérifient objet par objet~;
+    \item[(C)] les équivalences faibles se vérifient objet par objet~;
+    \item[(F)] un morphisme $X\ra Y$ est une fibration si et seulement si $X(0)\ra Y(0)$, $X(1)\ra X(0)\times_{Y(0)} Y(1)$
+    et $X(2)\ra X(0)\times_{Y(0)} Y(2)$ sont des fibrations dans $C$.
+  \end{description}
+  On appelle cette structure la structure de modèle de Reedy.
+\end{prop}
+
+La démonstration est omise, car assez facile. La définition est faite pour que ça marche. On a immédiatement le corollaire suivant.
+
+\begin{coro}
+  Soit $C$ une catégorie modèle et $I$ la catégorie définie comme ci-dessus. Alors la structure de modèle de Reedy sur $C^I$ induit une adjonction
+  de Quillen~:
+  \begin{center}
+    \begin{tikzcd}
+      {\mathrm{cst}_I:C} \ar[r,bend left,""{name=A, below}] & {C^I:\lim_I} \ar[l,bend left,""{name=B,above}] \ar[from=A, to=B, phantom,"\perp"]
+    \end{tikzcd}
+  \end{center}
+  Et donc une adjonction entre les catégories homotopiques~:
+  \begin{center}
+    \begin{tikzcd}
+      {\mathbb{L}\:\mathrm{cst}_I:C} \ar[r,bend left,""{name=A, below}] & {\Ho{C^I}:\mathbb{R}\lim_I} \ar[l,bend left,""{name=B,above}] \ar[from=A, to=B, phantom,"\perp"]
+    \end{tikzcd}
+  \end{center}
+\end{coro}
+
+On remarque que si $A$ est un objet de $C$, et $QA\ra A$ un remplacement cofibrant,
+alors $\mathrm{cst}_IQA\ra\mathrm{cst}_I A$ est une équivalence. Or $\mathbb{L}\:\mathrm{cst}_I A\simeq\mathrm{cst}_IQA$.
+Donc $\mathbb{L}\:\mathrm{cst}_I(A)\simeq \mathrm{cst}_IA$.
+Ceci justifie la définition suivante.
+
+\begin{defi}
+  Soit $C$ une catégorie modèle et soit~:
+  \begin{center}
+    \begin{tikzcd}
+      X   & Y_1 \\
+      Y_2 & Y_0
+      \arrow[from=1-2, to=2-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=1-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+  un carré commutatif dans $C$.
+  On dit que ce carré est homotopiquement cartésien si le morphisme dans $\Ho{C}$~:
+  $$X\ra \mathbb{R}\lim_I Y$$
+  adjoint à $\mathbb{L}\:\mathrm{cst}_I(X)=\mathrm{cst}_I(X)\ra Y$, est un isomorphisme (dans $\Ho{C}$).
+\end{defi}
+
+\begin{prop}\label{carrecartesienbasique}
+  Soit $C$ une catégorie modèle et soit~:
+  \begin{center}
+    \begin{tikzcd}
+      X   & Y_1 \\
+      Y_2 & Y_0
+      \arrow[two heads, from=1-2, to=2-2]
+      \arrow[two heads, from=2-1, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=1-1, to=1-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  un carré commutatif cartésien dans $C$ avec $Y_0$ fibrant, et $Y_1\twoheadrightarrow Y_0$, $Y_1\twoheadrightarrow Y_0$ des cofibrations.
+  Alors ce carré est homotopiquement cartésien.
+\end{prop}
+
+\begin{proof}
+  Dans ce cas, le diagramme $Y$ est fibrant dans $C^I$, et donc $\lim_I Y\simeq \mathbb{R}\lim_I Y$.
+\end{proof}
+
+Nous allons maintenant nous intéresser à des catégories modèles particulières, dites propres à droite.
+
+\begin{defi}
+  Soit $C$ une catégorie de modèles. On dit que $C$ est propre à droite si le tiré en arrière d'une équivalence le long
+  d'une fibration est une équivalence.
+\end{defi}
+
+\begin{prop}\label{criterehomocartesienpropreadroite}
+  Soit $C$ une catégorie modèle propre à droite. Alors tout carré commutatifs cartésien~:
+  \begin{center}
+    \begin{tikzcd}
+      X   & Y_1 \\
+      Y_2 & Y_0
+      \arrow[two heads, from=1-2, to=2-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=1-1, to=1-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  avec $Y_1\ra Y_0$ fibrant, est homotopiquement cartésien.
+\end{prop}
+
+\begin{proof}
+  On peut choisir un remplacement fibrant $RY_0$ de $Y_0$ puis factoriser $Y_1\twoheadrightarrow Y_0\overset{\sim}{\ra} RY_0$
+  en $Y_1\overset{\sim}{\ra} RY_1\twoheadrightarrow RY_0$. On a alors le diagramme suivant~:
+  \begin{center}
+    \begin{tikzcd}
+      X && {Y_1} \\
+      & {\tilde{X}} && {\tilde{Y}} & {RY_1} \\
+      {Y_2} && {Y_0} \\
+      &&&& {RY_0}
+      \arrow[two heads, from=2-5, to=4-5]
+      \arrow[two heads, from=1-3, to=3-3]
+      \arrow["\sim" sloped, from=1-3, to=2-5]
+      \arrow["\sim" sloped, from=3-3, to=4-5]
+      \arrow[from=3-1, to=3-3]
+      \arrow[two heads, from=1-1, to=3-1]
+      \arrow[two heads, from=2-4, to=3-3]
+      \arrow["\sim" sloped, from=2-4, to=2-5]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=2-4, to=4-5]
+      \arrow[two heads, from=2-2, to=3-1]
+      \arrow["\sim" sloped, from=1-3, to=2-4]
+      \arrow[from=1-1, to=2-2]
+      \arrow[from=1-1, to=1-3]
+      \arrow[crossing over, from=2-2, to=2-4]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=2-2, to=3-3]
+    \end{tikzcd}
+  \end{center}
+  où $\tilde{Y}$ et $\tilde{X}$ complètent les carrés cartésiens notés par $\lrcorner$. Le morphisme $\tilde{Y}\ra RY_1$
+  est acyclique car $C$ est propre à droite.
+  Or, dans la catégorie modèle restreinte $C\downarrow Y_0$, par le lemme de Brown (\cite[1.6.6]{Idri}), $Y_2\times_{Y_0}-$ préserve les équivalences faibles
+  entre objets fibrants. Donc, comme $Y_1\ra \tilde{Y}$ est une telle équivalence, $X\ra \tilde{X}$ aussi.
+
+  Nous nous sommes donc ramené au cas où $X=\tilde{X}$, c'est à dire au cas où le carré~:
+  \begin{center}
+    \begin{tikzcd}
+      {Y_1} & {RY_1} \\
+      {Y_0} & {RY_0}
+      \arrow[two heads, from=1-1, to=2-1]
+      \arrow[two heads, from=1-2, to=2-2]
+      \arrow[from=1-1, to=1-2]
+      \arrow[from=2-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  est cartésien.
+
+  Mais dans ce cas, on a le diagramme commutatif à carrés cartésiens suivant~:
+  \begin{center}
+    \begin{tikzcd}
+      X & {Y_2} \\
+      {X'} & {RY_2} \\
+      {RY_1} & {RY_0}
+      \arrow[from=2-1, to=3-1]
+      \arrow[two heads, from=2-2, to=3-2]
+      \arrow[two heads, from=3-1, to=3-2]
+      \arrow[two heads, from=2-1, to=2-2]
+      \arrow["\sim" sloped, from=1-2, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow[two heads, from=1-1, to=1-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=2-1, to=3-2]
+    \end{tikzcd}
+  \end{center}
+  où $Y_2\overset{\sim}{\ra} RY_2\twoheadrightarrow RY_0$ est une factorisation de $Y_2\ra Y_0\overset{\sim}{\ra} RY_0$.
+  Comme les flèches horizontales sont des fibrations et $Y_2\ra RY_2$ est acyclique,
+  $X\ra X'$ l'est aussi. Or, par la \sref{proposition}{carrecartesienbasique}, le carré du bas est cartésien, et comme les diagrammes
+  $Y$ et $RY$ sont équivalents dans $C^I$, $X$ est la limite homotopique de $Y$.
+\end{proof}
+
+\begin{prop}\label{homocartesienfibrant}
+  Soit $C$ une catégorie modèles et soit~:
+  \begin{center}
+    \begin{tikzcd}[column sep = small, row sep = small]
+      X   && Y_1 \\
+      \\
+      Y_2 && Y_0 \\
+       &  *   &
+      \arrow[two heads,from=1-3, to=3-3]
+      \arrow["\sim", from=3-1, to=3-3]
+      \arrow[from=1-1, to=3-1]
+      \arrow[from=1-1, to=1-3]
+      \arrow[two heads, from=3-1, to=4-2]
+      \arrow[two heads, from=3-3, to=4-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=1-1, to=3-3]
+    \end{tikzcd}
+  \end{center}
+  un carré cartésien dans $C$ avec $Y_1\ra Y_0$ une fibration, $Y_2\ra Y_0$ acyclique, et $Y_0$, $Y_2$ fibrants.
+
+  Alors $X\ra Y_1$ est aussi acyclique.
+
+  En d'autres termes, le tiré en arrière d'une équivalence entre objets fibrants le long d'une fibration est une équivalence.
+\end{prop}
+
+\begin{rem}
+  Il existe évidemment une version duale (prendre $C\op$)~: le poussé en avant d'une équivalence entre objets cofibrants le long
+  d'une cofibration est une équivalence.
+\end{rem}
+
+La preuve de cette proposition est omise, voir \cite[13.1.2]{Hirs}.
+
+\begin{prop}
+  La catégorie des ensembles simpliciaux $\DEns$ est propre à droite.
+\end{prop}
+
+\begin{proof}
+  La catégorie $\Top$ des espaces topologiques avec la structure de Quillen est propre à droite.
+  En effet, comme tous les objets de $\Top$ sont fibrants, c'est une conséquence de la \sref{porposition}{homocartesienfibrant}.
+
+  Or le foncteur réalisation $|\bullet|:\DEns\ra \Top$ préserve les limites finies et les fibrations, et reflète les équivalences
+  (voir \cite[Chp.1]{Goer}).
+  Donc on en déduit que $\DEns$ est également propre à droite.
+\end{proof}
+
+Voici une caractérisation plus concrète des diagrammes homotopiquement cartésiens dans $\DEns$.
+
+\begin{prop}
+  On se donne un carré commutatif~:
+  \begin{center}
+    \begin{tikzcd}
+      X   & Y_1 \\
+      Y_2 & Y_0
+      \arrow[from=1-2, to=2-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=1-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+  Alors ce carré est homotopiquement cartésien si et seulement si le morphisme induit~:
+  $$X\ra Y_1\times_{Y_0}Y_0^{\Delta^1}\times_{Y_0} Y_2$$
+  est une équivalence faible.
+\end{prop}
+
+\begin{proof}
+  On dispose d'une factorisation~:
+  $$Y_1\overset{\sim}{\hookrightarrow} Y_1\times_{Y_0}Y_0^{\Delta^1} \overset{\mathrm{ev}_1}{\twoheadrightarrow} Y_0$$
+  On a donc le diagramme suivant~:
+  \begin{center}
+    \begin{tikzcd}
+      X && {Y_1} \\
+      {Y_1\times_{Y_0}Y_0^{\Delta^1}\times_{Y_0}Y_2} && {Y_1\times_{Y_0}Y_0^{\Delta^1}} \\
+      {Y_2} && {Y_0}
+      \arrow[from=3-1, to=3-3]
+      \arrow["\sim" sloped, hook, from=1-3, to=2-3]
+      \arrow[two heads, from=2-3, to=3-3]
+      \arrow[from=1-1, to=1-3]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=2-1, to=3-1]
+      \arrow[from=2-1, to=2-3]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05}, draw=none, from=2-1, to=3-3]
+    \end{tikzcd}
+  \end{center}
+  Le carré du bas est cartésien et homotopiquement cartésien par la \sref{proposition}{criterehomocartesienpropreadroite}.
+  On note $Y'$ l'élément de $C^I$ associé au carré du bas.
+  Le morphisme $X\ra Y_1\times_{Y_0}Y_0^{\Delta^1}\times_{Y_0}Y_2$ dans $C$ induit dans $\Ho{C^I}$ le diagramme commutatif~:
+  \begin{center}
+    \begin{tikzcd}
+      \mathbb{L}\:\mathrm{cst}_I X & \mathbb{L}\:\mathrm{cst}_I Y_1\times_{Y_0}Y_0^{\Delta^1}\times_{Y_0}Y_2 \\
+      Y                        & Y'
+      \arrow[from=1-2, to=2-2]
+      \arrow["\sim", from=2-1, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=1-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+  et, en passant à l'adjoint $\mathbb{R}\lim_I$, le diagramme commutatif dans $\Ho{C}$~:
+  \begin{center}
+    \begin{tikzcd}
+      X                  & Y_1\times_{Y_0}Y_0^{\Delta^1}\times_{Y_0}Y_2 \\
+      \mathbb{R}\lim_I Y & \mathbb{R}\lim_I Y'
+      \arrow["\sim" sloped, from=1-2, to=2-2]
+      \arrow["\sim", from=2-1, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=1-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+  On a donc bien $X\simeq \mathbb{R}\lim_I Y$ si et seulement si $X\simeq Y_1\times_{Y_0}Y_0^{\Delta^1}\times_{Y_0}Y_2$.
+\end{proof}
+
+\subsection{Le lemme de collage}
+On se place ici dans une catégorie de modèle $C$.
+
+\begin{lem}[lemme de collage]\label{lemmedecollage}
+  On se donne le diagramme suivant dans $C$~:
+  \begin{center}
+    \begin{tikzcd}
+      {A_1} && {B_1} \\
+      & {C_1} && {D_1} \\
+      {A_2} && {B_2} \\
+      & {C_2} && {D_2}
+      \arrow["{f_A}"', from=1-1, to=3-1]
+      \arrow["{f_B}", from=1-3, to=3-3]
+      \arrow["{j_1}", from=1-1, to=1-3]
+      \arrow["{j_2}"{pos=0.3}, from=3-1, to=3-3]
+      \arrow[hook, from=1-3, to=2-4]
+      \arrow[hook, from=3-3, to=4-4]
+      \arrow["{i_2}", hook, from=3-1, to=4-2]
+      \arrow["{i_1}", hook, from=1-1, to=2-2]
+      \arrow["{f_D}", from=2-4, to=4-4]
+      \arrow[from=4-2, to=4-4]
+      \arrow[crossing over, from=2-2, to=2-4]
+      \arrow[crossing over, "{f_C}"{pos= 0.2}, from=2-2, to=4-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=200}, draw=none, from=2-4, to=1-1]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=200}, draw=none, from=4-4, to=3-1]
+    \end{tikzcd}
+  \end{center}
+  où tous les objets sont cofibrants, $i_1$ et $i_2$ sont des cofibrations, les faces supérieure et inférieure sont cocartésiennes
+  et $f_A$, $f_B$ et $f_C$ sont acycliques.
+
+  Alors $f_D$ est acyclique.
+\end{lem}
+
+\begin{proof}
+  On factorise de façon fonctorielle $j_1=q_1\circ j'_1$ et $j_2=q_2\circ j'_2$ où $j'_1$ et $j'_2$ sont des cofibrations
+  et $q_1$ et $q_2$ sont des fibrations acycliques. En coupant le cube en deux, On est alors ramené aux deux cas particuliers suivants~:
+  $j_1$ et $j_2$ sont acycliques~;
+  $j_1$ et $j_2$ sont des cofibrations.
+
+  Le premier cas est une conséquence de la \sref{proposition}{homocartesienfibrant}. Nous allons maintenant traiter le second cas.
+  On note $B'$ (respectivement $D'$) le poussé en avant de $j_1$ et $f_A$ (respectivement $C_1\ra C_2$ et $C_1\ra D_1$).
+  On a alors le diagramme suivant~:
+  \begin{center}
+    \begin{tikzcd}
+      {A_1} &&& {B_1} \\
+      & {C_1} &&& {D_1} \\
+      &&& {B'} \\
+      {A_2} &&& {B_2} & {D'} \\
+      & {C_2} &&& {D_2}
+      \arrow["{i_1}", hook, from=1-1, to=2-2]
+      \arrow[hook, from=1-4, to=2-5]
+      \arrow["\sim"' sloped, from=1-1, to=4-1]
+      \arrow["\sim\;\;\;\;\;\;\;\;\;" sloped, from=1-4, to=3-4]
+      \arrow["{n_B}"', "\sim" sloped, from=3-4, to=4-4]
+      \arrow[from=2-5, to=4-5]
+      \arrow["{n_D}", from=4-5, to=5-5]
+      \arrow["\theta", from=3-4, to=4-5]
+      \arrow[hook, from=4-4, to=5-5]
+      \arrow["{i_2}", hook, from=4-1, to=5-2]
+      \arrow[hook, from=5-2, to=5-5]
+      \arrow["{j_2}", hook, from=4-1, to=4-4]
+      \arrow["{j_1}", hook, from=1-1, to=1-4]
+      \arrow[from=4-1, to=3-4]
+      \arrow[crossing over, from=5-2, to=4-5]
+      \arrow[crossing over, hook, from=2-2, to=2-5]
+      \arrow[crossing over, "\sim\;\;\;\;\;\;\;\;\;" sloped, from=2-2, to=5-2]
+    \end{tikzcd}
+  \end{center}
+  Par la \sref{proposition}{homocartesienfibrant}, $B_1\ra B'$ et $D_1\ra D'$ sont des équivalences faibles, donc $n_B$ est acyclique.
+  Il reste à montrer que $n_D$ est aussi acyclique.
+  Or $\theta$ est le poussé en avant de $i_2$ le long de $A_2\ra B'$, c'est donc une cofibration. Comme $n_D$ est le poussé en avant de $n_B$ le long
+  de $\theta$, par la \sref{proposition}{homocartesienfibrant}, $n_D$ est acyclique.
+\end{proof}
+
+
+\section{Catégories exactes}
+
+\section{Topologie algébrique}
+
+\section*{Remerciements} Je tiens à remercier mon directeur de stage Frédéric Déglise pour ses explications et le temps qu'il m'a accordé.
+\nocite{*}
+
+
+\bibliographystyle{alpha}
+\bibliography{references}
+
+\end{document}

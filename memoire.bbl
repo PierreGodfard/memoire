@@ -1,0 +1,86 @@
+\begin{thebibliography}{HPoM02}
+
+\bibitem[Bas68]{Bass}
+Hyman Bass.
+\newblock {\em Algebraic K-theory}.
+\newblock W.A. Benjamin, inc., 1968.
+
+\bibitem[DG67]{EGA}
+Jean Dieudonn{\'e} and Alexander Grothendieck.
+\newblock \'{E}l\'ements de g\'eom\'etrie alg\'ebrique.
+\newblock {\em Inst. Hautes \'Etudes Sci. Publ. Math.}, 4, 8, 11, 17, 20, 24,
+  28, 32, 1961--1967.
+
+\bibitem[GJ09]{Goer}
+P.G. Goerss and J.~Jardine.
+\newblock {\em Simplicial Homotopy Theory}.
+\newblock Modern Birkh{\"a}user Classics. Birkh{\"a}user Basel, 2009.
+
+\bibitem[Gra76]{Gray}
+Daniel Grayson.
+\newblock Higher algebraic k-theory: Ii.
+\newblock In Michael~R. Stein, editor, {\em Algebraic K-Theory}, pages
+  217--240, Berlin, Heidelberg, 1976. Springer Berlin Heidelberg.
+
+\bibitem[GW10]{Gort}
+U.~G{\"o}rtz and T.~Wedhorn.
+\newblock {\em Algebraic Geometry: Part I: Schemes. With Examples and
+  Exercises}.
+\newblock Advanced Lectures in Mathematics. Vieweg+Teubner Verlag, 2010.
+
+\bibitem[Har13]{Hart}
+R.~Hartshorne.
+\newblock {\em Algebraic Geometry}.
+\newblock Graduate Texts in Mathematics. Springer New York, 2013.
+
+\bibitem[Hir09]{Hirs}
+P.S. Hirschhorn.
+\newblock {\em Model Categories and Their Localizations}.
+\newblock Mathematical surveys and monographs. American Mathematical Society,
+  2009.
+
+\bibitem[HPoM02]{Hatc}
+A.~Hatcher, Cambridge~University Press, and Cornell University.~Department
+  of~Mathematics.
+\newblock {\em Algebraic Topology}.
+\newblock Algebraic Topology. Cambridge University Press, 2002.
+
+\bibitem[Idr21]{Idri}
+Najib Idrissi.
+\newblock Introduction à la théorie de l’homotopie.
+\newblock accessible sur \url{https://idrissi.eu/class}, 2021.
+
+\bibitem[Kel90]{Kell}
+Bernhard Keller.
+\newblock Chain complexes and stable categories.
+\newblock {\em manuscripta mathematica}, 67(1):379--417, Dec 1990.
+
+\bibitem[May99]{May}
+J.P. May.
+\newblock {\em A Concise Course in Algebraic Topology}.
+\newblock Chicago Lectures in Mathematics. University of Chicago Press, 1999.
+
+\bibitem[MP12]{May2}
+J.P. May and K.~Ponto.
+\newblock {\em More Concise Algebraic Topology: Localization, Completion, and
+  Model Categories}.
+\newblock Chicago Lectures in Mathematics. University of Chicago Press, 2012.
+
+\bibitem[Qui73]{Quil}
+Daniel Quillen.
+\newblock Higher algebraic k-theory: I.
+\newblock In H.~Bass, editor, {\em Higher K-Theories}, pages 85--147, Berlin,
+  Heidelberg, 1973. Springer Berlin Heidelberg.
+
+\bibitem[Wei94]{Weib2}
+Charles~A. Weibel.
+\newblock {\em An Introduction to Homological Algebra}.
+\newblock Cambridge Studies in Advanced Mathematics. Cambridge University
+  Press, 1994.
+
+\bibitem[Wei13]{Weib}
+C.A. Weibel.
+\newblock {\em The $K$-book: An Introduction to Algebraic $K$-theory}.
+\newblock Graduate Studies in Mathematics. American Mathematical Society, 2013.
+
+\end{thebibliography}
