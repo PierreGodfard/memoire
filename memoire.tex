@@ -67,6 +67,7 @@
 \newcommand{\Aut}[1]{\mathrm{Aut}({#1})}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\op}{^\mathrm{op}}
+\newcommand{\ab}{^\mathrm{ab}}
 \newcommand{\Fon}[2]{\mathrm{Fon}(#1,#2)}
 \newcommand{\Ens}{\mathrm{Ens}}
 \newcommand{\DEns}{\widehat{\mathbf{\Delta}}}
@@ -92,6 +93,7 @@
 
 \newcommand{\GL}[2]{\mathrm{GL}_{#1}(#2)}
 \newcommand{\End}[2]{\mathrm{End}_{#1}(#2)}
+\newcommand{\EGL}[2]{\mathrm{E}_{#1}(#2)}
 
 \newcommand{\Proj}[1]{\mathrm{P}({#1})}
 \newcommand{\Pgr}[1]{\mathrm{Pgr}({#1})}
@@ -752,6 +754,67 @@ Nous allons maintenant appliquer ce résultat de colimite pour effectuer un calc
 \end{proof}
 
 \subsection{\texorpdfstring{Les groupes $K_1$ et $K_2$ d'un anneau}{Les groupes K1 et K2 d'un anneau}}
+
+Dans cette section, nous fixons un anneau $A$.
+
+On note $\GL{n}{A}$ le groupe des matrices $n\times n$ inversibles à coéfficients dans $A$.
+On fait de $n\mapsto \GL{n}{A}$ un foncteur $(\N,\leq)\ra \Grp$ via les inclusions~:
+\[
+  \begin{array}{lcl}
+    \GL{n}{A} &\ra     & \GL{n+1}{A} \\
+    M         &\mapsto & \begin{pmatrix} M & 0 \\ 0 & 1 \end{pmatrix}
+  \end{array}
+\]
+et on note $\GL{}{A}:=\colim_{n\in\N} \GL{n}{A}$.  
+
+\begin{defi}[$K_1$ d'un anneau]
+  Pour $A$ un anneau, on défini le $1^{\mathrm{er}}$ groupe de $K$-théorie de $A$, $K_1(A)$, par~:
+  $$K_1(A):=\GL{}{A}\ab$$
+\end{defi}
+
+Nous allons maintenant donner une description du groupe des commutateurs $[\GL{}{A},\GL{}{A}]$.
+
+\begin{defi}
+  Pour $1\leq i,j \leq n$, $i\neq j$ et $a\in A$, on pose~:
+  $$e_{ij}(a):= \id+aE_{ij}\in \GL{n}{A}$$
+  On note $\EGL{n}{A}$ le sous-groupe de $\GL{n}{A}$ engendré par les $e_{ij}(a)$ pour $i,j >0$, $i\neq j$ et $a\in A$.
+  On note $\EGL{}{A}:=\bigcup_n\EGL{n}{A}\subset\GL{}{A}$.
+\end{defi}
+
+\begin{ex}
+  \begin{enumerate}
+    \item Toutes les matrices de permutation paires sont dans $\EGL{}{A}$~;
+    \item Si $M\in \GL{n}{A}$, alors~:
+         $$\begin{pmatrix} M & 0 \\ 0 & M^{-1} \end{pmatrix}\in \EGL{2n}{A}$$
+         En effet, on a la formule~:
+         $$\begin{pmatrix} M & 0  \\ 0       & M^{-1} \end{pmatrix}=%
+           \begin{pmatrix} 1 & M  \\ 0       & 1      \end{pmatrix}%
+           \begin{pmatrix} 1 & 0  \\ -M^{-1} & 0      \end{pmatrix}%
+           \begin{pmatrix} 1 & M  \\ 0       & 1      \end{pmatrix}%
+           \begin{pmatrix} 0 & -1 \\ 1       & 0      \end{pmatrix}$$
+  \end{enumerate}
+\end{ex}
+
+\begin{prop}[lemme de Whitehead]
+  Pour $A$ un anneau, $\EGL{}{A}$ et parfait, et on a l'égalité~:
+  $$\EGL{}{A}=[\GL{}{A},\GL{}{A}]$$
+  Et donc~:
+  $$K_1(A)=\GL{}{A}/\EGL{}{A}$$
+\end{prop}
+
+\begin{proof}
+  \begin{description}
+    \item[$\subseteq$:] on a $e_{ij}(a)=[e_{ik}(a),e_{kj}(a)]$ pour $i$,$j$ et $k$ distincts. Ceci montre également que $\EGL{}{A}$ et parfait.
+    \item[$\supseteq$:] Pour $M,N\in \GL{n}{A}$, on a, dans $\GL{2n}{A}$~:
+                      $$[M,N]=\begin{pmatrix} M         & 0  \\ 0 & M^{-1} \end{pmatrix}%
+                              \begin{pmatrix} N         & 0  \\ 0 & N^{-1} \end{pmatrix}%
+                              \begin{pmatrix} (NM)^{-1} & 0  \\ 0 & NM     \end{pmatrix}\in\EGL{2n}{A}$$ 
+  \end{description}
+\end{proof}
+
+[Frédéric: ajouter $f^*$ et $f_*$? (nécessite une interprétation cohomologique)]
+
+[ajouter $K_2$ d'un anneau]
 
 \section{\texorpdfstring{Définition de la $K$-théorie supérieure}{Définition de la K-théorie supérieure}}
 
@@ -1679,6 +1742,303 @@ Nous avons fait le choix de le mettre dans \sref{l'annexe}{carrehomotopiquementc
 
 \subsection{\texorpdfstring{La construction $+$ en topologie}{La construction + en topologie}}
 
+Dans cette section, nous définissons une construction $+$ en topologie. Nous utilisons un certain nombre de résultats
+de topologie, notamment l'homologie à coefficients et les tours de Postnikov.
+Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
+
+\begin{defi}
+  Soit $X$ connexe dans $\DEns$, $x\in X_0$, et $P\triangleleft \pi_1(X,x)$ un sous-groupe normal parfait.
+  Un morphisme $f:X\ra X^+$ est une construction $+$ pour $P$ si~:
+  \begin{description}
+    \item[$(1)$] $0\ra P\ra \pi_1(X,x) \ra \pi_1(X^+,fx)\ra 0$ est exacte~;
+    \item[$(2)$] Pour tout $L$ système de coefficients sur $X^+$, l'application $H_*(X,f^*L)\ra H_*(X^+,L)$ est un isomorphisme.
+  \end{description}
+\end{defi}
+
+\begin{rem}
+  Comme $X$ est supposé connexe, le point $(1)$ ne dépend pas de $x\in X_0$.
+\end{rem}
+
+\begin{prop}
+  Soit $X$ connexe dans $\DEns$, $x\in X_0$, tel que $\pi_1(X,x)$ soit un groupe parfait. Alors une construction $+$ existe pour $\pi_1(X,x)$.
+\end{prop}
+
+\begin{proof}
+  Quitte à changer $X$, on peut supposer que $X$ est un complexe de Kan.
+  On se donne $I$ un ensemble de générateurs de $\pi_1(X,x)$. On défini $Y$ comme la somme amalgamée~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      {\bigvee_{\gamma\in I}\partial\Delta^2} & X \\
+      {\bigvee_{\gamma\in I}\Delta^2} & Y
+      \arrow[hook, from=1-1, to=2-1]
+      \arrow[from=1-2, to=2-2]
+      \arrow["{\vee(\gamma,*,*)}", from=1-1, to=1-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=2-2, to=1-1]
+    \end{tikzcd}
+  \end{center}
+  Alors, par le [lemme d'extension] $\pi_1(Y)=0$.
+  Maintenant, comme $\bigvee_{\gamma\in I}\Delta^2$ est contractile,
+  ${\bigvee_{\gamma\in I}\partial\Delta^2}\ra X\ra Y$ est une suite cofibre. On a donc les suites exactes suivantes en homologie sur $\Z$~:
+  $$0\ra H_i(X)\ra H_i(Y)\ra 0\text{ pour }i\geq 3$$
+  $$H_2({\bigvee_{\gamma\in I}\partial\Delta^2})\ra H_2(X)\ra H_2(Y)\ra H_1({\bigvee_{\gamma\in I}\partial\Delta^2})\ra H_1(X)$$
+  Or, par [Hurewitz pi1], $H_1(X)=0$. De plus $H_2({\bigvee_{\gamma\in I}\partial\Delta^2})=0$
+  et $H_1({\bigvee_{\gamma\in I}\partial\Delta^2})$ est $\Z$-libre.
+  Donc, la suite se scinde et on peut choisir un isomorphisme~:
+  $$H_2(Y)\simeq H_2(X)\oplus \bigoplus_{\gamma\in I}\Z\cdot [\gamma]$$
+  Or, $\pi_0(Y)=*$ et $\pi_1(Y)=0$, donc par [Hurewitz pi2], on a l'isomorphisme de Hurewitz $\mathcal{H}_2:\pi_2(Y,fx)\simeq H_2(Y)$.
+  On se donne $\tilde{Y}$ complexe de Kan équivalent à $Y$
+  et, pour chaque $\gamma\in I$, $s_\gamma\in \pi_2(\tilde{Y},fx)$ tel que $\mathcal{H}_2(s_\gamma)=[\gamma]$.
+  On définit alors $X^+$ comme la somme amalgamée~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      {\bigvee_{\gamma\in I}\partial\Delta^3} & \tilde{Y} \\
+      {\bigvee_{\gamma\in I}\Delta^3} & X^+
+      \arrow[hook, from=1-1, to=2-1]
+      \arrow[from=1-2, to=2-2]
+      \arrow["{\vee(s_\gamma,*,*,*)}", from=1-1, to=1-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=2-2, to=1-1]
+    \end{tikzcd}
+  \end{center}
+  Par le [lemme d'extension], $\pi_1(X^+)=0$. Or la suite ${\bigvee_{\gamma\in I}\partial\Delta^3}\ra \tilde{Y}\ra X^+$ est une suite cofibre.
+  Comme $H_i(\bigvee_{\gamma\in I}\partial\Delta^3)=0$ pour $i\geq 3$, et $H_2(\bigvee_{\gamma\in I}\partial\Delta^3)\hookrightarrow H_2(\tilde{Y})$
+  est une injection, on a $H_i(\tilde{Y})\simeq H_i(X^+)$ et donc $H_i(X)\simeq H_i(X^+)$ pour $i\geq 3$. C'est également clair pour $H_1$ et $H_0$.
+  Pour $H_2$, on a le diagramme suivant~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      & {H_1(\bigvee_I\partial\Delta^2)} \\
+      {H_2(\bigvee_{I}\partial\Delta^3)} & {H_2(\tilde{Y})} & {H_2(X^+)} & {} \\
+      & {H_2(X)}
+      \arrow[hook, from=2-1, to=2-2]
+      \arrow[two heads, from=2-2, to=2-3]
+      \arrow[hook, from=3-2, to=2-2]
+      \arrow[from=3-2, to=2-3]
+      \arrow[two heads, from=2-2, to=1-2]
+      \arrow["\sim" sloped, from=2-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+  La flèche $H_2(\bigvee_{I}\partial\Delta^3)\ra H_1(\bigvee_I\partial\Delta^2)$ est un isomorphisme par construction de
+  $\bigvee_I\partial\Delta^3\ra \tilde{Y}$. Comme la ligne et la colonne sont exactes, ceci implique que la flèche
+  $H_2(X)\ra H_2(X^+)$ est aussi un isomorphisme.
+
+  On a donc que $H_*(-;\Z)$ envoie $X\ra X^+$ sur un isomorphisme. Ainsi, par le [théorème des coefficients universelles],
+  $H_*(-;M)$ envoie $X\ra X^+$ sur un isomorphisme pour tout $M$ $\Z$-module. Or, comme $\pi_1(X^+)=0$, un système de coéfficients
+  sur $X^+$ n'est autre qu'un $\Z$-module. Donc $X\ra X^+$ est une construction $+$ pour $\pi_1(X,x)$.
+\end{proof}
+
+\begin{prop}
+  Soit $X$ connexe dans $\DEns$, $x\in X_0$ et $P\triangleleft \pi_1(X,x)$ sous-groupe normal parfait. Alors une construction $+$
+  pour $P$ existe.
+\end{prop}
+
+\begin{proof}
+  On note $p:\tilde{X}\ra X$ le revêtement connexe correspondant à $\pi_1(X,x)/P$. On se donne $\tilde{x}\in \tilde{X}$ au-dessus de $x$.
+  On a alors $\pi_1(\tilde{X},\tilde{x})=P$.
+
+  On pose $\tilde{f}:\tilde{X}\hookrightarrow \tilde{X}^+$ une construction $+$ pour $\pi_1(\tilde{X},\tilde{x})$ qui soit une cofibration.
+  On définit $X^+$ comme la somme amalgamée suivante~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      {\tilde{X}} & \tilde{X}^+ \\
+      {X} & X^+
+      \arrow["p", from=1-1, to=2-1]
+      \arrow["p'", from=1-2, to=2-2]
+      \arrow[hook, "\tilde{f}", from=1-1, to=1-2]
+      \arrow[hook, "f", from=2-1, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=2-2, to=1-1]
+    \end{tikzcd}
+  \end{center}
+  Comme tous les objets de $\DEns$ sont cofibrants, par le dual de la \sref{proposition}{homocartesienfibrant}, 
+  $\DEns$ est propre à gauche.
+  Ainsi, par le dual de la \sref{proposition}{criterehomocartesienpropreadroite}, le carré ci-dessus est homotopiquement cocartésien.
+  Par le [théorème de Van-Kampen dans $\DEns$], la suite~:
+  $$\exa{P}{\pi_1(X,x)}{\pi_1(X^+,fx)}\text{ est exacte}$$
+  Comme le carré est homotopiquement cocartésien, et comme $\tilde{X}\hookrightarrow\tilde{X}\times\Delta^1\sqcup_{X}X\overset{\sim}{\twoheadrightarrow}X$,
+  on a le diagramme commutatif suivant a carré cocartésiens~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      {\tilde{X}} & \tilde{X}^+ \\
+      {\tilde{X}\times\Delta^1\sqcup_{X}X} & {X'^+} \\
+      {X} & {X^+}                            
+      \arrow[hook, from=1-1, to=2-1]
+      \arrow["p''",hook, from=1-2, to=2-2]
+      \arrow[hook, from=1-1, to=1-2]
+      \arrow[hook, from=2-1, to=2-2]
+      \arrow[two heads, "\sim" sloped,from=2-1, to=3-1]
+      \arrow[hook, from=3-1, to=3-2]
+      \arrow["\sim" sloped, from=2-2, to=3-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=2-2, to=1-1]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=3-2, to=2-1]
+    \end{tikzcd}
+  \end{center}
+  Où les applications marqué de $\sim$ sont des équivalences.
+  Maintenant, soit $L$ un système de coefficients locaux sur $X^+$. Comme on peut identifier $\tilde{X}^+\setminus \tilde{X}$
+  et $X'^+\setminus \tilde{X}\times\Delta^1\sqcup_{X}X$, on a~:
+  $$C_*(\tilde{X}^+,\tilde{X};p''^*L)\simeq C_*(X'^+, \tilde{X}\times\Delta^1\sqcup_{X}X;L)$$
+  Et donc~: $$H_*(\tilde{X}^+,\tilde{X};p'^*L)\lra H_*(X^+,X;L)$$ est un isomorphisme.
+  Or, comme $H_*(\tilde{X};p'^*L)\ra H_*(\tilde{X}^+;\tilde{f}^*p'^*L)$ est un isomorphisme, $H_*(\tilde{X}^+,\tilde{X};p'^*L)=0$.
+  Donc $H_*(X;f^*L)\ra H_*(X^+;L)$ est un isomorphisme.
+\end{proof}
+
+Nous allons maintenant énoncer un résultat d'unicité.
+
+\begin{prop}
+  Soit $X$ connexe dans $\DEns$, $x\in X_0$ et $P\triangleleft \pi_1(X,x)$ un sous-groupe normal parfait. Soit $f:X\hookrightarrow X^+$ une construction $+$
+  pour $P$. Alors pour tout $g:X\ra Y$ avec $P\subseteq \myker{\pi_1(g,x)}$ et $Y$ complexe de Kan, il existe $h:X^+\ra Y$ tel que $h\circ f=g$.
+  \begin{center}
+    \begin{tikzcd}[column sep = small, row sep = large]
+      X && Y \\
+      & {X^+}
+      \arrow["f",hook, from=1-1, to=2-2]
+      \arrow["{\exists h}", dashed, from=2-2, to=1-3]
+      \arrow["g", from=1-1, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  De plus, tout autre $h'$ a le même type d'homotopie que $h$ dans $\Ho{\DEns\uparrow X}$. 
+\end{prop}
+
+\begin{rem}
+  La dernière affirmation est équivalente à~: $h'$ est homotope à $h$ relativement à $X$. 
+\end{rem}
+
+\begin{proof}
+  Sans perte de généralité, on peut supposer que $Y$ est connexe.
+  On se donne $\tilde{X}\ra X$ revêtement associé à $\pi_1(X,x)/P$ et $\tilde{Y}\ra Y$ revêtement universels. Alors~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      {\tilde{X}} & {\tilde{Y}} \\
+      X & Y
+      \arrow["{\exists \tilde{g}}", dashed, from=1-1, to=1-2]
+      \arrow[two heads, from=1-1, to=2-1]
+      \arrow[two heads, from=1-2, to=2-2]
+      \arrow["g", from=2-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  Maintenant, $\tilde{Y}$ est simplement connexe et par [mettre ref], il dispose donc d'une tour de Postnikov de fibrations
+  principales.
+  \begin{center}
+    \begin{tikzcd}
+      && {\tilde{Y}(n)} \\
+      {\tilde{Y}} && {\tilde{Y}(n-1)} & {K(n+1,\pi_n(\tilde{Y}))} \\
+      && {\tilde{Y}(2)} & {K(4,\pi_3(\tilde{Y}))} \\
+      && {\tilde{Y}(1)\simeq *} & {K(3,\pi_2(\tilde{Y}))}
+      \arrow[two heads, from=1-3, to=2-3]
+      \arrow["{u_{n-1}}", from=2-3, to=2-4]
+      \arrow[dotted, two heads, from=2-3, to=3-3]
+      \arrow["{u_2}", from=3-3, to=3-4]
+      \arrow[two heads, from=3-3, to=4-3]
+      \arrow["{u_1}", from=4-3, to=4-4]
+      \arrow[from=2-1, to=1-3]
+      \arrow[from=2-1, to=2-3]
+      \arrow[from=2-1, to=3-3]
+      \arrow[from=2-1, to=4-3]
+    \end{tikzcd}
+  \end{center}
+  On choisit des espaces d'Eilenberg-MacLane qui soient fibrants.
+  Supposons que l'on ai défini des applications compatibles $\tilde{h}(i):\tilde{X}^+\ra \tilde{Y}(i)$, pour $1\leq i\leq n-1$, tels que pour chaque $i$~:
+  \begin{center}
+    \begin{tikzcd}
+      {\tilde{X}} & {\tilde{Y}} & {\tilde{Y}(i)} \\
+      & {\tilde{X}^+}
+      \arrow[hook, from=1-1, to=2-2]
+      \arrow["{\tilde{h}(i)}", from=2-2, to=1-3]
+      \arrow["{\tilde{g}}", from=1-1, to=1-2]
+      \arrow[from=1-2, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  On a alors le diagramme commutatif suivant~:
+  \begin{center}
+    \begin{tikzcd}
+      {\tilde{X}}   & {\tilde{Y}(n)}   & \mathrm{F}(u_{n-1})\\
+      {\tilde{X}^+} & {\tilde{Y}(n-1)} & \mathrm{Path}(u_{n-1}) & {K(n+1,\pi_n(\tilde{Y}))}
+      \arrow[from=1-2, to=2-2]
+      \arrow[hook, from=1-3, to=2-3]
+      \arrow["\sim", from=1-2, to=1-3]
+      \arrow["\sim", from=2-2, to=2-3]
+      \arrow[two heads, "p", from=2-3, to=2-4]
+      \arrow["{\tilde{h}(n-1)}", from=2-1, to=2-2]
+      \arrow[from=1-1, to=1-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow["\sim", from=1-2, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  Où $\mathrm{Path}(u_{n-1})={\tilde{Y}(n-1)\times_{K(n+1,\pi_n(\tilde{Y}))} K(n+1,\pi_n(\tilde{Y}))^{\Delta^1}}$ et $\mathrm{F}(u_{n-1})$
+  est la fibre de $p$.
+  Comme le L à droite est une suite fibre, ce diagramme nous donne un morphisme $\tilde{X}^+\cup C\tilde{X}\ra K(n+1,\pi_n(\tilde{Y}))$
+  où $C\tilde{X}:=\tilde{X}\times\Delta^1 / \tilde{X}\times\{1\}$ est le cône de $\tilde{X}$.
+  La classe d'homotopie de ce morphisme correspond à un élément de
+  $H^{n+1}(\tilde{X}^+\cup C\tilde{X};\pi_2(\tilde{Y}))=H^{n+1}(\tilde{X}^+,\tilde{X};\pi_2(\tilde{Y}))=0$
+  (par le [corollaire au théorème des coefficients universels]). Donc $\tilde{X}^+\cup C\tilde{X}\ra K(n+1,\pi_n(\tilde{Y}))$
+  est homotope à une application constante et on peut l'étendre en $C\tilde{X}^+\ra K(n+1,\pi_n(\tilde{Y}))$,
+  c'est-à-dire prolonger $\tilde{X}\ra \mathrm{F}(u_{n-1})$ à $\tilde{X}^+$. On peut donc trouver $\tilde{h}(n):\tilde{X}^+\ra \tilde{Y}(n)$
+  qui complète le diagramme~:
+  \begin{center}
+    \begin{tikzcd}
+      {\tilde{X}} && {\tilde{Y}(n)} \\
+      {\tilde{X}^+} && {\tilde{Y}(n-1)}
+      \arrow[two heads, from=1-3, to=2-3]
+      \arrow["{\tilde{h}(n-1)}"', from=2-1, to=2-3]
+      \arrow[from=1-1, to=1-3]
+      \arrow[from=1-1, to=2-1]
+      \arrow["{\tilde{h}(n)}", from=2-1, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  Ainsi, nous avons construit des des applications compatibles $\tilde{h}(i):\tilde{X}^+\ra \tilde{Y}(i)$, pour $i\geq 1$.
+  Or par la [référence à mettre] $lim_{i\in \N}\tilde{Y}(i)=\tilde{Y}$. Donc on a construit $\tilde{h}:\tilde{X}^+\ra \tilde{Y}$.
+  Donc~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      {\tilde{X}} & {\tilde{X}^+} & {\tilde{Y}} \\
+      X & {X^+} & Y
+      \arrow["{\tilde{h}}", from=1-2, to=1-3]
+      \arrow[hook, from=1-1, to=1-2]
+      \arrow[two heads, from=1-1, to=2-1]
+      \arrow[two heads, from=1-3, to=2-3]
+      \arrow[hook, from=2-1, to=2-2]
+      \arrow["{\exists h}", dashed, from=2-2, to=2-3]
+      \arrow["g"', bend right=20, from=2-1, to=2-3]
+      \arrow[two heads, from=1-2, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=2-2, to=1-1]
+    \end{tikzcd}
+  \end{center}
+  Montrons maintenant l'unicité à homotopie près. Soit $h'$ une autre telle application. Par propriété de relèvement le long des revêtement, on
+  peut trouver $\tilde{h}$ et $\tilde{h'}$ qui complètent le digramme~:
+  \begin{center}
+    \begin{tikzcd}[column sep = large, row sep = large]
+      {\tilde{X}} & {\tilde{X}^+} & {\tilde{Y}} \\
+      X & {X^+} & Y
+      \arrow["{\tilde{h}}", shift left=1, from=1-2, to=1-3]
+      \arrow[hook, from=1-1, to=1-2]
+      \arrow[two heads, from=1-1, to=2-1]
+      \arrow[two heads, from=1-3, to=2-3]
+      \arrow[hook, from=2-1, to=2-2]
+      \arrow["h", shift left=1, from=2-2, to=2-3]
+      \arrow[two heads, from=1-2, to=2-2]
+      \arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+      \arrow["{h'}"', shift right=1, from=2-2, to=2-3]
+      \arrow["{\tilde{h'}}"', shift right=1, from=1-2, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  Il suffit donc de montrer que $\tilde{h}$ et $\tilde{h'}$ sont homotopes relativement à $\tilde{X}$.
+  Pour cela, on se donne une homotopie~:
+  $$H(1):\tilde{h}(1)\Rightarrow\tilde{h'}(1):\tilde{X}^+\times\Delta^1\ra \tilde{Y}(0)$$
+  C'est toujours possible car $\tilde{Y}(0)$ est contractile.
+  Or, on remarque que 
+  $$\tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1\hookrightarrow\tilde{X}^+\times\Delta^1$$
+  est une équivalence en homologie, et donc aussi en cohomologie.
+  En effet, la suite exacte de complexes~:
+  $$\exa{C_*(\tilde{X}\times\Delta^1)}{C_*(\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{0\})%
+  \oplus C_*(\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{1\})}{C_*(\tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1)}$$
+  induit, car $\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{-\}\simeq \tilde{X}^+$, une suite exacte longue~:
+  $$H_n(\tilde{X}^+)\overset{(1,-1)}{\hookrightarrow}H_n(\tilde{X}^+)\oplus H_n(\tilde{X}^+)\twoheadrightarrow%
+    H_n(\tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1)$$
+  On a donc bien que $\tilde{X}^+\ra \tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1$ est un isomorphisme en homologie.
+  Or $\tilde{X}^+\simeq \tilde{X}^+\times\Delta^1$/
+  Ainsi, on peut, comme ci-dessus, relever successivement l'homotopie à
+  chaque $\tilde{Y}(n)$, et en passant à la limite, à $\tilde{Y}$.
+\end{proof}
+
 \subsection{\texorpdfstring{La construction $+$ de la $K$-théorie}{La construction + de la K-théorie}}
 
 \subsection{\texorpdfstring{La $K$-théorie des corps finis}{La K-théorie des corps finis}}
@@ -2115,6 +2475,7 @@ On se place ici dans une catégorie de modèle $C$.
 \section{Catégories exactes}
 
 \section{Topologie algébrique}
+\label{annexetopologie}
 
 \section*{Remerciements} Je tiens à remercier mon directeur de stage Frédéric Déglise pour ses explications et le temps qu'il m'a accordé.
 \nocite{*}
