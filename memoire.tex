@@ -1093,7 +1093,7 @@ $C\downarrow d$ pour $f\downarrow d$, quand le foncteur $f$ est évident, par ex
 Pour $f:C\ra D$ un foncteur et $d$ un objet de $D$, on note $f^{-1}d$ la sous-catégorie de $C$ formée des objets $c$ tels que $fc=d$ et des
 morphismes $u:c\ra c'$ tels que $fu=\id_d$.
 
-\begin{propdefi}
+\begin{propdefi}\label{definitionnerf}
   Le foncteur nerf $N:\Cat\ra \DEns$ est défini par
   $$NC_\bullet:=\Hom{\Cat}{[\bullet]}{C}$$
   où $[\bullet]$ désigne la catégorie cosimpliciale
@@ -1746,7 +1746,7 @@ Dans cette section, nous définissons une construction $+$ en topologie. Nous ut
 de topologie, notamment l'homologie à coefficients et les tours de Postnikov.
 Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
 
-\begin{defi}
+\begin{defi}\label{definitionplustopologie}
   Soit $X$ connexe dans $\DEns$, $x\in X_0$, et $P\triangleleft \pi_1(X,x)$ un sous-groupe normal parfait.
   Un morphisme $f:X\ra X^+$ est une construction $+$ pour $P$ si~:
   \begin{description}
@@ -1759,7 +1759,7 @@ Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
   Comme $X$ est supposé connexe, le point $(1)$ ne dépend pas de $x\in X_0$.
 \end{rem}
 
-\begin{prop}
+\begin{prop}\label{constructionpluscasfacile}
   Soit $X$ connexe dans $\DEns$, $x\in X_0$, tel que $\pi_1(X,x)$ soit un groupe parfait. Alors une construction $+$ existe pour $\pi_1(X,x)$.
 \end{prop}
 
@@ -1883,7 +1883,7 @@ Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
 
 Nous allons maintenant énoncer un résultat d'unicité.
 
-\begin{prop}
+\begin{prop}\label{topologiepluspropuniv}
   Soit $X$ connexe dans $\DEns$, $x\in X_0$ et $P\triangleleft \pi_1(X,x)$ un sous-groupe normal parfait. Soit $f:X\hookrightarrow X^+$ une construction $+$
   pour $P$. Alors pour tout $g:X\ra Y$ avec $P\subseteq \myker{\pi_1(g,x)}$ et $Y$ complexe de Kan, il existe $h:X^+\ra Y$ tel que $h\circ f=g$.
   \begin{center}
@@ -1985,7 +1985,7 @@ Nous allons maintenant énoncer un résultat d'unicité.
     \end{tikzcd}
   \end{center}
   Ainsi, nous avons construit des des applications compatibles $\tilde{h}(i):\tilde{X}^+\ra \tilde{Y}(i)$, pour $i\geq 1$.
-  Or par la [référence à mettre] $lim_{i\in \N}\tilde{Y}(i)=\tilde{Y}$. Donc on a construit $\tilde{h}:\tilde{X}^+\ra \tilde{Y}$.
+  Or par la [référence à mettre] $\lim_{i\in \N}\tilde{Y}(i)=\tilde{Y}$. Donc on a construit $\tilde{h}:\tilde{X}^+\ra \tilde{Y}$.
   Donc~:
   \begin{center}
     \begin{tikzcd}[column sep = large, row sep = large]
@@ -2028,18 +2028,230 @@ Nous allons maintenant énoncer un résultat d'unicité.
   $$\tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1\hookrightarrow\tilde{X}^+\times\Delta^1$$
   est une équivalence en homologie, et donc aussi en cohomologie.
   En effet, la suite exacte de complexes~:
-  $$\exa{C_*(\tilde{X}\times\Delta^1)}{C_*(\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{0\})%
-  \oplus C_*(\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{1\})}{C_*(\tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1)}$$
-  induit, car $\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{-\}\simeq \tilde{X}^+$, une suite exacte longue~:
+  \begin{center}
+    \begin{tikzcd}[row sep = small, column sep = small]
+      0 \ra C_*(\tilde{X}\times\Delta^1) \arrow[r]
+      & C_*(\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{0\}\oplus C_*(\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{1\})
+      \arrow[d, phantom, ""{coordinate, name=Z}]
+      \arrow[d,
+      rounded corners,
+      to path={ -- ([xshift=2ex]\tikztostart.east)
+      |- (Z) [near end]\tikztonodes
+      -| ([xshift=-2ex]\tikztotarget.west)
+      -- (\tikztotarget)}] \\
+      &C_*(\tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1) \ra 0
+      \end{tikzcd}
+  \end{center}
+  induit, car $\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{-\}\simeq \tilde{X}^+$, des suites exactes~:
   $$H_n(\tilde{X}^+)\overset{(1,-1)}{\hookrightarrow}H_n(\tilde{X}^+)\oplus H_n(\tilde{X}^+)\twoheadrightarrow%
     H_n(\tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1)$$
   On a donc bien que $\tilde{X}^+\ra \tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1$ est un isomorphisme en homologie.
-  Or $\tilde{X}^+\simeq \tilde{X}^+\times\Delta^1$/
+  Or $\tilde{X}^+ \simeq \tilde{X}^+ \times \Delta^1$.
   Ainsi, on peut, comme ci-dessus, relever successivement l'homotopie à
   chaque $\tilde{Y}(n)$, et en passant à la limite, à $\tilde{Y}$.
 \end{proof}
 
+On a directement le corollaire suivant.
+
+\begin{coro}\label{uniciteplustopologie}
+  Soit $X$ connexe dans $\DEns$, $x\in X_0$ et $P\triangleleft \pi_1(X,x)$ un sous-groupe normal parfait.
+  Alors une construction $+$ pour $P$ est unique à équivalence d'homotopie sous $X$ près.
+\end{coro}
+
+Plus loin, nous auront besoin d'une version améliorée de ces résultats. On rappel qu'un espace $X$ est simple si en chaque point $x\in X_0$ et chaque
+$n\geq 1$, $\pi_1(X,x)$ agit trivialement sur $\pi_n(X,x)$. En particulier, $\pi_1(X,x)$ est abélien pour tout $x\in X_0$.
+
+\begin{lem}
+  Soit $X$ connexe dans $\DEns$, $x\in X_0$ tel que le sous-groupe $C:=[\pi_1(X,x),\pi_1(X,x)]$ soit parfait.
+  Soit $f:X\ra X^+$ une construction $+$ pour $C$ telle que $X^+$ soit simple.
+  Alors, si $g:X\ra Y$ vérifie~:
+  \begin{description}
+    \item[$(1)$] $Y$ est simple et connexe~;
+    \item[$(2)$] $g_*:H_*(X,\Z)\ra H_*(Y,\Z)$ est un isomorphisme. 
+  \end{description}
+  Alors $g$ est aussi une construction $+$ pour $C$. En particulier $Y$ et $X$ sont équivalents relativement à $X$.
+\end{lem}
+
+\begin{rem}
+  La preuve de ce lemme repose sur la [mettre ref à l'annexe], laquelle admet la version générale du théorème de Hurewitz pour les paires.
+  Voir la référence donnée dans la preuve de cette proposition pour plus d'information.
+\end{rem}
+
+\begin{proof}
+  Soit $h:X\ra Z$ avec $Z$ simple. Alors par la [mettre ref à l'annexe], $Z$ admet une tour de Postnikov de fibrations principales~:
+  \begin{center}
+    \begin{tikzcd}
+      && {\tilde{Y}(n)} \\
+      {\tilde{Y}} && {\tilde{Y}(n-1)} & {K(n+1,\pi_n(\tilde{Y}))} \\
+      && {\tilde{Y}(1)} & {K(3,\pi_2(\tilde{Y}))} \\
+      && {\tilde{Y}(0)\simeq *} & {K(2,\pi_1(\tilde{Y}))}
+      \arrow[two heads, from=1-3, to=2-3]
+      \arrow["{u_{n-1}}", from=2-3, to=2-4]
+      \arrow[dotted, two heads, from=2-3, to=3-3]
+      \arrow["{u_1}", from=3-3, to=3-4]
+      \arrow[two heads, from=3-3, to=4-3]
+      \arrow["{u_0}", from=4-3, to=4-4]
+      \arrow[from=2-1, to=1-3]
+      \arrow[from=2-1, to=2-3]
+      \arrow[from=2-1, to=3-3]
+      \arrow[from=2-1, to=4-3]
+    \end{tikzcd}
+  \end{center}
+  Comme $g_*:H_*(X,\Z)\ra H_*(Y,\Z)$ est un isomorphisme, c'est également le cas de $g^*:H^*(Y,M)\ra H^*(X,M)$ pour tout $M$ $\Z$-module
+  par le [corollaire du théorème des coefficients universels]. Donc, comme dans la preuve de la \sref{proposition}{topologiepluspropuniv},
+  on dispose de $h_Y:Y\ra Z$ qui complète le diagramme commutatif~:
+  \begin{center}
+    \begin{tikzcd}[column sep = small, row sep = large]
+      X && Z \\
+      & Y
+      \arrow["h", from=1-1, to=1-3]
+      \arrow["g"', from=1-1, to=2-2]
+      \arrow["{h_Y}"', from=2-2, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  Comme $X\ra X^+$ vérifie également $(1)$ et $(2)$, on a également un morphisme $h_{X^+}:X^+\ra Z$ qui complète le diagramme~:
+  \begin{center}
+    \begin{tikzcd}[column sep = small, row sep = large]
+      X && Z \\
+      & {X^+}
+      \arrow["h", from=1-1, to=1-3]
+      \arrow["f"', from=1-1, to=2-2]
+      \arrow["{h_{X^+}}"', from=2-2, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  Maintenant, on pose $h=f$, $Z=X^+$ pour obtenir un morphisme $f_Y:Y\ra X^+$, et $h=g$, $Z=Y$ pour obtenir un morphisme $g_{X^+}:X^+\ra Y$.
+  Alors, $g_{X^+}\circ f_Y$ et $\id_{X^+}$ sont tout deux des morphismes $X^+\ra X^+$ dans $\DEns\uparrow X$. Or, $X^+$ étant simple,
+  il admet une tour de Postnikov de fibrations principales. Donc, comme dans la preuve de l'unicité de la \sref{proposition}{topologiepluspropuniv},
+  $g_{X^+}\circ f_Y$ et $\id_{X^+}$ sont homotopes sous $X$. De même pour $f_Y\circ g_{X^+}$ et $\id_{Y}$.
+  Ainsi, $X^+$ et $Y$ sont homotopes sous $X$, et $g:X\ra Y$ est une construction $+$ pour $C$.
+\end{proof}
+
 \subsection{\texorpdfstring{La construction $+$ de la $K$-théorie}{La construction + de la K-théorie}}
+
+Dans cette section, nous verrons certains groupes comme des ensembles simpliciaux via \sref{le foncteur nerf}{definitionnerf}.
+
+\begin{defi}
+  Soit $A$ un anneau. On note $f_A:\GL{}{A}\ra\GL{}{A}^+$ une construction $+$ pour $\EGL{}{A}$ (\sref{définition}{definitionplustopologie}).
+  Pour $n\geq 1$, on pose~:
+  $$K_n(A):=\pi_{n}(\GL{}{A},f_A*)$$
+  où $*\in \GL{}{A}_0$ est l'unique point.
+
+  Si $u:A\ra B$ est un morphisme d'anneau, par la \sref{proposition}{topologiepluspropuniv}, il existe $u^*$ complétant le carré~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXEdMe317QX0iXSxbMSwwLCJcXEdMe317Qn0iXSxbMCwxLCJcXEdMe317QX1eKyJdLFsxLDEsIlxcR0x7fXtCfV4rIl0sWzAsMSwiXFxHTHt9e3V9Il0sWzIsMywidV8qIl0sWzAsMiwiZl9BIiwyXSxbMSwzLCJmX0IiXV0=
+    \begin{tikzcd}[column sep = large, row sep = large]
+    	{\GL{}{A}} & {\GL{}{B}} \\
+    	{\GL{}{A}^+} & {\GL{}{B}^+}
+    	\arrow["{\GL{}{u}}", from=1-1, to=1-2]
+    	\arrow["{u_*}", from=2-1, to=2-2]
+    	\arrow["{f_A}"', from=1-1, to=2-1]
+    	\arrow["{f_B}", from=1-2, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  qui induit des morphismes de groupe $u^*:K_n(A)\ra K_n(B)$ pour $n\geq 1$.
+\end{defi}
+
+\begin{rem}
+  Cette définition ne définit bien les groupes $K_n(A)$, et pas seulement à conjugaison près. En effet, l'unicité de la construction $+$ donnée par le
+  \sref{corollaire}{uniciteplustopologie} est à homotopie sous $\GL{}{A}$ près. De même pour les morphismes $u^*$.
+\end{rem}
+
+Nous auront besoin, pour démontrer le théorème $+=Q$ [mettre ref], de montrer que $\GL{}{A}^+$ est un espace simple.
+C'est l'objet de la fin de cette sous-section.
+
+\begin{lem}\label{lemmeplussimple}
+  Soit $G$ un groupe tel que $[G,G]$ soit parfait. On note $f:G\hookrightarrow G^+$ une construction $+$ pour $G$ telle que
+  $G^+$ soit un complexe de Kan. On choisit $\gamma\in [G,G]$, et on note $c_\gamma$ la conjugaison par $\gamma$ dans $G$.
+  Alors il existe une homotopie \textbf{pointée} $H:G\times\Delta^1\ra G^+$ entre $f$ et $f\circ c_\gamma$.
+\end{lem}
+
+\begin{proof}
+  On remarque d'abord que $\gamma$ induit une transformation naturelle entre $\id_G$ et $c_\gamma$~:
+  $$h:G\times(0\ra 1)\ra G,\;*\overset{\gamma}{\ra} *$$
+  Mais $h$ n'est pas pointée (cela fera toute la différence dans la \sref{proposition}{GLAplussimple}).
+  Comme $f_*[\gamma]=0$, on dispose de $\tau:\Delta^2\ra G^+$ tel que~:
+  \begin{center}
+    \begin{tikzcd}[row sep = 0.50em, column sep = 1em]
+      & 1 \\
+      & {\tau} \\[-0.30em]
+      0 && 2
+      \arrow["{s_0(*)}", from=3-1, to=1-2]
+      \arrow["{s_0(*)}", from=1-2, to=3-3]
+      \arrow["\gamma"', from=3-1, to=3-3]
+    \end{tikzcd}
+  \end{center}
+  Maintenant, on peut compléter le diagramme~:
+
+  \begin{minipage}{0.70\textwidth}
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsMyxbMCwwLCJHXFx0aW1lc1xcTGFtYmRhXzJeMlxcY3VwXFx7KlxcfVxcdGltZXNcXERlbHRhXjIiXSxbMSwwLCJHXisiXSxbMCwxLCJHXFx0aW1lc1xcRGVsdGFeMiJdLFswLDIsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMSwiKHNfMChmKSxmXFxjaXJjIGgsLSlcXGN1cCBcXHRhdSJdLFsyLDEsIlxcZXhpc3RzIFxcdGhldGEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+      \begin{tikzcd}[column sep = 6em]
+        {G\times\Lambda_0^2\cup\{*\}\times\Delta^2} & {G^+} \\
+        {G\times\Delta^2}
+        \arrow[hook, from=1-1, to=2-1]
+        \arrow["{(-,f\circ h,s_0(f))\cup \tau}", from=1-1, to=1-2]
+        \arrow["{\exists \theta}"', dashed, from=2-1, to=1-2]
+      \end{tikzcd}
+    \end{center}
+  \end{minipage}\hfill
+  \begin{minipage}{0.26\textwidth}
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsNCxbMSwxLCJcXGV4aXN0c1xcdGhldGEiXSxbMSwwLCIxIl0sWzAsMiwiMCJdLFsyLDIsIjIiXSxbMiwzLCJmXFxjaXJjIGgiLDJdLFsxLDMsInNfMChmKSJdLFsyLDEsIiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+      \begin{tikzcd}[row sep = 0.50em, column sep = 1em]
+        & 1 \\
+        & \exists\theta \\[-0.30em]
+        0 && 2
+        \arrow["{f\circ h}"', from=3-1, to=3-3]
+        \arrow["{s_0(f)}", from=3-1, to=1-2]
+        \arrow["H", dashed, from=1-2, to=3-3]
+      \end{tikzcd}
+    \end{center}
+  \end{minipage}
+
+  Alors $H:=\theta\circ (\id_G\times d^0)$ convient.
+\end{proof}
+
+\begin{prop}\label{GLAplussimple}
+  Soit $A$ un anneau. Alors $\GL{}{A}^+$ est simple.
+\end{prop}
+
+\begin{proof}
+  \begin{description}
+    \item[(A)] On commence par construire une application~:
+    $$\mu^+: \GL{}{A}^+\times\GL{}{A}^+\ra\GL{}{A}^+$$
+    Pour cela,
+    on pose $\mu:\GL{}{A}\times\GL{}{A}\ra \GL{}{A}$ l'application $(M,N)\mapsto P$, avec $P_{2n+1,2m+1}=M_{n,m}$
+    $P_{2n,2m}=N_{n,m}$ et $P_{i,j}=0$ sinon. Or, en utilisant [ref homologie du produit], on remarque que~:
+    $$\GL{}{A}\times \GL{}{A}\ra \GL{}{A}^+\times\GL{}{A}^+$$
+    est une construction $+$. On peut donc étendre $\mu$ en $\mu^+:\GL{}{A}^+\times\GL{}{A}^+\ra\GL{}{A}^+$ comme souhaité.
+    \item[(B)] De la chaîne de cofibrations~:
+    $$\GL{1}{A}\hookrightarrow \GL{2}{A}\hookrightarrow\dotsb\hookrightarrow\GL{n}{A}\hookrightarrow\dotsb$$
+    On peut déduire, par la \sref{proposition}{topologiepluspropuniv}, une chaîne de cofibrations entre complexes de Kan~:
+    $$\GL{1}{A}^+\hookrightarrow \GL{2}{A}^+\hookrightarrow\dotsb\hookrightarrow\GL{n}{A}^+\hookrightarrow\dotsb$$
+    On note $G$ sa colimite. Alors par fonctorialité des colimites, on a une application $u:\GL{}{A}\ra G$.
+    De plus~:
+    $$\pi_1(\GL{}{A})\ra \pi_1(G)=\GL{}{A}\ra\colim_{n}\pi_1(\GL{n}{A}^+)$$
+    Et~:
+    $$H_*(\GL{}{A},u^*L)\ra H_*(G,L)=\colim_{n}(H_*(\GL{n}{A},u^*L)\ra H_*(\GL{n}{A}^+,L))$$
+    Donc $u:\GL{}{A}\ra G$ est une construction $+$ pour $[\GL{}{A},\GL{}{A}]$. Ainsi, on peut supposer que~:
+    $$\GL{}{A}^+ =\bigcup_n\GL{n}{A}^+$$
+    \item[(C)] Fixons $n\geq 1$. On note $\mu_n:\GL{n}{A}\times\GL{n}{A}\ra\GL{}{A}^+$ la restriction de $\mu$,
+    et $i_n:\GL{n}{A}\ra\GL{}{A}^+$ l'application naturelle. Alors, $\mu_n(*,-)$ et $i_n$ sont conjugués par une permutation $\gamma\in \EGL{2n}{A}$.
+    Ainsi, on dispose, par le \sref{lemme}{lemmeplussimple}, d'une homotopie pointée $h:\GL{}{A}\times\Delta^1\ra \GL{}{A}^+$,
+    telle que sa restriction $H:\GL{n}{A}\times\Delta^1\ra \GL{}{A}^+$ soit une homotopie pointée entre $\mu_n(*,-)$ et $i_n$. Or, l'application~:
+    $$\GL{n}{A}\times\Delta^1\cup\GL{n}{A}^+\times\partial\Delta^1\ra\GL{n}{A}^+\times\Delta^1$$
+    est un isomorphisme sur tous les groupes d'homologie (voir la fin de la démonstration de la \sref{proposition}{topologiepluspropuniv}).
+    Donc on peut étendre $H$ en~:
+    $$H_n^+:\GL{n}{A}^+\times\Delta^1\ra \GL{}{A}^+$$
+    homotopie entre $\mu_n^+(*,-)$ et $i_n^+$ (extensions données par la \sref{proposition}{topologiepluspropuniv}). On pourrait faire de même
+    avec $\mu_n^+(-,*)$ et $i_n^+$.
+    \item[(D)] Maintenant, nous fixons $m\geq 1$, $\eta\in \pi_1(\GL{}{A}^+,*)$ et $\delta\in\pi_m(\GL{}{A}^+,*)$. Par (B), il existe
+    $n\geq 1$ tel que $\delta$ et $\eta$ soient supportés dans $\GL{n}{A}^+$. Alors~:
+    $$\mu^+(\eta,\delta):\Delta^1\times\Delta^m\ra \GL{}{A}^+\text{ et }\mu^+(-,*)\simeq i_n^+\;\mathrm{rel}\: *\text{ (C)}$$
+    induisent une homotopie entre $\eta\cdot\delta$ (action) et $\mu(\eta(1),\delta)=\mu(*,\delta)$. Or, $\mu(*,\delta)\simeq \delta\;\mathrm{rel}\: *$.
+    Donc $[\eta\cdot\delta]=[\delta]$.
+  \end{description}
+\end{proof}
 
 \subsection{\texorpdfstring{La $K$-théorie des corps finis}{La K-théorie des corps finis}}
 
