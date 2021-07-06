@@ -2247,7 +2247,7 @@ C'est l'objet de la fin de cette sous-section.
     avec $\mu_n^+(-,*)$ et $i_n^+$.
     \item[(D)] Maintenant, nous fixons $m\geq 1$, $\eta\in \pi_1(\GL{}{A}^+,*)$ et $\delta\in\pi_m(\GL{}{A}^+,*)$. Par (B), il existe
     $n\geq 1$ tel que $\delta$ et $\eta$ soient supportés dans $\GL{n}{A}^+$. Alors~:
-    $$\mu^+(\eta,\delta):\Delta^1\times\Delta^m\ra \GL{}{A}^+\text{ et }\mu^+(-,*)\simeq i_n^+\;\mathrm{rel}\: *\text{ (C)}$$
+    $$\mu^+(\eta,\delta):\Delta^1\times\Delta^m\ra \GL{}{A}^+,\;\mu^+(*,-)\simeq i_n^+\;\mathrm{rel}\: *\text{ et }\mu^+(-,*)\simeq i_n^+\;\mathrm{rel}\: *\text{ (C)}$$
     induisent une homotopie entre $\eta\cdot\delta$ (action) et $\mu(\eta(1),\delta)=\mu(*,\delta)$. Or, $\mu(*,\delta)\simeq \delta\;\mathrm{rel}\: *$.
     Donc $[\eta\cdot\delta]=[\delta]$.
   \end{description}
@@ -2255,7 +2255,11 @@ C'est l'objet de la fin de cette sous-section.
 
 \subsection{\texorpdfstring{La $K$-théorie des corps finis}{La K-théorie des corps finis}}
 
-\subsection{\texorpdfstring{Le théorème "$+=Q$"}{Le théorème "+=Q"}}
+\section{\texorpdfstring{Le théorème "$+=Q$"}{Le théorème "+=Q"}}
+
+Cette section reprends la démonstration du théorème $+=Q$ donnée dans \cite{Gray}.
+
+
 
 \section{\texorpdfstring{Propriétés de la $K$-théorie supérieure}{Propriétés de la K-théorie supérieure}}
 
@@ -2686,8 +2690,323 @@ On se place ici dans une catégorie de modèle $C$.
 
 \section{Catégories exactes}
 
+\section{Homologie et suites spectrales}
+
+\subsection{Homologie à coefficients}
+
+\subsection{La correspondance de Dold-Kan}
+
+\subsection{Le morphisme d'Eilenberg-Zilber}
+
+\subsection{Suite spectrale d'une filtration}
+
 \section{Topologie algébrique}
 \label{annexetopologie}
+
+Cette sections couvrent les notions de topologie utilisées dans le mémoire. Certains points seront admis.
+
+\subsection{Le théorème de Van Kampen}
+
+\begin{theo}[Van Kampen]\label{theoremedeVanKampen}
+  On se donne le carré cocartésien suivant dans $\DEns$~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNCxbMCwwLCJBIl0sWzAsMSwiQiJdLFsxLDAsIlgiXSxbMSwxLCJZIl0sWzAsMSwiaSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMiwiaiJdLFsyLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsM10sWzMsMCwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d
+    \begin{tikzcd}
+      A & X \\
+      B & Y
+      \arrow["i", hook, from=1-1, to=2-1]
+      \arrow["j", from=1-1, to=1-2]
+      \arrow[hook, from=1-2, to=2-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-2, to=1-1]
+    \end{tikzcd}
+  \end{center}
+  où $i$ est une cofibration. Alors le carré induit sur les groupoïdes fondamentaux est cocartésien (dans la catégorie des petits groupoïdes)~:
+  \begin{center}
+    \begin{tikzcd}
+      \pi_{\leq 1}A & \pi_{\leq 1}X \\
+      \pi_{\leq 1}B & \pi_{\leq 1}Y
+      \arrow["i_*", from=1-1, to=2-1]
+      \arrow["j_*", from=1-1, to=1-2]
+      \arrow[from=1-2, to=2-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-2, to=1-1]
+    \end{tikzcd}
+  \end{center}
+  Si de plus $A$, $B$ et $X$ sont connexes, alors pour tout $x\in A_0$, le carré~:
+  \begin{center}
+    \begin{tikzcd}
+      \pi_1(A,x) & \pi_1(X,x) \\
+      \pi_1(B,x) & \pi_1(Y,x)
+      \arrow["i_*", from=1-1, to=2-1]
+      \arrow["j_*", from=1-1, to=1-2]
+      \arrow[from=1-2, to=2-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-2, to=1-1]
+    \end{tikzcd}
+  \end{center}
+  est cocartésien dans la catégorie des groupes.
+\end{theo}
+
+\begin{proof}
+  Pour le premier point, on remarque que les foncteurs $\tau_{\leq 1}:\DEns\ra \Cat$ et $\Cat\ra \mathrm{Groupoides}$ on des adjoints à gauche
+  (respectivement le nerf $N$ et l'oubli). Donc leur composition, $\pi_{\leq 1}:\DEns\ra \mathrm{Groupoides}$, commute aux colimites.
+  Pour le second point, par le \sref{lemme de collage}{lemmedecollage}, on peut supposer que $j$ est également une cofibration. Alors,
+  en choisissant pour chaque $y\in A_0$ (respectivement $B_0\setminus A_0$, respectivement $X_0\setminus A_0$) un chemin de $y$ à $x$,
+  $\gamma_y\in\Hom{\pi_{\leq 1}A}{y}{x}$ (respectivement $\Hom{\pi_{\leq 1}B}{y}{x}$, respectivement $\Hom{\pi_{\leq 1}X}{y}{x}$),
+  on obtient une rétraction $r$ entre les carrés suivants~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsOCxbMSwxLCJcXHBpX3tcXGxlcSAxfUEiXSxbMSwyLCJcXHBpX3tcXGxlcSAxfUIiXSxbMiwxLCJcXHBpX3tcXGxlcSAxfVgiXSxbMiwyLCJcXHBpX3tcXGxlcSAxfVkiXSxbMCwwLCJcXHBpXzEoQSx4KSJdLFszLDAsIlxccGlfMShYLHgpIl0sWzAsMywiXFxwaV8xKEIseCkiXSxbMywzLCJcXHBpXzEoWSx4KSJdLFswLDEsImlfKiJdLFswLDIsImpfKiJdLFsyLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsM10sWzMsMCwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzQsNV0sWzQsNl0sWzUsN10sWzYsN10sWzEsNiwiciIsMCx7Im9mZnNldCI6LTF9XSxbMCw0LCJyIiwwLHsib2Zmc2V0IjotMX1dLFsyLDUsInIiLDAseyJvZmZzZXQiOi0xfV0sWzMsNywiciIsMCx7Im9mZnNldCI6LTF9XSxbNCwwLCIiLDIseyJvZmZzZXQiOi0xLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs1LDIsIiIsMSx7Im9mZnNldCI6LTEsInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzYsMSwiIiwwLHsib2Zmc2V0IjotMSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNywzLCIiLDEseyJvZmZzZXQiOi0xLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
+    \begin{tikzcd}
+    	{\pi_1(A,x)} &&& {\pi_1(X,x)} \\
+    	& {\pi_{\leq 1}A} & {\pi_{\leq 1}X} \\
+    	& {\pi_{\leq 1}B} & {\pi_{\leq 1}Y} \\
+    	{\pi_1(B,x)} &&& {\pi_1(Y,x)}
+    	\arrow["{i_*}", from=2-2, to=3-2]
+    	\arrow["{j_*}", from=2-2, to=2-3]
+    	\arrow[from=2-3, to=3-3]
+    	\arrow[from=3-2, to=3-3]
+    	\arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=3-3, to=2-2]
+    	\arrow[from=1-1, to=1-4]
+    	\arrow[from=1-1, to=4-1]
+    	\arrow[from=1-4, to=4-4]
+    	\arrow[from=4-1, to=4-4]
+    	\arrow["r", shift left=1, from=3-2, to=4-1]
+    	\arrow["r", shift left=1, from=2-2, to=1-1]
+    	\arrow["r", shift left=1, from=2-3, to=1-4]
+    	\arrow["r", shift left=1, from=3-3, to=4-4]
+    	\arrow[shift left=1, hook, from=1-1, to=2-2]
+    	\arrow[shift left=1, hook, from=1-4, to=2-3]
+    	\arrow[shift left=1, hook, from=4-1, to=3-2]
+    	\arrow[shift left=1, hook, from=4-4, to=3-3]
+    \end{tikzcd}
+  \end{center}
+  Or, les rétractions préservent les colimites. Donc le carré des $\pi_1(-,x)$ est cocartésien.
+\end{proof}
+
+\subsection{Obstruction et tours de Postnikov}
+
+\begin{lem}[Lemme d'extension]\label{lemmedextension}
+  Soit $A$ un ensemble simplicial, $a\in A$, $n\geq 1$ et $(\gamma_i)_{i\in I}$ une famille de chemins $\gamma_i:(\Delta^n,\partial\Delta^n)\ra (A,a)$.
+  On se donne le carré cocartésien~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGJpZ3NxY3VwX0lcXHBhcnRpYWxcXERlbHRhXntuKzF9Il0sWzAsMSwiXFxiaWdzcWN1cF9JXFxEZWx0YV57bisxfSJdLFsxLDAsIkEiXSxbMSwxLCJYIl0sWzMsMCwiIiwwLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzAsMiwiXFxzcWN1cF9pKGEsXFxkb3RzYyxhLFxcZ2FtbWFfaSkiXSxbMiwzLCJqIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDNdXQ==
+    \begin{tikzcd}[column sep = 8ex]
+    	{\bigsqcup_I\partial\Delta^{n+1}} & A \\
+    	{\bigsqcup_I\Delta^{n+1}} & X
+    	\arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-2, to=1-1]
+    	\arrow["{\sqcup_i(a,\dotsc,a,\gamma_i)}", from=1-1, to=1-2]
+    	\arrow["j", hook, from=1-2, to=2-2]
+    	\arrow[hook, from=1-1, to=2-1]
+    	\arrow[from=2-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  Alors~:
+  \begin{description}
+    \item[$(a)$] $\pi_m(j):\pi_m(A,a)\ra \pi_m(X,a)$ est un isomorphisme pour $m<n$~;
+    \item[$(b)$] $\pi_n(j):\pi_n(A,a)\ra \pi_n(X,a)$ est surjective.
+  \end{description}
+  Soit $f:A\ra Y$ avec $Y$ fibrant. Alors s'équivalent~:
+  \begin{description}
+    \item[$(i)$] Il existe $g:X\ra Y$ tel que $f=g\circ j$~;
+    \item[$(ii)$] Pour tout $i\in I$, $f_*[\gamma_i]=0$ dans $\pi_n(Y,f(a))$.
+  \end{description}
+\end{lem}
+
+\begin{proof}
+  L'équivalence entre $(i)$ et $(ii)$ est immédiate. Montrons les points $(a)$ et $(b)$. Si $A\overset{\sim}{\hookrightarrow}\tilde{A}\twoheadrightarrow *$,
+  on a le diagramme commutatif suivant~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNixbMCwwLCJcXGJpZ3NxY3VwX0lcXHBhcnRpYWxcXERlbHRhXntuKzF9Il0sWzAsMSwiXFxiaWdzcWN1cF9JXFxEZWx0YV57bisxfSJdLFsxLDAsIkEiXSxbMSwxLCJYIl0sWzIsMCwiXFx0aWxkZXtBfSJdLFsyLDEsIlxcdGlsZGV7WH0iXSxbMywwLCIiLDAseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbMCwyLCJcXHNxY3VwX2koYSxcXGRvdHNjLGEsXFxnYW1tYV9pKSJdLFsyLDMsImoiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsM10sWzIsNCwiXFxzaW0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDUsIlxcc2ltIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCw1LCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs1LDIsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
+    \begin{tikzcd}
+    	{\bigsqcup_I\partial\Delta^{n+1}} &[3ex] A & {\tilde{A}} \\
+    	{\bigsqcup_I\Delta^{n+1}} & X & {\tilde{X}}
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-2, to=1-1]
+    	\arrow["{\sqcup_i(a,\dotsc,a,\gamma_i)}", from=1-1, to=1-2]
+    	\arrow["j", hook, from=1-2, to=2-2]
+    	\arrow[hook, from=1-1, to=2-1]
+    	\arrow[from=2-1, to=2-2]
+    	\arrow["\sim", hook, from=1-2, to=1-3]
+    	\arrow["\sim", hook, from=2-2, to=2-3]
+    	\arrow[hook, from=1-3, to=2-3]
+    	\arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-3, to=1-2]
+    \end{tikzcd}
+  \end{center}
+  Donc on peut supposer sans perte de généralités que $A$ est un complexe de Kan. Or $X$ vérifie alors la propriété d'extension
+  relativement aux inclusions $\Lambda_k^m\hookrightarrow \Delta^m$ pour $m\leq n$. En effet $X_m=A_m$ pour $m\leq n$. Donc,
+  $X':=G^\infty(\enstq{\Lambda_k^l\hookrightarrow\Delta^l}{l>n},X\twoheadrightarrow *)$ est un remplacement fibrant de $X$.
+  Or, $X'_m=A_m$ pour $m\leq n$, donc sur les groupes d'homotopie simpliciaux, $\pi_m(A,a)\ra \pi_m(X',a)$
+  est un isomorphisme pour $m<n$ et une surjection pour $m=n$.
+\end{proof}
+
+\begin{defi}[tour de Postnikov]\label{defiPostnikov}
+  Soit $X$ une ensemble simplicial. Une tour de Postnikov est un diagramme commutatif~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNixbMCwyLCJYIl0sWzIsMSwiWChuKSJdLFsyLDIsIlgobi0xKSJdLFsyLDMsIlgoMSkiXSxbMiw0LCJYKDApIl0sWzIsMF0sWzAsMSwiaV9uIl0sWzAsMiwiaV97bi0xfSJdLFswLDMsImlfMSJdLFswLDQsImlfMCJdLFszLDQsInFfMSJdLFsyLDMsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFsxLDIsInFfbiJdLFs1LDEsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dXQ==
+    \begin{tikzcd}
+    	&& {} \\
+    	&& {X(n)} \\
+    	X && {X(n-1)} \\
+    	&& {X(1)} \\
+    	&& {X(0)}
+    	\arrow["{i_n}", from=3-1, to=2-3]
+    	\arrow["{i_{n-1}}", from=3-1, to=3-3]
+    	\arrow["{i_1}", from=3-1, to=4-3]
+    	\arrow["{i_0}", from=3-1, to=5-3]
+    	\arrow["{q_1}", from=4-3, to=5-3]
+    	\arrow[dotted, from=3-3, to=4-3]
+    	\arrow["{q_n}", from=2-3, to=3-3]
+    	\arrow[dotted, from=1-3, to=2-3]
+    \end{tikzcd}
+  \end{center}
+  tel que pour tout $v\in X_0$, $\pi_j(X(n),v)=0$ pour $j>n$ et $(i_n)_*:\pi_j(X,v)\ra\pi_j(X(n),v)$ est un isomorphisme pur $j\leq n$.
+\end{defi}
+
+\begin{prop}
+  Tout ensemble simplicial $X$ admet une tour de Postnikov.
+\end{prop}
+
+\begin{proof}
+  On peut supposer sans perte de généralités que $X$ est connexe. Fixons $n\geq 0$. Soit $X\overset{\sim}{\hookrightarrow}\tilde{X}$
+  un remplacement fibrant. On pose $X(n,n)=X$ et $\tilde{X}(n,n)=\tilde{X}$. On définit $X(n,n+1)$ comme la somme amalgamée~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNCxbMSwwLCJcXHRpbGRle1h9Il0sWzEsMSwiWChuLG4rMSkiXSxbMCwwLCJcXGJpZ3NxY3VwX0lcXHBhcnRpYWxcXERlbHRhXntuKzJ9Il0sWzAsMSwiXFxiaWdzcWN1cF9JXFxEZWx0YV57bisyfSJdLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwwLCJmIl0sWzMsMV0sWzEsMiwiIiwwLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d
+    \begin{tikzcd}
+      {\bigsqcup_I\partial\Delta^{n+2}} & {\tilde{X}(n,n)} \\
+      {\bigsqcup_I\Delta^{n+2}} & {X(n,n+1)}
+      \arrow[hook, from=1-2, to=2-2]
+      \arrow[hook, from=1-1, to=2-1]
+      \arrow["f", from=1-1, to=1-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-2, to=1-1]
+    \end{tikzcd}
+  \end{center}
+  où $f$ est induit par un ensemble $I$ de générateurs de $\pi_{n+1}(\tilde{X}(n,n),v)$. Soit $X(n,n+1)\overset{\sim}{\hookrightarrow}\tilde{X}(n,n+1)$
+  un remplacement fibrant. On définit $X(n,n+2)$ de façon similaire à partir de $\tilde{X}(n,n+1)$ avec $I$ un ensemble de générateurs de
+  $\pi_{n+2}(\tilde{X}(n,n+1),v)$. On a alors une suite de cofibrations~:
+  $$X=X(n,n)\overset{\sim}{\hookrightarrow}\tilde{X}(n,n)\hookrightarrow\dotsb\hookrightarrow X(n,n+k)\hookrightarrow\tilde{X}(n,n+k)$$
+  On définit $X(n)$ comme la colimite de cette suite. On dispose de $i_n:X\ra X(n)$. On remarque également que $X(n)$ est un complexe de Kan.
+  On a également les propriétés souhaitée sur $\pi_m(i_n)$ et les $\pi_m(X(n))$.
+
+  Il reste à construire les $q_n$. On les construit par récurrence sur $n$. Pour compléter la récurrence, il suffit
+  de construire $q_n:X(n)\ra X(n-1)$ tel que $i_{n-1}=q_n\circ i_n$. Or, on a le diagramme commutatif suivant~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNixbMiwwLCJYKG4sbitrKSJdLFszLDAsIlxcdGlsZGV7WH0obixuK2spIl0sWzQsMCwiWChuLG4raysxKSJdLFsxLDIsIlgobi0xKSJdLFsxLDAsIlxcdGlsZGV7WH0iXSxbMCwwLCJYIl0sWzAsMSwiXFxzaW0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDIsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMywiXFxleGlzdHMgcV97bixuK2t9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMywiXFxleGlzdHMgXFx0aWxkZXtxfV97bixuK2t9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsMywiXFxleGlzdHMgcV97bixuK2srMX0iLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw0LCJcXHNpbSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzQsMCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifSwiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzQsMywiXFxleGlzdHMgXFx0aWxkZXtxfV97bixufSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDMsImlfe24tMX0iLDJdXQ==
+    \begin{tikzcd}
+    	X & {\tilde{X}} & {X(n,n+k)} & {\tilde{X}(n,n+k)} & {X(n,n+k+1)} \\
+    	\\
+    	& {X(n-1)}
+    	\arrow["\sim", hook, from=1-3, to=1-4]
+    	\arrow[hook, from=1-4, to=1-5]
+    	\arrow["{\exists q_{n,n+k}}"{description}, dashed, from=1-3, to=3-2]
+    	\arrow["{\exists \tilde{q}_{n,n+k}}"{description}, dashed, from=1-4, to=3-2]
+    	\arrow["{\exists q_{n,n+k+1}}"{description}, dashed, from=1-5, to=3-2]
+    	\arrow["\sim", hook, from=1-1, to=1-2]
+    	\arrow[dotted, hook, from=1-2, to=1-3]
+    	\arrow["{\exists \tilde{q}_{n,n}}"{description}, dashed, from=1-2, to=3-2]
+    	\arrow["{i_{n-1}}"', from=1-1, to=3-2]
+    \end{tikzcd}
+  \end{center}
+  où l'existence des $\tilde{q}_{n,n+k}$ est garantie car $X(n-1)$ est un complexe de Kan, et l'existence
+  des $q_{n,n+k}$ est garantie par le \sref{lemme d'extension}{lemmedextension}. En passant à la colimite, on obtient l'application
+  $q_n:X(n)\ra X(n-1)$ souhaitée.
+\end{proof}
+
+\begin{rem}
+  Si $X$ dispose d'une tour de Postnikov, on peut successivement remplacer $X(0)$ par un complexe de Kan, et les $q_n$ par des fibrations,
+  On obtient ainsi une tour de Postnikov où tous les $q_n$ sont des fibrations. On appelle une telle tour une tour de Postnikov de fibrations.  
+\end{rem}
+
+\begin{lem}\label{lemmePostnikovLimite}
+  Soit $n\geq 0$ et $p:X\twoheadrightarrow Y$ une fibration de Kan entre complexes de Kan. Soit $x\in X_0$.
+  On suppose que $\pi_{n+1}(X,x)\ra\pi_{n+1}(Y,px)$ est surjectif.
+  Soit~:
+  \[
+    \begin{array}{lcl}
+      \gamma:(\Delta^n,\partial\Delta^n)&\ra& (X,x) \\
+      \sigma:\Delta^{n+1}&\ra& Y
+    \end{array}
+  \]
+  tels que $[\gamma]=*$ et $\partial\sigma=(px,\dotsc,px,p\gamma)$.
+
+  Alors il existe $\tau:\Delta^{n+1}\ra Y$ tel que $\partial\tau=(x,\dotsc,x,\gamma)$ et $f\tau =\sigma$.
+\end{lem}
+
+\begin{proof}
+  Soit $h:\Delta^{n}\times\Delta^1\ra X$ homotopie entre $\gamma$ et $*$, on a alors~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXHBhcnRpYWxcXERlbHRhXntuKzF9XFx0aW1lc1xcRGVsdGFeMSJdLFsxLDAsIlkiXSxbMCwxLCJcXERlbHRhXntuKzF9XFx0aW1lc1xcRGVsdGFeMSJdLFswLDJdLFsxLDEsIioiXSxbMCwxLCIoeCxcXGRvdHNjLHgsaCkiXSxbMSw0LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiw0XSxbMiwxLCJcXGV4aXN0cyBcXHRoZXRhIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+    \begin{tikzcd}
+    	{\partial\Delta^{n+1}\times\Delta^1} &[4ex] Y \\
+    	{\Delta^{n+1}\times\Delta^1} & {*} \\
+    	\arrow["{(px,\dotsc,px,ph)}", from=1-1, to=1-2]
+    	\arrow[two heads, from=1-2, to=2-2]
+    	\arrow[from=2-1, to=2-2]
+    	\arrow["{\exists \theta}" sloped, dashed, from=2-1, to=1-2]
+    	\arrow[hook, from=1-1, to=2-1]
+    \end{tikzcd}
+  \end{center}
+  Maintenant, $\tilde{\sigma}:=\theta\circ (id\times d^0)$ représente un élément de $\pi_{n+1}(Y,px)$. Soit $\tilde{\tau}$ représentant un élément
+  de $\pi_{n+1}(X,x)$ tel que $p_*[\tilde{\tau}]=[\tilde{\sigma}]$. On se donne $g:\Delta^{n+1}\times \Delta^{1}\ra Y$ homotopie
+  $\mathrm{rel}\;\partial\Delta^{n+1}$ entre $\tilde{\sigma}$ et $p\tilde{\tau}$. On dispose alors de $\beta:\Delta^{n+1}\times\Delta^2\ra Y$ On a alors~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXHBhcnRpYWxcXERlbHRhXntuKzF9XFx0aW1lc1xcTGFtYmRhXzFeMlxcY3VwXFxEZWx0YV57bisxfVxcdGltZXNcXHsyXFx9Il0sWzEsMCwiWCJdLFswLDEsIlxcRGVsdGFee24rMX1cXHRpbWVzXFxMYW1iZGFfMV4yIl0sWzAsMl0sWzEsMSwiWSJdLFswLDEsIigoeCxcXGRvdHNjLHgsZiksLSx4KSlcXGN1cCBcXHRpbGRle1xcdGF1fSJdLFsxLDQsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDRdLFsyLDEsIlxcZXhpc3RzIEgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
+    \begin{tikzcd}
+    	{\partial\Delta^{n+1}\times\Lambda_1^2\cup\Delta^{n+1}\times\{2\}} &[8ex] X \\
+    	{\Delta^{n+1}\times\Lambda_1^2} & Y \\
+    	\arrow["{(x,-,(x,\dotsc,x,f))\cup \tilde{\tau}}", from=1-1, to=1-2]
+    	\arrow[two heads, from=1-2, to=2-2]
+    	\arrow["{(g,-,h)}",from=2-1, to=2-2]
+    	\arrow["{\exists H}" sloped, dashed, from=2-1, to=1-2]
+    	\arrow[hook, from=1-1, to=2-1]
+    \end{tikzcd}
+  \end{center}
+  Alors, $\tau:=H\circ (id\times (d^1\circ d^2))$ convient.
+\end{proof}
+
+\begin{prop}\label{proplimiteinversedefibrations}
+  Soit une suite de fibrations~:
+  $$\dotsb\twoheadrightarrow X_n\twoheadrightarrow\dotsb\twoheadrightarrow X_1\twoheadrightarrow X_0\twoheadrightarrow *$$
+  dans $\DEns$. Soit $i\geq 0$ et $x\in (\lim_n X_n)_0$.
+  Alors~:
+  $$\lambda:\pi_i(\lim_n X_n,x)\ra \lim_n \pi_i(X_n,x)$$
+  est surjectif. Si de plus $\pi_{i+1}(X_n)\ra \pi_{i+1}(X_{n-1})$ est surjectif pour $n$ assez grand,
+  $\lambda$ est un isomorphisme.
+\end{prop}
+
+\begin{proof}
+  Soient $f_n:(\Delta^i,\partial\Delta^i)\ra (X_n,*)$ tels que $[f_{n+1}]\mapsto [f_n]$. Alors, par relèvement des homotopie
+  (ie. relativement à $\partial\Delta^{i}\times\Delta^1\cup\Delta^{i}\times {0}\ra\Delta^i\times\Delta^1$), on peut successivement construire
+  $f'_n:(\Delta^i,\partial\Delta^i)\ra (X_n,*)$ tels que $[f'_n]=[f_n]$ et $f'_n\mapsto f'_{n+1}$. On a construit $f'\in \pi_i(\lim_n X_n,x)$
+  tel que $f'\mapsto (f_n)_n$.
+
+  Supposons maintenant que $\pi_{i+1}(X_n)\ra \pi_{i+1}(X_{n-1})$ est surjectif pour $n$ assez grand. On peut, sans perte de généralité,
+  supposer que $\pi_{i+1}(X_n)\ra \pi_{i+1}(X_{n-1})$ est surjectif pour tout $n$. Soit $f$ un représentant d'un élément dans le noyau de $\lambda$,
+  et $f_n$ l'image dans $X_n$.
+  Alors par le \sref{lemme}{lemmePostnikovLimite}, on peut construire successivement des $\sigma_n:\Delta^{i+1}\ra X_n$
+  tels que $\partial\tau=(*,\dotsc,*,f_n)$ et $\tau_n\mapsto \tau_{n-1}$. Ces $(\tau_n)_{n\geq 0}$ forment donc
+  un $\tau:\Delta^{i+1}\ra \lim_n X_n$ tel que $\partial\tau=(*,\dotsc,*,f)$. Donc $[f]=*$.
+\end{proof}
+
+\begin{coro}
+  Soit $X$ un ensemble simplicial et $(X(n),i_n,q_n)_n$ une tour de Postnikov de fibrations pour $X$.
+  Alors l'application~:
+  $$X\ra \lim_{n\in\N}X(n)$$
+  est une équivalence d'homotopie faible.
+\end{coro}
+
+\begin{proof}
+  D'après la \sref{proposition}{proplimiteinversedefibrations}, pour chaque $i\geq 0$ et $x\in X_0$, on a un isomorphisme~:
+  $$\pi_i(X,x)\overset{\sim}{\ra}\pi_1(\lim_{n\in\N}X(n),x)$$
+  Donc c'est une équivalence d'homotopie faible.
+\end{proof}
+
+
+\subsection{le théorème de Hurewitz}
+
+\subsection{Espaces d'Eilenberg Mac-Lane et tours de Postnikov de fibrations principales}
+
+
 
 \section*{Remerciements} Je tiens à remercier mon directeur de stage Frédéric Déglise pour ses explications et le temps qu'il m'a accordé.
 \nocite{*}
