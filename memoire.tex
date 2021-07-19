@@ -146,7 +146,7 @@
 On suppose ici l'existence d'univers dans la théorie des ensembles (cardinaux fortement inaccessibles).
 On note $\Omega$ le plus petit. Toutes les structures algébriques seront par défaut dans $\Omega$.
 Pour les ensembles et la catégorie, nous diront qu'ils ou elles sont petit(e)s
-quand elles sont dans $\Omega$.
+quand ils ou elles sont dans $\Omega$.
 
 \section{\texorpdfstring{Les groupes $K_0$, $K_1$ et $K_2$}{Les groupes KO, K1 et K2}}\label{sectionK0}
 
@@ -769,7 +769,7 @@ Nous allons maintenant appliquer ce résultat de colimite pour effectuer un calc
 
 Dans cette section, nous fixons un anneau $A$.
 
-On note $\GL{n}{A}$ le groupe des matrices $n\times n$ inversibles à coéfficients dans $A$.
+On note $\GL{n}{A}$ le groupe des matrices $n\times n$ inversibles à coefficients dans $A$.
 On fait de $n\mapsto \GL{n}{A}$ un foncteur $(\N,\leq)\ra \Grp$ via les inclusions~:
 \[
   \begin{array}{lcl}
@@ -780,7 +780,7 @@ On fait de $n\mapsto \GL{n}{A}$ un foncteur $(\N,\leq)\ra \Grp$ via les inclusio
 et on note $\GL{}{A}:=\colim_{n\in\N} \GL{n}{A}$.  
 
 \begin{defi}[$K_1$ d'un anneau]
-  Pour $A$ un anneau, on défini le $1^{\mathrm{er}}$ groupe de $K$-théorie de $A$, $K_1(A)$, par~:
+  Pour $A$ un anneau, on définit le $1^{\mathrm{er}}$ groupe de $K$-théorie de $A$, $K_1(A)$, par~:
   $$K_1(A):=\GL{}{A}\ab$$
 \end{defi}
 
@@ -789,7 +789,7 @@ Nous allons maintenant donner une description du groupe des commutateurs $[\GL{}
 \begin{defi}
   Pour $1\leq i,j \leq n$, $i\neq j$ et $a\in A$, on pose~:
   $$e_{ij}(a):= \id+aE_{ij}\in \GL{n}{A}$$
-  On note $\EGL{n}{A}$ le sous-groupe de $\GL{n}{A}$ engendré par les $e_{ij}(a)$ pour $i,j >0$, $i\neq j$ et $a\in A$.
+  On note $\EGL{n}{A}$ le sous-groupe de $\GL{n}{A}$ engendré par les $e_{ij}(a)$ pour $1\leq i,j \leq n$, $i\neq j$ et $a\in A$.
   On note $\EGL{}{A}:=\bigcup_n\EGL{n}{A}\subset\GL{}{A}$.
 \end{defi}
 
@@ -801,7 +801,7 @@ Nous allons maintenant donner une description du groupe des commutateurs $[\GL{}
          En effet, on a la formule~:
          $$\begin{pmatrix} M & 0  \\ 0       & M^{-1} \end{pmatrix}=%
            \begin{pmatrix} 1 & M  \\ 0       & 1      \end{pmatrix}%
-           \begin{pmatrix} 1 & 0  \\ -M^{-1} & 0      \end{pmatrix}%
+           \begin{pmatrix} 1 & 0  \\ -M^{-1} & 1     \end{pmatrix}%
            \begin{pmatrix} 1 & M  \\ 0       & 1      \end{pmatrix}%
            \begin{pmatrix} 0 & -1 \\ 1       & 0      \end{pmatrix}$$
   \end{enumerate}
@@ -1759,7 +1759,7 @@ Nous avons fait le choix de le mettre dans \sref{l'annexe}{carrehomotopiquementc
 
 \subsection{Premières propriétés}\label{premieresprops}
 
-\section{\texorpdfstring{Construction $+$ et théorème "$+=Q$"}{Construction + et théorème "+=Q"}}
+\section{\texorpdfstring{Construction $+$ de Quillen}{Construction + de Quillen}}
 
 \subsection{\texorpdfstring{La construction $+$ en topologie}{La construction + en topologie}}
 
@@ -1781,12 +1781,12 @@ Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
 \end{rem}
 
 \begin{prop}\label{constructionpluscasfacile}
-  Soit $X$ connexe dans $\DEns$, $x\in X_0$, tel que $\pi_1(X,x)$ soit un groupe parfait. Alors une construction $+$ existe pour $\pi_1(X,x)$.
+  Soit $X$ connexe dans $\DEns$ et $x\in X_0$ tels que $\pi_1(X,x)$ soit un groupe parfait. Alors une construction $+$ existe pour $\pi_1(X,x)$.
 \end{prop}
 
 \begin{proof}
   Quitte à changer $X$, on peut supposer que $X$ est un complexe de Kan.
-  On se donne $I$ un ensemble de générateurs de $\pi_1(X,x)$. On défini $Y$ comme la somme amalgamée~:
+  On se donne $I$ un ensemble de générateurs de $\pi_1(X,x)$. On définit $Y$ comme la somme amalgamée~:
   \begin{center}
     \begin{tikzcd}[column sep = large, row sep = large]
       {\bigvee_{\gamma\in I}\partial\Delta^2} & X \\
@@ -1798,18 +1798,18 @@ Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
       \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=2-2, to=1-1]
     \end{tikzcd}
   \end{center}
-  Alors, par le [lemme d'extension] $\pi_1(Y)=0$.
+  Alors, par le \sref{lemme d'extension}{lemmedextension} $\pi_1(Y)=0$.
   Maintenant, comme $\bigvee_{\gamma\in I}\Delta^2$ est contractile,
   ${\bigvee_{\gamma\in I}\partial\Delta^2}\ra X\ra Y$ est une suite cofibre. On a donc les suites exactes suivantes en homologie sur $\Z$~:
   $$0\ra H_i(X)\ra H_i(Y)\ra 0\text{ pour }i\geq 3$$
   $$H_2({\bigvee_{\gamma\in I}\partial\Delta^2})\ra H_2(X)\ra H_2(Y)\ra H_1({\bigvee_{\gamma\in I}\partial\Delta^2})\ra H_1(X)$$
-  Or, par [Hurewicz pi1], $H_1(X)=0$. De plus $H_2({\bigvee_{\gamma\in I}\partial\Delta^2})=0$
+  Or, par le \sref{théorème de Hurewicz}{theoremeHurewiczpi1}, $H_1(X)=0$. De plus $H_2({\bigvee_{\gamma\in I}\partial\Delta^2})=0$
   et $H_1({\bigvee_{\gamma\in I}\partial\Delta^2})$ est $\Z$-libre.
   Donc, la suite se scinde et on peut choisir un isomorphisme~:
   $$H_2(Y)\simeq H_2(X)\oplus \bigoplus_{\gamma\in I}\Z\cdot [\gamma]$$
-  Or, $\pi_0(Y)=*$ et $\pi_1(Y)=0$, donc par [Hurewicz pi2], on a l'isomorphisme de Hurewicz $\mathcal{H}_2:\pi_2(Y,fx)\simeq H_2(Y)$.
+  Or, $\pi_0(Y)=*$ et $\pi_1(Y)=0$, donc par le \sref{théorème de Hurewicz}{theoremeHurewitzpin}, on a l'isomorphisme de Hurewicz $\mathcal{H}_2:\pi_2(Y,fx)\simeq H_2(Y)$.
   On se donne $\tilde{Y}$ complexe de Kan équivalent à $Y$
-  et, pour chaque $\gamma\in I$, $s_\gamma\in \pi_2(\tilde{Y},fx)$ tel que $\mathcal{H}_2(s_\gamma)=[\gamma]$.
+  et, pour chaque $\gamma\in I$, $[s_\gamma]\in \pi_2(\tilde{Y},fx)$ tel que $\mathcal{H}_2([s_\gamma])=[\gamma]$.
   On définit alors $X^+$ comme la somme amalgamée~:
   \begin{center}
     \begin{tikzcd}[column sep = large, row sep = large]
@@ -1822,7 +1822,7 @@ Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
       \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=2-2, to=1-1]
     \end{tikzcd}
   \end{center}
-  Par le [lemme d'extension], $\pi_1(X^+)=0$. Or la suite ${\bigvee_{\gamma\in I}\partial\Delta^3}\ra \tilde{Y}\ra X^+$ est une suite cofibre.
+  Par le \sref{lemme d'extension}{lemmedextension}, $\pi_1(X^+)=0$. Or la suite ${\bigvee_{\gamma\in I}\partial\Delta^3}\ra \tilde{Y}\ra X^+$ est une suite cofibre.
   Comme $H_i(\bigvee_{\gamma\in I}\partial\Delta^3)=0$ pour $i\geq 3$, et $H_2(\bigvee_{\gamma\in I}\partial\Delta^3)\hookrightarrow H_2(\tilde{Y})$
   est une injection, on a $H_i(\tilde{Y})\simeq H_i(X^+)$ et donc $H_i(X)\simeq H_i(X^+)$ pour $i\geq 3$. C'est également clair pour $H_1$ et $H_0$.
   Pour $H_2$, on a le diagramme suivant~:
@@ -1843,8 +1843,8 @@ Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
   $\bigvee_I\partial\Delta^3\ra \tilde{Y}$. Comme la ligne et la colonne sont exactes, ceci implique que la flèche
   $H_2(X)\ra H_2(X^+)$ est aussi un isomorphisme.
 
-  On a donc que $H_*(-;\Z)$ envoie $X\ra X^+$ sur un isomorphisme. Ainsi, par le [théorème des coefficients universelles],
-  $H_*(-;M)$ envoie $X\ra X^+$ sur un isomorphisme pour tout $M$ $\Z$-module. Or, comme $\pi_1(X^+)=0$, un système de coéfficients
+  On a donc que $H_*(-;\Z)$ envoie $X\ra X^+$ sur un isomorphisme. Ainsi, par le \sref{théorème des coefficients universels}{coeffsuniv},
+  $H_*(-;M)$ envoie $X\ra X^+$ sur un isomorphisme pour tout $M$ $\Z$-module. Or, comme $\pi_1(X^+)=0$, un système de coefficients
   sur $X^+$ n'est autre qu'un $\Z$-module. Donc $X\ra X^+$ est une construction $+$ pour $\pi_1(X,x)$.
 \end{proof}
 
@@ -1873,10 +1873,10 @@ Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
   Comme tous les objets de $\DEns$ sont cofibrants, par le dual de la \sref{proposition}{homocartesienfibrant}, 
   $\DEns$ est propre à gauche.
   Ainsi, par le dual de la \sref{proposition}{criterehomocartesienpropreadroite}, le carré ci-dessus est homotopiquement cocartésien.
-  Par le [théorème de Van-Kampen dans $\DEns$], la suite~:
+  Par le \sref{théorème de Van-Kampen}{theoremedeVanKampen}, la suite~:
   $$\exa{P}{\pi_1(X,x)}{\pi_1(X^+,fx)}\text{ est exacte}$$
   Comme le carré est homotopiquement cocartésien, et comme $\tilde{X}\hookrightarrow\tilde{X}\times\Delta^1\sqcup_{X}X\overset{\sim}{\twoheadrightarrow}X$,
-  on a le diagramme commutatif suivant a carré cocartésiens~:
+  on a le diagramme commutatif suivant à carrés cocartésiens~:
   \begin{center}
     \begin{tikzcd}[column sep = large, row sep = large]
       {\tilde{X}} & \tilde{X}^+ \\
@@ -1898,7 +1898,7 @@ Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
   et $X'^+\setminus \tilde{X}\times\Delta^1\sqcup_{X}X$, on a~:
   $$C_*(\tilde{X}^+,\tilde{X};p''^*L)\simeq C_*(X'^+, \tilde{X}\times\Delta^1\sqcup_{X}X;L)$$
   Et donc~: $$H_*(\tilde{X}^+,\tilde{X};p'^*L)\lra H_*(X^+,X;L)$$ est un isomorphisme.
-  Or, comme $H_*(\tilde{X};p'^*L)\ra H_*(\tilde{X}^+;\tilde{f}^*p'^*L)$ est un isomorphisme, $H_*(\tilde{X}^+,\tilde{X};p'^*L)=0$.
+  Or, comme $H_*(\tilde{X};\tilde{f}^*p'^*L)\ra H_*(\tilde{X}^+;p'^*L)$ est un isomorphisme, $H_*(\tilde{X}^+,\tilde{X};p'^*L)=0$.
   Donc $H_*(X;f^*L)\ra H_*(X^+;L)$ est un isomorphisme.
 \end{proof}
 
@@ -1936,7 +1936,7 @@ Nous allons maintenant énoncer un résultat d'unicité.
       \arrow["g", from=2-1, to=2-2]
     \end{tikzcd}
   \end{center}
-  Maintenant, $\tilde{Y}$ est simplement connexe et par [mettre ref], il dispose donc d'une tour de Postnikov de fibrations
+  Maintenant, $\tilde{Y}$ est simplement connexe et par le \sref{théorème}{Postnikovfibrationsprincipales}, il dispose donc d'une tour de Postnikov de fibrations
   principales.
   \begin{center}
     \begin{tikzcd}
@@ -1957,7 +1957,8 @@ Nous allons maintenant énoncer un résultat d'unicité.
     \end{tikzcd}
   \end{center}
   On choisit des espaces d'Eilenberg-MacLane qui soient fibrants.
-  Supposons que l'on ai défini des applications compatibles $\tilde{h}(i):\tilde{X}^+\ra \tilde{Y}(i)$, pour $1\leq i\leq n-1$, tels que pour chaque $i$~:
+  Supposons que l'on ait défini des applications compatibles $\tilde{h}(i):\tilde{X}^+\ra \tilde{Y}(i)$, pour $1\leq i\leq n-1$, tels que pour chaque $i$,
+  le digramme suivant soit commutatif~:
   \begin{center}
     \begin{tikzcd}
       {\tilde{X}} & {\tilde{Y}} & {\tilde{Y}(i)} \\
@@ -1988,10 +1989,10 @@ Nous allons maintenant énoncer un résultat d'unicité.
   est la fibre de $p$.
   Comme le L à droite est une suite fibre, ce diagramme nous donne un morphisme $\tilde{X}^+\cup C\tilde{X}\ra K(n+1,\pi_n(\tilde{Y}))$
   où $C\tilde{X}:=\tilde{X}\times\Delta^1 / \tilde{X}\times\{1\}$ est le cône de $\tilde{X}$.
-  La classe d'homotopie de ce morphisme correspond à un élément de
+  La classe d'homotopie de ce morphisme correspond, par le \sref{theoreme}{EMfoncteur}, à un élément de
   $H^{n+1}(\tilde{X}^+\cup C\tilde{X};\pi_2(\tilde{Y}))=H^{n+1}(\tilde{X}^+,\tilde{X};\pi_2(\tilde{Y}))=0$
-  (par le [corollaire au théorème des coefficients universels]). Donc $\tilde{X}^+\cup C\tilde{X}\ra K(n+1,\pi_n(\tilde{Y}))$
-  est homotope à une application constante et on peut l'étendre en $C\tilde{X}^+\ra K(n+1,\pi_n(\tilde{Y}))$,
+  (par le \sref{théorème}{coeffsunivcohom}). Donc $\tilde{X}^+\cup C\tilde{X}\ra K(n+1,\pi_n(\tilde{Y}))$
+  est homotope à une application constante et on peut l'étendre en $C(\tilde{X}^+)\ra K(n+1,\pi_n(\tilde{Y}))$,
   c'est-à-dire prolonger $\tilde{X}\ra \mathrm{F}(u_{n-1})$ à $\tilde{X}^+$. On peut donc trouver $\tilde{h}(n):\tilde{X}^+\ra \tilde{Y}(n)$
   qui complète le diagramme~:
   \begin{center}
@@ -2005,9 +2006,10 @@ Nous allons maintenant énoncer un résultat d'unicité.
       \arrow["{\tilde{h}(n)}", from=2-1, to=1-3]
     \end{tikzcd}
   \end{center}
-  Ainsi, nous avons construit des des applications compatibles $\tilde{h}(i):\tilde{X}^+\ra \tilde{Y}(i)$, pour $i\geq 1$.
-  Or par la [référence à mettre] $\lim_{i\in \N}\tilde{Y}(i)=\tilde{Y}$. Donc on a construit $\tilde{h}:\tilde{X}^+\ra \tilde{Y}$.
-  Donc~:
+  Ainsi, nous avons construit des applications compatibles $\tilde{h}(i):\tilde{X}^+\ra \tilde{Y}(i)$, pour $i\geq 1$.
+  Or par le \sref{corollaire}{limitetourdePostnikov} $\lim_{i\in \N}\tilde{Y}(i)=\tilde{Y}$.
+  Donc, on a construit $\tilde{h}:\tilde{X}^+\ra \tilde{Y}$.
+  Donc, par le diagramme suivant, on a construit $h$~:
   \begin{center}
     \begin{tikzcd}[column sep = large, row sep = large]
       {\tilde{X}} & {\tilde{X}^+} & {\tilde{Y}} \\
@@ -2023,7 +2025,7 @@ Nous allons maintenant énoncer un résultat d'unicité.
       \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, rotate=180, pos=0.05}, draw=none, from=2-2, to=1-1]
     \end{tikzcd}
   \end{center}
-  Montrons maintenant l'unicité à homotopie près. Soit $h'$ une autre telle application. Par propriété de relèvement le long des revêtement, on
+  Montrons maintenant l'unicité à homotopie près. Soit $h'$ une autre telle application. Par propriété de relèvement le long des revêtements, on
   peut trouver $\tilde{h}$ et $\tilde{h'}$ qui complètent le digramme~:
   \begin{center}
     \begin{tikzcd}[column sep = large, row sep = large]
@@ -2043,8 +2045,8 @@ Nous allons maintenant énoncer un résultat d'unicité.
   \end{center}
   Il suffit donc de montrer que $\tilde{h}$ et $\tilde{h'}$ sont homotopes relativement à $\tilde{X}$.
   Pour cela, on se donne une homotopie~:
-  $$H(1):\tilde{h}(1)\Rightarrow\tilde{h'}(1):\tilde{X}^+\times\Delta^1\ra \tilde{Y}(0)$$
-  C'est toujours possible car $\tilde{Y}(0)$ est contractile.
+  $$H(1):\tilde{h}(1)\Rightarrow\tilde{h'}(1):\tilde{X}^+\times\Delta^1\ra \tilde{Y}(1)$$
+  C'est toujours possible car $\tilde{Y}(1)$ est contractile.
   Or, on remarque que 
   $$\tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1\hookrightarrow\tilde{X}^+\times\Delta^1$$
   est une équivalence en homologie, et donc aussi en cohomologie.
@@ -2052,7 +2054,7 @@ Nous allons maintenant énoncer un résultat d'unicité.
   \begin{center}
     \begin{tikzcd}[row sep = small, column sep = small]
       0 \ra C_*(\tilde{X}\times\Delta^1) \arrow[r]
-      & C_*(\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{0\}\oplus C_*(\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{1\})
+      & C_*(\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{0\})\oplus C_*(\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{1\})
       \arrow[d, phantom, ""{coordinate, name=Z}]
       \arrow[d,
       rounded corners,
@@ -2066,8 +2068,9 @@ Nous allons maintenant énoncer un résultat d'unicité.
   induit, car $\tilde{X}\times \Delta^1\cup\tilde{X}^+\times \{-\}\simeq \tilde{X}^+$, des suites exactes~:
   $$H_n(\tilde{X}^+)\overset{(1,-1)}{\hookrightarrow}H_n(\tilde{X}^+)\oplus H_n(\tilde{X}^+)\twoheadrightarrow%
     H_n(\tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1)$$
-  On a donc bien que $\tilde{X}^+\ra \tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1$ est un isomorphisme en homologie.
+  Donc $\tilde{X}^+\ra \tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1$ est un isomorphisme en homologie.
   Or $\tilde{X}^+ \simeq \tilde{X}^+ \times \Delta^1$.
+  Donc $\tilde{X}\times\Delta^1\cup\tilde{X}^+\times\partial\Delta^1\hookrightarrow\tilde{X}^+\times\Delta^1$ également.
   Ainsi, on peut, comme ci-dessus, relever successivement l'homotopie à
   chaque $\tilde{Y}(n)$, et en passant à la limite, à $\tilde{Y}$.
 \end{proof}
@@ -2083,29 +2086,31 @@ Plus loin, nous auront besoin d'une version améliorée de ces résultats. On ra
 $n\geq 1$, $\pi_1(X,x)$ agit trivialement sur $\pi_n(X,x)$. En particulier, $\pi_1(X,x)$ est abélien pour tout $x\in X_0$.
 
 \begin{lem}
-  Soit $X$ connexe dans $\DEns$, $x\in X_0$ tel que le sous-groupe $C:=[\pi_1(X,x),\pi_1(X,x)]$ soit parfait.
+  Soit $X$ connexe dans $\DEns$ et $x\in X_0$ tels que le sous-groupe $C:=[\pi_1(X,x),\pi_1(X,x)]$ soit parfait.
   Soit $f:X\ra X^+$ une construction $+$ pour $C$ telle que $X^+$ soit simple.
-  Alors, si $g:X\ra Y$ vérifie~:
+  Si $g:X\ra Y$ vérifie~:
   \begin{description}
     \item[$(1)$] $Y$ est simple et connexe~;
-    \item[$(2)$] $g_*:H_*(X,\Z)\ra H_*(Y,\Z)$ est un isomorphisme. 
+    \item[$(2)$] $g_*:H_*(X,\Z)\ra H_*(Y,\Z)$ est un isomorphisme~;
   \end{description}
-  Alors $g$ est aussi une construction $+$ pour $C$. En particulier $Y$ et $X$ sont équivalents relativement à $X$.
+  alors $g$ est aussi une construction $+$ pour $C$. En particulier $Y$ et $X$ sont équivalents relativement à $X$.
 \end{lem}
 
 \begin{rem}
-  La preuve de ce lemme repose sur la [mettre ref à l'annexe], laquelle admet la version générale du théorème de Hurewicz pour les paires.
+  La preuve de ce lemme repose sur le \sref{théorème}{Postnikovfibrationsprincipales},
+  lequel admet la version générale du théorème de Hurewicz pour les paires.
   Voir la référence donnée dans la preuve de cette proposition pour plus d'information.
 \end{rem}
 
 \begin{proof}
-  Soit $h:X\ra Z$ avec $Z$ simple. Alors par la [mettre ref à l'annexe], $Z$ admet une tour de Postnikov de fibrations principales~:
+  Soit $h:X\ra Z$ avec $Z$ simple. Alors par le \sref{théorème}{Postnikovfibrationsprincipales},
+  $Z$ admet une tour de Postnikov de fibrations principales~:
   \begin{center}
     \begin{tikzcd}
-      && {\tilde{Y}(n)} \\
-      {\tilde{Y}} && {\tilde{Y}(n-1)} & {K(n+1,\pi_n(\tilde{Y}))} \\
-      && {\tilde{Y}(1)} & {K(3,\pi_2(\tilde{Y}))} \\
-      && {\tilde{Y}(0)\simeq *} & {K(2,\pi_1(\tilde{Y}))}
+      && {Z(n)} \\
+      {Z} && {Z(n-1)} & {K(n+1,\pi_n(Z))} \\
+      && {Z(1)} & {K(3,\pi_2(Z))} \\
+      && {Z(0)\simeq *} & {K(2,\pi_1(Z))}
       \arrow[two heads, from=1-3, to=2-3]
       \arrow["{u_{n-1}}", from=2-3, to=2-4]
       \arrow[dotted, two heads, from=2-3, to=3-3]
@@ -2119,7 +2124,7 @@ $n\geq 1$, $\pi_1(X,x)$ agit trivialement sur $\pi_n(X,x)$. En particulier, $\pi
     \end{tikzcd}
   \end{center}
   Comme $g_*:H_*(X,\Z)\ra H_*(Y,\Z)$ est un isomorphisme, c'est également le cas de $g^*:H^*(Y,M)\ra H^*(X,M)$ pour tout $M$ $\Z$-module
-  par le [corollaire du théorème des coefficients universels]. Donc, comme dans la preuve de la \sref{proposition}{topologiepluspropuniv},
+  par le \sref{theorème}{coeffsunivcohom}. Donc, comme dans la preuve de la \sref{proposition}{topologiepluspropuniv},
   on dispose de $h_Y:Y\ra Z$ qui complète le diagramme commutatif~:
   \begin{center}
     \begin{tikzcd}[column sep = small, row sep = large]
@@ -2164,7 +2169,7 @@ Dans cette section, nous verrons certains groupes comme des ensembles simpliciau
     	{\GL{}{A}} & {\GL{}{B}} \\
     	{\GL{}{A}^+} & {\GL{}{B}^+}
     	\arrow["{\GL{}{u}}", from=1-1, to=1-2]
-    	\arrow["{u_*}", from=2-1, to=2-2]
+    	\arrow["{u^*}", from=2-1, to=2-2]
     	\arrow["{f_A}"', from=1-1, to=2-1]
     	\arrow["{f_B}", from=1-2, to=2-2]
     \end{tikzcd}
@@ -2173,7 +2178,7 @@ Dans cette section, nous verrons certains groupes comme des ensembles simpliciau
 \end{defi}
 
 \begin{rem}
-  Cette définition ne définit bien les groupes $K_n(A)$, et pas seulement à conjugaison près. En effet, l'unicité de la construction $+$ donnée par le
+  Cette définition définit les groupes $K_n(A)$, et pas seulement à conjugaison près. En effet, l'unicité de la construction $+$ donnée par le
   \sref{corollaire}{uniciteplustopologie} est à homotopie sous $\GL{}{A}$ près. De même pour les morphismes $u^*$.
 \end{rem}
 
@@ -2244,7 +2249,7 @@ C'est l'objet de la fin de cette sous-section.
     on pose $\mu:\GL{}{A}\times\GL{}{A}\ra \GL{}{A}$ l'application $(M,N)\mapsto P$, avec $P_{2n+1,2m+1}=M_{n,m}$
     $P_{2n,2m}=N_{n,m}$ et $P_{i,j}=0$ sinon. Or, en utilisant [ref homologie du produit], on remarque que~:
     $$\GL{}{A}\times \GL{}{A}\ra \GL{}{A}^+\times\GL{}{A}^+$$
-    est une construction $+$. On peut donc étendre $\mu$ en $\mu^+:\GL{}{A}^+\times\GL{}{A}^+\ra\GL{}{A}^+$ comme souhaité.
+    est une construction $+$. On peut donc étendre $\mu$ en $\mu^+:\GL{}{A}^+\times\GL{}{A}^+\ra\GL{}{A}^+$, comme souhaité.
     \item[(B)] De la chaîne de cofibrations~:
     $$\GL{1}{A}\hookrightarrow \GL{2}{A}\hookrightarrow\dotsb\hookrightarrow\GL{n}{A}\hookrightarrow\dotsb$$
     On peut déduire, par la \sref{proposition}{topologiepluspropuniv}, une chaîne de cofibrations entre complexes de Kan~:
@@ -2295,7 +2300,7 @@ Cette section reprends la démonstration du théorème $+=Q$ donnée dans \cite{
 Nous ne démontrons pas ici en détail l'argument du petit objet, voir \cite[Chp.1]{Goer} pour cela.
 La raison d'être de cette sous-section est de fixer des notations.
 
-Soit $C$ une catégorie cocomplète et $\mathcal{J}=\enstq{u_i:A_i\ra B_i}{i\in I}$ un ensemble dans $\Omega$ de morphismes dans $C$ tels que
+Soit $C$ une catégorie cocomplète et $\mathcal{J}=\enstq{u_i:A_i\ra B_i}{i\in I}$ un ensemble, dans $\Omega$, de morphismes dans $C$ tels que
 chaque $A_i$ soit $\N$-petit. Pour rappel, $X$ est $\N$-petit si pour tout foncteur $F:\N\ra C$,
 on a que $\Hom{C}{\colim_{\N}F}{C}\ra \colim_{n\in\N}\Hom{C}{F(n)}{X}$ est une bijection.
 
@@ -2722,11 +2727,11 @@ On se place ici dans une catégorie modèle $C$.
 \subsection{La correspondance de Dold-Kan}
 \label{DoldKan}
 
-Cette sous-section est consacrée à la correspondance de Dold-Kan et a certaines conséquences en homotopie.
+Cette sous-section est consacrée à la correspondance de Dold-Kan et à certaines conséquences en homotopie.
 Certaines démonstrations sont omises. Des références sont données.
 
 \begin{defi}
-  On note $\Chp$ la catégorie des complexes de groupes abéliens concentrés en degré positifs pour la notation homologique.
+  On note $\Chp$ la catégorie des complexes de groupes abéliens concentrés en degrés positifs pour la notation homologique.
   On note $\DAb$ la catégorie des groupes abéliens simpliciaux, ie. des foncteurs $\DCat\ra \Ab$.
 \end{defi}
 
@@ -2738,18 +2743,18 @@ L'objet de la correspondance de Dold-Kan est d'établir une équivalence de cat�
 
 \begin{propdefi}\label{definitioncomplexenormalise}
   Soit $A$ un objet de $\DAb$. Le complexe normalisé $(NA_*,\partial_*)$ de $A$ est le complexe de chaîne de $\Chp$ suivant~:
-  $$NA_n:=\bigcap_{m=0^{n-1}}\myker{d_m}\;\partial_n=(-1)^nd_n:NA_n\ra NA_{n-1}$$
-  C'est un sous-complexe du complexe $CA_*,\partial_*$ définit par~:
+  $$NA_n:=\bigcap_{m=0}^{n-1}\myker{d_m}\;\mid\;\partial_n=(-1)^nd_n:NA_n\ra NA_{n-1}$$
+  C'est un sous-complexe du complexe $(CA_*,\partial_*)$ défini par~:
   $$CA_n:=A_n;\partial_n=\sum_{m=0}^n(-1)^md_m:CA_n\ra CA_{n-1}$$
-  Le complexe des dégénérescences $DA_*$ de $A$ est le sous complexe de $CA$ définit par~:
-  $$DA_n:=\sum_{m=0}^{n}s_m(A_{n+1})$$
+  Le complexe des dégénérescences $DA_*$ de $A$ est le sous complexe de $CA$ défini par~:
+  $$DA_n:=\sum_{m=0}^{n-1}s_m(A_{n-1})$$
 \end{propdefi}
 
 \begin{proof}
   Le calcul pour vérifier que $CA_*$ est un complexe est classique. Vérifions que $NA_*$ et $DA_*$ sont des sous-complexes.
-  Pour $0\leq i\leq n-2$, on a $d_id_n=d_{n-1}d_i$ annule $NA_n$. Donc $NA_*$ est un sous-complexe.
-  Pour $0\leq i\leq n$~:
-  $$\sum_{m=0}(-1)^md_ms_i=\sum_{m=0}^{i-1}s_{i-1}d_m+(-1)^{i}\id+(-1)^{i+1}\id+\sum_{m=i+2}^{n}s_{i}d_{m+1}$$
+  Pour $0\leq i\leq n-2$, $d_id_n=d_{n-1}d_i$ annule $NA_n$. Donc $NA_*$ est un sous-complexe.
+  Pour $0\leq i\leq n-1$~:
+  $$\partial_ns_i=\sum_{m=0}^{n-1}(-1)^md_ms_i=\sum_{m=0}^{i-1}s_{i-1}d_m+(-1)^{i}\id+(-1)^{i+1}\id+\sum_{m=i+2}^{n}s_{i}d_{m+1}$$
   Donc $\partial_ns_i(a)\in DA_{n-1}$ pour $a\in DA_n$.
 \end{proof}
 
@@ -2785,7 +2790,7 @@ Nous admettons ici ce lemme, qui se démontre par récurrence. Pour plus de dét
 
 \begin{rem}
   la définition ci-dessus est plus clair si on voit $C$ comme un ensemble pré-simplicial. Un ensemble pré-simplicial est un préfaisceau
-  sur la catégorie $\DCat'$ des injections de $\DCat$. La structure d'ensemble pré-simplicial est celle décrite dans la définition.
+  sur la catégorie $\DCat'$ des injections $[u]\hookrightarrow [v]$ de $\DCat$. La structure d'ensemble pré-simplicial est celle décrite dans la définition.
   La construction de $\Gamma$ est alors basée sur celle, classique, de l'adjoint à gauche de l'oubli $[\DCat,\Ab]\ra [\DCat',\Ab]$.
   C'est ce qui est fait dans la démonstration ci-dessous.
 \end{rem}
@@ -2813,7 +2818,7 @@ Nous admettons ici ce lemme, qui se démontre par récurrence. Pour plus de dét
 \end{proof}
 
 \begin{theo}[équivalence de Dold-Kan]
-  Les foncteurs $\Gamma:\Chp\ra\DAb$ et $N:\DAb\ra\Chp$ sont quasi-inverses et exactes. Ils induisent une équivalence de catégories
+  Les foncteurs $\Gamma:\Chp\ra\DAb$ et $N:\DAb\ra\Chp$ sont inverses et exactes. Ils induisent une équivalence de catégories
   abéliennes $\Chp\simeq\DAb$, appelée équivalence de Dold-Kan.
 \end{theo}
 
@@ -2822,8 +2827,9 @@ Nous admettons ici ce lemme, qui se démontre par récurrence. Pour plus de dét
   $$\Gamma C_n=\bigoplus_{\phi:[n]\twoheadrightarrow [r]}C_r$$
   Or, un calcul direct montre que $C_n\subseteq (N\Gamma C)_n$ et $\bigoplus_{[n]\twoheadrightarrow [r],r<n}C_r\subseteq (D\Gamma C)_n$.
   Donc, par le \sref{lemme}{lemmeDoldKan}, $C_n=(N\Gamma C)_n$. On a l'isomorphisme souhaité.
+  
   Soit $A$ un groupe abélien simplicial. On a un morphisme naturel de groupes pré-simpliciaux $N A\ra A$,
-  et donc un morphisme naturel d'ensembles simpliciaux $\Gamma N A\ra A$. Soit $n\geq 0$. Par récurrence, on suppose que
+  et donc un morphisme naturel de groupes simpliciaux $\Gamma N A\ra A$. Soit $n\geq 0$. Par récurrence, on suppose que
   $(\Gamma N A)_m\ra A_m$ est un isomorphisme pour $m<n$. Alors l'image de $(\Gamma N A)_n\ra A_n$ contient $NA_n$
   et $DA_n$. Donc par le \sref{lemme}{lemmeDoldKan}, l'application est surjective. Maintenant, soit
   $x=\sum_{\phi} a_{\phi}$ dans le noyau. Soit $r$ maximal tel qu'il existe $\phi:[n]\twoheadrightarrow [r]$ tel que $a_\phi \neq 0$.
@@ -2834,7 +2840,8 @@ Nous admettons ici ce lemme, qui se démontre par récurrence. Pour plus de dét
   On a donc nécessairement $x=0$. Donc $(\Gamma N A)_n\ra A_n$ est un isomorphisme.
 \end{proof}
 
-Nous allons maintenant nous intéresser à une structure de catégorie modèle sur $\DAb$, et la correspondante dans $\Chp$.
+Nous allons maintenant nous intéresser à une structure de catégorie modèle sur $\DAb$, et la structure correspondante dans $\Chp$.
+Nous reprenons \cite[III.2]{Goer}.
 Introduisons d'abords les équivalences faibles.
 
 \begin{lem}\label{lemmeN}
@@ -2848,12 +2855,12 @@ Une autre approche équivalente est donnée dans \cite[II.2.4]{Goer}.
 \begin{prop}\label{pinegalHn}
   Soit $n\geq 0$. Il existe un isomorphisme naturel de groupes pour $A$ dans $\DAb$~:
   $$\pi_n(A,0)\simeq H_n(NA)$$
-  De même, il existe un isomorphisme naturel pour $A\subset B$ paire dans $\DAb$~:
+  De même, pour $n\geq 1$, il existe un isomorphisme naturel pour $A\subset B$ paire dans $\DAb$~:
   $$\pi_n(B,A,0)\simeq H_n(NB/NA)$$
   Et ces isomorphismes sont compatibles aux suites exactes longues des paires, ie. le digramme suivant est commutatif~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsOCxbMCwwLCJcXHBpX3tuKzF9KEIsQSwwKSJdLFsxLDAsIlxccGlfbihBLDApIl0sWzIsMCwiXFxwaV9uKEIsMCkiXSxbMywwLCJcXHBpX24oQixBLDApIl0sWzAsMSwiSF97bisxfShCL0EpIl0sWzEsMSwiSF9uKEEpIl0sWzIsMSwiSF9uKEIpIl0sWzMsMSwiSF9uKEIvQSkiXSxbMyw3LCJcXHNpbSJdLFsyLDYsIlxcc2ltIl0sWzEsNSwiXFxzaW0iXSxbMCw0LCJcXHNpbSJdLFswLDEsIlxccGFydGlhbCJdLFs0LDUsIlxccGFydGlhbCJdLFsxLDJdLFs1LDZdLFsyLDNdLFs2LDddXQ==
-    \begin{tikzcd}
+    \begin{tikzcd}[column sep = 8ex]
       {\pi_{n+1}(B,A,0)} & {\pi_n(A,0)} & {\pi_n(B,0)} & {\pi_n(B,A,0)} \\
       {H_{n+1}(B/A)} & {H_n(A)} & {H_n(B)} & {H_n(B/A)}
       \arrow["\sim" sloped, from=1-4, to=2-4]
@@ -2893,18 +2900,19 @@ Introduisons maintenant la structure de modèle sur $\DAb$.
   Il existe une structure de catégorie modèle sur $\DAb$ telle que~:
   \begin{description}
     \item[(W)] les équivalences faibles soient les applications qui induisent des isomorphismes sur tous les groupes d'homotopie~;
-    \item[(F)] les fibrations soient les applications dont l'application sous-jacente entre ensembles simpliciaux soit une fibrations de Kan. 
+    \item[(F)] les fibrations soient les applications dont l'application sous-jacente entre ensembles simpliciaux soit une fibration de Kan. 
   \end{description}
   Cette structure est cofibrement engendré par les cofibrations~:
   $$\mathcal{I}:=\enstq{\Z\partial\Delta^n\ra \Z\Delta^n}{n\geq 0}$$
   et les cofibrations acycliques~:
-  $$\mathcal{J}:=\enstq{\Z\Lambda_k^n\ra \Z\Delta^n}{n\geq 0,0\leq k\leq n}$$.
+  $$\mathcal{J}:=\enstq{\Z\Lambda_k^n\ra \Z\Delta^n}{n\geq 1,0\leq k\leq n}$$
 \end{prop}
 
 \begin{proof}
-  On vérifie aisément que $\mathcal{J}^\square$ sont les fibrations de Kan, et $\mathcal{I}^\square$ les fibrations de Kan acycliques.
+  On vérifie aisément que les morphismes de $\mathcal{J}^\square$ sont les fibrations de Kan,
+  et les morphismes de $\mathcal{I}^\square$ les fibrations de Kan acycliques.
   On a alors immédiatement que $\mathcal{I}\subset \prescript{\square}{}{(\mathcal{J}^\square)}$ et que
-  $\mathcal{J}^\square\cap W=\mathcal{I}^\square$
+  $\mathcal{J}^\square\cap W=\mathcal{I}^\square$.
   Il reste donc à montrer que $\mathcal{J}\subset W$. Soit $n\geq 1$ et $0\leq k\leq n$. On dispose d'une application
   $\Delta^n\times\Delta^1\ra\Delta^n$ homotopie entre $\id_{\Delta^n}$ et $n$ définie par~:
   \begin{center}
@@ -2954,10 +2962,11 @@ Introduisons maintenant la structure de modèle sur $\DAb$.
   Pour conclure, il suffit de montrer que si $X$ est un ensemble simplicial, alors on a le cône suivant dans $\DEns$~:
   \begin{center}
     \begin{tikzcd}
-      \Z X\oplus \Z X \arrow[hook,r] & \Z X\otimes \Z\Delta^1 \arrow["\sim"',"\mathrm{pr}_1",r] & \Z X
+      \Z X\sqcup \Z X \arrow[r] & \Z X\otimes \Z\Delta^1 \arrow["\sim"',"\mathrm{pr}_1",r] & \Z X
     \end{tikzcd}
   \end{center}
-  Pour cela, on utilise la \sref{proposition}{pinegalHn} et le \sref{lemme}{lemmeN}. On omettra $C$ dans la notation du foncteur $C:\DAb\ra\Chp$.
+  En effet, on aura alors que $\id_{\Z\Delta^n}$ et $\id_{\Z\Lambda_k^n}$ sont homotopes à des applications constantes.
+  On utilise la \sref{proposition}{pinegalHn} et le \sref{lemme}{lemmeN}. On omettra $C$ dans la notation du foncteur $C:\DAb\ra\Chp$.
   On se ramène alors à montrer que $\mathrm{pr}_1$ est un isomorphisme
   en homologie. Tout d'abord, $H_*(\Z\Delta^1)=H_*(N\Z\Delta^1)$. Or $N\Z\Delta^1$ est le complexe~:
   \begin{center}
@@ -3021,13 +3030,30 @@ Introduisons maintenant la structure de modèle sur $\DAb$.
                     \arrow["\theta", from=1-1, to=2-2]
                   \end{tikzcd}
                 \end{center}
-                L'application $\pi_0(A)\ra \pi_0(B)$ est surjective car $NA_1\ra NB_1$ l'est. Donc, par $(1)$, c'est une fibration.
+                L'application $\pi_0(A)\ra \pi_0(B)$ est une fibration (comme toute application d'un complexe de kan dans un groupoïde).
                 Comme le carré est cartésien, $p_2$ est aussi une fibration. Or un calcul rapide montre que $N\theta$ est surjective.
                 Donc d'après $(2)$, $\theta$ est surjective, et c'est donc une fibration par $(1)$. Donc $f=p_2\circ \theta$ est une fibration.
   \end{description}
 \end{proof}
 
 \subsection{Homologie et homologie à coefficients}
+
+
+[compléter]
+
+\begin{theo}[Coefficients universels]\label{coeffsuniv}
+  Soit $C_*$ un complexe de chaînes de $\Z$-modules libres
+  en notations homologiques, et soit $M$ un groupe abélien.
+  Alors on a une suite exacte fonctorielle en $C_*$~:
+  $$\exa{H_i(C)\otimes M}{H_i(C\otimes M)}{\Tor_1^\Z (H_{i-1}(C),M)}$$
+\end{theo}
+
+\begin{theo}\label{coeffsunivcohom}
+  Soit $C_*$ un complexe de chaînes de $\Z$-modules libres
+  en notations homologiques, et soit $M$ un groupe abélien.
+  Alors on a une suite exacte fonctorielle en $C_*$~:
+  $$\exa{\mathrm{Ext}^1_\Z(H_{i-1}(C),M)}{H^i(\Hom{}{C}{M})}{\Hom{}{H_{i}(C)}{M}}$$
+\end{theo}
 
 \subsection{Le morphisme d'Eilenberg-Zilber}
 
@@ -3124,7 +3150,7 @@ Cette section couvre les notions de topologie utilisées dans le mémoire. Certa
   On se donne le carré cocartésien~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGJpZ3NxY3VwX0lcXHBhcnRpYWxcXERlbHRhXntuKzF9Il0sWzAsMSwiXFxiaWdzcWN1cF9JXFxEZWx0YV57bisxfSJdLFsxLDAsIkEiXSxbMSwxLCJYIl0sWzMsMCwiIiwwLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzAsMiwiXFxzcWN1cF9pKGEsXFxkb3RzYyxhLFxcZ2FtbWFfaSkiXSxbMiwzLCJqIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwxLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDNdXQ==
-    \begin{tikzcd}[column sep = 8ex]
+    \begin{tikzcd}[column sep = 10ex]
     	{\bigsqcup_I\partial\Delta^{n+1}} & A \\
     	{\bigsqcup_I\Delta^{n+1}} & X
     	\arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-2, to=1-1]
@@ -3152,7 +3178,7 @@ Cette section couvre les notions de topologie utilisées dans le mémoire. Certa
   \begin{center}
     % https://q.uiver.app/?q=WzAsNixbMCwwLCJcXGJpZ3NxY3VwX0lcXHBhcnRpYWxcXERlbHRhXntuKzF9Il0sWzAsMSwiXFxiaWdzcWN1cF9JXFxEZWx0YV57bisxfSJdLFsxLDAsIkEiXSxbMSwxLCJYIl0sWzIsMCwiXFx0aWxkZXtBfSJdLFsyLDEsIlxcdGlsZGV7WH0iXSxbMywwLCIiLDAseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbMCwyLCJcXHNxY3VwX2koYSxcXGRvdHNjLGEsXFxnYW1tYV9pKSJdLFsyLDMsImoiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDEsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsM10sWzIsNCwiXFxzaW0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDUsIlxcc2ltIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCw1LCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs1LDIsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
     \begin{tikzcd}
-    	{\bigsqcup_I\partial\Delta^{n+1}} &[3ex] A & {\tilde{A}} \\
+    	{\bigsqcup_I\partial\Delta^{n+1}} &[5ex] A & {\tilde{A}} \\
     	{\bigsqcup_I\Delta^{n+1}} & X & {\tilde{X}}
       \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-2, to=1-1]
     	\arrow["{\sqcup_i(a,\dotsc,a,\gamma_i)}", from=1-1, to=1-2]
@@ -3192,7 +3218,7 @@ Cette section couvre les notions de topologie utilisées dans le mémoire. Certa
     	\arrow[dotted, from=1-3, to=2-3]
     \end{tikzcd}
   \end{center}
-  tel que pour tout $v\in X_0$, $\pi_j(X(n),v)=0$ pour $j>n$ et $(i_n)_*:\pi_j(X,v)\ra\pi_j(X(n),v)$ est un isomorphisme pur $j\leq n$.
+  tel que pour tout $v\in X_0$, $\pi_j(X(n),v)=0$ pour $j>n$ et $(i_n)_*:\pi_j(X,v)\ra\pi_j(X(n),v)$ est un isomorphisme pour $j\leq n$.
 \end{defi}
 
 \begin{prop}
@@ -3217,11 +3243,11 @@ Cette section couvre les notions de topologie utilisées dans le mémoire. Certa
   où $f$ est induit par un ensemble $I$ de générateurs de $\pi_{n+1}(\tilde{X}(n,n),v)$. Soit $X(n,n+1)\overset{\sim}{\hookrightarrow}\tilde{X}(n,n+1)$
   un remplacement fibrant. On définit $X(n,n+2)$ de façon similaire à partir de $\tilde{X}(n,n+1)$ avec $I$ un ensemble de générateurs de
   $\pi_{n+2}(\tilde{X}(n,n+1),v)$. On a alors une suite de cofibrations~:
-  $$X=X(n,n)\overset{\sim}{\hookrightarrow}\tilde{X}(n,n)\hookrightarrow\dotsb\hookrightarrow X(n,n+k)\hookrightarrow\tilde{X}(n,n+k)$$
+  $$X=X(n,n)\overset{\sim}{\hookrightarrow}\tilde{X}(n,n)\hookrightarrow\dotsb\hookrightarrow X(n,n+k)\overset{\sim}{\hookrightarrow}\tilde{X}(n,n+k)$$
   On définit $X(n)$ comme la colimite de cette suite. On dispose de $i_n:X\ra X(n)$. On remarque également que $X(n)$ est un complexe de Kan.
   On a également les propriétés souhaitée sur $\pi_m(i_n)$ et les $\pi_m(X(n))$.
 
-  Il reste à construire les $q_n$. On les construit par récurrence sur $n$. Pour compléter la récurrence, il suffit
+  Il reste à construire les $q_n$. Pour cela, il suffit
   de construire $q_n:X(n)\ra X(n-1)$ tel que $i_{n-1}=q_n\circ i_n$. Or, on a le diagramme commutatif suivant~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsNixbMiwwLCJYKG4sbitrKSJdLFszLDAsIlxcdGlsZGV7WH0obixuK2spIl0sWzQsMCwiWChuLG4raysxKSJdLFsxLDIsIlgobi0xKSJdLFsxLDAsIlxcdGlsZGV7WH0iXSxbMCwwLCJYIl0sWzAsMSwiXFxzaW0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDIsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMywiXFxleGlzdHMgcV97bixuK2t9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMywiXFxleGlzdHMgXFx0aWxkZXtxfV97bixuK2t9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsMywiXFxleGlzdHMgcV97bixuK2srMX0iLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNSw0LCJcXHNpbSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzQsMCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifSwiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzQsMywiXFxleGlzdHMgXFx0aWxkZXtxfV97bixufSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDMsImlfe24tMX0iLDJdXQ==
@@ -3321,7 +3347,7 @@ Cette section couvre les notions de topologie utilisées dans le mémoire. Certa
   un $\tau:\Delta^{i+1}\ra \lim_n X_n$ tel que $\partial\tau=(*,\dotsc,*,f)$. Donc $[f]=*$.
 \end{proof}
 
-\begin{coro}
+\begin{coro}\label{limitetourdePostnikov}
   Soit $X$ un ensemble simplicial et $(X(n),i_n,q_n)_n$ une tour de Postnikov de fibrations pour $X$.
   Alors l'application~:
   $$X\ra \lim_{n\in\N}X(n)$$
@@ -3343,7 +3369,7 @@ Nous allons admettre les démonstrations des différentes versions du théorème
 \begin{defi}[morphisme de Hurewicz]
   Soit $X$ un ensemble simplicial, $n\geq 1$ et $x\in X_0$. L'application naturelle $X\ra \Z X$ induit le diagramme suivant~:
   $$\pi_n(X,x)\lra \pi_n(\Z X/\Z x, 0)\longleftarrow\pi_n(\Z X, 0)$$
-  Or, d'après [mettre ref Dold-Kan], pour $A$ groupe abélien simplicial, on a un isomorphe fonctoriel~:
+  Or, d'après la \sref{proposition}{pinegalHn}, pour $A$ groupe abélien simplicial, on a un isomorphe fonctoriel~:
   $$\pi_n(A,0)\simeq H_n(A)$$
   Or $H_n(\Z x) = 0$. Donc $\pi_n(\Z X, 0)\ra \pi_n(\Z X/\Z x, 0)$ est un isomorphisme, et donc on dispose d'un morphisme~:
   $$\mathcal{H}_n(X,x):\pi_n(X,x)\ra H_n(X)$$
@@ -3361,7 +3387,7 @@ Nous allons admettre les démonstrations des différentes versions du théorème
   $$\sum_i [\delta_i]\mapsto \prod_i[\gamma_{\delta(1)}]^{-1}[\delta_i][\gamma_{\delta(0)}]$$
 \end{proof}
 
-\begin{theo}[Hurewicz pour $pi_n$, $n\geq 2$]\label{theoremeHurewitzpin}
+\begin{theo}[Hurewicz pour $\pi_n$, $n\geq 2$]\label{theoremeHurewitzpin}
   Soit $X$ un ensemble simplicial connexe, $x\in X_0$ et $n\geq 2$. Si $\pi_m(X,x)=0$ pour tout $1\leq m<n$, alors l'application de Hurewicz~:
   $$\mathcal{H}_n(X,x):\pi_n(X,x)\ra H_n(X)$$
   est un isomorphisme.
@@ -3376,7 +3402,7 @@ est donnée dans \cite[4.37]{Hatc} (prendre $A=x$).
   Soit $X$ un ensemble simplicial, $A$ un sous-ensemble simplicial de $X$, et $x\in A_0$. Soit $n\geq 1$.
   Le morphisme naturel $(X,A)\ra (\Z X/\Z x,\Z A/\Z x)$ induit~:
   $$\pi_n(X,A,x)\lra \pi_n(\Z X/\Z x,\Z A/\Z x,0)\longleftarrow \pi_n(\Z X,\Z A,0)$$
-  Or, d'après [mettre ref Dold-Kan], pour $(U,V)$ paire des groupe abélien simplicial, on a un isomorphe fonctoriel~:
+  Or, d'après \sref{proposition}{pinegalHn}, pour $(U,V)$ paire des groupe abélien simplicial, on a un isomorphe fonctoriel~:
   $$\pi_n(U,V,0)\simeq H_n(U/V)$$
   Donc $\pi_n(\Z X,\Z A,0)\ra \pi_n(\Z X/\Z x,\Z A/\Z x,0)$ est un isomorphisme, et donc on dispose d'un morphisme~:
   $$\mathcal{H}_n(X,A,x):\pi_n(X,A,x)\ra H_n(X,A)$$
@@ -3384,7 +3410,7 @@ est donnée dans \cite[4.37]{Hatc} (prendre $A=x$).
 \end{defi}
 
 \begin{rem}
-  De la compatibilité aux suites exactes longues énoncée dans la [mettre ref Dold-Kan], on déduit que les morphismes de Hurewicz sont compatibles
+  De la compatibilité aux suites exactes longues énoncée dans la \sref{proposition}{pinegalHn}, on déduit que les morphismes de Hurewicz sont compatibles
   aux suites exactes longues des paires. Plus précisément, si $x\in A\subseteq X$, alors le digramme suivant commute pour $n\geq 1$~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsOCxbMSwwLCJcXHBpX24oQSx4KSJdLFsyLDAsIlxccGlfbihYLHgpIl0sWzAsMCwiXFxwaV97bisxfShYLEEseCkiXSxbMCwxLCJIX3tuKzF9KFgsQSkiXSxbMywwLCJcXHBpX3tufShYLEEseCkiXSxbMywxLCJIX3tufShYLEEpIl0sWzEsMSwiSF97bn0oQSkiXSxbMiwxLCJIX3tufShYKSJdLFszLDYsIlxccGFydGlhbCJdLFsyLDAsIlxccGFydGlhbCJdLFswLDFdLFs2LDddLFsxLDRdLFs3LDVdLFsyLDMsIlxcbWF0aGNhbHtIfV97bisxfShYLEEseCkiLDFdLFs0LDUsIlxcbWF0aGNhbHtIfV97bn0oWCxBLHgpIiwxXSxbMSw3LCJcXG1hdGhjYWx7SH1fe259KFgseCkiLDFdLFswLDYsIlxcbWF0aGNhbHtIfV97bn0oQSx4KSIsMV1d
@@ -3442,14 +3468,14 @@ les espaces simples. Ce résultat est central pour l'unicité de la construction
 
   Si $n=1$, $N\Pi$ est un espace d'Eilenberg-MacLane pour $n$ et $\Pi$.
 
-  Si $n\geq 2$, $C_*$ le complexe de chaîne défini par~:
+  Si $n\geq 1$ et $\Pi$ est abélien, $C_*$ le complexe de chaîne défini par~:
   $$C_n=\begin{cases}\Pi\text{ si }m=n\\ 0\text{ sinon}\end{cases}$$
-  On note $\Gamma C_*$ le groupe abélien simplicial associé (voir [Dold-Kan]).
+  On note $\Gamma C_*$ le groupe abélien simplicial associé (voir le \sref{théorème}{DoldKan}).
   Alors $\Gamma C_*$ est un espace d'Eilenberg-MacLane pour $n$ et $\Pi$.
 \end{prop}
 
 \begin{proof}
-  Si $n=1$, $N\Pi$ convient. On se place maintenant dans le cas $n\geq 2$. Par la [Dold-Kan], on a pour $m\geq 0$~:
+  Si $n=1$, $N\Pi$ convient. On se place maintenant dans le second cas. Par le \sref{théorème}{DoldKan}, on a pour $m\geq 0$~:
   $$\pi_m(\Gamma C_*,0)=H_n(C_ *)=\begin{cases}\Pi\text{ si }m=n\\ 0\text{ sinon}\end{cases}$$
 \end{proof}
 
@@ -3463,9 +3489,9 @@ Ci-dessous, on ne démontre l'unicité que dans le cas abélien, pour éviter de
 
 \begin{proof}
   Soit $I$ un ensemble de générateurs de $\Pi$, $X_{n-1}:=\bigvee_I\Delta^n/\partial\Delta^n$ et $\theta_{n-1}:X_{n-1}\ra K'$ le morphisme
-  associé à l'inclusion $I\ra pi_n(K,*)$. Soit $J_n$ un ensemble de générateurs du noyau de $\Z^{(I)}\ra \Pi$. On définit $X_n$ comme la somme amalgamée~:
+  associé à l'inclusion $I\ra \pi_n(K,*)$. Soit $J_n$ un ensemble de générateurs du noyau de $\Z^{(I)}\ra \Pi$. On définit $X_n$ comme la somme amalgamée~:
   \begin{center}
-    \begin{tikzcd}[column sep = 9ex]
+    \begin{tikzcd}[column sep = 10ex]
     	{\bigsqcup_{J_n}\partial\Delta^{n+1}} & X_{n-1} \\
     	{\bigsqcup_{J_n}\Delta^{n+1}} & X_n
     	\arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-2, to=1-1]
@@ -3480,7 +3506,7 @@ Ci-dessous, on ne démontre l'unicité que dans le cas abélien, pour éviter de
   Nous pouvons maintenant définir par récurrence $X_m$ pour $m\geq n$ de la façon suivante. Soit $J_m$ un ensemble de générateurs
   de $\pi_m(X_m)$. On définit alors $X_{m+1}$ comme la somme amalgamée~:
   \begin{center}
-    \begin{tikzcd}[column sep = 9ex]
+    \begin{tikzcd}[column sep = 10ex]
     	{\bigsqcup_{J_m}\partial\Delta^{n+1}} & X_{m} \\
     	{\bigsqcup_{J_m}\Delta^{n+1}} & X_{m+1}
     	\arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.1, rotate=180}, draw=none, from=2-2, to=1-1]
@@ -3499,8 +3525,8 @@ Ci-dessous, on ne démontre l'unicité que dans le cas abélien, pour éviter de
   pour $m\geq n$. Donc chaque espace d'Eilenberg-MacLane pour $n$ et $\Pi$ est homotopiquement équivalent à $X$. Ce qui conclut. 
 \end{proof}
 
-\begin{theo}
-  Soit $n\geq 1$ et $\Pi$ un groupe abélien. Alors si on note $[-,-]$ pour $\Hom{\Ho{\DEns}}{-}{-}$, on a, pour $K(\Pi,n)$ un espace
+\begin{theo}\label{EMfoncteur}
+  Soit $n\geq 1$ et $\Pi$ un groupe abélien. Alors, si on note $[-,-]$ pour $\Hom{\Ho{\DEns}}{-}{-}$, on a, pour $K(\Pi,n)$ un espace
   d'Eilenberg-MacLane pour $n$ et $\Pi$, un isomorphisme de foncteurs~:
   $$[-,K(\Pi,n)]\simeq H^n(-;\Pi)$$
 \end{theo}
@@ -3521,7 +3547,7 @@ Ci-dessous, on ne démontre l'unicité que dans le cas abélien, pour éviter de
   \begin{center}
     % https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXFogWFxcc3FjdXAgXFxaIFgiXSxbMSwwLCJcXFogWFxcb3RpbWVzXFxaIFxcRGVsdGFeMSJdLFsyLDAsIlxcWiBYIl0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCJcXHNpbSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
     \begin{tikzcd}
-    	{\Z X\sqcup \Z X} & {\Z X\otimes\Z \Delta^1} & {\Z X}
+    	{\Z X\oplus \Z X} & {\Z X\otimes\Z \Delta^1} & {\Z X}
     	\arrow[hook, from=1-1, to=1-2]
     	\arrow["\sim", two heads, from=1-2, to=1-3]
     \end{tikzcd}
@@ -3530,7 +3556,8 @@ Ci-dessous, on ne démontre l'unicité que dans le cas abélien, pour éviter de
   dans $\DAb$ de $\Z X\otimes\Z \Delta^1$ dans $A$. Or, comme les groupes abéliens dans $\DEns$ sont fibrants,
   on a~:
   $$[X,A]_{\DEns}\simeq [\Z X,A]_{\DAb}\simeq [N\Z X,N A]_{\Chp}$$
-  Or, $N\Z X\ra \Z X$ est une équivalence en homologie d'après [Dold-Kan]. Donc on a un isomorphisme fonctoriel~:
+  Or, $N\Z X\ra \Z X$ est une équivalence en homologie d'après le \sref{théorème}{DoldKan}. Et comme $\Z X$ est cofibrant,
+  on a donc un isomorphisme fonctoriel~:
   $$[X,K(\Pi,n)]_{\DEns}\simeq [\Z X,C_*]_{\Chp}\simeq \mathrm{Ext}_\Z^n(\Z X,\Pi)\simeq H^n(X;\Pi)$$
 \end{proof}
 
@@ -3579,7 +3606,7 @@ Nous introduisons maintenant une structure supplémentaire sur certaines tours d
   $$\mathcal{H}_n(X/A,A/A,A/A):\pi_n(X/A,A/A,A/A)\ra H_n(X/A,A/A)$$
   Or le morphisme naturel $(X,A) \ra (X/A,A/A)$ induit un isomorphisme en homologie. Donc, par fonctorialité du morphisme de Hurewicz
   $\mathcal{H}_n$, $\pi_n(X,A,x)\ra \pi_n(X/A,A/A)$ est un isomorphisme.
-  À l'aide du \sref{lemmedextension}{lemmedextension}, on construit un morphisme~:
+  À l'aide du \sref{lemme d'extension}{lemmedextension}, on construit un morphisme~:
   $$u:X/A\ra K(\Pi,n)$$
   qui soit un isomorphisme sur les $\pi_m$ pour $m\leq n$. On note $F\ra X$ la fibre homotopique du morphisme induit $\theta:X\ra K(\Pi,n)$.
   Comme $A\ra K(\Pi,n)$ est contractile, on a un morphisme de paires $(A,X)\ra (F,X)$. C'est un isomorphisme sur les groupes d'homotopie des paires
