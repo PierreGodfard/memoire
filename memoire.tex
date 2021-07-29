@@ -83,6 +83,7 @@
 \newcommand{\Top}{\mathrm{Top}}
 \newcommand{\Grp}{\mathrm{Grp}}
 \newcommand{\Supp}[1]{\mathrm{Supp}({#1})}
+\newcommand{\brak}[2]{{<{#1},{#2}>}}
 
 \newcommand{\sk}[2]{\mathrm{sk}_{#1}\;{#2}}
 
@@ -2283,9 +2284,376 @@ C'est l'objet de la fin de cette sous-section.
 
 \section{\texorpdfstring{Le théorème "$+=Q$"}{Le théorème "+=Q"}}
 
-Cette section reprends la démonstration du théorème $+=Q$ donnée dans \cite{Gray}.
+Cette section reprend la démonstration du théorème $+=Q$ donnée dans \cite{Gray}.
 
+\subsection{Catégories monoïdales, actions et localisations}
 
+Dans cette sous-section, nous introduisons la notion de catégorie monoïdale, et d'action sur une catégorie.
+
+\begin{defi}
+  Un catégorie monoïdale symétrique est une catégorie $S$ munie d'un foncteur~:
+  $$+:S\times S\lra S$$
+  d'un objet $0$, et d'isomorphismes naturels~:
+  \begin{description}
+    \item[(associateurs)] $\alpha_{A,B,C}:A+ (B+ C)\simeq (A+ B)+ C$~;
+    \item[(identités)]  $\eta_A:A+ 0\simeq A$ et $\epsilon_A:0+A\simeq A$~;
+    \item[(tressage)] $\beta_{A,B}:A+B\simeq B+A$ tel que $\beta_{A,B}\beta_{B,A}=\id_{B+A}$~;
+  \end{description}
+  tels que les diagrammes suivants commutent~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNSxbMCwwLCJBKyhCKyhDK0QpKSJdLFsxLDAsIkErKChCK0MpK0QpIl0sWzIsMCwiKEErKEIrQykpK0QiXSxbMiwxLCIoKEErQikrQykrRCJdLFswLDEsIihBK0IpKyhDK0QpIl0sWzAsNCwiXFxzaW0iXSxbMCwxLCJcXHNpbSIsMl0sWzEsMiwiXFxzaW0iLDJdLFs0LDMsIlxcc2ltIl0sWzIsMywiXFxzaW0iLDJdXQ==
+    \begin{tikzcd}
+    	{A+(B+(C+D))} & {A+((B+C)+D)} & {(A+(B+C))+D} \\
+    	{(A+B)+(C+D)} && {((A+B)+C)+D}
+    	\arrow["\sim" sloped, from=1-1, to=2-1]
+    	\arrow["\sim"', from=1-1, to=1-2]
+    	\arrow["\sim"', from=1-2, to=1-3]
+    	\arrow["\sim", from=2-1, to=2-3]
+    	\arrow["\sim"' sloped, from=1-3, to=2-3]
+    \end{tikzcd}
+  \end{center}
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsMyxbMCwwLCJ4KygxK3kpIl0sWzIsMCwiKHgrMSkreSJdLFsxLDEsIngreSJdLFswLDEsIlxcc2ltIl0sWzAsMiwiXFxzaW0iLDJdLFsxLDIsIlxcc2ltIl1d
+    \begin{tikzcd}
+    	{A+(0+B)} && {(A+0)+B} \\
+    	& {A+B}
+    	\arrow["\sim", from=1-1, to=1-3]
+    	\arrow["\sim"' sloped, from=1-1, to=2-2]
+    	\arrow["\sim" sloped, from=1-3, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNixbMCwwLCIoQStCKStDIl0sWzEsMCwiQysoQStCKSJdLFsyLDAsIihDK0EpK0IiXSxbMiwxLCJCKyhDK0EpIl0sWzAsMSwiKEIrQSkrQyJdLFsxLDEsIkIrKEErQykiXSxbMCwxLCJcXHNpbSJdLFsxLDIsIlxcc2ltIl0sWzIsMywiXFxzaW0iXSxbNSwzLCJcXHNpbSIsMl0sWzQsNSwiXFxzaW0iLDJdLFswLDQsIlxcc2ltIiwyXV0=
+    \begin{tikzcd}
+    	{(A+B)+C} & {C+(A+B)} & {(C+A)+B} \\
+    	{(B+A)+C} & {B+(A+C)} & {B+(C+A)}
+    	\arrow["\sim", from=1-1, to=1-2]
+    	\arrow["\sim", from=1-2, to=1-3]
+    	\arrow["\sim" sloped, from=1-3, to=2-3]
+    	\arrow["\sim"', from=2-2, to=2-3]
+    	\arrow["\sim"', from=2-1, to=2-2]
+    	\arrow["\sim"' sloped, from=1-1, to=2-1]
+    \end{tikzcd}
+  \end{center}
+\end{defi}
+
+\begin{rem}
+  Les diagrammes commutatifs de la définition permettent de montrer une forme d'unicité à unique isomorphisme près sur les formules formelles
+  composées de $+$,$()$ et $0$~: le théorème de cohérence pour les catégories monoïdales. Pour un énoncé précis et une démonstration,
+  voir \cite[Chp. VII]{Macl}.
+\end{rem}
+
+\begin{defi}
+  Un foncteur monoïdal $f:S\lra T$ entre deux catégories monoïdales symétriques est la donnée d'un foncteur~:
+  $$f:S\lra T$$
+  et d'un isomorphisme naturel $f(A+B)\simeq fA+fB$ et d'un isomorphisme $f0\sim 0$ tels que les diagrammes suivants commutent~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNixbMCwwLCJmKChBK0IpK0MpIl0sWzEsMCwiZihBK0IpK2ZDIl0sWzIsMCwiKGZBK2ZCKStmQyJdLFsyLDEsImZBKyhmQitmQykiXSxbMSwxLCJmQStmKEIrQykiXSxbMCwxLCJmKEErKEIrQykpIl0sWzAsNSwiXFxzaW0iXSxbMCwxLCJcXHNpbSIsMl0sWzEsMiwiXFxzaW0iLDJdLFsyLDMsIlxcc2ltIiwyXSxbNSw0LCJcXHNpbSJdLFs0LDMsIlxcc2ltIl1d
+    \begin{tikzcd}
+    	{f((A+B)+C)} & {f(A+B)+fC} & {(fA+fB)+fC} \\
+    	{f(A+(B+C))} & {fA+f(B+C)} & {fA+(fB+fC)}
+    	\arrow["\sim" sloped, from=1-1, to=2-1]
+    	\arrow["\sim"', from=1-1, to=1-2]
+    	\arrow["\sim"', from=1-2, to=1-3]
+    	\arrow["\sim"' sloped, from=1-3, to=2-3]
+    	\arrow["\sim", from=2-1, to=2-2]
+    	\arrow["\sim", from=2-2, to=2-3]
+    \end{tikzcd}
+  \end{center}
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNCxbMCwwLCJmKDArQSkiXSxbMSwwLCJmMCtmQSJdLFsxLDEsIjArZkEiXSxbMCwxLCJmQSJdLFswLDEsIlxcc2ltIl0sWzAsMywiXFxzaW0iLDJdLFszLDIsIlxcc2ltIiwyXSxbMSwyLCJcXHNpbSJdXQ==
+    \begin{tikzcd}
+      {f(0+A)} & {f0+fA} \\
+      fA & {0+fA}
+      \arrow["\sim", from=1-1, to=1-2]
+      \arrow["\sim"' sloped, from=1-1, to=2-1]
+      \arrow["\sim"', from=2-1, to=2-2]
+      \arrow["\sim" sloped, from=1-2, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNCxbMCwwLCJmKEErQikiXSxbMSwwLCJmKEIrQSkiXSxbMSwxLCJmQitmQSJdLFswLDEsImZBK2ZCIl0sWzAsMSwiXFxzaW0iXSxbMSwyLCJcXHNpbSJdLFszLDIsIlxcc2ltIiwyXSxbMCwzLCJcXHNpbSIsMl1d
+    \begin{tikzcd}
+      {f(A+B)} & {f(B+A)} \\
+      {fA+fB} & {fB+fA}
+      \arrow["\sim", from=1-1, to=1-2]
+      \arrow["\sim" sloped, from=1-2, to=2-2]
+      \arrow["\sim"', from=2-1, to=2-2]
+      \arrow["\sim"' sloped, from=1-1, to=2-1]
+    \end{tikzcd}
+  \end{center}
+\end{defi}
+
+\begin{defi}
+  Une action à gauche d'une catégorie monoïdale symétrique $S$ sur une catégorie $X$ est la donnée d'un foncteur~:
+  $$+:S\times X\ra X$$
+  et de deux isomorphismes naturels $A+(B+F)\simeq (A+B)+F$ et $0+F\simeq F$ (pour $A$, $B$ dans $S$ et $F$ dans $X$),
+  tels que les digrammes suivants commutent (avec $F$ dans $X$, les autres dans $S$)~:
+  \begin{center}
+    \begin{tikzcd}
+    	{A+(B+(C+F))} & {A+((B+C)+F)} & {(A+(B+C))+F} \\
+    	{(A+B)+(C+F)} && {((A+B)+C)+F}
+    	\arrow["\sim" sloped, from=1-1, to=2-1]
+    	\arrow["\sim"', from=1-1, to=1-2]
+    	\arrow["\sim"', from=1-2, to=1-3]
+    	\arrow["\sim", from=2-1, to=2-3]
+    	\arrow["\sim"' sloped, from=1-3, to=2-3]
+    \end{tikzcd}
+  \end{center}
+  \begin{center}
+    \begin{tikzcd}
+    	{A+(0+F)} && {(A+0)+F} \\
+    	& {A+F}
+    	\arrow["\sim", from=1-1, to=1-3]
+    	\arrow["\sim"' sloped, from=1-1, to=2-2]
+    	\arrow["\sim" sloped, from=1-3, to=2-2]
+    \end{tikzcd}
+  \end{center}
+\end{defi}
+
+\begin{ex}
+  Par exemple, $+:S\times S\ra S$ induit une action naturelle de $S$ sur $S$.
+\end{ex}
+
+\begin{defi}
+  Un foncteur $g:X\lra Y$ entre deux catégories munies d'une $S$-action préserve l'action s'il existe un isomorphisme naturel~:
+  $A+gF\simeq g(A+F)$ tel que les diagrammes suivants commutent~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNSxbMCwwLCIoQStCKStnRiJdLFsxLDAsImcoKEErQikrRikiXSxbMiwwLCJnKEErKEIrRikpIl0sWzIsMSwiQStnKEIrRikiXSxbMCwxLCJBKyhCK2dGKSJdLFs0LDMsIlxcc2ltIl0sWzIsMywiXFxzaW0iLDJdLFsxLDIsIlxcc2ltIiwyXSxbMCwxLCJcXHNpbSIsMl0sWzAsNCwiXFxzaW0iXV0=
+    \begin{tikzcd}
+      {(A+B)+gF} & {g((A+B)+F)} & {g(A+(B+F))} \\
+      {A+(B+gF)} && {A+g(B+F)}
+      \arrow["\sim", from=2-1, to=2-3]
+      \arrow["\sim"' sloped, from=1-3, to=2-3]
+      \arrow["\sim"', from=1-2, to=1-3]
+      \arrow["\sim"', from=1-1, to=1-2]
+      \arrow["\sim" sloped, from=1-1, to=2-1]
+    \end{tikzcd}
+  \end{center}
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsMyxbMCwwLCIwK2dGIl0sWzEsMSwiZ0YiXSxbMiwwLCJnKDArRikiXSxbMCwxLCJcXHNpbSJdLFsyLDEsIlxcc2ltIiwyXSxbMCwyLCJcXHNpbSIsMl1d
+    \begin{tikzcd}
+      {0+gF} && {g(0+F)} \\
+      & gF
+      \arrow["\sim" sloped, from=1-1, to=2-2]
+      \arrow["\sim"' sloped, from=1-3, to=2-2]
+      \arrow["\sim"', from=1-1, to=1-3]
+    \end{tikzcd}
+  \end{center}
+\end{defi}
+
+Nous allons maintenant introduire la notion d'action inversible et de localisation par une action.
+Mais avant de la donner dans la cadre des catégories, voyons ce que sont ces définitions dans le cadre des actions
+de monoïdes symétriques sur des ensemble.
+
+Ce cas est inclus dans celui décrit plus haut. En effet, on peut voir un ensemble comme une catégorie
+discrète (les seuls morphismes sont les identités). Une structure de catégorie monoïdale sur un ensemble est alors 
+équivalente à une structure de monoïde.
+
+\begin{propdefi}
+  Soit $S$ un monoïde symétrique agissant sur un ensemble $X$. On note $S^{-1}X$ le quotient de $S\times X$
+  par l'action de $S$ sur les deux coordonnées, ie.~:
+  $$S^{-1}X=S\times X/(t,x)\sim (s+t,s+x)$$
+  L'ensemble $S^{-1}X$ a une $S$-action donnée par $s+(t,x)=(t,s+x)$, et on a un morphisme de $S$-ensembles~:
+  \[
+  \begin{array}{lcl}
+    X & \lra    & S^{-1}X \\
+    x & \mapsto & (0,x)
+  \end{array}
+  \]
+  Un monoïde symétrique $T$ agit de façon inversible sur un ensemble $Y$ si $s+(-):Y\ra Y$ est un isomorphisme pour tout $s$ dans $T$.
+  Alors l'action de $S$ sur $S^{-1}X$ est inversible et l'action de $S$ sur $X$ est inversible si et seulement si $X\ra S^{-1}X$
+  est un isomorphisme.
+\end{propdefi}
+
+\begin{proof}
+  L'action de $S$ sur la deuxième coordonnée de $S\times X$ passe au quotient car $u+(s+t,s+x) = (s+t,s+(u+x))$.
+  Un inverse à $s+(-)$ dans $S^{-1}X$ est donné par $(t,x)\mapsto (s+t,x)$. La dernière affirmation est immédiate.
+\end{proof}
+
+\begin{defi}
+  Soit $S$ une catégorie monoïdale symétrique agissant sur un ensemble $X$. On dit que l'action est inversible si pour tout $A$ dans $S$,
+  le foncteur~:
+  \[
+  \begin{array}{lcl}
+    X & \lra    & X \\
+    F & \mapsto & A+F
+  \end{array}
+  \]
+  est une équivalence d'homotopie (où la catégorie $X$ est vue comme un ensemble simplicial via le \sref{foncteur nerf}{definitionnerf}).
+\end{defi}
+
+\begin{defi}
+  Soit $S$ catégorie symétrique monoïdale agissant sur $X$ catégorie. On définit la catégorie $\brak{S}{X}$ comme la catégorie dont les~:
+  \begin{description}
+    \item[$\bullet$] objets sont les objets de X~;
+    \item[$\bullet$] morphismes de $F$ dans $G$ sont les quadruplets $(F,G,A,A+F\ra G)$ avec $A$ dans $S$, à isomorphismes près.
+                    Un isomorphisme  $(F,G,A,A+F\ra G)\lra (F,G,B,B+F\ra G)$ est la donnée d'un isomorphisme $\phi:A\simeq B$ tel que le diagramme~:
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsMyxbMCwwLCJBK0YiXSxbMSwxLCJHIl0sWzIsMCwiQitGIl0sWzAsMV0sWzIsMV0sWzAsMiwiXFxzaW0iLDJdXQ==
+      \begin{tikzcd}
+        {A+F} && {B+F} \\
+        & G
+        \arrow[from=1-1, to=2-2]
+        \arrow[from=1-3, to=2-2]
+        \arrow["\sim"', from=1-1, to=1-3]
+      \end{tikzcd}
+    \end{center}
+    soit commutatif.
+    \item[$\bullet$] les compositions sont comme suit. La composée de $(F,G,A,A+F\ra G)$ et $(G,H,A,B+G\ra H)$ est $(F,H,B+A,B+A+F\ra B+G\ra H)$. 
+  \end{description}
+\end{defi}
+
+\begin{propdefi}
+  Soit $S$ une catégorie symétrique monoïdale agissant sur une catégorie $X$. On pose $S^{-1}X:=\brak{S}{S\times X}$,
+  où $S$ agit sur les deux facteurs de $S\times X$.
+
+  Alors $S$ agit sur $S^{-1}X$ par $A+(B,F):=(B,A+F)$, l'action est inversible et on dispose d'un foncteur préservant l'action~:
+  \[
+  \begin{array}{lcl}
+    X & \lra    & S^{-1}X \\
+    F & \mapsto & (0,F)
+  \end{array}
+  \]
+\end{propdefi}
+
+\begin{proof}
+  L'action de $S$ sur les morphismes est donnée comme suit. Soit $u:\alpha\ra\beta$ morphisme dans $S$ et $v=((A,F),(B,G),C,(C+A,C+F)\ra (B,G))$
+  morphisme dans $S^{-1}X$. Alors~:
+  \begin{align*}
+  u+v:=(&(\alpha+A,\alpha+F),(\beta+B,\beta+G),C,\\
+          &(\alpha+C+A,\alpha+C+F)\ra (\beta+C+A,\beta+C+F)\ra (\beta+B,\beta +G))
+  \end{align*}
+  On vérifie facilement que les bons diagrammes commutent.
+
+  Un inverse à homotopie près à $s_A:A+(-)$ dans $S^{-1}X$ est donné par $i_A:(B,F)\ra (A+B,F)$. En effet la collection de morphismes~:
+  $$((B,F),(A+B,A+F),A,A+(B,F)\overset{=}{\ra}(A+B,A+F))$$
+  induit une transformation naturelle entre $\id_{S^{-1}X}$ et $i_A\circ s_A=s_A\circ i_A$.
+\end{proof}
+
+On voit que le quotient par $S$ dans le cas des ensembles est ici remplacé par la construction $\brak{S}{(-)}$.
+Montrons par un petit calcul que ces deux construction coïncident à homotopie près dans le cas des ensembles. Dans ce calcul,
+on notera $S^{-1}X$ pour le quotient.
+
+Dans ce cadre, les morphismes dans $\brak{S}{S\times X}$ sont comme suit. Un morphisme $(t,x)\ra (s,y)$ est la donnée d'un $u\in S$
+tel que $(s+t,s+x)=(s,y)$. On peut donc identifier naturellement $\pi_0(\brak{S}{S\times X})$ à $S^{-1}X$.
+On a donc un foncteur naturel $p_X:\brak{S}{S\times X}\ra S^{-1}X$. On vérifie aisément qu'il préserve l'action de $S$.
+
+Montrons maintenant que $p_X$ est une équivalence d'homotopie. Pour cela, soit $(t,x)$ dans $S\times X$, on note $[(t,x)]$ sa classe dans $S^{-1}X$.
+On a alors $\brak{S}{S\times X}\downarrow [(t,x)]=p_X^{-1}[(t,x)]$. D'après le \sref{théorème A}{theoremeA}, il suffit de montrer que
+$p_X^{-1}[(t,x)]$ est contractile. Pour cela nous allons montrer que c'est une catégorie filtrante. En effet, si $u,v:(s,y) \ra (r,z)$
+on a $s+u=s+v:(s,y)\ra (s+r,s+z)$~; si $(s,y)$ et $(r,z)$ sont dans $p_X^{-1}[(t,x)]$ on a $(s,y)\sim\dotsb\sim (r,z)$,où $\sim$ est induit
+par l'action de $S$~; alors si on note $\sigma$ la somme de toutes les premières coordonnées qui apparaissent dans la chaîne,
+on a $\sigma +s=\sigma + r$ et $\sigma+y=\sigma+z$.
+
+Revenons maintenant au cadre des catégories. Dans la majorité de la suite, nous nous restreindrons au cas où $S$ est un groupoïde.
+
+\begin{prop}\label{groupoideSScontractile}
+  Soit $S$ une catégorie monoïdale symétrique. Si $S$ est un groupoïde, alors $0$ est initial dans $\brak{S}{S}$, et
+  en particulier, $\brak{S}{S}$ est contractile.
+\end{prop}
+
+\begin{proof}
+  Soit $A$ dans $S$. Un morphisme $0\ra A$ dans $\brak{S}{S}$ est un $B$ et un isomorphisme $B+0\simeq A$, à isomorphisme près.
+  Or, si $C$, $C+0\simeq A$ induit aussi un morphisme, il existe un unique isomorphisme $C\simeq B$.
+  Donc il existe au plus un unique morphisme $0\ra A$. Or $A+0\simeq A$ en induit un.
+\end{proof}
+
+Dans ce cas, $\brak{S}{S}$ a pour objet initial $0$, et est donc contractile.
+
+\begin{defi}
+  Soit $S$ une catégorie monoïdale symétrique agissant sur $X$ catégorie. On définit la première projection~:
+  \[
+  \begin{array}{llcl}
+    \rho:&S^{-1}X                  &\ra     & \brak{S}{S} \\
+         &(B,F)                    &\mapsto & B \\
+         &(A,(A+B,A+F)\ra (B',F')) &\mapsto & (A,A+B\ra B') 
+  \end{array}
+  \]
+\end{defi}
+
+\begin{lem}\label{lemmeactioncategorie}
+  Soit $S$ une catégorie monoïdale symétrique agissant sur $X$ catégorie. Alors, sous les deux conditions suivantes $\rho$ est cofibrée~:
+  \begin{description}
+    \item[$(1)$] tous les morphismes de $S$ sont des monomorphismes~;
+    \item[$(2)$] les foncteurs de translation $A+(-):X\ra X$ sont fidèles.
+  \end{description}
+\end{lem}
+
+\begin{proof}
+  On se donne un morphisme $(C,C+B\ra B'',C+F\ra F'')$ dans $S^{-1}X$ et une factorisation de la première coordonnée en $(A,A+B\ra B')$
+  et $(A',A'+B'\ra B'')$.
+  On a alors le diagramme suivant~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNixbMCwwLCIoQixGKSJdLFswLDEsIkIiXSxbMSwwLCIoQicsRitBKSJdLFsyLDAsIihCJycsRicnKSJdLFsyLDEsIkInJyJdLFsxLDEsIkInIl0sWzAsMiwiKEEsQStCXFxyYSBCJyxcXGlkX3tGK0F9KSIsMl0sWzIsMywiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsyLDUsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMCwxLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEsNSwiKEEsQStCXFxyYSBCJykiLDJdLFs1LDQsIihBJyxBJytCJ1xccmEgQicnKSIsMl0sWzAsMywiKEMsQitDXFxyYSBCJycsRitDXFxyYSBGJycpIiwwLHsiY3VydmUiOi0yfV1d
+    \begin{tikzcd}[column sep = 15ex]
+      {(B,F)} & {(B',F+A)} & {(B'',F'')} \\
+      B & {B'} & {B''}
+      \arrow["{(A,A+B\ra B',\id_{A+F})}"', from=1-1, to=1-2]
+      \arrow[dashed, from=1-2, to=1-3]
+      \arrow[maps to, from=1-3, to=2-3]
+      \arrow[maps to, from=1-2, to=2-2]
+      \arrow[maps to, from=1-1, to=2-1]
+      \arrow["{(A,A+B\ra B')}"', from=2-1, to=2-2]
+      \arrow["{(A',A'+B'\ra B'')}"', from=2-2, to=2-3]
+      \arrow["{(C,C+B\ra B'',C+F\ra F'')}", bend left =12pt, from=1-1, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  On cherche à trouver une flèche en pointillés qui fasse commuter le diagramme et à montrer son unicité.
+  On dispose du triangle commutatif dans $S$~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsMyxbMCwwLCJBJytBK0IiXSxbMiwwLCJDK0IiXSxbMSwxLCJCJyciXSxbMCwxLCJcXHNpbSJdLFsxLDJdLFswLDJdXQ==
+    \begin{tikzcd}
+      {A'+A+B} && {C+B} \\
+      & {B''}
+      \arrow["\sim", from=1-1, to=1-3]
+      \arrow[from=1-3, to=2-2]
+      \arrow[from=1-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  Donc, comme tous les morphismes sont des monomorphismes, il existe un unique isomorphisme $C\simeq A'+A$ qui induise celui du diagramme.
+  Ainsi, le morphisme $A'+A+F\simeq C+F\ra F''$ est la flèche en pointillés recherchée.
+  L'unicité découle immédiatement de la fidélité de la translation $A+(-):X\ra X$.
+\end{proof}
+
+\begin{theo}
+  Soit $S$ un groupoïde symétrique monoïdal agissant sur une catégorie $X$. Alors s'équivalent~:
+  \begin{description}
+    \item[$(1)$] $X\lra S^{-1}X$ est une équivalence d'homotopie~;
+    \item[$(2)$] L'action de $S$ sur $X$ est inversible. 
+  \end{description}
+\end{theo}
+
+\begin{proof}
+  On a, pour chaque $B$, un isomorphisme naturel~:
+  \[
+  \begin{array}{lcl}
+    X &\simeq  & \rho^{-1}B \\
+    F &\mapsto & (B,F)
+  \end{array}
+  \]
+  Et alors le changement de base $\rho^{-1}B\lra \rho^{-1}B'$ induit par $(A,A+B\ra B')$ s'identifie à la translation par $A+(-)$
+  (voir la démonstration du \sref{lemme}{lemmeactioncategorie} ci-dessus).
+  Ainsi, si l'action est inversible, le \sref{théorème B}{theoremeB} implique que le diagramme~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNCxbMCwwLCJYPVxccmhvXnstMX0wIl0sWzEsMCwiU157LTF9WCJdLFsxLDEsIlxcYnJha3tTfXtTfSJdLFswLDEsIioiXSxbMywyLCIwIl0sWzAsM10sWzAsMV0sWzEsMl1d
+    \begin{tikzcd}
+      {X=\rho^{-1}0} & {S^{-1}X} \\
+      {*} & {\brak{S}{S}}
+      \arrow["0", from=2-1, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=1-1, to=1-2]
+      \arrow[from=1-2, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  est homotopiquement cartésien. Or, comme $S$ est un groupoïde, par la \sref{proposition}{groupoideSScontractile},$\brak{S}{S}$ est contractile.
+  Donc $X\lra S^{-1}X$ est une équivalence d'homotopie.
+
+  Réciproquement, si $X\lra S^{-1}X$ est une équivalence d'homotopie, alors les translation sur $X$ s'identifient à homotopie près à celles sur
+  $S^{-1}X$. Or, l'action de $S$ sur $S^{-1}X$ est inversible. Ce qui conclut.
+\end{proof}
+
+\subsubsection{Calculs d'homologie de localisés}
 
 \section{\texorpdfstring{Propriétés de la $K$-théorie supérieure}{Propriétés de la K-théorie supérieure}}
 
