@@ -84,7 +84,7 @@
 \newcommand{\Grp}{\mathrm{Grp}}
 \newcommand{\Supp}[1]{\mathrm{Supp}({#1})}
 \newcommand{\brak}[2]{{<{#1},{#2}>}}
-
+\newcommand{\Tot}[1]{{\mathrm{Tot}({#1})}}
 \newcommand{\sk}[2]{\mathrm{sk}_{#1}\;{#2}}
 
 \newcommand{\Ho}[1]{\mathrm{Ho}({#1})}
@@ -2086,7 +2086,7 @@ On a directement le corollaire suivant.
 Plus loin, nous auront besoin d'une version améliorée de ces résultats. On rappelle qu'un espace $X$ est simple si en chaque point $x\in X_0$ et chaque
 $n\geq 1$, $\pi_1(X,x)$ agit trivialement sur $\pi_n(X,x)$. En particulier, $\pi_1(X,x)$ est abélien pour tout $x\in X_0$.
 
-\begin{lem}
+\begin{lem}\label{lemmeplussurZ}
   Soit $X$ connexe dans $\DEns$ et $x\in X_0$ tels que le sous-groupe $C:=[\pi_1(X,x),\pi_1(X,x)]$ soit parfait.
   Soit $f:X\ra X^+$ une construction $+$ pour $C$ telle que $X^+$ soit simple.
   Si $g:X\ra Y$ vérifie~:
@@ -2587,7 +2587,7 @@ Dans ce cas, $\brak{S}{S}$ a pour objet initial $0$, et est donc contractile.
   \begin{center}
     % https://q.uiver.app/?q=WzAsNixbMCwwLCIoQixGKSJdLFswLDEsIkIiXSxbMSwwLCIoQicsRitBKSJdLFsyLDAsIihCJycsRicnKSJdLFsyLDEsIkInJyJdLFsxLDEsIkInIl0sWzAsMiwiKEEsQStCXFxyYSBCJyxcXGlkX3tGK0F9KSIsMl0sWzIsMywiIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzMsNCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsyLDUsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMCwxLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEsNSwiKEEsQStCXFxyYSBCJykiLDJdLFs1LDQsIihBJyxBJytCJ1xccmEgQicnKSIsMl0sWzAsMywiKEMsQitDXFxyYSBCJycsRitDXFxyYSBGJycpIiwwLHsiY3VydmUiOi0yfV1d
     \begin{tikzcd}[column sep = 15ex]
-      {(B,F)} & {(B',F+A)} & {(B'',F'')} \\
+      {(B,F)} & {(B',A+F)} & {(B'',F'')} \\
       B & {B'} & {B''}
       \arrow["{(A,A+B\ra B',\id_{A+F})}"', from=1-1, to=1-2]
       \arrow[dashed, from=1-2, to=1-3]
@@ -2616,7 +2616,7 @@ Dans ce cas, $\brak{S}{S}$ a pour objet initial $0$, et est donc contractile.
   L'unicité découle immédiatement de la fidélité de la translation $A+(-):X\ra X$.
 \end{proof}
 
-\begin{theo}
+\begin{theo}\label{theoremeactioninversible}
   Soit $S$ un groupoïde symétrique monoïdal agissant sur une catégorie $X$. Alors s'équivalent~:
   \begin{description}
     \item[$(1)$] $X\lra S^{-1}X$ est une équivalence d'homotopie~;
@@ -2632,7 +2632,7 @@ Dans ce cas, $\brak{S}{S}$ a pour objet initial $0$, et est donc contractile.
     F &\mapsto & (B,F)
   \end{array}
   \]
-  Et alors le changement de base $\rho^{-1}B\lra \rho^{-1}B'$ induit par $(A,A+B\ra B')$ s'identifie à la translation par $A+(-)$
+  Et alors le changement de cobase $\rho^{-1}B\lra \rho^{-1}B'$ induit par $(A,A+B\ra B')$ s'identifie à la translation par $A+(-)$
   (voir la démonstration du \sref{lemme}{lemmeactioncategorie} ci-dessus).
   Ainsi, si l'action est inversible, le \sref{théorème B}{theoremeB} implique que le diagramme~:
   \begin{center}
@@ -2654,6 +2654,781 @@ Dans ce cas, $\brak{S}{S}$ a pour objet initial $0$, et est donc contractile.
 \end{proof}
 
 \subsubsection{Calculs d'homologie de localisés}
+
+Le but de cette sous-section est de calculer $H_*(S^{-1}X)$ en fonction de $H_*(X)$ sous certaines hypothèses sur l'action de $S$ sur $X$.
+
+On se fixe dans cette sous-section une catégorie monoïdale symétrique $S$ agissant sur une catégorie $X$.
+
+Si $u:s\ra s'$ est un morphisme dans $S$, il induit une transformation naturelle $s+(-)\Rightarrow s'+(-):X\times\Delta^1\ra X$,
+et donc une équivalence d'homotopie entre $s+(-)$ et $s'+(-)$. Ainsi, on a une action naturelle de $\pi_0(S)$ sur $X$ vu comme objet de $\Ho{\DEns}$
+L'ensemble $\pi_0(S)$ est naturellement un monoïde symétrique via $+$.
+
+En particulier, $\pi_0(S)$ agit sur $H_*(X)$. De même, $\pi_0(S)$ agit sur $H_*(S^{-1}X)$, et comme l'action de $S$ est inversible,
+$\pi_0(S)$ agit sur $H_*(S^{-1}X)$ par automorphisme.
+
+Donc, le morphisme $X\ra S^{-1}X$ induit un morphisme~:
+$$(\pi_0)^{-1}H_*(X)\lra H_*(S^{-1}X)$$
+La localisation désigne ici la localisation du $\Z[\pi_0(S)]$-module $H_*(X)$ par la partie multiplicative $\pi_0(S)$.
+
+On peut maintenant énoncer le résultat principale de la sous-section.
+
+\begin{theo}\label{theoremehomologielocalisation}
+  Soit $S$ une groupoïde monoïdal symétrique agissant sur une catégorie $X$, telles que les translations $A+(-)$ soient fidèles pour tout $A$ dans $S$.
+  Alors le morphisme construit ci-dessus~:
+  $$(\pi_0)^{-1}H_*(X)\lra H_*(S^{-1}X)$$
+  est un isomorphisme.
+\end{theo}
+
+\begin{defi}\label{definitionmbar}
+  Si $M$ est un $\Z[\pi_0(S)]$-module, on pose~:
+  \[
+  \begin{array}{llcl}
+    \overline{M}:& \brak{S}{S}   & \ra     & \Ab \\
+            & B             & \mapsto & M \\
+            & (A,A+B\ra B') & \mapsto & [A]+(-)
+  \end{array}
+  \]
+\end{defi}
+
+\begin{proof}[Démonstration du théorème]
+  D'après le \sref{lemme}{lemmeactioncategorie} et la démonstration du \sref{théorème}{theoremeactioninversible}, on a~:
+  \begin{description}
+    \item[$(i)$] $\rho:S^{-1}X\lra \brak{S}{S}$ est cofibrée~;
+    \item[$(ii)$] on a une identification naturelle $\rho^{-1}B\simeq X$~;
+    \item[$(iii)$] via cette identification, les changement de cobase d'identifient aux translations.   
+  \end{description}
+  On considère l'ensemble bisimplicial $T_{\bullet,\bullet}$ définit par~:
+  \begin{align*}
+    T_{pq}:=\{&((A_0,F_0)\ra\dotsb\ra (A_q,F_q),A_q\ra B_0,B_0\ra\dotsb\ra B_p) \\
+               &\mid B_i\in \brak{S}{S},\; (A_j,F_j)\in S^{-1}X\}
+  \end{align*}
+  et le bicomplexe de chaîne associé~:
+  $$C_{pq}:=\Z T_{pq}$$
+  On a une action naturelle de $S$ sur $T_{pq}$ par~:
+  \begin{align*}
+    U+&((A_0,F_0)\ra\dotsb\ra (A_q,F_q),A_q\ra B_0,B_0\ra\dotsb\ra B_p) \\
+      &:=((A_0,U+F_0)\ra\dotsb\ra (A_q,U+F_q),A_q\ra B_0,B_0\ra\dotsb\ra B_p)
+  \end{align*}
+  Cette action passe naturellement à $C_{\bullet,\bullet}$.
+  
+  On filtre $\Tot{C}$ par la seconde coordonnée~:
+  $$F_q\Tot{C}_n:=\bigoplus_{i+j=n,j\leq q}C_{ij}$$
+  On note $E^r_{pq}$ la suite spectrale de cette filtration, voir \sref{la sous-section}{suitespectrale} (attention, les indices sont transposés ici).
+  On a~:
+  $$E^{0}_{pq}=C_{pq}=\bigoplus_{(A_0,F_0)\ra\dotsb\ra (A_q,F_q)}\Z N(\brak{S}{S}\uparrow B_q)_p$$
+  Et $\partial^0:E^{0}_{pq}\ra E^{0}_{(p-1)q}$ s'identifie sur chaque coordonnée à la différentielle de $\Z N(\brak{S}{S}\uparrow B_q)$.
+  Donc, on a immédiatement~:
+  $$E^1_{pq}=\bigoplus_{(A_0,F_0)\ra\dotsb\ra (A_q,F_q)}  H_p(\brak{S}{S}\uparrow A_q)
+  =\begin{cases}
+    0&\text{ si }q>0 \\
+    \Z N(S^{-1}X)_p&\text{ sinon}
+  \end{cases}$$
+  On remarque que l'action $S$ induit ici une structure de bicomplexe de $\Z[\pi_0(S)]$-modules sur $E^1_{\bullet\bullet}$. 
+  De quoi on déduit~:
+  $$E^1_{pq}=\begin{cases}
+    0&\text{ si }q>0 \\
+    H_p(S^{-1}X)&\text{ sinon}
+  \end{cases}$$
+  On a donc un isomorphisme $H_p(\Tot{C})\simeq H_p(S^{-1}X)$. L'action induite de $\pi_0(S)$ sur $H_p(S^{-1}X)$ est alors celle décrite plus haut.
+
+  On filtre maintenant $\Tot{C}$ par la première coordonnée~:
+  $$F'_p\Tot{C}_n:=\bigoplus_{i+j=n,i\leq p}C_{ij}$$
+  On note $E'^r_{pq}$ la suite spectrale associée.
+  On a~:
+  $$E'^{0}_{pq}=C_{pq}=\bigoplus_{B_0\ra\dotsb\ra B_p}\Z N(\rho\downarrow B_0)_q$$
+  Et $\partial'^0:E'^{0}_{pq}\ra E'^{0}_{p(q-1)}$ s'identifie sur chaque coordonnée à la différentielle de $\Z N(\rho\downarrow B_0)$.
+  Donc, on a immédiatement~:
+  $$E'^1_{pq}=\bigoplus_{B_0\ra\dotsb\ra B_p} H_q(\rho\downarrow B_0)\simeq \bigoplus_{B_0\ra\dotsb\ra B_p} H_q(X)$$
+  En effet, comme $\rho$ est cofibrée et par le point $(iii)$ ci-dessus, $\rho\downarrow B\ra \rho^{-1}B\ra X$ est une chaîne fonctorielle d'équivalences
+  faibles.
+  On remarque ici aussi que l'action $S$ induit ici une structure de bicomplexe de $\Z[\pi_0(S)]$-modules sur $E'^1_{\bullet\bullet}$.
+  On en déduit~:
+  $$E'^2_{pq}=H_p(\brak{S}{S};\overline{H_q(X)})$$
+  où $\bar{H_q(X)}$ est donné par la construction de la \sref{définition}{definitionmbar}.
+  L'action de $\pi_0(S)$ sur $E'^2_{pq}$ est induite par l'action par translation sur $H_q(X)$.
+  Comme l'action de $\pi_0(S)$ sur $E^1_{\bullet\bullet}$ et l'action sur $E'^1_{\bullet\bullet}$ proviennent d'une même action
+  de $S$ sur $C$, on a convergence d'une suite spectrale de $\Z[\pi_0(S)]$-modules~:
+  $$H_p(\brak{S}{S};\overline{H_q(X)})\Longrightarrow H_p(S^{-1}X)$$
+  Or, l'action de $\pi_0(S)$ sur $H_p(S^{-1}X)$ est inversible, et la localisation est exacte, et de plus~:
+  $$(\pi_0(S))^{-1}E'^1_{pq}=\bigoplus_{B_0\ra\dotsb\ra B_p} (\pi_0(S))^{-1}H_q(X)$$
+  Donc, on a également convergence de la suite spectrale~:
+  $$H_p(\brak{S}{S};\overline{(\pi_0(S))^{-1}H_q(X)})\Longrightarrow H_p(S^{-1}X)$$
+  Or, l'action de $<S,S>$ sur $\overline{(\pi_0(S))^{-1}H_q(X)}$ est inversible, et $\brak{S}{S}$ est contractile.
+  Donc $H_p(\brak{S}{S};\overline{(\pi_0(S))^{-1}H_q(X)})$ est une homologie à coefficients d'un espace contractile.
+  Donc~:
+  $$H_p(\brak{S}{S};\overline{(\pi_0(S))^{-1}H_q(X)})=\begin{cases}
+    (\pi_0(S))^{-1}H_q(X)&\text{ si }p=0 \\
+    0                    &\text{sinon}
+  \end{cases}$$
+  On a donc un isomorphisme pour $p\geq 0$~:
+  $$v:(\pi_0(S))^{-1}H_p(X)\simeq H_p(S^{-1}X)$$
+
+  Il reste à montrer que cet isomorphisme est induit par le morphisme~:
+  $$(\pi_0(S))^{-1}H_p(X)\ra H_p(S^{-1}X)$$
+  construit plus haut.
+  Pour cela, on remarque que la suite $X\ra S^{-1}X\ra \brak{S}{S}$ est fonctorielle en $S$.
+  Or on a un morphisme de catégories monoïdales symétriques $*\ra S$. On a donc un diagramme commutatif~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNixbMCwwLCJYIl0sWzEsMCwiWCJdLFsyLDAsIioiXSxbMCwxLCJYIl0sWzEsMSwiU157LTF9WCJdLFsyLDEsIlxcYnJha3tTfVN7fSJdLFsyLDUsIjAiXSxbMSw0LCJpIl0sWzEsMiwiZyJdLFs0LDUsImYiXSxbMCwxXSxbMCwzXSxbMyw0XV0=
+    \begin{tikzcd}
+      X & X & {*} \\
+      X & {S^{-1}X} & {\brak{S}S{}}
+      \arrow["0", from=1-3, to=2-3]
+      \arrow["i", from=1-2, to=2-2]
+      \arrow["g", from=1-2, to=1-3]
+      \arrow["f", from=2-2, to=2-3]
+      \arrow[equal, from=1-1, to=1-2]
+      \arrow[equal, from=1-1, to=2-1]
+      \arrow[from=2-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  Ce digramme induit un morphisme d'ensemble bisimpliciaux $T(g)\ra T(f)$, et donc un morphisme entre les suites spectrales.
+  Nous disposons donc du diagramme commutatifs suivant~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsOSxbMCwwLCJIX3EoWCk9SF8wKCo7XFxvdmVybGluZXtIX3EoWCl9KSJdLFsxLDAsIkhfcShcXFRvdHtcXFogVChnKX0pIl0sWzIsMCwiSF9xKFgpIl0sWzIsMSwiSF9xKFNeey0xfVgpIl0sWzEsMSwiSF9xKFxcVG90e1xcWiBUKGYpfSkiXSxbMCwxLCJIXzAoXFxicmFre1N9e1N9O1xcb3ZlcmxpbmV7SF9xKFgpfSkiXSxbMiwyLCJIX3EoU157LTF9WCkiXSxbMSwyLCJIX3EoXFxUb3R7XFxaIFQoZil9KSJdLFswLDIsIihcXHBpXzAoUykpXnstMX1IX3EoWCkiXSxbMiwzLCJIX3EoaSkiXSxbMCw1XSxbMCwxLCJcXHNpbSJdLFsyLDEsIlxcc2ltIiwyXSxbMyw0LCJcXHNpbSIsMl0sWzUsNF0sWzMsNiwiZXF1YWwiXSxbNiw3LCJcXHNpbSJdLFs0LDcsImVxdWFsIiwyXSxbNSw4XSxbOCw3LCJcXHNpbSJdLFsxLDRdLFswLDIsImVxdWFsIiwyLHsiY3VydmUiOi00fV0sWzgsNiwidSIsMCx7ImN1cnZlIjo0fV1d
+    \begin{tikzcd}
+      {H_q(X)=H_0(*;\overline{H_q(X)})} & {H_q(\Tot{\Z T(g)})} & {H_q(X)} \\
+      {H_0(\brak{S}{S};\overline{H_q(X)})} & {H_q(\Tot{\Z T(f)})} & {H_q(S^{-1}X)} \\
+      {(\pi_0(S))^{-1}H_q(X)} & {H_q(\Tot{\Z T(f)})} & {H_q(S^{-1}X)}
+      \arrow["{H_q(i)}", from=1-3, to=2-3]
+      \arrow[from=1-1, to=2-1]
+      \arrow["\sim", from=1-1, to=1-2]
+      \arrow["\sim"', from=1-3, to=1-2]
+      \arrow["\sim"', from=2-3, to=2-2]
+      \arrow[from=2-1, to=2-2]
+      \arrow[equal, from=2-3, to=3-3]
+      \arrow["\sim", from=3-3, to=3-2]
+      \arrow[equal, from=2-2, to=3-2]
+      \arrow[from=2-1, to=3-1]
+      \arrow["\sim", from=3-1, to=3-2]
+      \arrow[from=1-2, to=2-2]
+      \arrow[equal, bend left=24pt, from=1-1, to=1-3]
+      \arrow["v", "\sim"', bend right=24pt, from=3-1, to=3-3]
+      \arrow["u"', bend right = 80pt,from=1-1, to=3-1]
+    \end{tikzcd}
+  \end{center}
+  où $u$ est la localisation et $v$ est l'isomorphisme induit par la suite spectrale.
+  On voit que $v$ est induit par $H_q(i)$, ce qui conclut.
+\end{proof}
+
+\subsection{Action sur les fibres}
+
+\begin{rem}
+  On se donne $S$ catégorie monoïdale symétrique agissant trivialement sur une catégorie $Y$, ie. $S\times Y\ra Y=\mathrm{pr}_2$.
+  Alors $S^{-1}Y=\brak{S}{Y\times S}=Y\times\brak{S}{S}$. On dispose donc d'un foncteur~:
+  $$S^{-1}Y\ra Y$$
+  qui est une équivalence d'homotopie si $S$ est un groupoïde.
+\end{rem}
+
+\begin{lem}\label{lemmeactionfibre}
+  Soit $f:X\ra Y$ un foncteur. On se donne une action de $S$ groupoïde symétrique monoïdal sur $X$ tel que, naturellement en $A$ dans $S$
+  et $F$ dans $X$, on aie $f(A+F)=fF$. Alors $S$ agit naturellement sur les fibres de $f$.
+  On suppose de plus que~:
+  \begin{description}
+    \item[$\bullet$] $f$ est cofibré~;
+    \item[$\bullet$] pour tout morphisme $v$ dans $Y$, le foncteur changement de cobase $v_*$ est compatible à l'action de $S$ sur les fibres.
+  \end{description}
+  Alors le foncteur $S^{-1}f:S^{-1}X\ra Y$ donné par $S^{-1}X\ra S^{-1}Y\ra Y$ est cofibré, et la fibre au-dessus de $G$ s'identifie naturellement
+  à $S^{-1}(f^{-1}G)$.
+\end{lem}
+
+\begin{proof}
+  Montrons que $S^{-1}f$ est cofibré. On se donne un morphisme $(C,C+B\ra B'',C+F\ra F'')$ entre $(B,F)$ et $(B'',F'')$,
+  et une factorisation $v\circ u$ de $w:fF\ra fF''$ associé. On a alors le diagramme suivant~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNixbMCwwLCIoQixGKSJdLFsxLDAsIihCLHVfKkYpIl0sWzIsMCwiKEInJyxGJycpIl0sWzIsMSwiZkYnJyJdLFsxLDEsIkcnIl0sWzAsMSwiZkYiXSxbNSw0LCJ1Il0sWzQsMywidiJdLFs1LDMsInciLDIseyJjdXJ2ZSI6Mn1dLFsxLDQsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMiwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzAsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFswLDIsIihDLEMrQlxccmEgQicnLEMrRlxccmEgRicnKSIsMCx7ImN1cnZlIjotMn1dLFsxLDIsIlxcZXhpc3RzICEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwxLCIoMCwwK0JcXHJhIEIsMCtGXFxyYSB1XypGKSIsMl1d
+    \begin{tikzcd}[column sep=12ex]
+      {(B,F)} &[6ex] {(B,u_*F)} & {(B'',F'')} \\
+      fF & {G'} & {fF''}
+      \arrow["u", from=2-1, to=2-2]
+      \arrow["v", from=2-2, to=2-3]
+      \arrow["w"',bend right=12pt, from=2-1, to=2-3]
+      \arrow[maps to, from=1-2, to=2-2]
+      \arrow[maps to, from=1-3, to=2-3]
+      \arrow[maps to, from=1-1, to=2-1]
+      \arrow["{(C,C+B\ra B'',C+F\ra F'')}", bend left=12pt, from=1-1, to=1-3]
+      \arrow["{\exists !}"', dashed, from=1-2, to=1-3]
+      \arrow["{(0,0+B\ra B,0+F\ra u_*F)}"', from=1-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+  Il reste à justifier l'existence et l'unicité de la flèche en pointillés. Pour l'existence il suffit de choisir~:
+  $$(C,C+B\ra B'',C+u_*F)$$
+  Pour l'unicité, on suppose que $(C',C'+B\ra B'',C'+u_*F)$ convient également. Alors il existe un isomorphisme $\eta:C'\simeq C$
+  qui fasse commuter le digramme~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsMyxbMCwwLCJDK0YiXSxbMiwwLCJDJytGIl0sWzEsMSwiRicnIl0sWzAsMSwiXFxldGErRiJdLFswLDJdLFsxLDJdXQ==
+    \begin{tikzcd}[column sep=tiny]
+      {C+F} && {C'+F} \\
+      & {F''}
+      \arrow["{\eta+F}", from=1-1, to=1-3]
+      \arrow[from=1-1, to=2-2]
+      \arrow[from=1-3, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  Alors, on peut appliquer l'adjonction de $u_*$. Comme $u_*$ est compatible à l'action de $f$, on obtient le diagramme suivant~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNSxbMCwxLCJ1XyooQytGKSJdLFsyLDEsInVfKihDJytGKSJdLFsxLDIsIkYnJyJdLFswLDAsIkMrdV8qRiJdLFsyLDAsIkMnK3VfKkYiXSxbMCwxLCJcXHNpbSJdLFswLDJdLFsxLDJdLFszLDQsIlxcc2ltIl0sWzMsMCwiXFxzaW0iXSxbNCwxLCJcXHNpbSJdXQ==
+    \begin{tikzcd}[column sep=tiny]
+      {C+u_*F} && {C'+u_*F} \\
+      {u_*(C+F)} && {u_*(C'+F)} \\
+      & {F''}
+      \arrow["\sim", from=2-1, to=2-3]
+      \arrow[from=2-1, to=3-2]
+      \arrow[from=2-3, to=3-2]
+      \arrow["\sim", from=1-1, to=1-3]
+      \arrow["\sim" sloped, from=1-1, to=2-1]
+      \arrow["\sim" sloped, from=1-3, to=2-3]
+    \end{tikzcd}
+  \end{center}
+  On en déduit que $(C',C'+B\ra B'',C'+u_*F)$ est le même morphisme que $(C,C+B\ra B'',C+u_*F)$.
+
+  L'identification des fibres est immédiate.
+\end{proof}
+
+Dans la suite de cette sous-section, nous fixons $S$ un groupoïde symétrique monoïdal agissant sur une catégorie $X$, tel que~:
+\begin{description}
+  \item[$(1)$] toutes les flèches de $X$ sont des monomorphismes~;
+  \item[$(2)$] pour tout $F$ dans $X$, le foncteur $S\ra X$, $B\mapsto B+F$ est fidèle. 
+\end{description}
+Alors, on peut en déduire, par une preuve similaire à celle du \sref{lemme}{lemmeactioncategorie}, que la projection sur le second facteur~:
+$$q:S^{-1}X\ra \brak{S}{X}$$
+est fibrée.
+De plus, la fibre en $F$ s'identifie naturellement à $S$ par $B\mapsto (B,F)$, et via ces identifications, 
+le changement de cobase par $(A,A+F\ra F')$ est la translation par $A$.
+
+Nous faisons agir $S$ sur $S^{-1}X$ par la première coordonnée, et nous notons $S^{-1}S^{-1}X$ la localisation associée.
+Cette action est, à homotopie près, l'inverse de l'action canonique, ie. sur la deuxième coordonnée.
+Ainsi, par le \sref{théorème}{theoremeactioninversible}, le morphisme naturel~:
+\[
+\begin{array}{lcl}
+    S^{-1}X &\ra     & S^{-1}S^{-1}X \\
+    (B,F)   &\mapsto & (0,(B,F))
+\end{array}
+\]
+est une équivalence d'homotopie.
+
+Maintenant, le \sref{lemme}{lemmeactionfibre} s'applique à $q$. Ainsi, le foncteur~:
+$$S^{-1}S^{-1}X\lra \brak{S}{X}$$
+est fibré, les fibres s'identifient à $S^{-1}S$, et les changements de cobase aux translations. Or, ces translations sont des équivalences
+d'homotopie. Donc, par le \sref{théorème B}{theoremeB}, pour tout $F$ dans $X$,
+le diagramme commutatif suivant est homotopiquement cartésien~:
+\begin{center}
+  % https://q.uiver.app/?q=WzAsNCxbMCwwLCJTXnstMX1TIl0sWzIsMCwiU157LTF9U157LTF9WCJdLFsyLDIsIlxcYnJha3tTfXtYfSJdLFswLDIsIlxcYnJha3tTfXtTfSJdLFszLDIsIkFcXG1hcHN0byBGIl0sWzAsMywiXFxtYXRocm17cHJ9XzEiLDJdLFsxLDJdLFswLDEsIihBLEIpXFxtYXBzdG8gKEEsKEIsRikpIl1d
+  \begin{tikzcd}[column sep = 6ex]
+    {S^{-1}S} && {S^{-1}S^{-1}X} \\
+    \\
+    {\brak{S}{S}} && {\brak{S}{X}}
+    \arrow["{A\mapsto F}", from=3-1, to=3-3]
+    \arrow["{\mathrm{pr}_1}"', from=1-1, to=3-1]
+    \arrow[from=1-3, to=3-3]
+    \arrow["{(A,B)\mapsto (A,(B,F))}", from=1-1, to=1-3]
+  \end{tikzcd}
+\end{center}
+Considérons maintenant le carré suivant~:
+\begin{center}
+  % https://q.uiver.app/?q=WzAsNCxbMCwwLCJTXnstMX1TIl0sWzIsMCwiU157LTF9WCJdLFsyLDIsIlNeey0xfVNeey0xfVgiXSxbMCwyLCJTXnstMX1TIl0sWzMsMl0sWzAsMywic19XIiwyXSxbMSwyXSxbMCwxLCIoQSxCKVxcbWFwc3RvIChBLEIrRikiXV0=
+  \begin{tikzcd}[column sep = 6ex]
+    {S^{-1}S} && {S^{-1}X} \\
+    \\
+    {S^{-1}S} && {S^{-1}S^{-1}X}
+    \arrow[from=3-1, to=3-3]
+    \arrow["{s_W}"', from=1-1, to=3-1]
+    \arrow[from=1-3, to=3-3]
+    \arrow["{(A,B)\mapsto (A,B+F)}", from=1-1, to=1-3]
+  \end{tikzcd}
+\end{center}
+où~:
+$$s_W: (A,B)   \mapsto  (B,A)$$
+Ce carré commute à homotopie près, comme le montrent les $2$ transformations naturelles~:
+$$(0,(A,B+F))\ra (B,(B+A,B+F))\leftarrow (B,(A,F))$$
+
+Donc, si $\brak{S}{X}$ est contractile, $S^{-1}S\ra S^{-1}S^{-1}X$ est une équivalence d'homotopie, et donc
+$S^{-1}S\ra S^{-1}X$ également. Nous avons démontré le théorème suivant.
+
+\begin{theo}\label{theoremebrakSX}
+  Soit $S$ un groupoïde symétrique monoïdal agissant sur une catégorie $X$ tels que~:
+  \begin{description}
+    \item[$(1)$] toutes les flèches de $X$ sont des monomorphismes~;
+    \item[$(2)$] pour tout $F$ dans $X$, le foncteur $S\ra X$, $B\mapsto B+F$ est fidèle~;
+    \item[$(3)$] la catégorie $\brak{S}{X}$ est contractile. 
+  \end{description}
+  Alors pour tout $F$ objet de $X$, le foncteur~:
+  \[
+  \begin{array}{lcl}
+    S^{-1}S & \ra     & S^{-1}X \\
+    (A,B)   & \mapsto & (A,B+F)   
+  \end{array}
+  \]
+  est une équivalence d'homotopie.
+\end{theo}
+
+\subsection{\texorpdfstring{Construction $S^{-1}S$ de la $K$-théorie}{Construction S-1S de la K-théorie}}
+
+Nous allons ici démontrer un premier pas important vers la démonstration de $+=Q$.
+Nous allons montrer que pour $A$ un anneau, $\GL{}{A}^+$ peut se réaliser comme un $S^{-1}S$ pour un certain groupoïde monoïdal symétrique $S$.
+
+\begin{ex}\label{exempleSS}
+  Soit $P$ un catégorie exacte où toutes les suites exactes soient scindées.
+  On pose $S:=\Isos{P}$ la catégorie des isomorphismes de $P$. La somme directe $\oplus$ fait de $S$ un groupoïdes monoïdal symétrique.
+  Nous avons alors une structure de $H$-espace sur $S^{-1}S$, donnée par le foncteur~:
+  \[
+  \begin{array}{lcl}
+    S^{-1}S\times S^{-1}S &\ra     & S^{-1}S \\
+    ((A,B),(C,D))         &\mapsto & (A\oplus C,B\oplus D)
+  \end{array}  
+  \]
+\end{ex}
+
+\begin{rem}
+  Ici, un $H$-espace désigne un ensemble simplicial pointé $(X,e)$ muni d'une application~:
+  $$\mu:X\times X\lra X$$
+  telle que l'on ai les homotopies pointées suivantes~:
+  $$\mu(-,e)\simeq \id_X\;\mathrm{rel} e\;\;\mu(e,-)\simeq \id_X\;\mathrm{rel} e$$
+  Dans le cas de $S^{-1}S$ ci-dessus, il faut choisir $\oplus$ tel que $0\oplus 0=0$.
+  C'est toujours possible car $0\oplus 0\simeq 0$.
+
+  Nous utiliserons plus loin un résultat classique~: un $H$-espace est un espace simple.
+  On peut résumer la démonstration de ce fait ainsi. Soit $(X,e)$ un $H$-espace,
+  $\gamma : (\Delta^1,\partial\Delta^1)\ra (X,e)$, et $\sigma : (\Delta^n,\partial\Delta^n)\ra (X,e)$.
+  Alors on remarque que $\gamma\cdot \sigma$ est homotope à $\mu(\gamma,\sigma)\circ (d^0\times\id_{\Delta^n})$.
+  Or ce dernier simplexe est $\mu(e,\sigma)$ qui est homotope à $\sigma$.
+\end{rem}
+
+Dans la suite de cette sous-section, nous fixons un anneau $A$, et nous posons $S:=\Isos{\Proj{A}}$.
+Pour rappel, $\Proj{A}$ est la catégorie exacte des $A$-modules projectifs de type fini.
+
+\begin{lem}
+  On a une identification compatible à l'action de $\pi_0(S)$~:
+  \[
+  \begin{array}{lcl}
+    \pi_0(S^{-1}S) &\simeq  & K_0(A) \\
+    (M,N)          &\mapsto & [N]-[M]
+  \end{array}
+  \]
+\end{lem}
+
+\begin{proof}
+  L'ensemble $\pi_0(S^{-1}S)$ est un monoïde via la structure de $H$-espace décrite plus haut.
+  C'est même un groupe car $s_W:(A,B)\ra (B,A)$ est un inverse à homotopie près.
+  Les seules relations sur $K_0(A)$ sont les $[U]+[V]=[U\oplus V]$.
+  On peut donc définir un inverse par $[N]\mapsto (0,N)$.
+\end{proof}
+
+Nous noterons $(S^{-1}S)_0$ la composante connexe de $0$. On a un isomorphisme $S^{-1}S\simeq K_0(A)\times (S^{-1}S)_0$.
+
+On note $S_n$ la composante connexe de $S$ contenant $A^n$. C'est un groupoïde équivalent à $\GL{n}{A}$.
+
+\begin{defi}
+  On définit une catégorie $L$ dont les~:
+  \begin{description}
+    \item[$\bullet$] objets sont les couples $(n,N)$ avec $n\geq 0$ et $N$ dans $S_n$~;
+    \item[$\bullet$] morphismes de $(n,N)$ dans $(n+m,M)$ sont les isomorphismes $A^m\oplus N\simeq M$. 
+  \end{description}  
+  On notera $L_n$ la sous-catégorie pleine des $(M,m)$ pour $m\leq n$.
+\end{defi}
+
+Comme le montre la proposition suivante, $L$ est un "alias" de $\GL{}{A}$.
+
+\begin{prop}
+  Pour chaque $n\geq 0$, on se donne une équivalence $\eta_n:S_n\ra \GL{n}{A}$, telles
+  que ces équivalences soient compatibles aux foncteurs~:
+  \[
+  \begin{array}{lcl}
+    S_n & \ra     & S_{n+m}     \\
+    M   & \mapsto & A^m\oplus M
+  \end{array}
+  \]
+  On définit alors un foncteur $F$ par~:
+  \[
+  \begin{array}{lcl}
+    L                          & \ra     & \GL{}{A}                                                      \\
+    (n,N)                      & \mapsto & *                                                             \\
+    \alpha:A^m\oplus N\simeq M & \mapsto & \eta_{n+m}(M)\circ \alpha\circ \eta_{n+m}(A^m\oplus N)^{-1}
+  \end{array}
+  \]
+  Le foncteur $F$ est bien définit et induit une équivalence d'homotopie.
+\end{prop}
+
+\begin{proof}
+  Le foncteur est bien définit par la compatibilité entre les $\eta_n$.
+  Par le \sref{théorème A}{theoremeA}, il suffit de montrer que $F\downarrow *$ est contractile.
+  Pour cela, il suffit de montrer que $F\downarrow *$ est filtrante.
+  Or, on remarque les $\Hom{F\downarrow *}{x}{y}$ sont soit $\{*\}$, soit $\varnothing$, et que tout objet $(N,u)$
+  est admet un morphisme dans un $(R^m,\id)$ pour $m$ assez grand. Donc la catégorie $F\downarrow *$ est filtrante.
+\end{proof}
+
+Nous allons maintenant faire le lien entre $L$ et $S^{-1}S$.
+
+\begin{theo}
+  Soit $\psi$ le foncteur~:
+  \[
+    \begin{array}{lcl}
+      L                          & \ra     & (S^{-1}S)_0                                             \\
+      (n,B)                      & \mapsto & (R^n,B)                                                 \\
+      \alpha:R^m\oplus N\simeq N & \mapsto & (R^m, R^m\oplus R^n=R^{m+n},\alpha:R^m\oplus N\simeq M)
+    \end{array}
+  \]
+  Alors $\psi$ est un isomorphisme en homologie. 
+\end{theo}
+
+\begin{rem}
+  On remarque que les inclusions $S_n\ra L_n$ on des adjoints à gauche, ce sont donc des équivalences d'homotopie.
+  En particulier, si on note $i_n$ le foncteur~:
+  \[
+    \begin{array}{lcl}
+      S_n & \ra     & S_{n+1}     \\
+      M   & \mapsto & A\oplus M
+    \end{array}
+  \]
+  On en déduit un digramme $\N\ra \Cat, n\mapsto S_n$, lequel induit un isomorphisme~:
+  $$\colim_\N H_*(S_n)\simeq H_*(L)$$
+\end{rem}
+
+\begin{proof}[Démonstration du théorème]
+  Il s'agit, par la remarque ci-dessus, de montrer que le morphisme induit~:
+  $$\colim_\N H_*(S_n)\lra H_*((S^{-1}S)_0)$$
+  est un isomorphisme.
+  On note $e$ la classe de $A$ dans $\pi_0(S)$. Comme $<e>$ est cofinal dans le monoïde $\pi_0(S)$,
+  le \sref{théorème}{theoremehomologielocalisation} montre que $S\ra S^{-1}S$ induit un isomorphismes~:
+  $$H_*(S)_e\simeq H_*(S^{-1}S)$$
+  Le morphisme $H_*(S_n)\ra H_*((S^{-1}S)_0)$ considéré plus haut se décompose en~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsMyxbMCwwLCJIXyooU19uKSJdLFsxLDAsIkhfKigoU157LTF9UylfbikiXSxbMiwwLCJIXyooKFNeey0xfVMpXzApIl0sWzEsMiwiMS9lXm4iXSxbMCwxXV0=
+    \begin{tikzcd}
+      {H_*(S_n)} & {H_*((S^{-1}S)_n)} & {H_*((S^{-1}S)_0)}
+      \arrow["{1/e^n}", from=1-2, to=1-3]
+      \arrow[from=1-1, to=1-2]
+    \end{tikzcd}
+  \end{center}
+  où $(S^{-1}S)_n$ désigne la composante connexe de $A^n$ et la première flèche est induite par l'inclusion naturelle.
+  
+  Soit $(M,N)$ un objet de $(S^{-1}S)_0$. Quitte à appliquer un foncteur $(U,V)\mapsto (P\oplus U,P\oplus V)$,
+  qui est homotope à l'identité, on peut remplacer $(M,N)$ par un objet de la forme $(A^n, N')$.
+  Maintenant, il existe $k\geq 0$ tel que $A^k\oplus N'\simeq A^{n+k}$. Ainsi,
+  dans $H_0(S^{-1}S)$, $(M,N)$ est de la forme $[x]/e^k$, pour $[x]$ dans $H_0(S_k)$, ie. $(M,N)$ est dans l'image d'un $S_k$.
+  On peut appliquer le même raisonnement à des sommes de simplexes dans $H_p((S^{-1}S)_0)$, en redressant les morphismes sur la première coordonnée.
+  
+  Donc le morphisme~:
+  $$\colim_\N H_*(S_n)\lra H_*((S^{-1}S)_0)$$
+  est surjectif.
+
+  Soit maintenant $[x]/e^k$ dans le noyau de $H_p(S_k)\ra H_p((S^{-1}S)_0)$. Alors, comme $H_*(S)_e\simeq H_*(S^{-1}S)$,
+  il existe $n\geq 0$ tel que $e^n\cdot [x]=0$. Donc $[x]=0$ dans $H_p(S_{k+n})$.
+
+  Donc le morphisme~:
+  $$\colim_\N H_*(S_n)\lra H_*((S^{-1}S)_0)$$
+  est injectif.
+\end{proof}
+
+\begin{theo}\label{theoremeplusegalSS}
+  On a une équivalence d'homotopie $\GL{}{A}^+\simeq (S^{-1}S)_0$.
+\end{theo}
+
+\begin{proof}
+  On peut remplacer $\GL{}{A}$ par $L$ qui lui est homotope. Or, on a construit $\psi:L\ra (S^{-1}S)_0$ tel que~:
+  \begin{description}
+    \item[$\bullet$] $\psi$ est un isomorphisme en homologie sur $\Z$~;
+    \item[$\bullet$] $(S^{-1}S)_0$ est un espace simple.
+  \end{description}
+  Ainsi, par le \sref{lemme}{lemmeplussurZ} et la \sref{proposition}{GLAplussimple}, $\psi$ est une construction $+$ pour $\EGL{}{A}$.
+\end{proof}
+
+\subsection{\texorpdfstring{Lien entre la construction $Q$ et $S^{-1}S$}{Lien entre la construction Q et S-1S}}
+
+Dans cette sous-section, on se place dans le cadre de \sref{l'exemple}{exempleSS}~: on fixe une catégorie exacte $P$
+où toutes les suites exactes sont scindées, et on pose $S:=\Isos{P}$.
+
+\begin{defi}
+  Pour $C$ dans $P$, on note $E_C$ la catégorie dont les~:
+  \begin{description}
+    \item[$\bullet$] objets sont les suites exactes $\exa{A}{B}{C}$ de $P$ ($C$ est fixé)~;
+    \item[$\bullet$] les morphismes de $\exa{A}{B}{C}$ dans $\exa{A'}{B'}{C}$ sont les diagrammes commutatifs~:
+          \begin{center}
+            % https://q.uiver.app/?q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIkEiXSxbMiwwLCJCIl0sWzMsMCwiQyJdLFs0LDAsIjAiXSxbNCwxLCIwIl0sWzAsMSwiMCJdLFsxLDEsIkEnIl0sWzIsMSwiQiciXSxbMywxLCJDIl0sWzMsOV0sWzIsOCwiXFxzaW0iXSxbMSw3LCJcXHNpbSJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdLFs5LDVdLFs4LDldLFs3LDhdLFs2LDddXQ==
+            \begin{tikzcd}
+              0 & A & B & C & 0 \\
+              0 & {A'} & {B'} & C & 0
+              \arrow[equal, from=1-4, to=2-4]
+              \arrow["\sim" sloped, from=1-3, to=2-3]
+              \arrow["\sim" sloped, from=1-2, to=2-2]
+              \arrow[from=1-1, to=1-2]
+              \arrow[from=1-2, to=1-3]
+              \arrow[from=1-3, to=1-4]
+              \arrow[from=1-4, to=1-5]
+              \arrow[from=2-4, to=2-5]
+              \arrow[from=2-3, to=2-4]
+              \arrow[from=2-2, to=2-3]
+              \arrow[from=2-1, to=2-2]
+            \end{tikzcd}
+          \end{center}
+          où les morphismes $\sim$ sont des isomorphismes.
+  \end{description}
+\end{defi}
+
+On remarque que~:
+\[
+  \begin{array}{lcl}
+    S & \ra     & E_0           \\
+    A & \mapsto & \exa{A}{A}{0}
+  \end{array}
+\]
+est une équivalence de catégorie. Dans la suite on identifiera parfois $E_0$ à $S$
+
+\begin{defi}
+  On définit la catégorie $E$ donc les~:
+  \begin{description}
+    \item[$\bullet$] objets sont les suites exactes $\exa{A}{B}{C}$ de $P$ ($C$ n'est pas fixé)~;
+    \item[$\bullet$] les morphismes de $\exa{A}{B}{C}$ dans $\exa{A'}{B'}{C}$ sont les diagrammes commutatifs~:
+          \begin{center}
+            % https://q.uiver.app/?q=WzAsMTUsWzAsMCwiMCJdLFswLDEsIjAiXSxbMCwyLCIwIl0sWzQsMCwiMCJdLFs0LDEsIjAiXSxbNCwyLCIwIl0sWzEsMCwiQSJdLFsyLDAsIkIiXSxbMywwLCJDIl0sWzMsMiwiQyciXSxbMiwyLCJCJyJdLFsxLDIsIkEnIl0sWzEsMSwiQSciXSxbMiwxLCJCIl0sWzMsMSwiQ18xIl0sWzAsNl0sWzYsN10sWzcsOF0sWzgsM10sWzEyLDYsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbMTQsOCwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEzLDEwLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzEzLDcsImVxdWFsIiwyXSxbMTQsOSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFsxMiwxMSwiZXF1YWwiLDJdLFsxLDEyXSxbMiwxMV0sWzE0LDRdLFs5LDVdLFsxMSwxMF0sWzEwLDldLFsxMiwxM10sWzEzLDE0XV0=
+            \begin{tikzcd}
+              0 & A & B & C & 0 \\
+              0 & {A'} & B & {C_1} & 0 \\
+              0 & {A'} & {B'} & {C'} & 0
+              \arrow[from=1-1, to=1-2]
+              \arrow[from=1-2, to=1-3]
+              \arrow[from=1-3, to=1-4]
+              \arrow[from=1-4, to=1-5]
+              \arrow[tail, from=2-2, to=1-2]
+              \arrow[two heads, from=2-4, to=1-4]
+              \arrow[tail, from=2-3, to=3-3]
+              \arrow[equal, from=2-3, to=1-3]
+              \arrow[tail, from=2-4, to=3-4]
+              \arrow[equal, from=2-2, to=3-2]
+              \arrow[from=2-1, to=2-2]
+              \arrow[from=3-1, to=3-2]
+              \arrow[from=2-4, to=2-5]
+              \arrow[from=3-4, to=3-5]
+              \arrow[from=3-2, to=3-3]
+              \arrow[from=3-3, to=3-4]
+              \arrow[from=2-2, to=2-3]
+              \arrow[from=2-3, to=2-4]
+            \end{tikzcd}
+          \end{center}
+          à isomorphisme près.
+  \end{description}
+\end{defi}
+
+On dispose donc d'un foncteur~:
+\[
+  \begin{array}{lcl}
+  E             & \ra     & QP \\
+  \exa{A}{B}{C} & \mapsto & C
+\end{array}
+\]
+
+La définition suivante éclaire un peut la catégorie $E$.
+
+\begin{defi}
+  Soit $X$ une catégorie. On définit $\mathrm{Sub}(X)$ comme la catégorie dont les objets sont les morphismes de $X$,
+  et les morphismes de $f$ dans $g$ sont les paires de morphismes $h$, $k$ tels que $g=hfk$.
+\end{defi}
+
+La catégorie $E$ est alors équivalente à la catégorie $\mathrm{Sub}(X)$, où $X$ est la sous-catégorie des monomorphismes de $P$.
+Le foncteur $E\ra QP$ devient alors~:
+$$\mathrm{coker}:\mathrm{Sub}(X)\ra QP$$
+
+Nous allons maintenant montrer que $E\ra QP$ est fibré et que tous les morphismes sont cartésiens.
+Pour cela nous utilisons le lemme suivant.
+
+\begin{lem}
+  Soit $f:X\ra Y$ un foncteur tel que~:
+  \begin{description}
+    \item[$(1)$] pour tout $u:y\ra y'$ dans $Y$ et $x\mapsto y$, il existe $a:x\ra x'$ dans $X$ tel que $f(a)=u$~;
+    \item[$(2)$] pour tout $a:x\ra x'$ et $b:x\ra x'$ morphismes dans $X$ tels que $f(a)=f(b)$, il existe un unique $\eta$ isomorphisme tels
+    que $b=\eta a$ et $f(\eta)$ soit une identité.
+  \end{description}
+  Alors $f$ est fibré et tous les morphismes de $X$ sont cartésiens.
+\end{lem}
+
+\begin{proof}
+  On se donne $w$ morphismes dans $Y$ se factorisant en $w=vu$ et $a$ morphisme de $X$ tel que $f(a)=w$. On a alors le diagramme commutatif suivant~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsOCxbMCwwLCJ4XzEiXSxbMSwwLCJ4XzIiXSxbMiwwLCJ4XzMiXSxbMywwLCJ4XzMiXSxbMywxLCJ5XzMiXSxbMiwxLCJ5XzMiXSxbMSwxLCJ5XzIiXSxbMCwxLCJ5XzEiXSxbNyw0LCJ3IiwyLHsiY3VydmUiOjN9XSxbNSw0LCJlcXVhbCIsMl0sWzcsNiwidSIsMl0sWzYsNSwidiIsMl0sWzAsNywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxLDYsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMiw1LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzMsNCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFswLDMsImEiLDAseyJjdXJ2ZSI6LTN9XSxbMCwxLCJcXGV4aXN0cyBiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMiwiXFxleGlzdHMgYyIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDMsIlxcZXhpc3RzIFxcZXRhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \begin{tikzcd}[row sep=large, column sep=large]
+      {x_1} & {x_2} & {x_3} & {x_3} \\
+      {y_1} & {y_2} & {y_3} & {y_3}
+      \arrow["w"', bend right=18pt, from=2-1, to=2-4]
+      \arrow[equal, from=2-3, to=2-4]
+      \arrow["u"', from=2-1, to=2-2]
+      \arrow["v"', from=2-2, to=2-3]
+      \arrow[maps to, from=1-1, to=2-1]
+      \arrow[maps to, from=1-2, to=2-2]
+      \arrow[maps to, from=1-3, to=2-3]
+      \arrow[maps to, from=1-4, to=2-4]
+      \arrow["a", bend left=18pt, from=1-1, to=1-4]
+      \arrow["{\exists b}"', dashed, from=1-1, to=1-2]
+      \arrow["{\exists c}"', dashed, from=1-2, to=1-3]
+      \arrow["{\exists \eta}"', "\sim", dashed, from=1-3, to=1-4]
+    \end{tikzcd}
+  \end{center}
+  L'existence de $b$ et de $c$ est garantie par $(1)$, l'existence de $\eta$ par $(2)$.
+  L'unicité de $\eta c$ est garantie par l'unicité dans $(2)$.
+  Tous les morphismes sont cartésiens car l'on peut choisir $b$ quelconque.
+\end{proof}
+
+Nous allons maintenant appliquer le lemme à $E\ra QP$. Le point $(1)$ est facile~: il suffit de traiter le cas d'une injection et le cas d'une
+surjection, tous deux faciles.
+Montrons $(2)$ dans le cas d'une surjection $C\twoheadleftarrow C'$. Dans ce cas, les morphismes sont juste les isomorphismes
+$B\simeq B'$ compatibles à $C\twoheadleftarrow C'$, et $(2)$ est vérifié.
+
+Maintenant, si on considère une injection $C\rightarrowtail C'$. Les morphismes possibles sont cette fois définis par le choix
+d'un morphisme compatible $B\ra B'$. Or tous les morphismes $B'\ra B$ sont des monomorphismes et ont la même image,
+donc $(2)$ est vérifié.
+
+Dans le cas général, on considère $C\rightarrowtail C_1\twoheadleftarrow C'$. On déduit alors $(2)$ des deux cas particuliers
+(ce n'est pas complètement immédiat, il faut écrire le diagramme).
+\begin{defi}
+  Nous munissons $E$ d'une action de $S$ donnée par~:
+  $$A'+(\exa{A}{B}{C}):=\exa{A'\oplus A}{A'\oplus B}{C}$$
+\end{defi}
+
+Alors, d'après le dual du \sref{lemme}{lemmeactionfibre}, le foncteur~:
+$$S^{-1}E\ra QP$$
+est fibré et la fibre au-dessus de $C$ s'identifie à $S^{-1}E_C$.
+
+\begin{theo}\label{theoremebrakSEC}
+  Pour tout $C$ dans $P$, $\brak{S}{E_C}$ est contractile.
+\end{theo}
+
+\begin{proof}
+  \begin{description}
+    \item[$(i)$] $\brak{S}{E_C}$ est connexe.
+    
+    On pose, pour $F_i=\exa{A_i}{B_i}{C}$~:
+    $$F_1\star F_2:=(exa{A_1\oplus A_2}{B_1\times_C B_2}{C})$$
+    Nous avons ainsi définit un foncteur~:
+    $$\star:\brak{S}{E_C}\times \brak{S}{E_C}\lra \brak{S}{E_C}$$
+    Maintenant, les projection $F_1\star F_2\twoheadrightarrow F_i$ sont scindées. On a donc des isomorphismes
+    $A_1+F_2\simeq F_1\star F_2$ et $A_2+F_1\simeq F_1\star F_2$. Nous venons de connecter $F_1$ et $F_2$.
+
+    \item[$(ii)$] $\brak{S}{E_C}$ est connexe est un $H$-espace et admet un inverse homotopique.
+    
+    Le produit est donnée par $\star$. L'élément $\exa{0}{C}{C}$ est neutre pour $\star$.
+    Pour l'inverse, on montre que tout $H$-espace connexe $M$ admet un inverse homotopique. Considérons le diagramme~:
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsNixbMCwwLCJNIl0sWzEsMCwiTVxcdGltZXMgTSJdLFsyLDAsIk0iXSxbMiwxLCJNIl0sWzAsMSwiTSJdLFsxLDEsIk1cXHRpbWVzIE0iXSxbMCwxLCJ4XFxtYXBzdG8oeCxlKSJdLFsxLDIsIlxcbWF0aHJte3ByfV8yIl0sWzUsMywiXFxtYXRocm17cHJ9XzIiXSxbNCw1LCJ4XFxtYXBzdG8oeCxlKSJdLFswLDQsImVxdWFsIiwxXSxbMiwzLCJlcXVhbCIsMV0sWzEsNSwiKHgseSlcXFxcXFxkb3duYXJyb3dcXFxcKHh5LHgpIl1d
+      \begin{tikzcd}[column sep=large,row sep=large]
+        M & {M\times M} & M \\
+        M & {M\times M} & M
+        \arrow["{x\mapsto(x,e)}", from=1-1, to=1-2]
+        \arrow["{\mathrm{pr}_2}", from=1-2, to=1-3]
+        \arrow["{\mathrm{pr}_2}", from=2-2, to=2-3]
+        \arrow["{x\mapsto(x,e)}", from=2-1, to=2-2]
+        \arrow[equal, from=1-1, to=2-1]
+        \arrow[equal, from=1-3, to=2-3]
+        \arrow["{\begin{matrix*}(x,y)\\ \downarrow\\(xy,x)\end{matrix*}}","f"', from=1-2, to=2-2]
+      \end{tikzcd}
+    \end{center}
+    Alors les lignes sont des fibrations. Donc par la suite exacte longue, $f$ est une équivalence d'homotopie et admet un inverse homotopique
+    $h$ (quitte à remplacer $M$ par un complexe de Kan). L'inverse est donné par $x\mapsto \mathrm{pr}_1(h(e,x))$.
+
+    \item[$(iii)$] Le morphisme $x\mapsto x\star x$ est homotope à l'identité.
+    
+    En effet, on dispose d'une transformation naturelle $F\ra F\star F$ induite par les diagonales $F\oplus F\simeq F\star F$.
+
+    \item[$(iv)$] $\brak{S}{E_C}$ est contractile.
+    
+    On considère les endomorphismes de $\brak{S}{E_C}$ dans $\Ho{\DEns}$. L'ensemble $[\brak{S}{E_C},\brak{S}{E_C}]$
+    est un groupe car $\brak{S}{E_C}$ est un $H$-espace admettant un inverse homotopique. Et tout élément de ce groupe est idempotent
+    par $(iii)$. Donc $[\brak{S}{E_C},\brak{S}{E_C}]=*$. Donc $\brak{S}{E_C}$ est contractile.
+  \end{description}
+\end{proof}
+
+\begin{theo}\label{theoremecarreSSQP}
+  Le diagramme commutatif~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNCxbMCwwLCJTXnstMX1TIl0sWzEsMCwiU157LTF9RSJdLFsxLDEsIlFQIl0sWzAsMSwiKiJdLFswLDFdLFsxLDJdLFswLDNdLFszLDJdXQ==
+    \begin{tikzcd}
+      {S^{-1}S} & {S^{-1}E} \\
+      {*} & QP
+      \arrow[from=1-1, to=1-2]
+      \arrow[from=1-2, to=2-2]
+      \arrow[from=1-1, to=2-1]
+      \arrow[from=2-1, to=2-2]
+    \end{tikzcd}
+  \end{center}
+  est homotopiquement cartésien. La flèche $S^{-1}S\ra S^{-1}E$ est donnée par l'équivalence $S\simeq E_0$.
+\end{theo}
+
+\begin{proof}
+  Pour appliquer le \sref{théorème B}{theoremeB}, nous allons montrer que les changements de base sont des équivalences faibles.
+  Il suffit de le faire pour les changement de base par $j:0\twoheadleftarrow C$ et $i:0\rightarrowtail C$.
+
+  On pose~:
+  \[
+  \begin{array}{clcl}
+    f: & E_0 & \ra     & E_C                   \\
+       & A   & \mapsto & \exa{A}{A\oplus C}{C}
+  \end{array}
+  \]
+  Comme, d'après le \sref{théorème}{theoremebrakSEC}, $\brak{S}{E_C}$ est contractile, d'après le \sref{théorème}{theoremebrakSX},
+  $S^{-1}f$ est une équivalence d'homotopie.
+
+  Considérons le cas de $j$. Nous avons~:
+  \[
+    \begin{array}{clcl}
+      j^*: & E_C           & \ra     & E_0 \\
+           & \exa{A}{B}{C} & \mapsto & B
+    \end{array}
+  \]
+  Alors on a~:
+  \[
+    \begin{array}{clcl}
+      j^*\circ S^{-1}f: & S^{-1}E_0 & \ra     & S^{-1}E_0      \\
+                        & (A',A)    & \mapsto & (A',A\oplus C)
+    \end{array}
+  \]
+  Ce morphisme est une équivalence d'homotopie. Donc $j^*$ également.
+
+  Considérons le cas de $i$. Nous avons~:
+  \[
+    \begin{array}{clcl}
+      i^*: & E_C           & \ra     & E_0 \\
+           & \exa{A}{B}{C} & \mapsto & A
+    \end{array}
+  \]
+  Alors on a~:
+  \[
+    \begin{array}{clcl}
+      i^*\circ S^{-1}f: & S^{-1}E_0 & \ra     & S^{-1}E_0      \\
+                        & (A',A)    & \mapsto & (A',A)
+    \end{array}
+  \]
+  Ce morphisme est une équivalence d'homotopie. Donc $i^*$ également.
+\end{proof}
+
+\begin{theo}\label{theoremeSEcontractile}
+  $S^{-1}E$ est contractile.
+\end{theo}
+
+\begin{proof}
+  On note $X$ la sous-catégorie des monomorphismes de $P$. On pose~:
+  \[
+    \begin{array}{lcl}
+      \mathrm{Sub}(X) & \ra     & X \\
+      f:x\ra y        & \mapsto & y
+    \end{array}
+  \]
+  Comme $X$ admet un objet initial, ie. $0$, ce foncteur a un adjoint à droite donnée par $x\mapsto 0\ra x$.
+  Donc $\mathrm{Sub}(X)$ est homotope à $X$. Or, comme $X$ a un objet initial, il est contractile.
+  Donc $\mathrm{Sub}(X)$ est contractile. Donc $E$, qui lui est équivalente, est également contractile.
+
+  Ainsi, l'action de $S$ sur $E$ est inversible. Donc, d'après le \sref{théorème}{theoremeactioninversible}, $E\ra S^{-1}E$
+  est une équivalence faible. Donc $S^{-1}E$ est contractile.
+\end{proof}
+
+\begin{theo}[théorème $+=Q$]
+  $\Omega QP$ est homotope à $K_0(A)\times \GL{}{A}^+$.
+  En particulier, $\pi_{n+1}(\Omega QP)\simeq \pi_n(\GL{}{A}^+)$, et les construction $+$ et $Q$ de la $K$-théorie coïncident.
+  Ici, $\Omega$ désigne l'espace des lacets.
+\end{theo}
+
+\begin{proof}
+  D'après le \sref{théorème}{theoremeplusegalSS}, il suffit de montrer que $\Omega QP$ est homotope à $S^{-1}S$.
+  Or d'après le \sref{théorème}{theoremecarreSSQP} et le \sref{théorème}{theoremeSEcontractile},
+  $S^{-1}S$ est la limite homotopique de $*\rightrightarrows QP$. Or $\Omega QP$ est aussi une limite homotopique de $*\rightrightarrows QP$.
+\end{proof}
 
 \section{\texorpdfstring{Propriétés de la $K$-théorie supérieure}{Propriétés de la K-théorie supérieure}}
 
@@ -3426,6 +4201,7 @@ Introduisons maintenant la structure de modèle sur $\DAb$.
 \subsection{Le morphisme d'Eilenberg-Zilber}
 
 \subsection{Suite spectrale d'une filtration}
+\label{suitespectrale}
 
 \section{Topologie algébrique}
 \label{annexetopologie}
