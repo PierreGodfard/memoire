@@ -619,7 +619,7 @@ Pour une démonstration, voir \cite[A.2]{Kell}.
 
 Un autre exemple important de catégories exactes est le suivant.
 
-\begin{propdefi}
+\begin{propdefi}\label{propdeficategoriedessuitesexactes}
   Soit $\M$ une catégorie exacte et $\E$ l'ensemble de ses suites exactes. Alors $\E$ a une structure naturelle de catégorie additive où les
   morphismes de $\exac{M'}{M}{M''}$ vers $\exac{N'}{N}{N''}$ sont les diagrammes commutatifs~:
   \begin{center}
@@ -657,6 +657,10 @@ Nous pouvons maintenant définir le $K_0$ d'une catégorie exacte.
   On définit le groupe de $K$-théorie de $\M$, $K_0(\M)$, comme le quotient du groupe libre $\bigoplus_M\Z\cdot [M]$ sur les objets de $\M$, par les relations
   $[M]=[M']+[M'']$ pour chaque suite $\exac{M'}{M}{M''}$ dans $\E$.
 \end{defi}
+
+\begin{rem}\label{remarquefonctorialiteK0categorieexacte}
+  La définition ci-dessus fait de $K_0$ un foncteur de la catégorie des catégories exactes et foncteurs exacts dans les groupes abéliens.
+\end{rem}
 
 \begin{rem}
   La exacte $\exac{0}{0}{0}$ implique $0=[0]$ dans $K_0(\M)$. Pour chaque isomorphisme $\eta:M\ra\tilde{M}$,
@@ -724,7 +728,7 @@ Nous allons maintenant appliquer ce résultat de colimite pour effectuer un calc
   sur $K_0(\Pgr{A})$.
 \end{defi}
 
-\begin{prop}
+\begin{prop}\label{K0gradues}
   Soit $A=A_0\oplus A_1\oplus\dotsb$ un anneau gradué en degrés positifs.
   L'automorphisme $t$ fait de $K_0(\Pgr{A})$ un $\Z[t,t^{-1}]$-module. On a un isomorphisme de $\Z[t,t^{-1}]$-modules~:
   \[
@@ -1008,17 +1012,19 @@ la \sref{sous-section suivante}{thmAetB}.
 \end{defi}
 
 \begin{rem}
-  Comme $Q\M$ est connexe, la classe d'isomorphisme de $K_n(\M)$ est indépendante de $O$. Il faut cependant en dire un tout petit peu plus
-  pour faire de $K_n$ un foncteur de $\CatEx$ dans $\Ab$, ce sera fait dans la \sref{sous-section}{premieresprops}.
-  Il reste également à vérifier que la nouvelle définition de $K_0$ coïncide avec celle donnée dans la \sref{section}{sectionK0}. C'est l'objet
-  du théorème ci-dessous.
+  Comme $Q\M$ est connexe, la classe d'isomorphisme de $K_n(\M)$ est indépendante de $O$. On a même mieux~: si $O'$ est un autre élément nul
+  dans $\M$, il existe un unique isomorphisme $u:O\ra O'$ dans $\M$~; ce dernier induit un isomorphisme $u:O\ra O'$ dans $Q\M$,
+  et donc un isomorphisme canonique $\pi_n(Q\M,O)\simeq\pi_n(Q\M,O')$.
 \end{rem}
+
+Il reste à vérifier que la nouvelle définition de $K_0$ coïncide avec celle donnée dans la \sref{section}{sectionK0}. C'est l'objet
+du théorème ci-dessous.
 
 Nous allons maintenant étudier le groupoïde associé à $Q\M$. Soit $O\in \Ob\M$ un objet nul.
 
 Nous notons, pour $M$ objet de $Q\M$, $i_M:O\rightarrowtail M$ et $j_M:M\twoheadrightarrow O$ les uniques morphismes.
 La démonstration du théorème utilise la \sref{proposition}{pi1categorie}.
-\begin{theo}
+\begin{theo}\label{theoremeK0constructionQ}
   L'application~:
   $$
   \begin{array}{lcl}
@@ -1161,7 +1167,7 @@ Nous allons maintenant nous intéresser aux propriétés homotopiques des catég
   \end{description}
 \end{proof}
 
-\begin{prop}
+\begin{prop}\label{propositioncolimitecategories}
   \begin{description}
     \item[(1)] Si $C_{(-)}:I\ra \Cat$ est un foncteur avec $I$ petite catégorie filtrante et $C$ sa colimite, l'application naturelle~·
               $$\colim_I NC_{(-)}\lra NC\text{ est un isomorphisme.}$$ 
@@ -1758,7 +1764,278 @@ Nous avons fait le choix de le mettre dans \sref{l'annexe}{carrehomotopiquementc
   Donc le carré commute à homotopie près. Donc $u^*:f\uparrow y'\ra f\uparrow y$ est une équivalence d'homotopie. On peut maintenant appliquer le théorème B.
 \end{proof}
 
-\subsection{Premières propriétés}\label{premieresprops}
+\subsection{Premières propriétés et exemples}\label{premieresprops}
+
+Dans cette sous-section, nous étudions la fonctorialité de la construction $Q$, certaines propriétés élémentaires,
+sa commutation aux colimites filtrantes et le comportement relativement aux filtrations et suites exactes de foncteurs exacts.
+Nous terminons par la définition de la $K$-théorie supérieure des anneaux et une version supérieure de la \sref{proposition}{K0gradues}
+sur la $K$-théorie des modules projectifs gradués de type fini sur un anneau gradué.
+
+\begin{propdefi}[fonctorialité]
+  Un foncteur exact $f:\M\ra\M'$ entre deux catégories exactes induit un morphisme en $K$-théorie pour tout $i\geq 0$~:
+  $$f_*:K_i\M\ra K_i\M'$$
+  Ce morphisme ne dépend que de la classe d'isomorphisme du foncteur $f$, et coïncide avec le morphisme définit dans la 
+  \sref{remarque}{remarquefonctorialiteK0categorieexacte} pour $i=0$.
+\end{propdefi}
+
+\begin{proof}
+  En effet, $f$ induit un foncteur $f:Q\M\ra Q\M'$, et donc $f_*:K_i\M\ra K_i\M'$. Si $f\simeq g$ est un isomorphisme,
+  il induit également un isomorphisme entre les foncteurs $f,g:Q\M\ra Q\M'$, et donc $f_*=g_*$.
+  La coïncidence dans le cas $i=0$ découle immédiatement de la formule de l'isomorphisme donné dans le \sref{théorème}{theoremeK0constructionQ}.
+\end{proof}
+
+\begin{prop}
+  Por tout $i\geq 0$, on dispose d'un isomorphisme naturel en $\M$ catégorie exacte~:
+  $$K_i\M\simeq K_i\M\op$$
+\end{prop}
+
+\begin{proof}
+  On a un isomorphisme naturel $Q\M\simeq Q\M\op$.
+\end{proof}
+
+\begin{prop}
+  L'isomorphisme naturel $Q(\M\times\M')\simeq Q\M\times Q\M'$ induit, pour tout $i\geq 0$, un isomorphisme naturel~:
+  \[
+    \begin{array}{lcl}
+      K_i(\M\times\M') &\simeq  & K_i(\M)\oplus K_i(\M') \\
+      x                &\mapsto & \mathrm{pr}_{1*}x + \mathrm{pr}_{2*}x
+    \end{array}
+  \]
+  Le foncteur~:
+  $$\oplus:\M\times\M\lra M$$
+  est exact et induit un morphisme fonctoriel~:
+  $$\oplus:K_i(\M)\oplus K_i(\M)\simeq K_i(\M\times\M)\lra K_i\M$$
+  Ce morphisme coïncide avec l'addition.
+\end{prop}
+
+\begin{proof}
+  Pour montrer la coïncidence avec l'addition, on remarque que pour tout $a$,$b$,$c$ et $d$ dans $K_i\M$~:
+  $$(a+b)\oplus (c+d)=(a\oplus c)+(d\oplus d)$$
+  On a donc, pour $a$ et $b$ dans $K_i\M$~:
+  $$a\oplus b = (a+0)\oplus (0+b)=a\oplus 0 + 0\oplus b$$
+  Or, les foncteurs $\id_\M$, $M\mapsto 0\oplus M$ et $M\mapsto M\oplus 0$ sont isomorphes.
+  Donc $a\oplus b=a+b$.
+\end{proof}
+
+Nous allons maintenant étudier la commutation aux colimites filtrantes. Il s'agit essentiellement d'étendre la \sref{proposition}{CatExColimitesK0}.
+
+\begin{prop}\label{CatExColimitesKi}
+  Soit $\M_{(-)}:I\ra \CatEx$, $i\mapsto \M_i$ un foncteur d'une catégorie filtrante $I$ dans la catégorie des petites catégories exactes.
+  On note $\M$ sa colimite. Alors, pour tout $n\geq 0$, l'application induite $\colim_i K_n(\M_i)\ra K_n(\M)$ est un isomorphisme.
+\end{prop}
+
+\begin{proof}
+  On utilise la démonstration de la \sref{porposition}{CatExColimitesK0}. On a que $\E = \colim_i \E_i$, et donc que
+  $Q\M = \colim_i Q\M_i$, ce qui conclut par la \sref{proposition}{propositioncolimitecategories}.
+\end{proof}
+
+Nous utilisons ci-dessous la construction de la catégorie des suites exactes $\E$ d'une catégorie exacte $\M$
+de la \sref{proposition-définition}{propdeficategoriedessuitesexactes}.
+
+\begin{theo}
+  Soit $\M$ une catégorie exacte et $\E$ sa catégorie exacte des suites exactes. On note $s,q:\E\ra \M$ comme
+  dans la \sref{proposition-définition}{propdeficategoriedessuitesexactes}.
+  Alors le foncteur induit~:
+  $$(s,q):Q\E\lra Q\M\times Q\M$$
+  est une équivalence d'homotopie.
+\end{theo}
+
+\begin{proof}
+  Par le \sref{théorème A}{theoremeA}, il suffit de montrer que pour tout $M$, $N$ dans $\M$,
+  $(s,q)\uparrow (M,N)$ est contractile. On note $\mathcal{C}:=(s,q)\uparrow (M,N)$. Les objets de $\mathcal{C}$ sont
+  les $(E,u,v)$ avec $E$ objet de $\E$, $u:sE\ra M$ et $v:qE\ra N$.
+
+  On note $\mathcal{C}'$ la sous-catégorie pleine de $\mathcal{C}$ formée des $(E,u,v)$ avec $u$ une surjection.
+
+  On note $\mathcal{C}''$ la sous-catégorie pleine de $\mathcal{C}$ formée des $(E,u,v)$ avec $u$ une surjection et $v$ une injection.
+  \begin{description}
+    \item[(A)] L'inclusion $\mathcal{C}'\ra \mathcal{C}$ a un adjoint à gauche.
+    Soit $X=(E,u,v)$. Alors $u$ de la forme~:
+    $$u:sE\overset{i}{\rightarrowtail} M'\overset{j}{\twoheadleftarrow} M$$
+    On a alors le diagramme suivant~:
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsMTIsWzAsMCwiRToiXSxbMCwxLCJpXypFOiJdLFsxLDAsIjAiXSxbMSwxLCIwIl0sWzIsMCwic0UiXSxbMywwLCJ0RSJdLFs0LDAsInFFIl0sWzUsMCwiMCJdLFs1LDEsIjAiXSxbNCwxLCJxRSJdLFszLDEsIlQiXSxbMiwxLCJNJyJdLFs0LDExLCJpIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs0LDVdLFs1LDZdLFs2LDddLFsyLDRdLFszLDExXSxbNSwxMCwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs2LDksImVxdWFsIiwyXSxbMTAsOV0sWzksOF0sWzExLDEwXSxbMTAsNCwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d
+      \begin{tikzcd}
+        {E:} & 0 & sE & tE & qE & 0 \\
+        {i_*E:} & 0 & {M'} & T & qE & 0
+        \arrow["i", tail, from=1-3, to=2-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=1-5, to=1-6]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=2-2, to=2-3]
+        \arrow[tail, from=1-4, to=2-4]
+        \arrow[equal, from=1-5, to=2-5]
+        \arrow[from=2-4, to=2-5]
+        \arrow[from=2-5, to=2-6]
+        \arrow[from=2-3, to=2-4]
+        \arrow["\mathlarger{\mathlarger{\mathlarger{\mathlarger{\lrcorner}}}}"{anchor=center, pos=0.05, rotate=180}, draw=none, from=2-4, to=1-3]
+      \end{tikzcd}
+    \end{center}
+    Et on pose $\overline{X}:=(i_*E,j^!,v)$. On dispose de $X\ra \overline{X}$.
+
+    Soit maintenant $X'=(E',j'^!,v')$ dans $\mathcal{C}'$, et $X\ra X'$ un morphisme représenté par~:
+    $$E\rightarrowtail E_0\twoheadleftarrow E'$$
+    On a alors~:
+    $$u:sE\rightarrowtail sE_0\twoheadleftarrow sE'\overset{j'}{\twoheadleftarrow} M$$
+    On donc, à isomorphisme $sE_0\simeq M'$ près, $i=sE\rightarrowtail sE_0$ et $j=M\twoheadrightarrow sE_0$.
+    Alors, $E\rightarrowtail E_0$ se factorise en $E\rightarrowtail i_*E\rightarrowtail E_0$. Nous avons donc une factorisation~:
+    $$X\lra\overline{X}\lra X'$$
+    Il reste à montrer l'unicité de $\overline{X}\ra X'$. Pour cela, on remarque que $\mathcal{C}\downarrow X'=Q\E\downarrow E'$
+    est équivalente à la catégorie des couches admissibles de $E'$. Ainsi, une factorisation $X\ra X''\ra X'$
+    avec $X''$ dans $\mathcal{C}'$ correspond à une couche $(E''_0,E''_1)\geq (E_0,E_1)$ telle que
+    $sE''_1=sE'$, où $(E_0,E_1)$ est la couche de $X\ra X'$.
+    Parmi ces couches $(E''_0,E''_1)$, il en existe une minimale telle que $tE''_0=tE_0$ et $tE''_1=sE'+tE_1$.
+    Cette couche correspond à $\overline{X}\ra X'$. Ce qui conclut.
+
+    \item[(B)] L'inclusion $\mathcal{C}''\ra\mathcal{C}'$ admet un adjoint à gauche.
+    On procède comme pour (A), mais de façon duale (ie. dans $\M\op$).
+    
+    \item[(C)] L'objet $(0,j_M^!,i_{N!})$ est initial dans $\mathcal{C}''$.
+    En effet, soit $(E, j^!,i_!)$ un objet de $\mathcal{C}''$. Alors l'unique morphisme de $(0,j_M^!,i_{N!})$ dans 
+    $(E, j^!,i_!)$ est donné par le diagramme~:
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsMTQsWzAsMiwiMCJdLFs0LDFdLFs0LDIsIjAiXSxbMywyLCJxRSJdLFsyLDIsInRFIl0sWzEsMiwic0UiXSxbMCwwLCIwIl0sWzQsMCwiMCJdLFsxLDAsIjAiXSxbMiwwLCIwIl0sWzMsMCwiMCJdLFsxLDMsIk0iXSxbMywzLCJOIl0sWzIsMSwicUUiXSxbMCw1XSxbNCwzXSxbMywyXSxbNSw0XSxbNSw4LCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMTAsMywiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFsxMSw1LCIiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMywxMiwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs5LDEzLCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzQsMTMsIiIsMSx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs2LDhdLFs4LDldLFs5LDEwXSxbMTAsN11d
+      \begin{tikzcd}
+        0 & 0 & 0 & 0 & 0 \\
+        && qE && {} \\
+        0 & sE & tE & qE & 0 \\
+        & M && N
+        \arrow[from=3-1, to=3-2]
+        \arrow[from=3-3, to=3-4]
+        \arrow[from=3-4, to=3-5]
+        \arrow[from=3-2, to=3-3]
+        \arrow[two heads, from=3-2, to=1-2]
+        \arrow[tail, from=1-4, to=3-4]
+        \arrow[two heads, from=4-2, to=3-2]
+        \arrow[tail, from=3-4, to=4-4]
+        \arrow[tail, from=1-3, to=2-3]
+        \arrow[two heads, from=3-3, to=2-3]
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+      \end{tikzcd}
+    \end{center}
+  \end{description}
+\end{proof}
+
+\begin{coro}
+  Soit $\M$ et $\M'$ deux catégories exactes, et~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiRiciXSxbMiwwLCJGIl0sWzMsMCwiRicnIl0sWzQsMCwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdXQ==
+    \begin{tikzcd}
+      0 & {F'} & F & {F''} & 0
+      \arrow[from=1-1, to=1-2]
+      \arrow[from=1-2, to=1-3]
+      \arrow[from=1-3, to=1-4]
+      \arrow[from=1-4, to=1-5]
+    \end{tikzcd}
+  \end{center}
+  une suite exacte de foncteurs (exacts) de $\M'$ dans $\M$. Alors, pour tout $i\geq 0$~:
+  $$F_*=F'_*+F''_*:K_i\M'\ra K_i\M$$
+\end{coro}
+
+\begin{proof}
+  La suite exacte de foncteurs induit un foncteur $\tilde{F}:\M'\ra\E$. Il suffit donc de traiter le cas où $\M'=\E$, et de la suite de foncteurs~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiRiciXSxbMiwwLCJGIl0sWzMsMCwiRicnIl0sWzQsMCwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdXQ==
+    \begin{tikzcd}
+      0 & {s} & t & {q} & 0
+      \arrow[from=1-1, to=1-2]
+      \arrow[from=1-2, to=1-3]
+      \arrow[from=1-3, to=1-4]
+      \arrow[from=1-4, to=1-5]
+    \end{tikzcd}
+  \end{center}
+  On pose~:
+  \[
+  \begin{array}{clcl}
+    f: & \M\times\M & \ra     & \E                           \\
+       & (M',M'')   & \mapsto & \exac{M'}{M'\oplus M''}{M''}
+  \end{array}
+  \]
+  Alors, $tf$ est isomorphe à $\oplus (s,q)f$, donc~:
+  $$t_*f_*=(s_*+q_*)f_*:K_i\M\times K_i\M\ra K_i\M$$
+  mais, $(s,q)f$ est isomorphe à l'identité, et $(s,q)$ est une équivalence d'homotopie. Donc $f$ est une équivalence d'homotopie.
+  Donc~:
+  $$t_*=s_*+q_*$$
+\end{proof}
+
+\begin{defi}
+  Soit $F:C\ra\M$ un foncteur avec $\M$ une catégorie exacte. Une filtrations~·
+  $$0=F_0\subseteq F_1\subseteq \dotsb\subseteq F_n=F$$
+  de $F$ est la donnée de transformations naturelles~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsNCxbMCwwLCIwPUZfMCJdLFsxLDAsIkZfMSJdLFszLDAsIkZfe24tMX0iXSxbNCwwLCJGX249RiJdLFswLDEsInVfMSJdLFsyLDMsInVfbiJdLFsxLDIsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \begin{tikzcd}
+      {0=F_0} & {F_1} && {F_{n-1}} & {F_n=F}
+      \arrow["{u_1}", from=1-1, to=1-2]
+      \arrow["{u_n}", from=1-4, to=1-5]
+      \arrow[dashed, from=1-2, to=1-4]
+    \end{tikzcd}
+  \end{center}
+  où les $u_i$ sont des monomorphismes admissibles en chaque point.
+\end{defi}
+
+\begin{rem}
+  Dans ce cas, on peut définir les quotients $F_p/F_q:C\ra\M$ pour $q\leq p$, et si $C$ est une catégorie exacte et les $F_i$
+  sont exacts, alors les quotients $F_p/F_q:C\ra\M$ sont également exacts, par le lemme du serpent.
+\end{rem}
+
+On peut ainsi étendre le corollaire ci-dessus par récurrence. On obtient les deux corollaires suivants.
+
+\begin{coro}[additivité pour les filtrations caractéristiques]\label{corollaireadditivitefiltration}
+  Soit $F:\M'\ra\M$ foncteur exact et $0=F_0\subseteq F_1\subseteq \dotsb\subseteq F_n=F$ filtration admissible de foncteurs exacts.
+  Alors~:
+  $$F_*=\sum_{p=1}^n(F_p/F_{p-1})_*:K_i\M'\ra K_i\M$$
+\end{coro}
+
+\begin{coro}[additivité pour les suites exactes caractéristiques]\label{corollaireadditivitesuitesexacte}
+  Si $0\ra F_0\ra\dotsb F_n\ra 0$ est une suite exacte de foncteurs exacts $\M'\ra \M$, alors~:
+  $$\sum_{p=0}^n(F_p)_*=0:K_i\M'\ra K_i\M$$
+\end{coro}
+
+Nous allons maintenant définir la $K$-théorie supérieure des anneaux et des schémas.
+
+\begin{defi}
+  Pour $A$ un anneau et $i\geq 0$. On définit le $i$-ème groupe de $K$-théorie de $A$ comme~:
+  $$K_i(A):=K_i(\Proj{A})$$
+  Pour $f:A\ra A'$ un morphisme d'anneaux, le foncteur exact $A'\otimes_A -: \Proj{A}\ra\Proj{A'}$ induit un morphisme~:
+  $$f^*:K_i(A)\ra K_i(A')$$
+\end{defi}
+
+\begin{defi}
+  Pour $X$ un schéma et $i\geq 0$. On définit le $i$-ème groupe de $K$-théorie de $X$ comme~:
+  $$K_i(A):=K_i(\Proj{X})$$
+  Pour $f:X'\ra X$ un morphisme de schémas, le foncteur exact $f^* -: \Proj{X}\ra\Proj{X'}$ induit un morphisme~:
+  $$f^*:K_i(X)\ra K_i(X')$$
+\end{defi}
+
+On reprend maintenant le cadre de la \sref{proposition}{K0gradues}.
+
+\begin{prop}\label{Kngradues}
+  Soit $A=A_0\oplus A_1\oplus\dotsb$ un anneau gradué en degrés positifs et $i\geq 0$ un entier.
+  L'automorphisme de translation $t$ fait de $K_i(\Pgr{A})$ un $\Z[t,t^{-1}]$-module. On a un isomorphisme de $\Z[t,t^{-1}]$-modules~:
+  \[
+  \begin{array}{llll}
+    \phi:&\Z[t,t^{-1}]\otimes_{\Z}K_i(A_0) &\ra    & K_i(\Pgr{A}) \\
+         &1\otimes x                       &\mapsto& (A\otimes_{A_0}-)_*(x)
+  \end{array}
+  \]
+\end{prop}
+
+\begin{proof}
+  On reprend les notations de la preuve de la \sref{proposition}{K0gradues}.
+
+  On dispose d'une filtration de l'identité sur $\Pgr{A}_q$, donnée pour $P$ dans $\Pgr{A}_q$ par~:
+  $$0=F_{-q-1}P\subseteq F_{-q}\subseteq \dotsb \subseteq F_qP=P$$
+  Et donc, par le \sref{corollaire}{corollaireadditivitefiltration}~:
+  $$\id_{K_i\Pgr{A}_q}=\sum_{n=-q}^q (F_n/F_{n-1})_*=\sum_{n=-q}^q (A[-n]\otimes_{A_0}T(-)_n)_*=\sum_{n=-q}^q (\phi(t^n\otimes T(-)_n))_*$$
+  Ainsi, si on pose $\chi_q: K_i(\Pgr{A}_q)\ra \bigoplus_{n=-q}^q K_i(A_0)$ induit par $P\mapsto \oplus_n T(P)_n$, 
+  on a que $\phi_q$ et $\chi_q$ sont réciproques, où $\phi_q$ est la restriction de $\phi$ à $\bigoplus_{n=-q}^q \Z\cdot t^n\otimes K_i(A_0)$.
+  Donc $\phi_q$ est un isomorphisme. Par la \sref{proposition}{CatExColimitesKi}, $\phi$ est un isomorphisme.
+\end{proof}
 
 \section{\texorpdfstring{Construction $+$ de Quillen}{Construction + de Quillen}}
 
