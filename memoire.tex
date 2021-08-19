@@ -770,7 +770,7 @@ Nous allons maintenant appliquer ce résultat de colimite pour effectuer un calc
   Donc $\phi_q$ est un isomorphisme. Par la \sref{proposition}{CatExColimitesK0}, $\phi$ est un isomorphisme.
 \end{proof}
 
-\subsection{\texorpdfstring{Les groupes $K_1$ et $K_2$ d'un anneau}{Les groupes K1 et K2 d'un anneau}}
+\subsection{\texorpdfstring{Le groupe $K_1$ d'un anneau}{Le groupe K1 d'un anneau}}
 
 Dans cette section, nous fixons un anneau $A$.
 
@@ -829,9 +829,7 @@ Nous allons maintenant donner une description du groupe des commutateurs $[\GL{}
   \end{description}
 \end{proof}
 
-[Frédéric: ajouter $f^*$ et $f_*$? (nécessite une interprétation cohomologique)]
-
-[ajouter $K_2$ d'un anneau]
+[ajouter lien avec K-théorie topologique]
 
 \section{\texorpdfstring{Définition de la $K$-théorie supérieure}{Définition de la K-théorie supérieure}}
 
@@ -2180,6 +2178,44 @@ Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
   Donc $H_*(X;f^*L)\ra H_*(X^+;L)$ est un isomorphisme.
 \end{proof}
 
+Nous énonçons ici une propriété de stabilité par produit qui sera utiles par la suite. La démonstration utilise la suite
+spectrale d'une filtration, voir \cite[5.3]{Weib2}.
+
+\begin{prop}\label{propositionconstructionplusproduit}
+  Soit $X$ connexe dans $\DEns$, $x\in X_0$ et $P\triangleleft \pi_1(X,x)$ sous-groupe normal parfait.
+  Soit $X\hookrightarrow X^+$ la construction $+$ pour $P$ comme donné par la construction précédente.
+
+  Soit $Z$ un ensemble simplicial connexe. Alors $X\times Z\hookrightarrow X^+\times Z$ est une construction $+$ pour
+  $P\times\{1\}$.
+\end{prop}
+
+\begin{proof}
+  La propriété souhaitée sur les groupes fondamentaux est immédiate. Il s'agit donc de vérifier l'isomorphisme
+  en homologie.
+  
+  En reprenant la construction de la proposition précédente, on voit qu'il suffit de montrer que~:
+  $$\tilde{X}\times Z\hookrightarrow\tilde{X}^+\times Z$$
+  est un isomorphisme en homologie pour tout système de coefficients locaux.
+  Or $\tilde{X}^+$ est simplement connexe. Donc tout système de coefficients locaux sur $\tilde{X}^+\times Z$
+  est induit par un système dur $Z$. Soit $L$ un tel système sur $Z$. Par le morphisme d'Eilenberg-Zilber (voir \cite[IV.2.5]{Goer}),
+  il existe un isomorphisme en homologie fonctoriel en $W$ ensemble simplicial~:
+  $$C_*(W;\Z)\otimes C_*(Z;L)\lra C_*(X\times Z;L)$$
+  De plus, si on filtre $C_*(W;\Z)$ par degrés, on obtient une filtration fonctorielle en $W$ du complexe $C_*(W;\Z)\otimes C_*(Z;L)$,
+  dont la suite spectrale associée $E^r_{pq}(W)$ vérifie~:
+  \[
+    \begin{array}{lcl}
+      E^0_{pq}&=&C_p(W;\Z)\otimes C_q(Z;L)\\
+      E^1_{pq}&=&C_p(W;H_q(Z;L)) \\
+      E^2_{pq}&=&H_p(W;H_q(Z;L))
+    \end{array}
+  \]
+  Ainsi, comme le morphisme~:
+  $$H_p(\tilde{X};H_q(Z;L))\lra H_p(\tilde{X}^+;H_q(Z;L))$$
+  est un isomorphisme pour tout $p$ et tout $q$, le morphisme de suites spectrales~:
+  $$E^r_{pq}(\tilde{X})\ra E^r_{pq}(\tilde{X}^+)$$
+  induit un isomorphisme entre les limites. Donc $H_*(\tilde{X}\times Z;L)\ra H_*(\tilde{X}^+\times Z;L)$ est un isomorphisme.
+\end{proof}
+
 Nous allons maintenant énoncer un résultat d'unicité.
 
 \begin{prop}\label{topologiepluspropuniv}
@@ -2267,7 +2303,7 @@ Nous allons maintenant énoncer un résultat d'unicité.
   est la fibre de $p$.
   Comme le L à droite est une suite fibre, ce diagramme nous donne un morphisme $\tilde{X}^+\cup C\tilde{X}\ra K(n+1,\pi_n(\tilde{Y}))$
   où $C\tilde{X}:=\tilde{X}\times\Delta^1 / \tilde{X}\times\{1\}$ est le cône de $\tilde{X}$.
-  La classe d'homotopie de ce morphisme correspond, par le \sref{theoreme}{EMfoncteur}, à un élément de
+  La classe d'homotopie de ce morphisme correspond, par le \sref{théorème}{EMfoncteur}, à un élément de
   $H^{n+1}(\tilde{X}^+\cup C\tilde{X};\pi_2(\tilde{Y}))=H^{n+1}(\tilde{X}^+,\tilde{X};\pi_2(\tilde{Y}))=0$
   (par le \sref{théorème}{coeffsunivcohom}). Donc $\tilde{X}^+\cup C\tilde{X}\ra K(n+1,\pi_n(\tilde{Y}))$
   est homotope à une application constante et on peut l'étendre en $C(\tilde{X}^+)\ra K(n+1,\pi_n(\tilde{Y}))$,
@@ -2460,7 +2496,7 @@ Dans cette section, nous verrons certains groupes comme des ensembles simpliciau
   \sref{corollaire}{uniciteplustopologie} est à homotopie sous $\GL{}{A}$ près. De même pour les morphismes $u^*$.
 \end{rem}
 
-Nous auront besoin, pour démontrer le théorème $+=Q$ [mettre ref], de montrer que $\GL{}{A}^+$ est un espace simple.
+Nous auront besoin, pour démontrer le \sref{théorème $+=Q$ }{theoremeplusegalQ}, de montrer que $\GL{}{A}^+$ est un espace simple.
 C'est l'objet de la fin de cette sous-section.
 
 \begin{lem}\label{lemmeplussimple}
@@ -2556,8 +2592,6 @@ C'est l'objet de la fin de cette sous-section.
     Donc $[\eta\cdot\delta]=[\delta]$.
   \end{description}
 \end{proof}
-
-\subsection{\texorpdfstring{La $K$-théorie des corps finis}{La K-théorie des corps finis}}
 
 \section{\texorpdfstring{Le théorème "$+=Q$"}{Le théorème "+=Q"}}
 
@@ -2936,6 +2970,7 @@ Revenons maintenant au cadre des catégories. Dans la majorité de la suite, nou
 \end{proof}
 
 \subsection{Calculs d'homologie de localisés}
+\label{soussectioncalculhomologielocalises}
 
 Le but de cette sous-section est de calculer $H_*(S^{-1}X)$ en fonction de $H_*(X)$ sous certaines hypothèses sur l'action de $S$ sur $X$.
 
@@ -2995,7 +3030,7 @@ On peut maintenant énoncer le résultat principale de la sous-section.
   
   On filtre $\Tot{C}$ par la seconde coordonnée~:
   $$F_q\Tot{C}_n:=\bigoplus_{i+j=n,j\leq q}C_{ij}$$
-  On note $E^r_{pq}$ la suite spectrale de cette filtration, voir \sref{la sous-section}{suitespectrale} (attention, les indices sont transposés ici).
+  On note $E^r_{pq}$ la suite spectrale de cette filtration, voir \cite[5.4]{Weib2} (attention, les indices sont transposés ici).
   On a~:
   $$E^{0}_{pq}=C_{pq}=\bigoplus_{(A_0,F_0)\ra\dotsb\ra (A_q,F_q)}\Z N(\brak{S}{S}\uparrow A_q)_p$$
   Et $\partial^0:E^{0}_{pq}\ra E^{0}_{(p-1)q}$ s'identifie sur chaque coordonnée à la différentielle de $\Z N(\brak{S}{S}\uparrow B_q)$.
@@ -3708,7 +3743,7 @@ est fibré et la fibre au-dessus de $C$ s'identifie à $S^{-1}E_C$.
   est une équivalence faible. Donc $S^{-1}E$ est contractile.
 \end{proof}
 
-\begin{theo}[Théorème $+=Q$]
+\begin{theo}[Théorème $+=Q$]\label{theoremeplusegalQ}
   $\Omega QP$ est homotope à $K_0(A)\times \GL{}{A}^+$.
   En particulier, $\pi_{n+1}(QP)\simeq \pi_n(\GL{}{A}^+)$, et les construction $+$ et $Q$ de la $K$-théorie coïncident.
   Ici, $\Omega$ désigne l'espace des lacets.
@@ -3721,8 +3756,6 @@ est fibré et la fibre au-dessus de $C$ s'identifie à $S^{-1}E_C$.
 \end{proof}
 
 \section{\texorpdfstring{Propriétés de la $K$-théorie supérieure}{Propriétés de la K-théorie supérieure}}
-
-\section{\texorpdfstring{La $K$-théorie des schémas}{La K-théorie des schémas}}
 
 \appendix
 
@@ -4152,12 +4185,7 @@ On se place ici dans une catégorie modèle $C$.
   de $\theta$, par la \sref{proposition}{homocartesienfibrant}, $n_D$ est acyclique.
 \end{proof}
 
-
-\section{Catégories exactes}
-
-\section{Homologie et suites spectrales}
-
-\subsection{La correspondance de Dold-Kan}
+\section{La correspondance de Dold-Kan}
 \label{DoldKan}
 
 Cette sous-section est consacrée à la correspondance de Dold-Kan et à certaines conséquences en homotopie.
@@ -4418,14 +4446,14 @@ Introduisons maintenant la structure de modèle sur $\DAb$.
   Tout cela induit une équivalence d'homotopie entre $\Z X\otimes \Z\Delta^1$ et $\Z X$.
 \end{proof}
 
-\begin{prop}
+\begin{lem}\label{lemmeDoldKanHomotopie}
   Soit $f:A\ra B$ une application dans $\DAb$. Alors~:
   \begin{description}
     \item[$(1)$] Si $f$ est surjective, alors $f$ est une fibration~;
     \item[$(2)$] $f$ est surjective si et seulement si $Nf:NA\ra NB$ est surjective~;
-    \item[$(3)$] $f$ est un cofibration si et seulement si $Nf_n:NA_n\ra NB_n$ est surjective pour tout $n\geq 1$.  
+    \item[$(3)$] $f$ est une fibration si et seulement si $Nf_n:NA_n\ra NB_n$ est surjective pour tout $n\geq 1$.  
   \end{description}
-\end{prop}
+\end{lem}
 
 \begin{proof}
   \begin{description}
@@ -4463,16 +4491,62 @@ Introduisons maintenant la structure de modèle sur $\DAb$.
                     \arrow["\theta", from=1-1, to=2-2]
                   \end{tikzcd}
                 \end{center}
-                L'application $\pi_0(A)\ra \pi_0(B)$ est une fibration (comme toute application d'un complexe de kan dans un groupoïde).
+                L'application $\pi_0(A)\ra \pi_0(B)$ est une fibration (comme toute application d'un complexe de Kan dans un groupoïde).
                 Comme le carré est cartésien, $p_2$ est aussi une fibration. Or un calcul rapide montre que $N\theta$ est surjective.
                 Donc d'après $(2)$, $\theta$ est surjective, et c'est donc une fibration par $(1)$. Donc $f=p_2\circ \theta$ est une fibration.
   \end{description}
 \end{proof}
 
+\begin{coro}
+  Il existe une structure de catégorie modèle sur $\Chp$ telle que~:
+  \begin{description}
+    \item[(W)] les équivalences faibles soient les applications qui induisent des isomorphismes en homologie~;
+    \item[(F)] les fibrations soient les applications $f:C\ra D$ telles que $f_n:C_n\ra D_n$ soit surjectif pour tout $n\geq 1$~;
+    \item[(C)] les cofibrations soient les monomorphisme $f:C\hookrightarrow D$ dont le conoyau $\coker{f}$ soit un complexe de $\Z$-modules projectifs.
+  \end{description}
+  Cette structure est celle induite par la correspondance de Dold-Kan et la structure de modèle sur $\DAb$.
+\end{coro}
+
+\begin{proof}
+  Par l'équivalence de Dold-Kan, le \sref{lemme}{lemmeDoldKanHomotopie} et la \sref{proposition}{pinegalHn},
+  l'existence de la structure vérifiant (W) et (F) est claire. Il s'agit donc de montrer (C).
+  
+  Montrons d'abord que les cofibrations sont des monomorphismes. Soit $f:C\rightarrow D$ une cofibration. 
+  Pour $M$ un $\Z$-module et $n\geq 0$, on note $D^n(M)$ le complexe formé de $M$ en degrés $n$ et $n+1$, $0$ ailleurs et $d_{n+1}=\id_M$. 
+  Alors pour $n\geq 0$, $D^n(C)\ra 0$ est une fibration acyclique. Donc elle a la propriété de relèvement à droite par rapport à $f$.
+  On voit tout de suite que cela implique que $C_n\ra D_n$ a une rétraction.
+
+  Soit $f:C\rightarrow D$ une cofibration, $n\geq 0$, $u:M\twoheadrightarrow N$ une surjection entre $\Z$-modules
+  et $v:\coker{f}_n\ra N$ un morphisme.
+  Le morphisme $u$ induit alors une fibration acyclique $D^n(u):D^n(M)\ra D^n(N)$. On se donne un morphisme $f\Rightarrow u$
+  induit par $0:C_n\ra M$ et $D_n\ra \coker{f}_n\ra N$. Comme $f\square u$, il existe un relèvement $D\ra D^n(M)$, ce qui est équivalent
+  à l'existence d'un relèvement $\coker{f}_n\ra M$ à $v$. Donc $\coker{f}_n$ est projectif.
+
+  Soit $f:C\hookrightarrow D$ tel que son conoyau $\coker{f}$ soit un complexe de $\Z$-modules projectifs. Soit $u: E\ra F$ une cofibration acyclique,
+  et $a,b:f\Rightarrow u$ un morphisme. Montrons, par récurrence sur $n\geq 0$, qu'il existe un relèvement $c:D\ra E$ définit en degrés $m\leq n$
+  et compatible aux différentielles. On voit rapidement que $u_0$ est nécessairement une surjection (car $u$ est acyclique).
+  Ainsi, pour compléter cette récurrence, il suffit de traiter le cas $n=1$ sachant que $c_0$ existe ($d^2=0$).
+  On note $K:=\myker{u}$ et $N:=\coker{f}$. Comme $N_1$ est projectif, on dispose d'un isomorphisme $N_1\oplus C_1 \simeq D_1$.
+  On en déduit un morphisme $N_1\ra F_1$ que l'on relève en $N_1\ra E_1$. On en déduit ainsi un morphisme
+  $\alpha: D_1\ra E_1$ tel que $b_1=u_1\alpha$ et $a_1=\alpha f_1$. Maintenant, $d\alpha - \alpha d$
+  est nul sur $A$ et est à image dans $K_0$. Il induit donc un morphisme $\beta:N_1\ra K_0$.
+  Comme $K$ est acyclique, $K_1\ra K_0$ est une surjection. Donc $\beta$ admet un relèvement $N_1\ra K_1$,
+  qui induit $\gamma:D_1\ra E_1$. Alors $c_1:=\beta-\gamma$ convient.
+\end{proof}
+
+\section{Topologie algébrique}
+\label{annexetopologie}
+
+Cette section couvre les notions de topologie utilisées dans le mémoire. Certains points seront admis.
+
+
 \subsection{Homologie et homologie à coefficients}
 
+Dans ce mémoire, nous déduisons les propriétés élémentaires de l'homologie et de la cohomologie
+des structures de catégorie modèle sur $\DEns$, $\DAb$ et $\Chp$, suivant \cite[III.2]{Goer} (que nous citons pour les démonstrations).
+Pour une introduction classique à l'homologie et la cohomologie, voir \cite{Hatc}.
 
-[compléter]
+Nous commençons par le théorème des coefficients universels (admis, voir \cite[3.6]{Weib2}).
 
 \begin{theo}[Coefficients universels]\label{coeffsuniv}
   Soit $C_*$ un complexe de chaînes de $\Z$-modules libres
@@ -4488,15 +4562,96 @@ Introduisons maintenant la structure de modèle sur $\DAb$.
   $$\exa{\mathrm{Ext}^1_\Z(H_{i-1}(C),M)}{H^i(\Hom{}{C}{M})}{\Hom{}{H_{i}(C)}{M}}$$
 \end{theo}
 
-\subsection{Le morphisme d'Eilenberg-Zilber}
+\begin{defi}[homologie et cohomologie]
+  Soit $X$ un ensemble simplicial et $n\geq 0$. On appelle $n$-ième groupe d'homologie de $X$ le groupe abélien~:
+  $$H_n(X):=H_n(\Z X)=H_n(NX)=\pi_n(NX)$$
+  Soit $M$ un $\Z$-module. On appelle $n$-ième groupe d'homologie de $X$ à coefficients dans $M$ le groupe abélien~:
+  $$H_n(X;M):=H_n(\Z X\otimes M)=H_n(NX\otimes M)$$
+  On appelle $n$-ième groupe de cohomologie de $X$ à coefficients dans $M$ le groupe abélien~:
+  $$H^n(X;M):=H^n(\Hom{\Z}{\Z X}{M})=H^n(\Hom{\Z}{NX}{M})$$
+  Les groupes $H_n(X)$, $H_n(X;M)$ et $H^n(X;M)$ sont fonctorielles en $X$ (de façon contravariante pour le dernier).
+\end{defi}
 
-\subsection{Suite spectrale d'une filtration}
-\label{suitespectrale}
+\begin{rem}
+  Les égalités $H_n(\Z X\otimes M)=H_n(NX\otimes M)$ et $H_n(\Hom{\Z}{\Z X}{M})=H_n(\Hom{\Z}{NX}{M})$ découlent du théorème des coefficients universels.
+\end{rem}
 
-\section{Topologie algébrique}
-\label{annexetopologie}
+\begin{rem}
+  Dans la suite, on notera $H_*(X)$, $H_*(X;M)$ et $H^*(X;M)$ pour leq groupes abéliens $\N$-gradués formé de respectivement
+  $H_n(X)$, $H_n(X;M)$ et $H^n(X;M)$ en degré $n$.
+\end{rem}
 
-Cette section couvre les notions de topologie utilisées dans le mémoire. Certains points seront admis.
+\begin{prop}[invariance par homotopie]
+  Le foncteur d'homologie $H_*:\DEns\ra \Ab^\N$ se factorise par $\Ho{\DEns}$. En d'autres termes, l'homologie est invariante par homotopie.
+\end{prop}
+
+Pour la démonstration, voir \cite[III.2.14]{Goer}. On a immédiatement, par le théorème des coefficients universels, le corollaire
+suivant.
+
+\begin{coro}
+  Pour $M$ un groupe abélien, les foncteur $H_*(-;M)$ et $H^*(-;M)$ se factorisent également par $\Ho{\DEns}$.
+\end{coro}
+
+\begin{defi}[homologie et cohomologie des paires]
+  Soit $A\subset X$ une paire d'ensembles simpliciaux. On définit son homologie par~:
+  $$H_*(X,A):=H_*(\Z X/\Z A)$$
+  Pour $M$ un groupe abélien, on définit l'homologie à coefficients dans $M$~:
+  $$H_*(X,A;M):=H_*(\Z X/\Z A\otimes M)$$
+  et sa cohomologie à coefficients dans $M$~:
+  $$H^*(X,A;M):=H^*(\Hom{\Z}{\Z X/\Z A}{M})$$
+\end{defi}
+
+\begin{rem}
+  On déduit facilement des définitions les suites exactes longues des paires.
+\end{rem}
+
+Le reste de cette sous-section est consacrée à la définition de l'homologie à coefficients locaux pour les ensembles
+simpliciaux et les paires d'ensembles simpliciaux.
+
+\begin{defi}
+  Soit $X$ un ensemble simplicial. Un système de coefficients locaux est un foncteur~:
+  $$L:\tau_{\leq 1}X\lra \Ab$$
+  Un tel système $L$ est dit inversible si $L$ se factorise par $\tau_{\leq 1}X\lra \pi_{\leq 1}X$.
+  Soit $f:Y\ra X$ un morphisme d'ensembles simpliciaux et $L$ un système de coefficients locaux sur $X$.
+  On note $f^*L$ le système de coefficients locaux sur $Y$ définit par~:
+  $$f^*L:\tau_{\leq 1}Y \lra \tau_{\leq 1}X \lra \Ab$$
+\end{defi}
+
+\begin{defi}
+  Soit $X$ un ensemble simplicial et $L$ un système de coefficients locaux.
+  On définit l'homologie de $X$ dans $L$ comme l'homologie du complexe
+  $C_*(X;L)$ définit par~:
+  $$C_n(X;L):=\bigoplus_{x\in X_n}L(x(0))\cdot x$$
+  et tel que $\partial_n$ envoie $l\cdot x$ sur~:
+  $$\partial_n l\cdot x = L(x(0)\ra x(1))(l)\cdot d_0(x) +\sum_{i=1}^n l\cdot (-1)^id_i(x)$$
+  On notera $H_*(X;L)$ pour l'homologie.
+  
+  Cette définition est fonctorielle en $(X,L)$ au sens suivant. Si $f:Y\ra X$ est une application
+  et $M\ra f^*L$ est un morphisme (transformation naturelle) entre systèmes de coefficients locaux sur $Y$.
+  Alors le morphisme~:
+  $$C_*(Y;M)\lra C_*(Y;f^*L)\lra C_*(X;L)$$
+  induit un morphisme~:
+  $$H_*(Y;M)\lra H_*(X;L)$$
+\end{defi}
+
+\begin{rem}
+  En général, on inclus l'hypothèse inversible dans la définition de système de coefficients locaux. Nous choisissons d'étendre la définition
+  pour prendre en compte le cas étudié dans la \sref{sous-section}{soussectioncalculhomologielocalises}.
+\end{rem}
+
+\begin{defi}
+  Soit $i:A\subset X$ une paire d'ensembles simpliciaux, et $L$ un système de coefficients locaux strict sur $X$.
+  Alors $C_*(A;i^*L)$ est une sous-complexe de $C_*(X;L)$. On définit l'homologie de la paire $(X,A)$ à coefficients dans $L$ comme
+  l'homologie du complexe quotient~:
+  $$H_*(X,A;L):=H_*(C_*(X;L)/C_*(A;i^*L))$$
+
+  Cette définition est fonctorielle en $(X,A,L)$ au sens suivant. Si $f:(Y,B)\ra (X,A)$ est une application entre paires
+  et $M\ra f^*L$ est un morphisme entre systèmes de coefficients locaux sur $Y$.
+  Alors le morphisme~:
+  $$C_*(Y,B;M)\lra C_*(Y,B;f^*L)\lra C_*(X,A;L)$$
+  induit un morphisme~:
+  $$H_*(Y,B;M)\lra H_*(X,A;L)$$
+\end{defi}
 
 \subsection{Le théorème de Van Kampen}
 
@@ -5040,7 +5195,8 @@ Nous introduisons maintenant une structure supplémentaire sur certaines tours d
   $$\mathcal{H}_n(X/A,A/A,A/A):\pi_n(X/A,A/A,A/A)\ra H_n(X/A,A/A)$$
   Or le morphisme naturel $(X,A) \ra (X/A,A/A)$ induit un isomorphisme en homologie. Donc, par fonctorialité du morphisme de Hurewicz
   $\mathcal{H}_n$, $\pi_n(X,A,x)\ra \pi_n(X/A,A/A)$ est un isomorphisme.
-  À l'aide du \sref{lemme d'extension}{lemmedextension}, on construit un morphisme~:
+  À l'aide du \sref{lemme d'extension}{lemmedextension},
+  nous pouvons construire un morphisme~:
   $$u:X/A\ra K(\Pi,n)$$
   qui soit un isomorphisme sur les $\pi_m$ pour $m\leq n$. On note $F\ra X$ la fibre homotopique du morphisme induit $\theta:X\ra K(\Pi,n)$.
   Comme $A\ra K(\Pi,n)$ est contractile, on a un morphisme de paires $(A,X)\ra (F,X)$. C'est un isomorphisme sur les groupes d'homotopie des paires
@@ -5062,8 +5218,6 @@ Nous introduisons maintenant une structure supplémentaire sur certaines tours d
 \end{proof}
 
 \section*{Remerciements} Je tiens à remercier mon directeur de stage Frédéric Déglise pour ses explications et le temps qu'il m'a accordé.
-\nocite{*}
-
 
 \bibliographystyle{alpha}
 \bibliography{references}
