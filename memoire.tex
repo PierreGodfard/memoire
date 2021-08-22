@@ -23,7 +23,7 @@
 \usepackage[hidelinks]{hyperref}
 \newcommand{\sref}[2]{\hyperref[#2]{#1 \ref*{#2}}}
 
-% Numérotation des théorèmes, propositions, définitions, lemmes, remarques consécutives par subsection
+% Numérotation des théorèmes, propositions, définitions, lemmes, remarques consécutives par sous-section
 \theoremstyle{plain}
 \newtheorem{theo}{Théorème}[section]
 \newtheorem{theodefi}[theo]{Théorème\,-\,définition}
@@ -134,9 +134,34 @@
 
 
 \begin{document}
-\renewcommand{\abstractname}{Introduction}
+\renewcommand{\abstractname}{Résumé}
 \begin{abstract}
-  [TBD]
+  Ce mémoire présente deux constructions des groupes de $K$-théorie algébrique supérieurs~: la construction $Q$ de la $K$-théorie d'une catégorie exacte
+  et la construction $+$ de la $K$-théorie des anneaux. Ces deux constructions sont dues à Daniel Quillen.
+
+  En particulier, est présentée dans ce mémoire la preuve originelle de l'équivalence de ces deux constructions
+  pour la $K$-théorie des anneaux.
+
+  Outre ce résultat, nous étudions certaines propriétés de la construction $Q$~: fonctorialité, résolution, dévissage et localisation.
+  Ces propriétés sont appliquées aux cas de la $K$-théorie et de la $K'$-théorie des anneaux et schémas.
+
+  La \sref{section}{sectionK0} introduit le groupe $K_0$ définit par Alexandre Grothendieck.
+  Il est d'abord introduit dans le cadre des anneaux et schémas,
+  puis dans le cadre général des catégories exactes. Cette section est aussi l'occasion de définir le groupe $K_1$ d'un anneau.
+
+  La \sref{section}{sectionQ} est consacrée à la construction $Q$. Elle introduit également les deux théorèmes principaux de topologie utiles
+  pour démontrer des propriétés de cette construction: les théorèmes A et B de Quillen.
+
+  La \sref{section}{sectionplus} présente la construction $+$, d'abord dans un cadre topologique général, puis dans le cas particulier
+  de la $K$-théorie des anneaux.
+
+  La \sref{section}{sectionproprietes} regroupe différentes propriétés de la construction $Q$, et les applique aux cas des anneaux et des schémas.
+  On y trouve notamment la définition des transferts et tirés en arrière en $K'$-théorie des schémas, et le théorème de localisation.
+
+  Les deux constructions nécessitent une certaine dose de topologie, dont la majeur partie est présentée en annexe.
+  Nous avons essayé de mettre autant que possible les démonstrations. Cependant nous admettons les bases de la théorie des catégories modèles
+  et son application aux ensembles simpliciaux. Le choix a été fait de travailler dans le cadre des ensembles simpliciaux plutôt
+  que des espaces topologique, car, selon nous, ce cadre s'adapte mieux aux objets étudiés en $K$-théorie.
 \end{abstract}
 
 \maketitle
@@ -145,14 +170,14 @@
 
 \section*{Remarque préliminaire}
 
-On suppose ici l'existence d'univers dans la théorie des ensembles (cardinaux fortement inaccessibles).
+On suppose ici l'existence d'un certain nombre d'univers dans la théorie des ensembles (cardinaux fortement inaccessibles).
 On note $\Omega$ le plus petit. Toutes les structures algébriques seront par défaut dans $\Omega$.
-Pour les ensembles et la catégorie, nous diront qu'ils ou elles sont petit(e)s
+Pour les ensembles et les catégories, nous diront qu'ils ou elles sont petit(e)s
 quand ils ou elles sont dans $\Omega$.
 
 \section{\texorpdfstring{Les groupes $K_0$ et $K_1$}{Les groupes KO et K1}}\label{sectionK0}
 
-Dans cette section, nous allons définir et étudier les groupes $K_0$, $K_1$ et $K_2$ associés à un anneau. Nous définirons également le $K_0$ d'une catégorie exacte.
+Dans cette section, nous allons définir et étudier les groupes $K_0$ et $K_1$ associés à un anneau. Nous définirons également le $K_0$ d'une catégorie exacte.
 
 \subsection{\texorpdfstring{Les groupes $K_0$  et $K'_0$ d'un anneau}{Les groupes K0  et K'0 d'un anneau}}
 
@@ -411,20 +436,18 @@ De même que pour les anneaux, nous avons les propriétés suivantes~:
     $$f_*(x\cdot f^*(y))=f_*(x)\cdot y\text{ dans }K'_0(Y)$$
 \end{description}
 
+Nous allons maintenant étendre le cadre où $f^*$ et $f_*$ sont définis en $K'$-théorie. Le cas de la $K$-théorie n'est pas traité ici.
 
-[à terminer, ajouter les morphismes propres et les morphismes de Tor dimension finie]
-
-Nous allons maintenant étendre le cadre où $f^*$ et $f_*$ est définie en $K'$-théorie. Le cas de la $K$-théorie n'est pas traité ici.
-
-Nous ne prouvons pas tout de suite ces résultats (la \sref{proposition}{propositionfonctorialiteKprimetransfert} et 
-la \sref{proposition}{propositionfonctorialiteKprimetireenarriere}), car les démonstrations seraient pénible. En effet, on ne peut pas reprendre tel quel
-les démonstrations faites dans le cadre des anneaux car les fibrés vectoriels ne sont pas en général des objets projectifs.
+Nous ne prouvons pas tout de suite ces résultats (\sref{proposition}{propositionfonctorialiteKprimetransfert} et 
+\sref{proposition}{propositionfonctorialiteKprimetireenarriere}), car les démonstrations nécessite plus de résultats.
+En effet, on ne peut pas reprendre tel quel les démonstrations faites dans le cadre des anneaux car les fibrés vectoriels ne sont pas en général
+des objets projectifs.
 Nous préférons plutôt renvoyer à la \sref{sous-section}{soussectionfonctorialite} qui traite des mêmes problèmes dans le cadre plus général
 de la $K'$-théorie supérieure. Dans ce cadre étendu, la construction $Q$ de Quillen efface en partie ces pénibilités.
 
 \begin{defi}
-  Soit $f:X\ra Y$ un morphisme de schéma. On dit que $f$ est de $\Tor$-dimension finie s'il existe un entier $n> 0$ tel que pour tout
-  $x$ point de $X$ d'image $y$ dans $Y$, tout $\Ring{Y,y}$-module $M_y$, et tout entier $m\geq n$, on ait~:
+  Soit $f:X\ra Y$ un morphisme de schémas. On dit que $f$ est de $\Tor$-dimension finie s'il existe un entier $n> 0$ tel que pour tout
+  point $x$ de $X$ d'image $y$ dans $Y$, tout $\Ring{Y,y}$-module $M_y$, et tout entier $m\geq n$, on ait~:
   $$\fTor{m}{\Ring{Y,y}}{\Ring{X,x}}{M_y}=0$$
 \end{defi}
 
@@ -433,31 +456,31 @@ Pour la définition et les propriétés élémentaires des fibrés en droite amp
 \begin{prop}\label{propositionfonctorialiteKprimetireenarriere}
   Soit $f:X\ra Y$ un morphisme de $\Tor$-dimension finie entre schémas noethériens et séparés.
   On suppose de plus que tout $\Ring{Y}$-module quasi-cohérent est quotient d'un fibré vectoriel,
-  ce qui est par exemple le cas si $Y$ admet un faisceau en droite ample.
+  ce qui est, par exemple, le cas si $Y$ admet un fibré en droite ample.
 
   Soit $\mathcal{M}$ la sous-catégorie pleine de $\Modf{Y}$ des modules $\mathcal{F}$ tels que~:
-  $$\fTor{i}{\Ring{Y,f(x)}}{\Ring{X,x}}{\mathcal{F}}=0$$
+  $$\fTor{i}{\Ring{Y,f(x)}}{\Ring{X,x}}{\mathcal{F}_y}=0$$
   pour tout $i\geq 1$ et $x$ dans $X$. On note $K'_0(\mathcal{M})$
   son groupe de Grothendieck (cf. \sref{définition}{defiK0catexacte} si ce n'est pas clair).
   Alors l'inclusion $\mathcal{M}\ra \Modf{Y}$ induit un isomorphisme $K'_0(\mathcal{M})\ra K'_0(Y)$.
 
-  Ainsi le foncteur~:
+  Or le foncteur~:
   \[
     \begin{array}{lcl}
       \M & \ra & \Modf{X} \\
       \mathcal{F} &\mapsto& f^*\mathcal{F}
     \end{array}
   \]
-  est exact et induit un morphisme d'anneaux~:
+  est exact et induit donc un morphisme d'anneaux~:
   $$f^*:K'_0(Y)\lra K'_0(X)$$
 \end{prop}
 
-Pour la démonstration voir la \sref{proposition}{proptireenarriere} plus bas.
+Pour la démonstration voir la \sref{proposition}{proptireenarriere} plus loin.
 
 \begin{rem}
   On se place dans le cadre de la proposition. Soit $\mathcal{F}$ un objet de $\Modf{Y}$. Alors,
   il admet une résolution finie $\mathcal{G}_*\ra \mathcal{F}$ par des modules de $\M$. Et donc~:
-  $$f^*[\mathcal{F}]=\sum_i\geq 0 [f^*\mathcal{G}_i]$$
+  $$f^*[\mathcal{F}]=\sum_{i\geq 0} (-1)^i[f^*\mathcal{G}_i]$$
 \end{rem}
 
 Nous admettons le résultat suivant de géométrie algébrique.
@@ -466,7 +489,7 @@ Nous admettons le résultat suivant de géométrie algébrique.
   Soit $f:X\ra Y$ un morphisme propre entre schémas noethériens, et soit $\mathcal{L}$ un fibré en droite ample sur $X$.
   Pour tout $\Ring{X}$-module $\mathcal{F}$ et entier $n\in\Z$, on note $\mathcal{F}(n):=\mathcal{F}\otimes_{\Ring{X}}\mathcal{L}^{\otimes n}$.
 
-  Alors pour tout $\Ring{X}$-module $\mathcal{F}$~:
+  Alors pour tout $\Ring{X}$-module cohérent $\mathcal{F}$~:
   \begin{description}
     \item[(i)] les $\Ring{Y}$-modules $R^qf_*(\mathcal{F})$ sont cohérents~;
     \item[(ii)] il existe un entier $n_0$ tel que pour tout $n\geq n_0$, $R^qf_*(\mathcal{F}(n))=0$ pour tout $q>0$~;
@@ -475,7 +498,7 @@ Nous admettons le résultat suivant de géométrie algébrique.
 \end{theo}
 
 Une démonstration relativement courte d'un cas particulier est donnée dans \cite[III.7]{Hart}.
-Pour se ramené au cas particulier, il suffit de voir que dans le cadre du théorème ci-dessous, $f$ est projectif (voir \cite[III.2.2.1]{EGA}
+Pour se ramené à ce cas particulier, il suffit de voir que dans le cadre du théorème ci-dessus, $f$ est projectif (voir \cite[III.2.2.1]{EGA}
 pour une discussion plus détaillée).
 
 \begin{prop}\label{propositionfonctorialiteKprimetransfert}
@@ -491,14 +514,14 @@ pour une discussion plus détaillée).
   son groupe de Grothendieck (cf. \sref{définition}{defiK0catexacte} si ce n'est pas clair).
   Alors l'inclusion $\mathcal{M}\ra \Modf{X}$ induit un isomorphisme $K'_0(\mathcal{M})\ra K'_0(X)$.
 
-  Ainsi le foncteur~:
+  Or le foncteur~:
   \[
     \begin{array}{lcl}
       \M & \ra & \Modf{Y} \\
       \mathcal{F} &\mapsto& f_*\mathcal{F}
     \end{array}
   \]
-  est exact et induit un morphisme de groupe~:
+  est exact et induit ainsi un morphisme de groupe~:
   $$f_*:K'_0(X)\lra K'_0(Y)$$
 \end{prop}
 
@@ -507,7 +530,7 @@ Pour la démonstration voir la \sref{proposition}{propositiontransfertschemas} p
 \begin{rem}
   On se place dans le cadre de la proposition. Soit $\mathcal{F}$ un objet de $\Modf{X}$. Alors,
   il admet une résolution finie $\mathcal{F}\ra \mathcal{G}^*$ par des modules de $\M$. Et donc~:
-  $$f_*[\mathcal{F}]=\sum_i\geq 0 [f_*\mathcal{G}^i]$$
+  $$f_*[\mathcal{F}]=\sum_{i\geq 0} (-1)^i[f_*\mathcal{G}^i]$$
 \end{rem}
 
 Nous allons maintenant aborder le cas des schémas réguliers. Si les résultats sont assez similaires au cas des anneaux,
@@ -911,7 +934,7 @@ Nous allons maintenant donner une description du groupe des commutateurs $[\GL{}
 \end{ex}
 
 \begin{prop}[lemme de Whitehead]
-  Pour $A$ un anneau, $\EGL{}{A}$ et parfait, et on a l'égalité~:
+  Pour $A$ un anneau, $\EGL{}{A}$ est parfait, et on a l'égalité~:
   $$\EGL{}{A}=[\GL{}{A},\GL{}{A}]$$
   Et donc~:
   $$K_1(A)=\GL{}{A}/\EGL{}{A}$$
@@ -919,7 +942,7 @@ Nous allons maintenant donner une description du groupe des commutateurs $[\GL{}
 
 \begin{proof}
   \begin{description}
-    \item[$\subseteq$:] on a $e_{ij}(a)=[e_{ik}(a),e_{kj}(a)]$ pour $i$,$j$ et $k$ distincts. Ceci montre également que $\EGL{}{A}$ et parfait.
+    \item[$\subseteq$:] on a $e_{ij}(a)=[e_{ik}(a),e_{kj}(a)]$ pour $i$,$j$ et $k$ distincts. Ceci montre également que $\EGL{}{A}$ est parfait.
     \item[$\supseteq$:] Pour $M,N\in \GL{n}{A}$, on a, dans $\GL{2n}{A}$~:
                       $$[M,N]=\begin{pmatrix} M         & 0  \\ 0 & M^{-1} \end{pmatrix}%
                               \begin{pmatrix} N         & 0  \\ 0 & N^{-1} \end{pmatrix}%
@@ -927,16 +950,14 @@ Nous allons maintenant donner une description du groupe des commutateurs $[\GL{}
   \end{description}
 \end{proof}
 
-[ajouter lien avec K-théorie topologique]
+\section{\texorpdfstring{Définition de la $K$-théorie supérieure}{Définition de la K-théorie supérieure}}\label{sectionQ}
 
-\section{\texorpdfstring{Définition de la $K$-théorie supérieure}{Définition de la K-théorie supérieure}}
-
-Cette section est dédiée à la construction $Q$ de la $K$-théorie supérieure, dûe à Daniel Quillen. La référence principale est l'article
+Cette section est dédiée à la construction $Q$ de la $K$-théorie supérieure, due à Daniel Quillen. La référence principale est l'article
 original de Quillen \cite{Quil}.
 
 \subsection{\texorpdfstring{La construction $Q$ de Quillen}{La construction Q de Quillen}}
 
-Dans cette sous-section, $\M$ désigne une petite catégorie exacte.
+Dans cette sous-section, $\M$ désigne une catégorie exacte.
 
 \begin{propdefi}\label{propBicartesien}
   Un diagramme dans $\M$ de la forme~:
@@ -1863,25 +1884,25 @@ Nous avons fait le choix de le mettre dans \sref{l'annexe}{carrehomotopiquementc
 \subsection{Premières propriétés et exemples}\label{premieresprops}
 
 Dans cette sous-section, nous étudions la fonctorialité de la construction $Q$, certaines propriétés élémentaires,
-sa commutation aux colimites filtrantes et le comportement relativement aux filtrations et suites exactes de foncteurs exacts.
+sa commutation aux colimites filtrantes et son comportement relativement aux filtrations et suites exactes de foncteurs exacts.
 Nous terminons par la définition de la $K$-théorie supérieure des anneaux et une version supérieure de la \sref{proposition}{K0gradues}
 sur la $K$-théorie des modules projectifs gradués de type fini sur un anneau gradué.
 
 \begin{propdefi}[fonctorialité]
   Un foncteur exact $f:\M\ra\M'$ entre deux catégories exactes induit un morphisme en $K$-théorie pour tout $i\geq 0$~:
   $$f_*:K_i\M\ra K_i\M'$$
-  Ce morphisme ne dépend que de la classe d'isomorphisme du foncteur $f$, et coïncide avec le morphisme définit dans la 
+  Ce morphisme ne dépend que de la classe d'isomorphisme du foncteur $f$, et coïncide avec le morphisme défini dans la 
   \sref{remarque}{remarquefonctorialiteK0categorieexacte} pour $i=0$.
 \end{propdefi}
 
 \begin{proof}
-  En effet, $f$ induit un foncteur $f:Q\M\ra Q\M'$, et donc $f_*:K_i\M\ra K_i\M'$. Si $f\simeq g$ est un isomorphisme,
-  il induit également un isomorphisme entre les foncteurs $f,g:Q\M\ra Q\M'$, et donc $f_*=g_*$.
-  La coïncidence dans le cas $i=0$ découle immédiatement de la formule de l'isomorphisme donné dans le \sref{théorème}{theoremeK0constructionQ}.
+  En effet, $f$ induit un foncteur $f:Q\M\ra Q\M'$, et donc un morphisme $f_*:K_i\M\ra K_i\M'$. Si $f\simeq g$ est un isomorphisme,
+  il induit également un isomorphisme entre les foncteurs $f,g:Q\M\ra Q\M'$, et on a donc $f_*=g_*$.
+  La coïncidence dans le cas $i=0$ découle immédiatement de la formule donnée dans le \sref{théorème}{theoremeK0constructionQ}.
 \end{proof}
 
 \begin{prop}
-  Por tout $i\geq 0$, on dispose d'un isomorphisme naturel en $\M$ catégorie exacte~:
+  Pour tout $i\geq 0$, on dispose d'un isomorphisme naturel en la catégorie exacte $\M$~:
   $$K_i\M\simeq K_i\M\op$$
 \end{prop}
 
@@ -1898,7 +1919,7 @@ sur la $K$-théorie des modules projectifs gradués de type fini sur un anneau g
     \end{array}
   \]
   Le foncteur~:
-  $$\oplus:\M\times\M\lra M$$
+  $$\oplus:\M\times\M\lra \M$$
   est exact et induit un morphisme fonctoriel~:
   $$\oplus:K_i(\M)\oplus K_i(\M)\simeq K_i(\M\times\M)\lra K_i\M$$
   Ce morphisme coïncide avec l'addition.
@@ -1906,7 +1927,7 @@ sur la $K$-théorie des modules projectifs gradués de type fini sur un anneau g
 
 \begin{proof}
   Pour montrer la coïncidence avec l'addition, on remarque que pour tout $a$,$b$,$c$ et $d$ dans $K_i\M$~:
-  $$(a+b)\oplus (c+d)=(a\oplus c)+(d\oplus d)$$
+  $$(a+b)\oplus (c+d)=(a\oplus c)+(b\oplus d)$$
   On a donc, pour $a$ et $b$ dans $K_i\M$~:
   $$a\oplus b = (a+0)\oplus (0+b)=a\oplus 0 + 0\oplus b$$
   Or, les foncteurs $\id_\M$, $M\mapsto 0\oplus M$ et $M\mapsto M\oplus 0$ sont isomorphes.
@@ -1926,10 +1947,10 @@ Nous allons maintenant étudier la commutation aux colimites filtrantes. Il s'ag
 \end{proof}
 
 Nous utilisons ci-dessous la construction de la catégorie des suites exactes $\E$ d'une catégorie exacte $\M$
-de la \sref{proposition-définition}{propdeficategoriedessuitesexactes}.
+donnée dans la \sref{proposition-définition}{propdeficategoriedessuitesexactes}.
 
 \begin{theo}
-  Soit $\M$ une catégorie exacte et $\E$ sa catégorie exacte des suites exactes. On note $s,q:\E\ra \M$ comme
+  Soit $\M$ une catégorie exacte et $\E$ sa catégorie exacte des suites exactes. On note $s,q:\E\ra \M$ définis comme
   dans la \sref{proposition-définition}{propdeficategoriedessuitesexactes}.
   Alors le foncteur induit~:
   $$(s,q):Q\E\lra Q\M\times Q\M$$
@@ -1946,6 +1967,7 @@ de la \sref{proposition-définition}{propdeficategoriedessuitesexactes}.
   On note $\mathcal{C}''$ la sous-catégorie pleine de $\mathcal{C}$ formée des $(E,u,v)$ avec $u$ une surjection et $v$ une injection.
   \begin{description}
     \item[(A)] L'inclusion $\mathcal{C}'\ra \mathcal{C}$ a un adjoint à gauche.
+    
     Soit $X=(E,u,v)$. Alors $u$ de la forme~:
     $$u:sE\overset{i}{\rightarrowtail} M'\overset{j}{\twoheadleftarrow} M$$
     On a alors le diagramme suivant~:
@@ -1974,17 +1996,18 @@ de la \sref{proposition-définition}{propdeficategoriedessuitesexactes}.
     $$E\rightarrowtail E_0\twoheadleftarrow E'$$
     On a alors~:
     $$u:sE\rightarrowtail sE_0\twoheadleftarrow sE'\overset{j'}{\twoheadleftarrow} M$$
-    On donc, à isomorphisme $sE_0\simeq M'$ près, $i=sE\rightarrowtail sE_0$ et $j=M\twoheadrightarrow sE_0$.
+    On donc, à un isomorphisme $sE_0\simeq M'$ près, $i=(sE\rightarrowtail sE_0)$ et $j=(M\twoheadrightarrow sE_0)$.
     Alors, $E\rightarrowtail E_0$ se factorise en $E\rightarrowtail i_*E\rightarrowtail E_0$. Nous avons donc une factorisation~:
     $$X\lra\overline{X}\lra X'$$
     Il reste à montrer l'unicité de $\overline{X}\ra X'$. Pour cela, on remarque que $\mathcal{C}\downarrow X'=Q\E\downarrow E'$
     est équivalente à la catégorie des couches admissibles de $E'$. Ainsi, une factorisation $X\ra X''\ra X'$
     avec $X''$ dans $\mathcal{C}'$ correspond à une couche $(E''_0,E''_1)\geq (E_0,E_1)$ telle que
     $sE''_1=sE'$, où $(E_0,E_1)$ est la couche de $X\ra X'$.
-    Parmi ces couches $(E''_0,E''_1)$, il en existe une minimale telle que $tE''_0=tE_0$ et $tE''_1=sE'+tE_1$.
+    Parmi ces couches $(E''_0,E''_1)$, il en existe une minimale. Elle vérifie $tE''_0=tE_0$ et $tE''_1=sE'+tE_1$.
     Cette couche correspond à $\overline{X}\ra X'$. Ce qui conclut.
 
     \item[(B)] L'inclusion $\mathcal{C}''\ra\mathcal{C}'$ admet un adjoint à gauche.
+    
     On procède comme pour (A), mais de façon duale (ie. dans $\M\op$).
     
     \item[(C)] L'objet $(0,j_M^!,i_{N!})$ est initial dans $\mathcal{C}''$.
@@ -2028,12 +2051,12 @@ de la \sref{proposition-définition}{propdeficategoriedessuitesexactes}.
       \arrow[from=1-4, to=1-5]
     \end{tikzcd}
   \end{center}
-  une suite exacte de foncteurs (exacts) de $\M'$ dans $\M$. Alors, pour tout $i\geq 0$~:
+  une suite exacte de foncteurs exacts de $\M'$ dans $\M$. Alors, pour tout $i\geq 0$~:
   $$F_*=F'_*+F''_*:K_i\M'\ra K_i\M$$
 \end{coro}
 
 \begin{proof}
-  La suite exacte de foncteurs induit un foncteur $\tilde{F}:\M'\ra\E$. Il suffit donc de traiter le cas où $\M'=\E$, et de la suite de foncteurs~:
+  La suite exacte de foncteurs induit un foncteur $\tilde{F}:\M'\ra\E$. Il suffit donc de traiter le cas de la suite de foncteurs~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiRiciXSxbMiwwLCJGIl0sWzMsMCwiRicnIl0sWzQsMCwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdXQ==
     \begin{tikzcd}
@@ -2076,19 +2099,19 @@ de la \sref{proposition-définition}{propdeficategoriedessuitesexactes}.
 
 \begin{rem}
   Dans ce cas, on peut définir les quotients $F_p/F_q:C\ra\M$ pour $q\leq p$, et si $C$ est une catégorie exacte et les $F_i$
-  sont exacts, alors les quotients $F_p/F_q:C\ra\M$ sont également exacts, par le lemme du serpent.
+  sont exacts, alors les quotients $F_p/F_q:C\ra\M$ sont également exacts (lemme du serpent).
 \end{rem}
 
-On peut ainsi étendre le corollaire ci-dessus par récurrence. On obtient les deux corollaires suivants.
+On peut étendre le corollaire ci-dessus par récurrence. On obtient les deux corollaires suivants.
 
 \begin{coro}[additivité pour les filtrations caractéristiques]\label{corollaireadditivitefiltration}
-  Soit $F:\M'\ra\M$ foncteur exact et $0=F_0\subseteq F_1\subseteq \dotsb\subseteq F_n=F$ filtration admissible de foncteurs exacts.
-  Alors~:
+  Soit $F:\M'\ra\M$ foncteur exact et $0=F_0\subseteq F_1\subseteq \dotsb\subseteq F_n=F$ une filtration admissible de foncteurs exacts.
+  Alors, pour tout $i\geq 0$~:
   $$F_*=\sum_{p=1}^n(F_p/F_{p-1})_*:K_i\M'\ra K_i\M$$
 \end{coro}
 
 \begin{coro}[additivité pour les suites exactes caractéristiques]\label{corollaireadditivitesuitesexacte}
-  Si $0\ra F_0\ra\dotsb F_n\ra 0$ est une suite exacte de foncteurs exacts $\M'\ra \M$, alors~:
+  Si $0\ra F_0\ra\dotsb F_n\ra 0$ est une suite exacte de foncteurs exacts $\M'\ra \M$, alors, pour tout $i\geq 0$~:
   $$\sum_{p=0}^n(F_p)_*=0:K_i\M'\ra K_i\M$$
 \end{coro}
 
@@ -2104,7 +2127,7 @@ Nous allons maintenant définir la $K$-théorie supérieure des anneaux et des s
 \begin{defi}
   Pour $X$ un schéma et $i\geq 0$. On définit le $i$-ème groupe de $K$-théorie de $X$ comme~:
   $$K_i(A):=K_i(\Proj{X})$$
-  Pour $f:X'\ra X$ un morphisme de schémas, le foncteur exact $f^* -: \Proj{X}\ra\Proj{X'}$ induit un morphisme~:
+  Pour $f:X'\ra X$ un morphisme de schémas, le foncteur exact $f^*: \Proj{X}\ra\Proj{X'}$ induit un morphisme~:
   $$f^*:K_i(X)\ra K_i(X')$$
 \end{defi}
 
@@ -2754,7 +2777,7 @@ Dans cette sous-section, nous introduisons la notion de catégorie monoïdale, e
 \end{rem}
 
 \begin{defi}
-  Un foncteur monoïdal $f:S\lra T$ entre deux catégories monoïdales symétriques est la donnée d'un foncteur~:
+  Un foncteur monoïdal symétrique $f:S\lra T$ entre deux catégories monoïdales symétriques est la donnée d'un foncteur~:
   $$f:S\lra T$$
   ainsi que d'un isomorphisme naturel $f(A+B)\simeq fA+fB$ et d'un isomorphisme $f0\sim 0$ tels que les diagrammes suivants commutent~:
   \begin{center}
@@ -2873,7 +2896,7 @@ discrète (ie. les seuls morphismes sont les identités). Une structure de caté
   \]
   L'action d'un monoïde commutatif $T$ sur un ensemble $Y$ est dite inversible si $s+(-):Y\ra Y$ est un isomorphisme pour tout $s$ dans $T$.
   
-  Alors l'action de $S$ sur $S^{-1}X$ est inversible et l'action de $S$ sur $X$ est inversible si et seulement si $X\ra S^{-1}X$
+  Alors l'action de $S$ sur $S^{-1}X$ est inversible. De plus, l'action de $S$ sur $X$ est inversible si et seulement si $X\ra S^{-1}X$
   est un isomorphisme.
 \end{propdefi}
 
@@ -2883,7 +2906,7 @@ discrète (ie. les seuls morphismes sont les identités). Une structure de caté
 \end{proof}
 
 \begin{defi}
-  Soit $S$ une catégorie monoïdale symétrique agissant sur un ensemble $X$. On dit que l'action est inversible si pour tout $A$ dans $S$,
+  Soit $S$ une catégorie monoïdale symétrique agissant sur une catégorie $X$. On dit que l'action est inversible si pour tout $A$ dans $S$,
   le foncteur~:
   \[
   \begin{array}{lcl}
@@ -2941,7 +2964,7 @@ discrète (ie. les seuls morphismes sont les identités). Une structure de caté
   \end{align*}
   On vérifie facilement que les bons diagrammes commutent.
 
-  Un inverse à homotopie près à $s_A:A+(-)$ dans $S^{-1}X$ est donné par $i_A:(B,F)\ra (A+B,F)$. En effet la collection de morphismes~:
+  Un inverse à homotopie près à $s_A=A+(-)$ dans $S^{-1}X$ est donné par $i_A:(B,F)\ra (A+B,F)$. En effet la collection de morphismes~:
   $$((B,F),(A+B,A+F),A,(A+B,A+F)\overset{=}{\ra}(A+B,A+F))$$
   induit une transformation naturelle entre $\id_{S^{-1}X}$ et $i_A\circ s_A=s_A\circ i_A$.
 \end{proof}
@@ -2970,12 +2993,12 @@ Revenons maintenant au cadre des catégories. Dans la majorité de la suite, nou
 
 \begin{proof}
   Soit $A$ dans $S$. Un morphisme $0\ra A$ dans $\brak{S}{S}$ est un $B$ et un isomorphisme $B+0\simeq A$, à isomorphisme près.
-  Or, si $C$, $C+0\simeq A$ induit aussi un morphisme, il existe un unique isomorphisme $C\simeq B$.
+  Or, s'il existe un $C$ et un isomorphisme $C+0\simeq A$ induisant un autre morphisme, il existe un unique isomorphisme $C\simeq B$.
   Donc il existe au plus un unique morphisme $0\ra A$. Or $A+0\simeq A$ en induit un.
 \end{proof}
 
 \begin{defi}
-  Soit $S$ une catégorie monoïdale symétrique agissant sur $X$ catégorie. On définit la première projection~:
+  Soit $S$ une catégorie monoïdale symétrique agissant sur une catégorie $X$. On définit la première projection~:
   \[
   \begin{array}{llcl}
     \rho:&S^{-1}X                  &\ra     & \brak{S}{S} \\
@@ -2986,7 +3009,7 @@ Revenons maintenant au cadre des catégories. Dans la majorité de la suite, nou
 \end{defi}
 
 \begin{lem}\label{lemmeactioncategorie}
-  Soit $S$ une catégorie monoïdale symétrique agissant sur $X$ catégorie. Alors, sous les deux conditions suivantes $\rho$ est cofibrée~:
+  Considérons les hypothèses de la définition ci-dessus. Alors, sous les deux conditions suivantes $\rho$ est cofibrée~:
   \begin{description}
     \item[$(1)$] tous les morphismes de $S$ sont des monomorphismes~;
     \item[$(2)$] les foncteurs de translation $A+(-):S\ra S$ sont fidèles.
@@ -3013,7 +3036,7 @@ Revenons maintenant au cadre des catégories. Dans la majorité de la suite, nou
     \end{tikzcd}
   \end{center}
   On cherche à trouver une flèche en pointillés qui fasse commuter le diagramme et à montrer son unicité.
-  On dispose d'au moins un triangle commutatif dans $S$~:
+  Par le diagramme ci-dessus, on dispose d'au moins un triangle commutatif dans $S$~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsMyxbMCwwLCJBJytBK0IiXSxbMiwwLCJDK0IiXSxbMSwxLCJCJyciXSxbMCwxLCJcXHNpbSJdLFsxLDJdLFswLDJdXQ==
     \begin{tikzcd}
@@ -3086,7 +3109,7 @@ Donc, le morphisme $X\ra S^{-1}X$ induit un morphisme~:
 $$\pi_0(S)^{-1}H_*(X)\lra H_*(S^{-1}X)$$
 La localisation désigne ici la localisation du $\Z[\pi_0(S)]$-module $H_*(X)$ par la partie multiplicative $\pi_0(S)$.
 
-On peut maintenant énoncer le résultat principale de la sous-section.
+On peut maintenant énoncer le résultat principal de la sous-section.
 
 \begin{theo}\label{theoremehomologielocalisation}
   Soit $S$ une groupoïde monoïdal symétrique agissant sur une catégorie $X$, tels que les translations $A+(-)$ soient fidèles pour tout $A$ dans $S$.
@@ -3111,14 +3134,14 @@ On peut maintenant énoncer le résultat principale de la sous-section.
   \begin{description}
     \item[$(i)$] $\rho:S^{-1}X\lra \brak{S}{S}$ est cofibrée~;
     \item[$(ii)$] on a une identification naturelle $\rho^{-1}B\simeq X$~;
-    \item[$(iii)$] via cette identification, les changements de cobase d'identifient aux translations.   
+    \item[$(iii)$] via cette identification, les changements de cobase s'identifient aux translations.   
   \end{description}
   On considère l'ensemble bisimplicial $T_{\bullet,\bullet}$ définit par~:
   \begin{align*}
     T_{pq}:=\{&((A_0,F_0)\ra\dotsb\ra (A_q,F_q),A_q\ra B_0,B_0\ra\dotsb\ra B_p) \\
                &\mid B_i\in \brak{S}{S},\; (A_j,F_j)\in S^{-1}X\}
   \end{align*}
-  et le bicomplexe de chaîne associé~:
+  et le bicomplexe de groupes abéliens associé~:
   $$C_{pq}:=\Z T_{pq}$$
   On a une action naturelle de $S$ sur $T_{pq}$ par~:
   \begin{align*}
@@ -3139,7 +3162,7 @@ On peut maintenant énoncer le résultat principale de la sous-section.
     0&\text{ si }q>0 \\
     \Z N(S^{-1}X)_p&\text{ sinon}
   \end{cases}$$
-  On remarque que l'action $S$ induit ici une structure de bicomplexe de $\Z[\pi_0(S)]$-modules sur $E^1_{\bullet\bullet}$. 
+  On remarque que l'action de $S$ induit ici une structure de bicomplexe de $\Z[\pi_0(S)]$-modules sur $E^1_{\bullet\bullet}$. 
   Du calcul de $E^1_{pq}$ on déduit~:
   $$E^2_{pq}=\begin{cases}
     0&\text{ si }q>0 \\
@@ -3158,7 +3181,7 @@ On peut maintenant énoncer le résultat principale de la sous-section.
   $$E'^1_{pq}=\bigoplus_{B_0\ra\dotsb\ra B_p} H_q(\rho\downarrow B_0)\simeq \bigoplus_{B_0\ra\dotsb\ra B_p} H_q(X)$$
   En effet, comme $\rho$ est cofibrée et par le point $(iii)$ ci-dessus, $\rho\downarrow B\ra \rho^{-1}B\ra X$ est une chaîne fonctorielle d'équivalences
   faibles.
-  On remarque ici aussi que l'action $S$ induit une structure de bicomplexe de $\Z[\pi_0(S)]$-modules sur $E'^1_{\bullet\bullet}$.
+  On remarque ici aussi que l'action de $S$ induit une structure de bicomplexe de $\Z[\pi_0(S)]$-modules sur $E'^1_{\bullet\bullet}$.
   On en déduit~:
   $$E'^2_{pq}=H_p(\brak{S}{S};\overline{H_q(X)})$$
   où $\overline{H_q(X)}$ est donné par la construction de la \sref{définition}{definitionmbar}.
@@ -3171,7 +3194,7 @@ On peut maintenant énoncer le résultat principale de la sous-section.
   Donc, on a également convergence de la suite spectrale~:
   $$H_p(\brak{S}{S};\overline{\pi_0(S)^{-1}H_q(X)})\Longrightarrow H_p(S^{-1}X)$$
   Or, l'action de $<S,S>$ sur $\overline{\pi_0(S)^{-1}H_q(X)}$ est inversible, et $\brak{S}{S}$ est contractile.
-  Donc $H_p(\brak{S}{S};\overline{\pi_0(S)^{-1}H_q(X)})$ est une homologie à coefficients d'un espace contractile.
+  Donc $H_p(\brak{S}{S};\overline{\pi_0(S)^{-1}H_q(X)})$ est une homologie à coefficients dans un espace contractile.
   Donc~:
   $$H_p(\brak{S}{S};\overline{\pi_0(S)^{-1}H_q(X)})=\begin{cases}
     \pi_0(S)^{-1}H_q(X)&\text{ si }p=0 \\
@@ -3268,10 +3291,11 @@ On peut maintenant énoncer le résultat principale de la sous-section.
       \arrow["{(0,0+B\ra B,0+F\ra u_*F)}"', from=1-1, to=1-2]
     \end{tikzcd}
   \end{center}
-  Il reste à justifier l'existence et l'unicité de la flèche en pointillés. Pour l'existence il suffit de choisir~:
+  Il reste à justifier l'existence et l'unicité de la flèche en pointillés.
+  Puisque par hypothèse, $u_*$ est compatible à l'action de $S$, pour l'existence il suffit de choisir~:
   $$(C,C+B\ra B'',C+u_*F\simeq u_*(C+F)\ra F'')$$
   Pour l'unicité, on suppose que $(C',C'+B\ra B'',C'+u_*F\ra F'')$ convient également. Alors il existe un isomorphisme $\eta:C'\simeq C$
-  qui fasse commuter le diagramme~:
+  qui fait commuter le diagramme~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsMyxbMCwwLCJDK0YiXSxbMiwwLCJDJytGIl0sWzEsMSwiRicnIl0sWzAsMSwiXFxldGErRiJdLFswLDJdLFsxLDJdXQ==
     \begin{tikzcd}[column sep=tiny]
@@ -3282,7 +3306,7 @@ On peut maintenant énoncer le résultat principale de la sous-section.
       \arrow[from=1-3, to=2-2]
     \end{tikzcd}
   \end{center}
-  Alors, on peut appliquer l'adjonction de $u_*$. Comme $u_*$ est compatible à l'action de $f$, on obtient le diagramme suivant~:
+  Nous avons alors le diagramme suivant~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsNSxbMCwxLCJ1XyooQytGKSJdLFsyLDEsInVfKihDJytGKSJdLFsxLDIsIkYnJyJdLFswLDAsIkMrdV8qRiJdLFsyLDAsIkMnK3VfKkYiXSxbMCwxLCJcXHNpbSJdLFswLDJdLFsxLDJdLFszLDQsIlxcc2ltIl0sWzMsMCwiXFxzaW0iXSxbNCwxLCJcXHNpbSJdXQ==
     \begin{tikzcd}[column sep=tiny]
@@ -3327,7 +3351,7 @@ est une équivalence d'homotopie.
 
 Maintenant, le \sref{lemme}{lemmeactionfibre} s'applique à $q$. Ainsi, le foncteur~:
 $$S^{-1}S^{-1}X\lra \brak{S}{X}$$
-est fibré, les fibres s'identifient à $S^{-1}S$, et les changements de cobase aux translations. Or, ces translations sont des équivalences
+est cofibré, les fibres s'identifient à $S^{-1}S$, et les changements de cobase aux translations. Or, ces translations sont des équivalences
 d'homotopie. Donc, par le \sref{théorème B}{theoremeB}, pour tout $F$ dans $X$,
 le diagramme commutatif suivant est homotopiquement cartésien~:
 \begin{center}
@@ -3357,7 +3381,6 @@ Considérons maintenant le carré suivant~:
 \end{center}
 où~:
 $$s_W: (A,B)   \mapsto  (B,A)$$
-et les $\sim$ désignent des équivalences d'homotopie.
 Ce carré commute à homotopie près, comme le montrent les $2$ transformations naturelles suivantes~:
 $$(0,(A,B+F))\ra (B,(B+A,B+F))\leftarrow (B,(A,F))$$
 
@@ -3365,7 +3388,7 @@ Donc, si $\brak{S}{X}$ est contractile, $S^{-1}S\ra S^{-1}S^{-1}X$ est une équi
 $S^{-1}S\ra S^{-1}X$ également. Nous avons démontré le théorème suivant.
 
 \begin{theo}\label{theoremebrakSX}
-  Soit $S$ un groupoïde symétrique monoïdal agissant sur une catégorie $X$ tels que~:
+  Soit $S$ un groupoïde symétrique monoïdal agissant sur une catégorie $X$ de telle manière que~:
   \begin{description}
     \item[$(1)$] toutes les flèches de $X$ sont des monomorphismes~;
     \item[$(2)$] pour tout $F$ dans $X$, le foncteur $S\ra X$, $B\mapsto B+F$ est fidèle~;
@@ -3388,7 +3411,7 @@ Nous allons ici démontrer un premier pas important vers la démonstration de $+
 Nous allons montrer que pour $A$ un anneau, $\GL{}{A}^+$ peut se réaliser comme un $S^{-1}S$ pour un certain groupoïde monoïdal symétrique $S$.
 
 \begin{ex}\label{exempleSS}
-  Soit $P$ une catégorie exacte où toutes les suites exactes soient scindées.
+  Soit $P$ une catégorie exacte où toutes les suites exactes sont scindées.
   On pose $S:=\Isos{P}$ la catégorie des isomorphismes de $P$. La somme directe $\oplus$ fait de $S$ un groupoïdes monoïdal symétrique.
   Nous avons alors une structure de $H$-espace sur $S^{-1}S$, donnée par le foncteur~:
   \[
@@ -3429,14 +3452,14 @@ Pour rappel, $\Proj{A}$ est la catégorie exacte des $A$-modules projectifs de t
 
 \begin{proof}
   L'ensemble $\pi_0(S^{-1}S)$ est un monoïde via $\oplus$.
-  C'est même un groupe car $s_W:(A,B)\ra (B,A)$ est un inverse à homotopie près.
+  C'est même un groupe car $S^{-1}S$ est un $H$-groupe avec pour inverse $s_W:(A,B)\ra (B,A)$.
   Les seules relations sur $K_0(A)$ sont les $[U]+[V]=[U\oplus V]$.
   On peut donc définir un inverse par $[N]\mapsto (0,N)$.
 \end{proof}
 
 Nous noterons $(S^{-1}S)_0$ la composante connexe de $0$. On a un isomorphisme $S^{-1}S\simeq K_0(A)\times (S^{-1}S)_0$.
 
-On note $S_n$ la composante connexe de $A^n$ dans $S_n$. C'est un groupoïde équivalent à $\GL{n}{A}$.
+On note $S_n$ la composante connexe de $A^n$ dans $S$. C'est un groupoïde équivalent à $\GL{n}{A}$ (vu comme groupoïde).
 
 \begin{defi}
   On définit une catégorie $L$ dont les~:
@@ -3449,7 +3472,7 @@ On note $S_n$ la composante connexe de $A^n$ dans $S_n$. C'est un groupoïde éq
 
 Comme le montre la proposition suivante, $L$ est un "alias" de $\GL{}{A}$.
 
-\begin{prop}
+\begin{prop}\label{propGLhomotopeaL}
   Pour chaque $n\geq 0$, on se donne une équivalence $\eta_n:S_n\ra \GL{n}{A}$, telles
   que ces équivalences soient compatibles aux foncteurs~:
   \[
@@ -3545,7 +3568,8 @@ Nous allons maintenant faire le lien entre $L$ et $S^{-1}S$.
 \end{theo}
 
 \begin{proof}
-  On peut remplacer $\GL{}{A}$ par $L$, qui lui est homotope. Or, on a construit $\psi:L\ra (S^{-1}S)_0$ tel que~:
+  On peut remplacer $\GL{}{A}$ par $L$, qui lui est homotope d'après la \sref{proposition}{propGLhomotopeaL}.
+  Or, on a construit $\psi:L\ra (S^{-1}S)_0$ tel que~:
   \begin{description}
     \item[$\bullet$] $\psi$ est un isomorphisme en homologie sur $\Z$~;
     \item[$\bullet$] $(S^{-1}S)_0$ est un espace simple.
@@ -3665,7 +3689,7 @@ Pour cela nous utilisons le lemme suivant.
 \end{lem}
 
 \begin{proof}
-  On se donne un morphismes $w$ dans $Y$ se factorisant en $w=vu$ et $a$ un morphisme de $X$ tel que $f(a)=w$. On a alors le diagramme commutatif suivant~:
+  On se donne un morphisme $w$ dans $Y$ se factorisant en $w=vu$ et $a$ un morphisme de $X$ tel que $f(a)=w$. On a alors le diagramme commutatif suivant~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsOCxbMCwwLCJ4XzEiXSxbMSwwLCJ4XzIiXSxbMiwwLCJ4XzMiXSxbMywwLCJ4XzMiXSxbMywxLCJ5XzMiXSxbMiwxLCJ5XzMiXSxbMSwxLCJ5XzIiXSxbMCwxLCJ5XzEiXSxbNyw0LCJ3IiwyLHsiY3VydmUiOjN9XSxbNSw0LCJlcXVhbCIsMl0sWzcsNiwidSIsMl0sWzYsNSwidiIsMl0sWzAsNywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxLDYsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMiw1LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzMsNCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFswLDMsImEiLDAseyJjdXJ2ZSI6LTN9XSxbMCwxLCJcXGV4aXN0cyBiIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMiwiXFxleGlzdHMgYyIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDMsIlxcZXhpc3RzIFxcZXRhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
     \begin{tikzcd}[row sep=large, column sep=large]
@@ -3691,13 +3715,13 @@ Pour cela nous utilisons le lemme suivant.
 \end{proof}
 
 Nous allons maintenant appliquer le lemme à $E\ra QP$. Le point $(1)$ est facile~: il suffit de traiter le cas d'une injection et le cas d'une
-surjection, tous deux faciles.
+surjection, tous deux élémentaires.
 Montrons $(2)$ dans le cas d'une surjection $C\twoheadleftarrow C'$. Dans ce cas, les morphismes 
 de $\exa{A}{B}{C}$ dans $\exa{A'}{B'}{C'}$ sont juste les isomorphismes
 $B\simeq B'$ compatibles à $C\twoheadleftarrow C'$, et $(2)$ est vérifié.
 
 Maintenant, si on considère une injection $C\rightarrowtail C'$. Les morphismes possibles sont cette fois définis par le choix
-d'un morphisme compatible $B\ra B'$. Or tous les tels morphismes $B'\ra B$ sont des monomorphismes et ont la même image,
+d'un morphisme compatible $B\ra B'$. Or tous les tels morphismes $B\ra B'$ sont des monomorphismes et ont la même image,
 donc $(2)$ est vérifié.
 
 Dans le cas général, on considère $C\rightarrowtail C_1\twoheadleftarrow C'$. On déduit alors $(2)$ des deux cas particuliers
@@ -3728,7 +3752,7 @@ est fibré et la fibre au-dessus de $C$ s'identifie à $S^{-1}E_C$.
 
     \item[$(ii)$] $\brak{S}{E_C}$ est un $H$-espace et admet un inverse homotopique.
     
-    Le produit est donnée par $\star$. L'élément $\exa{0}{C}{C}$ est neutre pour $\star$.
+    Le produit est donné par $\star$. L'élément $\exa{0}{C}{C}$ est neutre pour $\star$.
     Pour l'inverse, on montre que tout $H$-espace connexe $M$ admet un inverse homotopique. Considérons le diagramme~:
     \begin{center}
       % https://q.uiver.app/?q=WzAsNixbMCwwLCJNIl0sWzEsMCwiTVxcdGltZXMgTSJdLFsyLDAsIk0iXSxbMiwxLCJNIl0sWzAsMSwiTSJdLFsxLDEsIk1cXHRpbWVzIE0iXSxbMCwxLCJ4XFxtYXBzdG8oeCxlKSJdLFsxLDIsIlxcbWF0aHJte3ByfV8yIl0sWzUsMywiXFxtYXRocm17cHJ9XzIiXSxbNCw1LCJ4XFxtYXBzdG8oeCxlKSJdLFswLDQsImVxdWFsIiwxXSxbMiwzLCJlcXVhbCIsMV0sWzEsNSwiKHgseSlcXFxcXFxkb3duYXJyb3dcXFxcKHh5LHgpIl1d
@@ -3854,10 +3878,10 @@ est fibré et la fibre au-dessus de $C$ s'identifie à $S^{-1}E_C$.
   $S^{-1}S$ est la limite homotopique de $*\rightrightarrows QP$. Or $\Omega QP$ est aussi une limite homotopique de $*\rightrightarrows QP$.
 \end{proof}
 
-\section{\texorpdfstring{Propriétés de la $K$-théorie supérieure}{Propriétés de la K-théorie supérieure}}
+\section{\texorpdfstring{Propriétés de la $K$-théorie supérieure}{Propriétés de la K-théorie supérieure}}\label{sectionproprietes}
 
-\subsection{\texorpdfstring{Rappels: définition de la $K$-théorie et de la $K'$-théorie des anneaux et schémas}
-{Rappels: définition de la K-théorie et de la K'-théorie des anneaux et schémas}}
+\subsection{\texorpdfstring{Rappels: définition des $K$ et $K'$-théories des anneaux et schémas}
+{Rappels: définition des K et K'-théories des anneaux et schémas}}
 
 Dans la \sref{section}{sectionK0}, nous avons introduit la notion de catégorie exacte et montré que les définitions
 du $K_0$ et du $K'_0$ pour les anneaux et les schémas s'interprètent comme le $K_0$ de différentes catégories exactes~:
@@ -4170,8 +4194,8 @@ Voici un résultat similaire dans le cadre des schémas.
   qui montre que $\Proj{X}_\infty=\Modf{X}$.
 \end{proof}
 
-\subsection{\texorpdfstring{Fonctorialité de la $K$-théorie et de la $K'$-théorie pour les anneaux et schémas}
-{Fonctorialité de la K-théorie et de la K'-théorie pour les anneaux et schémas}}\label{soussectionfonctorialite}
+\subsection{\texorpdfstring{Fonctorialité des $K$ et $K'$-théories pour les anneaux et schémas}
+{Fonctorialité des K et K'-théories pour les anneaux et schémas}}\label{soussectionfonctorialite}
 
 Dans cette sous-section, nous allons utiliser les résultats de la sous-section précédente sur les résolutions pour étudier
 la fonctorialité de la $K$-théorie supérieure.
@@ -4184,7 +4208,7 @@ de $\Proj{B}$ dans $\Proj{A}$, il devient nécessaire que $B$ soit un $A$-module
   Soit $f:A\ra B$ un morphisme fini entre anneaux noethériens (à gauche), tel que $B$ soit de $\Tor$-dimension finie sur $A$.
   Alors la restriction définit un foncteur exact~:
   $$\Proj{B}_\infty\lra \Proj{A}_\infty$$
-  Qui induit un morphismes pour tout $i\geq 0$~:
+  Qui induit un morphisme pour tout $i\geq 0$~:
   $$f_*:K_iB\ra K_iA$$
   Appelé application de transfert.
   Si $g:B\ra C$ est un autre tel morphismes, alors $(gf)_*=f_*g_*$.
@@ -4348,7 +4372,7 @@ On a très facilement le fait suivant.
   \begin{description}
     \item[$\bullet$] objets sont les objets de $\A$~;
     \item[$\bullet$] morphismes de $M$ dans $N$ sont données par~:
-    $$\Hom{\A/\mathcal{C}}{M}{N}:=\colim_{\begin{cases}M'\subset M,\;N'\subset N \\ M/M',N'\in\mathcal{C}\end{cases}}\Hom{\A}{M'}{N/N'}$$ 
+    $$\Hom{\A/\mathcal{C}}{M}{N}:=\mathrm{colim}_{\begin{cases}M'\subset M,\;N'\subset N \\ M/M',N'\in\mathcal{C}\end{cases}}\Hom{\A}{M'}{N/N'}$$ 
   \end{description}
 \end{defi}
 
@@ -4516,7 +4540,7 @@ Voici maintenant l'énoncé du théorème de localisation.
 \begin{theo}[localisation]\label{theoremelocalisation}
   Soit $\mathcal{C}$ une sous-catégorie épaisse d'une catégorie abélienne $\A$. On note $e:\mathcal{C}\ra \A$ l'inclusion,
   et $s:\A\ra \A/\mathcal{C}$ le quotient. Alors on a une suite exacte longue~:
-  $$\dotsb\overset{s_*}{\ra}K_1(\A/\mathcal{C})\ra K_0(\mathcal{C})\overset{e_*}{\ra}K_0(\A)\overset{s_*}{\ra}K_0(\A/\mathcal{C})\ra 0$$
+  $$\dotsb\overset{s_*}{\lra}K_1(\A/\mathcal{C})\lra K_0(\mathcal{C})\overset{e_*}{\lra}K_0(\A)\overset{s_*}{\lra}K_0(\A/\mathcal{C})\lra 0$$
   Et ces suites exactes sont fonctorielles en le couple $(\A,\mathcal{C})$.
 \end{theo}
 
@@ -4525,7 +4549,7 @@ Voir \cite[5.5]{Quil} pour la démonstration.
 \begin{coro}
   Soit $X$ un schéma noethérien et soit $i:F\hookrightarrow X$ un sous-schéma fermé. On note $j:U\hookrightarrow X$ l'immersion ouverte complémentaire.
   Alors on a une suite exacte longue en $K'$-théorie~:
-  $$\dotsb\ra K'_{i+1}U\ra K'_{i}F\overset{i_*}{\ra}K'_{i}X\overset{j^*}{\ra}K'_{i}U\ra\dotsb$$
+  $$\dotsb\lra K'_{i+1}U\lra K'_{i}F\overset{i_*}{\lra}K'_{i}X\overset{j^*}{\lra}K'_{i}U\lra\dotsb$$
 \end{coro}
 
 \begin{proof}
