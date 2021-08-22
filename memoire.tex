@@ -4289,7 +4289,7 @@ Passons maintenant au cadre des schémas.
   $$\exa{\Ring{X}}{(\mathcal{L}^{\otimes n})^r}{E}$$
   Comme $E$ est plat, on obtient, en multipliant par $\mathcal{F}$, une suite exacte~:
   $$\exa{\mathcal{F}}{\mathcal{F}(n)^r}{E\otimes \mathcal{F}}$$
-  avec $\mathcal{F}(n)^r$ est $f_*$-acyclique.
+  Et $\mathcal{F}(n)^r$ est $f_*$-acyclique.
 \end{proof}
 
 \begin{prop}[transferts en $K'$-théorie des schémas]\label{propositiontransfertschemas}
@@ -4323,9 +4323,214 @@ Passons maintenant au cadre des schémas.
 
 \subsection{Le théorème de localisation}
 
-[citer pour la définition de catégorie localisée]
+Dans cette sous-section, nous présentons un des résultats principales de l'article de Quillen sur la construction $Q$ \cite{Quil}~:
+le théorème de localisation. Nous renvoyons à l'article pour la démonstration car la preuve est élémentaire et n'utilise que
+les résultats de la \sref{sous-section}{thmAetB} et est relativement longue.
 
-[à compléter, citer Quillen pour la preuve et mettre les corollaires en citant Gabriel]
+Pour comprendre ce résultat, il faut savoir ce qu'est une catégorie abélienne quotient. Nous mettons ici la définition.
+Pour plus d'information, voir l'article de Gabriel \cite[chp. III]{Gabr}.
+
+\begin{defi}
+  Soit $\A$ une catégorie abélienne, et $\mathcal{C}$ une sous-catégorie pleine de $\mathcal{A}$.
+  On dit que $\mathcal{C}$ est une sous-catégorie épaisse de $\A$ si pour toute suite exacte
+  $\exa{M'}{M}{M''}$ dans $\A$, $M$ est dans $\mathcal{C}$ si et seulement si $M'$ et $M''$ sont dans $\mathcal{C}$.
+\end{defi}
+
+On a très facilement le fait suivant.
+
+\begin{prop}
+  Si $\mathcal{C}$ est une sous-catégorie épaisse d'une catégorie abélienne $\A$, alors $\mathcal{C}$ est abélienne.
+\end{prop}
+
+\begin{defi}
+  Soit $\mathcal{C}$ une sous-catégorie épaisse d'une catégorie abélienne $\A$. On définit la catégorie abélienne quotient $\A/\mathcal{C}$ comme
+  la catégorie dont les~:
+  \begin{description}
+    \item[$\bullet$] objets sont les objets de $\A$~;
+    \item[$\bullet$] morphismes de $M$ dans $N$ sont données par~:
+    $$\Hom{\A/\mathcal{C}}{M}{N}:=\colim_{\begin{cases}M'\subset M,\;N'\subset N \\ M/M',N'\in\mathcal{C}\end{cases}}\Hom{\A}{M'}{N/N'}$$ 
+  \end{description}
+\end{defi}
+
+La composition est définie naturellement, pour plus de détails, voir \cite[chp. III]{Gabr}.
+
+\begin{prop}
+  Dans le cadre de la définition ci-dessus, $\A/\mathcal{C}$ est abélienne et il existe un foncteur exact $T:\A\ra\A/\mathcal{C}$.
+  De plus, ce foncteur vérifie la propriété universelle suivante. Pour tout $G:\A\ra \mathcal{B}$ foncteur exact tel
+  que $GM$ est nul pour tout $M$ dans $\mathcal{C}$, il existe une unique factorisation de $G$ par $\A/\mathcal{C}$~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXEEiXSxbMiwwLCJcXG1hdGhjYWx7Qn0iXSxbMSwxLCJcXEEvXFxtYXRoY2Fse0N9Il0sWzAsMSwiRyJdLFswLDIsIlQiLDJdLFsyLDEsIlxcZXhpc3RzIUgiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \begin{tikzcd}
+      \A && {\mathcal{B}} \\
+      & {\A/\mathcal{C}}
+      \arrow["G", from=1-1, to=1-3]
+      \arrow["T"', from=1-1, to=2-2]
+      \arrow["{\exists!H}"', dashed, from=2-2, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  De plus, $TM$ est nul si et seulement si $M$ est dans $\mathcal{C}$.
+\end{prop}
+
+Voir \cite[chp. III]{Gabr} pour la démonstrations.
+
+\begin{ex}
+  \begin{description}
+    \item[$\bullet$] Soit $A$ un anneau noethérien (à gauche) et $S$ une partie centrale multiplicative de $A$. On pose $\mathcal{A}:=\Modf{A}$
+    et $\mathcal{C}$ la sous-catégorie pleine des modules de $S$-torsion. Alors $T:\A\ra\A/\mathcal{C}$ s'identifie au foncteur de localisation~:
+    $$\Modf{A}\lra \Modf{S^{-1}A}$$
+    \item[$\bullet$] Soit $X$ un schéma noethérien et $j:U\hookrightarrow X$ une immersion ouverte. On pose $\mathcal{A}:=\Modf{X}$
+    et $\mathcal{C}$ la sous-catégorie pleine des modules supportés dans $X\setminus U$.
+    Alors $T:\A\ra\A/\mathcal{C}$ s'identifie au foncteur de localisation~:
+    $$j^*:\Modf{X}\lra \Modf{U}$$ 
+  \end{description}
+\end{ex}
+
+Ces deux exemples découlent de la variante abélienne suivante d'un lemme classique sur les catégories localisés.
+
+\begin{lem}
+  On se donne l'adjonction suivante entre catégories abéliennes~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsMixbMCwwLCJcXGxhbWJkYTpcXG1hdGhjYWx7QX0iXSxbMiwwLCJcXG1hdGhjYWx7Qn06RyJdLFswLDEsIiIsMCx7ImN1cnZlIjotMX1dLFsxLDAsIiIsMCx7ImN1cnZlIjotMX1dLFswLDEsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJhZGp1bmN0aW9uIn19XV0=
+    \begin{tikzcd}
+      {\lambda:\mathcal{A}} && {\mathcal{B}:G}
+      \arrow[bend left=12pt, from=1-1, to=1-3]
+      \arrow[bend left=12pt, from=1-3, to=1-1]
+      \arrow["\dashv"{anchor=center}, draw=none, from=1-1, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  On suppose de plus que~:
+  \begin{description}
+    \item[$\bullet$] $G$ est pleinement fidèle~;
+    \item[$\bullet$] $\lambda$ est exact.
+  \end{description}
+
+  On pose $\mathcal{W}:=\lambda^{-1}(\Isos{\mathcal{B}})$. On note $\mathcal{C}$ la sous-catégorie pleine de $\A$
+  formée des objets $M$ tels que $\lambda(M)$ soit nul.
+  On a alors~:
+  \begin{description}
+    \item[$(1)$] $\mathcal{B}$ s'identifie à la localisation $\A[\mathcal{W}^{-1}]$ de $\A$ par $\mathcal{W}$~;
+    \item[$(2)$] $\mathcal{B}$ est équivalente à $\A/\mathcal{C}$.
+  \end{description}
+\end{lem}
+
+\begin{proof}
+  Le point $(1)$ est complètement indépendant du fait que les catégories soient abélienne. Il découle directement
+  du fait que $G$ est pleinement fidèle et $\mathcal{W}=\lambda^{-1}(\Isos{\mathcal{B}})$. C'est un résultat classique de localisation,
+  appelé "localisation réflexive", voir \cite{Gabr2}.
+
+  Quitte à changer $\mathcal{B}$ par une catégorie équivalente, on peut supposer que $\lambda$ induit un isomorphisme sur les objets.
+  Maintenant, il suffit de vérifier que $\lambda$ vérifie la propriété universelle de la catégorie quotient.
+  
+  Soit $J:\A\ra\mathcal{D}$ un foncteur exact tel que $J(M)$ est nul pour tout $M$ dans $\mathcal{C}$.
+  Alors, soit $w:M\ra N$ un morphisme dans $\mathcal{W}$, alors $\lambda(w)$ est un isomorphisme,
+  donc, comme $\lambda$ est exact, son noyau et son conoyau sont dans $\mathcal{C}$.
+  Mais alors, comme $J$ est exact, $J(w)$ est un isomorphisme.
+  Donc il existe une factorisation $J:\A\ra\mathcal{B}\ra\mathcal{D}$. On vérifie immédiatement qu'elle est unique.
+\end{proof}
+
+\begin{proof}[Démonstration des exemples]
+  Pour l'exemple de l'anneau $A$, on pose~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsMixbMCwwLCJcXGxhbWJkYTpcXG1hdGhjYWx7QX0iXSxbMiwwLCJcXG1hdGhjYWx7Qn06RyJdLFswLDEsIiIsMCx7ImN1cnZlIjotMX1dLFsxLDAsIiIsMCx7ImN1cnZlIjotMX1dLFswLDEsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJhZGp1bmN0aW9uIn19XV0=
+    \begin{tikzcd}
+      {\lambda:A-\mathrm{mod}} && {S^{-1}A-\mathrm{mod}:G}
+      \arrow[bend left=12pt, from=1-1, to=1-3]
+      \arrow[bend left=12pt, from=1-3, to=1-1]
+      \arrow["\dashv"{anchor=center}, draw=none, from=1-1, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  L'exemple rentre dans le cadre du lemme et on a donc le résultat pour la catégorie des $A$-modules.
+  Pour le résultat sur la catégorie $\Modf{A}$ des $A$-modules de type fini, il suffit d'observer la définition de la catégorie
+  quotient, $\Hom{}{M}{N}$ pour $M$ et $N$ de type fini est le même que l'on soit dans $\Modf{A}$ ou dans $A-\mathrm{mod}$.
+
+  On procède de la même manière pour l'exemple du schéma noethériens $X$, avec l'adjonction~:
+  \begin{center}
+    % https://q.uiver.app/?q=WzAsMixbMCwwLCJcXGxhbWJkYTpcXG1hdGhjYWx7QX0iXSxbMiwwLCJcXG1hdGhjYWx7Qn06RyJdLFswLDEsIiIsMCx7ImN1cnZlIjotMX1dLFsxLDAsIiIsMCx7ImN1cnZlIjotMX1dLFswLDEsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJhZGp1bmN0aW9uIn19XV0=
+    \begin{tikzcd}
+      {j^*:\Ring{X}-\mathrm{q.coh.}} && {U-\mathrm{q.coh.}:j_*}
+      \arrow[bend left=12pt, from=1-1, to=1-3]
+      \arrow[bend left=12pt, from=1-3, to=1-1]
+      \arrow["\dashv"{anchor=center}, draw=none, from=1-1, to=1-3]
+    \end{tikzcd}
+  \end{center}
+  où $\Ring{Y}-\mathrm{q.coh.}$ désigne la catégorie abélienne des modules quasi-cohérents sur le schéma $Y$.
+\end{proof}
+
+\begin{theo}[dévissage]\label{theoremedevissage}
+  Soit $\A$ une catégorie abélienne, et soit $\mathcal{B}$ une sous-catégorie abélienne pleine de $\A$ close par sous-objet et quotient dans $\mathcal{A}$.
+  On suppose que tout objet $M$ de $\A$ admet une filtration finie~:
+  $$0=M_0\subseteq\dotsb\subseteq M_n=M$$
+  telle que pour tout $j$, $M_j/M_{j-1}$ soit dans $\mathcal{B}$.
+
+  Alors l'inclusion naturelle~:
+  $$Q\mathcal{B}\ra Q\mathcal{A}$$
+  est une équivalence d'homotopie.
+\end{theo}
+
+\begin{proof}
+  On note $f:Q\mathcal{B}\ra Q\mathcal{A}$ le foncteur. Soit $M$ un objet de $\A$. Alors la catégorie $f\downarrow M$ est équivalente à
+  la catégorie $J(M)$ dont les~:
+  \begin{description}
+    \item[$\bullet$] objets sont les couches admissibles $(M_0,M_1)$ de $M$ tels que $M_1/M_0$ soit dans $\mathcal{B}$~;
+    \item[$\bullet$] les morphismes sont donnés par l'ordre usuel sur les couches, $(M_0,M_1)\leq (M'_0,M'_1)$ si et seulement si
+    $M'_0\subseteq M_0\subseteq M_1\subseteq M'_1$. 
+  \end{description}
+  Il suffit donc de montrer que si $M'\subset M$ est une inclusion dans $\A$ avec $M/M'$ dans $\mathcal{B}$, le foncteur induit~:
+  $$i:J(M')\ra J(M)$$
+  est une équivalence d'homotopie.
+
+  On définit deux foncteurs~:
+  \[
+    \begin{array}{llclllcl}
+      r: & J(M)      & \ra     & J(M')                   & s: & J(M)      & \ra     & J(M')            \\
+         & (M_0,M_1) & \mapsto & (M_0\cap M',M_1\cap M') &    & (M_0,M_1) & \mapsto & (M_0\cap M',M_1)
+    \end{array}
+  \]
+  Ces deux foncteurs sont bien définis car pour une couche $(M_0,M_1)$ de $J(M)$, on a~:
+  $$M_1\cap M'/M_0\cap M'\rightarrowtail M_1/M_0\cap M'\rightarrowtail M_1/M_0\times M/M'\in\mathcal{B}$$
+  Maintenant, on a~:
+  \begin{description}
+    \item[$\bullet$] $\id_{J(M')}=ri$~;
+    \item[$\bullet$] il existe $ir\Rightarrow s\Leftarrow \id_{J(M)}$ donné par~:
+    $$(M_0\cap M',M_1\cap M')\leq (M_0\cap M',M_1)\geq (M_0,M_1)$$  
+  \end{description}
+  Donc $i$ est une équivalence d'homotopie.
+\end{proof}
+
+\begin{coro}\label{corollairedevissageschemas}
+  Soit $X$ un schéma noethérien et $i:F\hookrightarrow X$ une immersion fermée.
+  Soit $\mathcal{C}$ la catégorie des $\Ring{X}$-modules cohérents à support dans l'image de $i$.
+  Alors l'inclusion naturelle $i_*:\Modf{F}\ra\mathcal{C}$ induit une équivalence d'homotopie~:
+  $$Q\mathcal{C}\simeq Q\Modf{F}$$
+\end{coro}
+
+\begin{proof}
+  Soit $\mathcal{F}$ un module cohérent sur $X$ à support dans $F$. Soit $\mathcal{I}$ l'idéal quasi-cohérent noyau de $i^*$.
+  Comme $X$ est noethérien, il existe une entier $n\geq 0$ tel que $\mathcal{I}^n\mathcal{F}=0$. On dispose alors d'une filtration de $\mathcal{F}$~:
+  $$0=\mathcal{I}^n\mathcal{F}\subseteq\dotsb\subseteq \mathcal{I}^0\mathcal{F}=\mathcal{F}$$
+  dont tous les quotients sont des modules sur $\Ring{X}/\mathcal{I}=\Ring{F}$. On conclut avec le \sref{théorème de dévissage}{theoremedevissage}.
+\end{proof}
+
+Voici maintenant l'énoncé du théorème de localisation.
+
+\begin{theo}[localisation]\label{theoremelocalisation}
+  Soit $\mathcal{C}$ une sous-catégorie épaisse d'une catégorie abélienne $\A$. On note $e:\mathcal{C}\ra \A$ l'inclusion,
+  et $s:\A\ra \A/\mathcal{C}$ le quotient. Alors on a une suite exacte longue~:
+  $$\dotsb\overset{s_*}{\ra}K_1(\A/\mathcal{C})\ra K_0(\mathcal{C})\overset{e_*}{\ra}K_0(\A)\overset{s_*}{\ra}K_0(\A/\mathcal{C})\ra 0$$
+  Et ces suites exactes sont fonctorielles en le couple $(\A,\mathcal{C})$.
+\end{theo}
+
+Voir \cite[5.5]{Quil} pour la démonstration.
+
+\begin{coro}
+  Soit $X$ un schéma noethérien et soit $i:F\hookrightarrow X$ un sous-schéma fermé. On note $j:U\hookrightarrow X$ l'immersion ouverte complémentaire.
+  Alors on a une suite exacte longue en $K'$-théorie~:
+  $$\dotsb\ra K'_{i+1}U\ra K'_{i}F\overset{i_*}{\ra}K'_{i}X\overset{j^*}{\ra}K'_{i}U\ra\dotsb$$
+\end{coro}
+
+\begin{proof}
+  Il suffit d'appliquer le \sref{théorème de localisation}{theoremelocalisation} et le \sref{corollaire}{corollairedevissageschemas}.
+\end{proof}
 
 \appendix
 
