@@ -56,6 +56,7 @@
 \newcommand{\Q}{\ensemblenombre{Q}}
 
 \newcommand{\M}{\mathcal{M}}
+\newcommand{\MP}{\mathcal{P}}
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\E}{\mathcal{E}}
 \newcommand{\Ring}[1]{\mathcal{O}_{#1}}
@@ -149,7 +150,7 @@ On note $\Omega$ le plus petit. Toutes les structures algébriques seront par d�
 Pour les ensembles et la catégorie, nous diront qu'ils ou elles sont petit(e)s
 quand ils ou elles sont dans $\Omega$.
 
-\section{\texorpdfstring{Les groupes $K_0$, $K_1$ et $K_2$}{Les groupes KO, K1 et K2}}\label{sectionK0}
+\section{\texorpdfstring{Les groupes $K_0$ et $K_1$}{Les groupes KO et K1}}\label{sectionK0}
 
 Dans cette section, nous allons définir et étudier les groupes $K_0$, $K_1$ et $K_2$ associés à un anneau. Nous définirons également le $K_0$ d'une catégorie exacte.
 
@@ -375,7 +376,7 @@ Nous renvoyons au \cite[Chp.4]{Weib2} pour la démonstration et les différentes
 \end{proof}
 
 On remarque que ce théorème ressemble beaucoup à la \sref{proposition}{KprimeTordimfinie}. Ces deux résultats sont encore vraie en $K$-théorie supérieure,
-et sont des applications d'un même résultat (voir [lien vers plus loin]).
+et sont des applications d'un même résultat (voir la \sref{sous-section}{soussectionresolution}).
 
 
 \subsection{\texorpdfstring{Les groupes $K_0$ et $K'_0$ d'un schéma}{Les groupes K0 et K'0 d'un schéma}}
@@ -413,8 +414,105 @@ De même que pour les anneaux, nous avons les propriétés suivantes~:
 
 [à terminer, ajouter les morphismes propres et les morphismes de Tor dimension finie]
 
+Nous allons maintenant étendre le cadre où $f^*$ et $f_*$ est définie en $K'$-théorie. Le cas de la $K$-théorie n'est pas traité ici.
+
+Nous ne prouvons pas tout de suite ces résultats (la \sref{proposition}{propositionfonctorialiteKprimetransfert} et 
+la \sref{proposition}{propositionfonctorialiteKprimetireenarriere}), car les démonstrations seraient pénible. En effet, on ne peut pas reprendre tel quel
+les démonstrations faites dans le cadre des anneaux car les fibrés vectoriels ne sont pas en général des objets projectifs.
+Nous préférons plutôt renvoyer à la \sref{sous-section}{soussectionfonctorialite} qui traite des mêmes problèmes dans le cadre plus général
+de la $K'$-théorie supérieure. Dans ce cadre étendu, la construction $Q$ de Quillen efface en partie ces pénibilités.
+
+\begin{defi}
+  Soit $f:X\ra Y$ un morphisme de schéma. On dit que $f$ est de $\Tor$-dimension finie s'il existe un entier $n> 0$ tel que pour tout
+  $x$ point de $X$ d'image $y$ dans $Y$, tout $\Ring{Y,y}$-module $M_y$, et tout entier $m\geq n$, on ait~:
+  $$\fTor{m}{\Ring{Y,y}}{\Ring{X,x}}{M_y}=0$$
+\end{defi}
+
+Pour la définition et les propriétés élémentaires des fibrés en droite amples et très amples, voir \cite[chp. 13]{Gort}.
+
+\begin{prop}\label{propositionfonctorialiteKprimetireenarriere}
+  Soit $f:X\ra Y$ un morphisme de $\Tor$-dimension finie entre schémas noethériens et séparés.
+  On suppose de plus que tout $\Ring{Y}$-module quasi-cohérent est quotient d'un fibré vectoriel,
+  ce qui est par exemple le cas si $Y$ admet un faisceau en droite ample.
+
+  Soit $\mathcal{M}$ la sous-catégorie pleine de $\Modf{Y}$ des modules $\mathcal{F}$ tels que~:
+  $$\fTor{i}{\Ring{Y,f(x)}}{\Ring{X,x}}{\mathcal{F}}=0$$
+  pour tout $i\geq 1$ et $x$ dans $X$. On note $K'_0(\mathcal{M})$
+  son groupe de Grothendieck (cf. \sref{définition}{defiK0catexacte} si ce n'est pas clair).
+  Alors l'inclusion $\mathcal{M}\ra \Modf{Y}$ induit un isomorphisme $K'_0(\mathcal{M})\ra K'_0(Y)$.
+
+  Ainsi le foncteur~:
+  \[
+    \begin{array}{lcl}
+      \M & \ra & \Modf{X} \\
+      \mathcal{F} &\mapsto& f^*\mathcal{F}
+    \end{array}
+  \]
+  est exact et induit un morphisme d'anneaux~:
+  $$f^*:K'_0(Y)\lra K'_0(X)$$
+\end{prop}
+
+Pour la démonstration voir la \sref{proposition}{proptireenarriere} plus bas.
+
+\begin{rem}
+  On se place dans le cadre de la proposition. Soit $\mathcal{F}$ un objet de $\Modf{Y}$. Alors,
+  il admet une résolution finie $\mathcal{G}_*\ra \mathcal{F}$ par des modules de $\M$. Et donc~:
+  $$f^*[\mathcal{F}]=\sum_i\geq 0 [f^*\mathcal{G}_i]$$
+\end{rem}
+
+Nous admettons le résultat suivant de géométrie algébrique.
+
+\begin{theo}[Serre]\label{theoremeSerre}
+  Soit $f:X\ra Y$ un morphisme propre entre schémas noethériens, et soit $\mathcal{L}$ un fibré en droite ample sur $X$.
+  Pour tout $\Ring{X}$-module $\mathcal{F}$ et entier $n\in\Z$, on note $\mathcal{F}(n):=\mathcal{F}\otimes_{\Ring{X}}\mathcal{L}^{\otimes n}$.
+
+  Alors pour tout $\Ring{X}$-module $\mathcal{F}$~:
+  \begin{description}
+    \item[(i)] les $\Ring{Y}$-modules $R^qf_*(\mathcal{F})$ sont cohérents~;
+    \item[(ii)] il existe un entier $n_0$ tel que pour tout $n\geq n_0$, $R^qf_*(\mathcal{F}(n))=0$ pour tout $q>0$~;
+    \item[(iii)] il existe un entier $n_0$ tel que pour tout $n\geq n_0$, $f^*(f_*(\mathcal{F}(n)))\ra \mathcal{F}$ soit surjectif.
+  \end{description}
+\end{theo}
+
+Une démonstration relativement courte d'un cas particulier est donnée dans \cite[III.7]{Hart}.
+Pour se ramené au cas particulier, il suffit de voir que dans le cadre du théorème ci-dessous, $f$ est projectif (voir \cite[III.2.2.1]{EGA}
+pour une discussion plus détaillée).
+
+\begin{prop}\label{propositionfonctorialiteKprimetransfert}
+  Soit $f:X\ra Y$ un morphisme entre schémas noethériens et séparés tel que \textbf{l'une} des conditions suivantes soit vérifiée~:
+  \begin{description}
+    \item[(a)] le morphisme $f$ est fini, ou~:
+    \item[(b)] le morphisme $f$ est propre et le schéma $X$ admet un fibré en droite ample. 
+  \end{description}
+  
+  Soit $\mathcal{M}$ la sous-catégorie pleine de $\Modf{X}$ des modules $\mathcal{F}$ tels que~:
+  $$R^if_*(\mathcal{F})=0$$
+  pour tout $i\geq 1$. On note $K'_0(\mathcal{M})$
+  son groupe de Grothendieck (cf. \sref{définition}{defiK0catexacte} si ce n'est pas clair).
+  Alors l'inclusion $\mathcal{M}\ra \Modf{X}$ induit un isomorphisme $K'_0(\mathcal{M})\ra K'_0(X)$.
+
+  Ainsi le foncteur~:
+  \[
+    \begin{array}{lcl}
+      \M & \ra & \Modf{Y} \\
+      \mathcal{F} &\mapsto& f_*\mathcal{F}
+    \end{array}
+  \]
+  est exact et induit un morphisme de groupe~:
+  $$f_*:K'_0(X)\lra K'_0(Y)$$
+\end{prop}
+
+Pour la démonstration voir la \sref{proposition}{propositiontransfertschemas} plus bas.
+
+\begin{rem}
+  On se place dans le cadre de la proposition. Soit $\mathcal{F}$ un objet de $\Modf{X}$. Alors,
+  il admet une résolution finie $\mathcal{F}\ra \mathcal{G}^*$ par des modules de $\M$. Et donc~:
+  $$f_*[\mathcal{F}]=\sum_i\geq 0 [f_*\mathcal{G}^i]$$
+\end{rem}
+
 Nous allons maintenant aborder le cas des schémas réguliers. Si les résultats sont assez similaires au cas des anneaux,
-les schémas posent le problème de l'existence de résolutions par des fibrés vectoriels.
+comme ci-dessus, les schémas posent le problème de l'existence de résolutions par des fibrés vectoriels.
+Mais, dans le cas régulier, le \sref{lemme}{RegulierSepareQuotient} résout ce problème et nous évite de passer par la construction $Q$.
 
 \begin{defi}
   Un schéma $X$ est dit régulier si l'anneau local $\Ring{X,x}$ est régulier pour tout point $x$ dans $X$.
@@ -770,7 +868,7 @@ Nous allons maintenant appliquer ce résultat de colimite pour effectuer un calc
   Donc $\phi_q$ est un isomorphisme. Par la \sref{proposition}{CatExColimitesK0}, $\phi$ est un isomorphisme.
 \end{proof}
 
-\subsection{\texorpdfstring{Le groupe $K_1$ d'un anneau}{Le groupe K1 d'un anneau}}
+\subsection{\texorpdfstring{Le groupe $K_1$ d'un anneau}{Le groupe K1 d'un anneau}}\label{soussectionK1}
 
 Dans cette section, nous fixons un anneau $A$.
 
@@ -1918,7 +2016,7 @@ de la \sref{proposition-définition}{propdeficategoriedessuitesexactes}.
   \end{description}
 \end{proof}
 
-\begin{coro}
+\begin{coro}\label{corollaireadditivite}
   Soit $\M$ et $\M'$ deux catégories exactes, et~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiRiciXSxbMiwwLCJGIl0sWzMsMCwiRicnIl0sWzQsMCwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdXQ==
@@ -2035,7 +2133,7 @@ On reprend maintenant le cadre de la \sref{proposition}{K0gradues}.
   Donc $\phi_q$ est un isomorphisme. Par la \sref{proposition}{CatExColimitesKi}, $\phi$ est un isomorphisme.
 \end{proof}
 
-\section{\texorpdfstring{Construction $+$ de Quillen}{Construction + de Quillen}}
+\section{\texorpdfstring{Construction $+$ de Quillen}{Construction + de Quillen}}\label{sectionplus}
 
 \subsection{\texorpdfstring{La construction $+$ en topologie}{La construction + en topologie}}
 
@@ -2561,7 +2659,8 @@ C'est l'objet de la fin de cette sous-section.
     $$\mu^+: \GL{}{A}^+\times\GL{}{A}^+\ra\GL{}{A}^+$$
     Pour cela,
     on pose $\mu:\GL{}{A}\times\GL{}{A}\ra \GL{}{A}$ l'application $(M,N)\mapsto P$, avec $P_{2n+1,2m+1}=M_{n,m}$
-    $P_{2n,2m}=N_{n,m}$ et $P_{i,j}=0$ sinon. Or, en utilisant [ref homologie du produit], on remarque que~:
+    $P_{2n,2m}=N_{n,m}$ et $P_{i,j}=0$ sinon. Or, en utilisant la \sref{proposition}{propositionconstructionplusproduit},
+    on remarque que~:
     $$\GL{}{A}\times \GL{}{A}\ra \GL{}{A}^+\times\GL{}{A}^+$$
     est une construction $+$. On peut donc étendre $\mu$ en $\mu^+:\GL{}{A}^+\times\GL{}{A}^+\ra\GL{}{A}^+$, comme souhaité.
     \item[(B)] De la chaîne de cofibrations~:
@@ -2593,7 +2692,7 @@ C'est l'objet de la fin de cette sous-section.
   \end{description}
 \end{proof}
 
-\section{\texorpdfstring{Le théorème "$+=Q$"}{Le théorème "+=Q"}}
+\section{\texorpdfstring{Le théorème "$+=Q$"}{Le théorème "+=Q"}}\label{sectionplusegalQ}
 
 Cette section reprend la démonstration du théorème $+=Q$ donnée dans \cite{Gray}.
 
@@ -3741,7 +3840,7 @@ est fibré et la fibre au-dessus de $C$ s'identifie à $S^{-1}E_C$.
 
   Ainsi, l'action de $S$ sur $E$ est inversible. Donc, d'après le \sref{théorème}{theoremeactioninversible}, $E\ra S^{-1}E$
   est une équivalence faible. Donc $S^{-1}E$ est contractile.
-\end{proof}
+\end{proof}s
 
 \begin{theo}[Théorème $+=Q$]\label{theoremeplusegalQ}
   $\Omega QP$ est homotope à $K_0(A)\times \GL{}{A}^+$.
@@ -3756,6 +3855,477 @@ est fibré et la fibre au-dessus de $C$ s'identifie à $S^{-1}E_C$.
 \end{proof}
 
 \section{\texorpdfstring{Propriétés de la $K$-théorie supérieure}{Propriétés de la K-théorie supérieure}}
+
+\subsection{\texorpdfstring{Rappels: définition de la $K$-théorie et de la $K'$-théorie des anneaux et schémas}
+{Rappels: définition de la K-théorie et de la K'-théorie des anneaux et schémas}}
+
+Dans la \sref{section}{sectionK0}, nous avons introduit la notion de catégorie exacte et montré que les définitions
+du $K_0$ et du $K'_0$ pour les anneaux et les schémas s'interprètent comme le $K_0$ de différentes catégories exactes~:
+$\Proj{A}$ et $\Modf{A}$ pour un anneau $A$, $\Proj{X}$ et $\Modf{X}$ pour un schéma $X$.
+
+Maintenant, la construction $Q$ étend la construction du $K_0$, et est définie pour n'importe quelle catégorie exacte.
+On peut donc naturellement étendre les définitions.
+
+On rappelle que pour un anneau $A$, $\Proj{A}$ désigne la catégorie des $A$-modules à gauche projectifs de type fini,
+et $\Modf{A}$ désigne la catégorie des $A$-modules de type fini.
+
+\begin{defi}
+  Soit $A$ un anneau, non nécessairement commutatif. Les groupes de $K$-théorie de $A$ sont les groupes~:
+  $$K_nA:=K_n\Proj{A}\text{ pour }n\geq 0$$
+  Les groupes de $K'$-théorie de $A$ sont les groupes~:
+  $$K'_nA:=K_n\Modf{A}\text{ pour }n\geq 0$$
+\end{defi}
+
+\begin{rem}
+  Dans le cas de la $K$-théorie des anneaux, nous avons vu qu'il existe une construction équivalente, la construction $+$
+  (voir la \sref{section}{sectionplus} et la \sref{section}{sectionplusegalQ}).
+  Cette dernière nous donne notamment la forme de $K_1A$ pour un anneau $A$~:
+  $$K_1A=\GL{}{A}\ab=\GL{}{A}/\EGL{}{A}$$
+  Pour les définitions de $\GL{}{A}$ et $\EGL{}{A}$, voir la \sref{sous-section}{soussectionK1}.
+\end{rem}
+
+On rappelle que pour un schéma $X$, $\Proj{X}$ désigne la catégorie des $\Ring{X}$-modules localement libres de type fini,
+et $\Modf{X}$ désigne la catégorie des $\Ring{X}$-modules quasi-cohérents de type fini.
+
+\begin{defi}
+  Soit $X$ un schéma. Les groupes de $K$-théorie de $X$ sont les groupes~:
+  $$K_nA:=K_n\Proj{X}\text{ pour }n\geq 0$$
+  Les groupes de $K'$-théorie de $X$ sont les groupes~:
+  $$K'_nA:=K_n\Modf{X}\text{ pour }n\geq 0$$
+\end{defi}
+
+\subsection{Réduction par résolution}\label{soussectionresolution}
+
+Le but de cette sous-section est d'introduire les méthodes de résolution, qui permettent
+notamment d'établir des résultats de fonctorialité de la $K$-théorie ou $K'$-théorie des anneaux ou schémas.
+L'idée général est de pouvoir établir des arguments dans le style de la \sref{proposition}{KprimeTordimfinie} pour les groupes supérieurs.
+
+La proposition suivante découle de la définition d'une catégorie exacte.
+
+\begin{propdefi}
+  Soit $\M$ une catégorie exacte et $\MP$ une sous-catégorie additive pleine de $\M$.
+  On dit que $\MP$ est une sous-catégorie pleine stable par extension de $\M$ si~:
+  \begin{description}
+    \item[(i)] il existe un objet nul $O$ de $\M$ dans $\MP$~;
+    \item[(ii)] Pour toute suite exacte $\exac{M'}{M}{M''}$ dans $\M$,
+               si $M'$ et $M''$ sont isomorphes à des objets de $\M$, alors $M$ également.   
+  \end{description}
+  Dans ce cas, $\MP$ est une catégorie exacte avec $\E_{\MP}=\E_{\M}\cap\MP$, et
+  $Q\MP$ est une sous-catégorie de $Q\M$.
+\end{propdefi}
+
+\begin{rem}
+  En général, $Q\MP$ n'est pas une sous-catégorie pleine de $Q\M$. Par exemple, ce n'est pas le cas pour
+  $\MP:=\Proj{A}$ et $\M:=\Modf{A}$, où $A$ est un anneau.
+\end{rem}
+
+\begin{theo}\label{theoremeresolutionbasique}
+  Soit $\MP$ une sous-catégorie pleine stable par extension d'une catégorie exacte $\M$. On suppose~:
+  \begin{description}
+    \item[(i)] Si $\exac{M'}{M}{M''}$ est une suite exacte dans $\M$, et si $M$ est dans $\MP$, alors $M'$ également~;
+    \item[(ii)] Pour tout $M''$ dans $\M$, il existe une suite exacte $\exac{M'}{M}{M''}$ avec $M$ dans $\MP$.
+  \end{description}
+  Alors le foncteur~:
+  $$Q\MP\lra Q\M$$
+  est une équivalence d'homotopie.
+\end{theo}
+
+\begin{rem}
+  Un exemple classique de couple $(\M,\MP)$ vérifiant les hypothèses du \sref{théorème}{theoremeresolutionbasique} est le suivant~:
+  \begin{description}
+    \item[$\M$:] modules de dimension projective inférieure ou égale à $n$~;
+    \item[$\MP$:] modules de dimension projective inférieure ou égale à $n-1$~; 
+  \end{description}
+  où $n\geq 1$ est un entier, et les modules considérés sont sur un anneau $A$ ou un schéma $X$. 
+\end{rem}
+
+\begin{proof}[Démonstration du théorème]
+  On décompose le foncteur $Q\MP\lra Q\M$ en~:
+  $$Q\MP\overset{g}{\lra}\mathcal{C}\overset{f}{\lra}  Q\M$$
+  où $\mathcal{C}$ est la sous-catégorie pleine de $Q\M$ d'objets $\Ob{Q\MP}$.
+
+  Montrons que $g$ est une équivalence d'homotopie. Soit $P$ un objet de $\mathcal{C}$. La catégorie $g\downarrow P$ est équivalente à
+  la catégorie $J$ dont les~:
+  \begin{description}
+    \item[$\bullet$] objets sont les couches $\M$-admissibles $(M_0,M_1)$ de $P$ tels que $M_1/M_0$ soit dans $\MP$~;
+    \item[$\bullet$] morphismes sont donnés par la relation d'ordre $\leq$ usuelle sur les couches. 
+  \end{description}
+  Par le point \textbf{(i)} de l'énoncé, pour tout $(M_0,M_1)$ dans $J$, $M_0$ et $M_1$ sont dans $\MP$. Nous avons donc~:
+  $$(M_0,M_1)\leq (0,M_1)\geq (0,0)$$
+  Or, ces morphismes sont naturels. Donc $g\downarrow P$ est contractile. Ainsi, par le \sref{théorème}{theoremeA},
+  $g$ est une équivalence d'homotopie.
+
+  Soit $M$ un objet de $\M$. On pose $\mathcal{F}:=f\uparrow M$. Les objets de $\mathcal{F}$ sont les couples $(P,u)$ avec $P$ dans $\MP$ et $u:M\ra P$
+  une application dans $Q\M$. Soit $\mathcal{F}'$ la sous-catégorie pleine de $\mathcal{F}$ formée des $(P,u)$ où $u$ est une surjection.
+  Pour $X=(P,u)$ dans $\mathcal{F}$ avec~:
+  $$u:M\overset{j}{\twoheadleftarrow} \bar{P}\overset{i}{\rightarrowtail} P$$
+  on note $\overline{X}:=(\overline{P},j^!)$ (par \textbf{(i)}, $\overline{P}$ est dans $\MP$). On vérifie aisément que $X\mapsto \overline{X}$
+  est un adjoint à gauche à l'inclusion $\mathcal{F}'\subset \mathcal{F}$.
+
+  Donc il suffit de montrer que $\mathcal{F}'$ est contractile. Or la contrainte que $u$ soit une surjection pour tout $(P,u)$
+  dans $\mathcal{F}'$ est assez forte. En effet, ceci implique que tout morphisme $(P,u)\ra (P',u')$ dans $\mathcal{F}'$
+  est représenté par une surjection $v:P\twoheadleftarrow P'$. Ainsi, ${\mathcal{F}'}\op$ est équivalente à la catégorie dont les~:
+  \begin{description}
+    \item[$\bullet$] objets sont les épimorphismes $P\twoheadrightarrow M$ avec $P$ dans $\MP$~;
+    \item[$\bullet$] morphismes de $P\twoheadrightarrow M$ dans $P'\twoheadrightarrow M$ sont les
+                    épimorphismes $P\twoheadrightarrow P'$ au-dessus de $M$. 
+  \end{description}
+  Or, d'après \textbf{(ii)}, il existe $P_0\twoheadrightarrow M$ dans ${\mathcal{F}'}\op$. De plus, pour tout $P\twoheadrightarrow M$
+  dans ${\mathcal{F}'}\op$, $P_0\times_MP\twoheadrightarrow M$ est également dans ${\mathcal{F}'}\op$. En effet, on dispose d'une suite exacte~:
+  $$\exac{\myker{P\twoheadrightarrow M}}{P_0\times_MP}{P_0}$$
+  et $\myker{P\twoheadrightarrow M}$ est dans $\MP$ par \textbf{(i)}.
+  Donc, nous avons les morphismes fonctoriels dans ${\mathcal{F}'}\op$~:
+  $$(P\twoheadrightarrow M)\longleftarrow (P_0\times_MP\twoheadrightarrow M)\lra (P_0\twoheadrightarrow M)$$
+  Donc ${\mathcal{F}'}\op$ est contractile.
+\end{proof}
+
+\begin{coro}\label{corollaireresolution}
+  Soit $\MP$ une sous-catégorie pleine stable par extension d'une catégorie exacte $\M$. On suppose~:
+  \begin{description}
+    \item[(a)] pour tout suite exacte $\exac{M'}{M}{M''}$, si $M$ et $M''$ sont dans $\MP$, alors $M'$ aussi~;
+    \item[(b)] si $j:M\twoheadrightarrow P$ est un épimorphisme avec $P$ dans $\MP$, alors il existe $P'$ dans $\MP$ et
+           un épimorphisme $j':P'\twoheadrightarrow P$ admettant une factorisation~:
+           $$P'\overset{f}{\ra} M \overset{j}{\twoheadrightarrow} P$$
+  \end{description}
+  Pour $n\geq 1$, on note $\MP_n$ la sous-catégorie pleine de $\M$ formée des $M$ ayant une $\MP$-résolution
+  de longueur inférieure ou égale à $n$. On pose $\MP_\infty:=\bigcup_n\MP_n$. Alors, pour $i\geq 0$, les inclusions naturelles
+  induisent des isomorphismes~:
+  $$K_i\MP\simeq K_i\MP_1 \simeq\dotsb\simeq K_i\MP_\infty$$
+\end{coro}
+
+\begin{lem}\label{lemmeresolution}
+  On reprend les hypothèses du corollaire. Alors, pour toute suite exacte $\exac{M'}{M}{M''}$ dans $\M$~:
+  \begin{description}
+    \item[$(1)$] Si $M\in \MP_n$ et $M''\in\MP_{n+1}$, alors $M'\in\MP_n$~;
+    \item[$(2)$] Si $M',M''\in \MP_{n+1}$, alors $M\in\MP_{n+1}$~;
+    \item[$(3)$] Si $M,M''\in\MP_{n+1}$, alors $M'\in\MP_{n+1}$. 
+  \end{description}
+\end{lem}
+
+\begin{proof}[Démonstration du corollaire]
+  Il s'agit d'appliquer le \sref{théorème}{theoremeresolutionbasique} aux inclusions $\MP_n\subset{\MP_{n+1}}$.
+  D'après le point $(2)$ du \sref{lemme}{lemmeresolution}, ces deux catégories sont exacte et l'inclusion est une inclusion de
+  sous-catégorie pleine exacte. Le point \textbf{(i)} découle directement du point $(1)$ du même du même lemme. Si $M$ est un objet de $\MP_{n+1}$,
+  il admet une $\MP$-résolution, et donc en particulier, il existe $P$ dans $\MP$ et $u:P\twoheadrightarrow M$~;
+  donc par le point $(1)$ du lemme, $u$ est $\MP_{n+1}$-admissible. Ceci démontre le point \textbf{(ii)}.
+\end{proof}
+
+\begin{proof}[Démonstration du lemme]
+  \begin{description}
+    \item[(A)] Si $\MP_0,\dotsc,\MP_n$ vérifient le point $(2)$ du lemme, alors $\MP_{n+1}=(\MP_n)_1$.
+    
+    Il s'agit de montrer que $(\MP_n)_1\subset \MP_{n+1}$. Soit $M''$ dans $\M$ et une suite exacte $\exac{M'}{M}{M''}$
+    avec $M'$ et $M$ dans $\MP_n$. Considérons une présentation $\exac{K}{P}{M}$ de $M$ avec $P$ dans $\MP$ et $K$ dans $\MP_{n-1}$.
+    Nous avons alors le diagramme suivant~:
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsOCxbMCwyLCJNJyJdLFsxLDIsIk0iXSxbMiwyLCJNJyciXSxbMiwxLCJNJyciXSxbMSwxLCJQIl0sWzAsMSwiTSdcXHRpbWVzX01QIl0sWzEsMCwiSyJdLFswLDAsIksiXSxbNiw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzQsMSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzQsMywiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMiwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsMiwiZXF1YWwiLDFdLFs1LDQsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbMCwxLCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzUsMCwiIiwxLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzcsNiwiZXF1YWwiLDJdLFs3LDUsIlxcZXhpc3RzIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dXQ==
+      \begin{tikzcd}
+        K & K \\
+        {M'\times_MP} & P & {M''} \\
+        {M'} & M & {M''}
+        \arrow[tail, from=1-2, to=2-2]
+        \arrow[two heads, from=2-2, to=3-2]
+        \arrow[two heads, from=2-2, to=2-3]
+        \arrow[two heads, from=3-2, to=3-3]
+        \arrow[equal, from=2-3, to=3-3]
+        \arrow[tail, from=2-1, to=2-2]
+        \arrow[tail, from=3-1, to=3-2]
+        \arrow[two heads, from=2-1, to=3-1]
+        \arrow[equal, from=1-1, to=1-2]
+        \arrow["\exists"', tail, from=1-1, to=2-1]
+      \end{tikzcd}
+    \end{center}
+    où les lignes et colonnes sont exactes. Par le point $(2)$ du lemme appliqué à $\MP_n$ et la première colonne,
+    $M'\times_MP$ est dans $\MP_n$. Donc comme la ligne du milieu est exacte, $M$ est dans $\MP_{n+1}$.
+
+    \item[(B)] Si $\MP$ vérifie $(1)$, $(2)$, $(3)$ et (b) alors $\MP_1$ également.
+    
+    \item[(B.1)] Si $\MP$ vérifie $(2)$ et $(3)$, alors $\MP_1$ vérifie $(1)$.
+    
+    Soit $\exac{M'}{M}{M''}$ avec $M$ dans $\MP$ et $M''$ dans $\MP_1$. On alors un carré commutatif suivant à lignes et colonnes exactes~:
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsOSxbMCwyLCJNJyJdLFsxLDIsIk0iXSxbMiwyLCJNJyciXSxbMiwxLCJQIl0sWzEsMSwiRiJdLFswLDEsIk0nIl0sWzEsMCwiUCciXSxbMCwwLCIwIl0sWzIsMCwiUCciXSxbNiw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzQsMSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzQsMywiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMiwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsMiwiIiwxLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzUsNCwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFswLDEsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbNSwwLCJlcXVhbCIsMl0sWzcsNiwiZXF1YWwiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzcsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs4LDMsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbNiw4LCJlcXVhbCJdXQ==
+      \begin{tikzcd}
+        0 & {P'} & {P'} \\
+        {M'} & F & P \\
+        {M'} & M & {M''}
+        \arrow[tail, from=1-2, to=2-2]
+        \arrow[two heads, from=2-2, to=3-2]
+        \arrow[two heads, from=2-2, to=2-3]
+        \arrow[two heads, from=3-2, to=3-3]
+        \arrow[two heads, from=2-3, to=3-3]
+        \arrow[tail, from=2-1, to=2-2]
+        \arrow[tail, from=3-1, to=3-2]
+        \arrow[equal, from=2-1, to=3-1]
+        \arrow[equal, from=1-1, to=1-2]
+        \arrow[tail, from=1-1, to=2-1]
+        \arrow[tail, from=1-3, to=2-3]
+        \arrow[equal, from=1-2, to=1-3]
+      \end{tikzcd}
+    \end{center}
+    avec $P$ et $P'$ dans $\MP$. Comme $\MP$ vérifie $(2)$, $F$ est dans $\MP$. Maintenant, comme $\MP$ vérifie $(3)$, $M'$ est dans $\MP$.
+
+    \item[(B.2)] Si $\MP$ vérifie $(2)$ et (b), alors $\MP_1$ vérifie $(2)$.
+    
+    Soit $\exac{M'}{M}{M''}$ avec $M'$ et $M''$ dans $\MP$. Il existe $P\twoheadrightarrow M$
+    avec $P$ dans $\MP$. Alors, on a $M\times_{M''}P\twoheadrightarrow P$. Donc, comme $\MP$ vérifie (b),
+    il existe un épimorphisme $P''\ra M\times_{M''}P\twoheadrightarrow P$ avec $P''$ dans $\MP$.
+    On peut alors former le carré commutatif suivant à lignes et colonnes exactes~:
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsOSxbMCwyLCJNJyJdLFsxLDIsIk0iXSxbMiwyLCJNJyciXSxbMiwxLCJQJyciXSxbMSwxLCJQJ1xcb3BsdXMgUCcnIl0sWzAsMSwiUCciXSxbMSwwLCJSIl0sWzAsMCwiUiciXSxbMiwwLCJSJyciXSxbNiw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzQsMSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzQsMywiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMiwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsMiwiIiwxLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzUsNCwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFswLDEsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbNSwwLCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNyw2LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzcsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs4LDMsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbNiw4LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XV0=
+      \begin{tikzcd}
+        {R'} & R & {R''} \\
+        {P'} & {P'\oplus P''} & {P''} \\
+        {M'} & M & {M''}
+        \arrow[tail, from=1-2, to=2-2]
+        \arrow[two heads, from=2-2, to=3-2]
+        \arrow[two heads, from=2-2, to=2-3]
+        \arrow[two heads, from=3-2, to=3-3]
+        \arrow[two heads, from=2-3, to=3-3]
+        \arrow[tail, from=2-1, to=2-2]
+        \arrow[tail, from=3-1, to=3-2]
+        \arrow[two heads, from=2-1, to=3-1]
+        \arrow[tail, from=1-1, to=1-2]
+        \arrow[tail, from=1-1, to=2-1]
+        \arrow[tail, from=1-3, to=2-3]
+        \arrow[two heads, from=1-2, to=1-3]
+      \end{tikzcd}
+    \end{center}
+    avec $P'$, $R'$ et $R''$ dans $\MP$. Alors, comme $\MP$ vérifie $(2)$, $R$ est également dans $\MP$. Donc $M$ est dans $\MP_1$.
+    
+    \item[(B.3)] Si $\MP_1$ vérifie $(1)$, alors $\MP_1$ vérifie $(3)$.
+
+    Soit $\exac{M'}{M}{M''}$ avec $M$ et $M''$ dans $\MP$. on peut alors former le diagramme suivant à lignes et colonnes exactes~:
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsOSxbMCwyLCJNJyJdLFsxLDIsIk0iXSxbMiwyLCJNJyciXSxbMiwxLCJNJyciXSxbMSwxLCJQIl0sWzAsMSwiSyJdLFsxLDAsIlAnIl0sWzAsMCwiUCciXSxbMiwwLCIwIl0sWzYsNCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs0LDEsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs0LDMsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxLDIsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFszLDIsImVxdWFsIiwyXSxbNSw0LCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzAsMSwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs1LDAsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs3LDYsImVxdWFsIl0sWzcsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs4LDMsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbNiw4LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XV0=
+      \begin{tikzcd}
+        {P'} & {P'} & 0 \\
+        K & P & {M''} \\
+        {M'} & M & {M''}
+        \arrow[tail, from=1-2, to=2-2]
+        \arrow[two heads, from=2-2, to=3-2]
+        \arrow[two heads, from=2-2, to=2-3]
+        \arrow[two heads, from=3-2, to=3-3]
+        \arrow[equal, from=2-3, to=3-3]
+        \arrow[tail, from=2-1, to=2-2]
+        \arrow[tail, from=3-1, to=3-2]
+        \arrow[two heads, from=2-1, to=3-1]
+        \arrow[equal, from=1-1, to=1-2]
+        \arrow[tail, from=1-1, to=2-1]
+        \arrow[tail, from=1-3, to=2-3]
+        \arrow[two heads, from=1-2, to=1-3]
+      \end{tikzcd}
+    \end{center}
+    Comme $\MP_1$ vérifie $(1)$, $K$ est dans $\MP$, donc $M'$ est dans $\MP_1$.
+
+    \item[(B.b)] Si $\MP$ vérifie (b), alors $\MP_1$ vérifie (b).
+    
+    Soit $M\twoheadrightarrow M''$ avec $M''$ dans $\MP_1$. Alors, il existe $P\twoheadrightarrow M''$ avec $P$ dans $\MP$.
+    En appliquant (b) à $M\times_{M''}P\twoheadrightarrow P$, on obtient le diagramme commutatif suivant~:
+    \begin{center}
+      % https://q.uiver.app/?q=WzAsNSxbMiwyLCJNJyciXSxbMSwyLCJNIl0sWzIsMSwiUCJdLFsxLDEsIk1cXHRpbWVzX3tNJyd9UCJdLFswLDAsIlxcZXhpc3RzIFAnIl0sWzEsMCwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsMCwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsMiwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsMSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzQsMiwiIiwwLHsiY3VydmUiOi0yLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCwxLCJmIiwyLHsiY3VydmUiOjJ9XSxbNCwzLCJcXGV4aXN0cyJdXQ==
+      \begin{tikzcd}
+        {\exists P'} \\
+        & {M\times_{M''}P} & P \\
+        & M & {M''}
+        \arrow[two heads, from=3-2, to=3-3]
+        \arrow[two heads, from=2-3, to=3-3]
+        \arrow[two heads, from=2-2, to=2-3]
+        \arrow[two heads, from=2-2, to=3-2]
+        \arrow[bend left=12pt, two heads, from=1-1, to=2-3]
+        \arrow["f"', bend right=12pt, from=1-1, to=3-2]
+        \arrow["\exists", from=1-1, to=2-2]
+      \end{tikzcd}
+    \end{center}
+    Alors $P'\ra M''$ et $f$ sont les morphismes recherchés.
+  \end{description}
+\end{proof}
+
+Nous allons maintenant appliquer ce théorème aux cas particuliers des anneaux et des schémas.
+
+\begin{theo}\label{theoremeresolutionanneaux}
+  Soit $A$ un anneau. Pour $n\geq 0$, on note $\Proj{A}_n$ la sous-catégorie pleine de $\Modf{A}$ formée des $A$-modules admettant une $\Proj{A}$-résolution
+  de longueur inférieure ou égale à $n$. On note $\Proj{A}_\infty:=\bigcup_n\Proj{A}_n$. On a alors pour $i\geq 0$~:
+  $$K_iA\simeq\dotsb\simeq K_i\Proj{A}_n\simeq K_i\Proj{A}_\infty$$
+  En particulier, si $A$ est noethérien régulier, on a, pour tout $i\geq 0$~:
+  $$K_iA\simeq K'_iA$$
+\end{theo}
+
+\begin{proof}
+  Il s'agit d'appliquer le \sref{corollaire}{corollaireresolution}. Le point (a) découle du fait que les modules projectifs
+  scindent les suites exactes, et le point (b) du fait que tout $A$-module de type fini est quotient d'un $A$-module projectif.
+  Pour le cas où $A$ est régulier, il suffit de voir qu'alors $\Proj{A}_\infty=\Modf{A}$.
+\end{proof}
+
+Voici un résultat similaire dans le cadre des schémas.
+
+\begin{theo}
+  Soit $X$ un schéma noethérien, régulier et séparé. Alors pour tout $i\geq 0$~:
+  $$K_iX\simeq K'_iX$$
+\end{theo}
+
+\begin{proof}
+  Appliquons le \sref{corollaire}{corollaireresolution}. Le point (a) découle du fait que les fibrés vectorielles scindent localement
+  les suites exactes. Le point (b) découle du \sref{lemme}{RegulierSepareQuotient}. On conclut avec le \sref{lemme}{resolutionsVB}
+  qui montre que $\Proj{X}_\infty=\Modf{X}$.
+\end{proof}
+
+\subsection{\texorpdfstring{Fonctorialité de la $K$-théorie et de la $K'$-théorie pour les anneaux et schémas}
+{Fonctorialité de la K-théorie et de la K'-théorie pour les anneaux et schémas}}\label{soussectionfonctorialite}
+
+Dans cette sous-section, nous allons utiliser les résultats de la sous-section précédente sur les résolutions pour étudier
+la fonctorialité de la $K$-théorie supérieure.
+
+L'obstruction à la construction, par exemple, de $f_*:K_*B\ra K_*A$ pour $f:A\ra B$ un morphisme quelconque d'anneau est essentiellement
+la même que dans le cas du $K_0$. En effet, sur cette exemple, si on cherche naïvement à déduire $f^*$ d'un foncteur exact
+de $\Proj{B}$ dans $\Proj{A}$, il devient nécessaire que $B$ soit un $A$-module projectif.
+
+\begin{prop}[transferts en $K$-théorie des anneaux]
+  Soit $f:A\ra B$ un morphisme fini entre anneaux noethériens (à gauche), tel que $B$ soit de $\Tor$-dimension finie sur $A$.
+  Alors la restriction définit un foncteur exact~:
+  $$\Proj{B}_\infty\lra \Proj{A}_\infty$$
+  Qui induit un morphismes pour tout $i\geq 0$~:
+  $$f_*:K_iB\ra K_iA$$
+  Appelé application de transfert.
+  Si $g:B\ra C$ est un autre tel morphismes, alors $(gf)_*=f_*g_*$.
+\end{prop}
+
+Cette proposition est un corollaire direct du \sref{théorème}{theoremeresolutionanneaux}.
+
+Nous pouvons de même étendre le cadre où $f^*$ est défini en $K'$-théorie. Pour cela, nous passons par le résultat plus général suivant~:
+
+\begin{theo}\label{theoremeresolutionfoncteurderive}
+  Soit $\M$ une catégorie exacte, $\A$ une catégorie abélienne et soit $\enstq{T_n}{n\geq 1}$ une suite de foncteur exacts
+  de $\M$ dans $\A$. On suppose donné pour chaque suite exacte $\exa{M'}{M}{M''}$ de $\M$ une suite exacte longue~:
+  $$\dotsb\lra T_2M'\lra T_2M\lra T_2M''\lra T_1M'\lra T_1M\lra T_1M''$$
+  tels que ces suites exactes longues soient fonctorielles en la suite courte $\exa{M'}{M}{M''}$.
+
+  Soit $\MP$ la sous-catégorie pleine de $\M$ formée des objets $P$ tels que, pour tout $n\geq 0$, $T_n(P)=0$. On suppose de plus que~:
+  \begin{description}
+    \item[$\bullet$] pour tout $M$ dans $\M$, il existe $P\twoheadrightarrow M$ avec $P$ dans $\MP$~;
+    \item[$\bullet$] pour tout $M$ dans $\M$, $T_n(M)=0$ pour $n$ assez grand. 
+  \end{description}
+  Alors l'inclusion $\MP\subset\M$ induit pour tout $i\geq 0$ un isomorphisme~:
+  $$K_i\MP\simeq K_i\M$$
+\end{theo}
+
+\begin{proof}
+  Ce théorème est encore un autre corollaire du \sref{théorème}{theoremeresolutionbasique}. En effet, pour $n\geq 0$, on pose~:
+  $$\MP_n:=\enstq{M}{T_jM=0\;\forall j>n}$$
+  Alors pour $n\geq 0$, $\MP_n\subset\MP_{n+1}$ vérifie les hypothèses \textbf{(i)} et \textbf{(ii)} du théorème. Pour \textbf{(i)}, il s'agit
+  simplement de calculer sur la suite exacte. L'hypothèse \textbf{(ii)} découle du premier point.
+
+  Maintenant, il suffit d'observer que $\MP=MP_0$ et $\M=\colim_n\MP_n$ par le second point.
+\end{proof}
+
+\begin{coro}[tiré en arrière en $K'$-théorie des anneaux]\label{corotireenarriere}
+  Soit $f:A\ra B$ un morphisme entre anneaux noethériens (à gauche), tel que $B$ soit de $\Tor$-dimension finie sur $A$.
+  Alors, avec $\mathcal{M}$ la sous-catégorie pleine de $\Modf{A}$ formée des $A$-modules $M$ tels que pour tout $n> 0$~:
+  $$\fTor{n}{A}{M}{B}=0$$
+  on a un isomorphisme pour tout $i\geq 0$~:
+  $$K_i\M\simeq K'_iA$$
+  En particulier, le foncteur $B\otimes_A-:\M\ra\Modf{B}$ induit alors pour tout $i\geq 0$ un morphisme~:
+  $$f^*:K'_iA\lra K'_iB$$
+\end{coro}
+
+\begin{defi}[produit pour les anneaux en degré $0$]
+  Soit $A$ un anneau. Pour tout $A$-module projectif de type fini $P$, on dispose de foncteurs exacts~:
+  $$P\otimes_A(-):\Proj{A}\ra\Proj{A}\text{ et }P\otimes_A(-):\Modf{A}\ra\Modf{A}$$
+  De plus, on a, pour tout suite exacte $\exa{P'}{P}{P''}$, une suite exacte de foncteurs~:
+  $$\exa{P'\otimes_A(-)}{P\otimes_A(-)}{P''\otimes_A(-)}$$
+  Ainsi, par le \sref{corollaire}{corollaireadditivite}, on dispose pour tout $i\geq 0$ de produits~:
+  $$K_0A\otimes K_iA\ra K_iA\text{ et }K_0A\otimes K'_iA\ra K'_iA$$
+\end{defi}
+
+\begin{prop}[formule de projection]
+  Soit $f:A\ra B$ fini et de $\Tor$-dimension finie, avec $A$ et $B$ commutatifs et $A$ noethérien. Soit $i\geq 0$ un entier.
+  Alors pour tout $a$ dans $K_i'(A)$ et $b$ dans $K_0(B)$~:
+  $$f_*(b\cdot f^*(a))=f_*(b)\cdot a\text{ dans }K'_i(A)$$
+  De même, pour tout $a$ dans $K_i(A)$ et $b$ dans $K_0(B)$~:
+  $$f_*(b\cdot f^*(a))=f_*(b)\cdot a\text{ dans }K_i(A)$$
+\end{prop}
+
+\begin{proof}
+  Plaçons nous d'abord dans le cas de la $K'$-théorie. Il suffit de le montrer pour $a$ dans $K_i\M$ et $b=[P]$ avec $\M$ comme 
+  dans le \sref{corollaire}{corotireenarriere}. Alors l'énoncé découle de l'isomorphisme de foncteurs~:
+  $$(P\otimes_B(B\otimes_A(-)))_A\simeq (P)_A\otimes_A(-)$$
+  où $(-)_A:\Modf{B}\ra\Modf{A}$ est le foncteur oubli.
+
+  Le cas de la $K$-théorie découle du même isomorphisme.
+\end{proof}
+
+Passons maintenant au cadre des schémas.
+
+\begin{prop}[tiré en arrière en $K'$-théorie des schémas]\label{proptireenarriere}
+  Soit $f:X\ra Y$ un morphisme de $\Tor$-dimension finie entre schémas noethériens et séparés.
+  On suppose de plus que tout module quasi-cohérent sur $Y$ est quotient d'un fibré vectoriel, ce qui est par exemple le cas
+  si $Y$ admet un fibré en droite ample.
+  Alors, avec $\mathcal{M}$ la sous-catégorie pleine de $\Modf{Y}$ formée des $\Ring{Y}$-modules $\mathcal{F}$ tels que pour tout $n>0$
+  et tout point $x$ dans $X$~:
+  $$\fTor{n}{\Ring{Y,f(x)}}{\mathcal{F}_x}{\Ring{X,x}}=0$$
+  on a un isomorphisme pour tout $i\geq 0$~:
+  $$K_i\M\simeq K'_iA$$
+  En particulier, le foncteur $B\otimes_A-:\M\ra\Modf{B}$ induit alors pour tout $i\geq 0$ un morphisme~:
+  $$f^*:K'_iA\lra K'_iB$$
+\end{prop}
+
+\begin{proof}
+  Il suffit d'appliquer le \sref{théorème}{theoremeresolutionfoncteurderive} au foncteurs~:
+  $$T_n(\mathcal{F}):=\prod_{x\in X}\fTor{n}{\Ring{Y,f(x)}}{\mathcal{F}_x}{\Ring{X,x}}$$
+\end{proof}
+
+\begin{lem}\label{lemmetransfertschemas}
+  Soit $f:X\ra Y$ un morphisme propre entre schémas noethériens, et soit $\mathcal{L}$ un fibré en droite ample sur $X$.
+  Alors tout module cohérent $\mathcal{F}$ sur $X$ s'injecte dans une $\Ring{X}$-module cohérent $f_*$-acyclique.
+\end{lem}
+
+\begin{proof}
+  Quitte à changer $\mathcal{L}$ en une de ses puissances, on peut supposer qu'il est engendré par ses sections globales.
+  
+  Fixons un module cohérent $\mathcal{F}$ sur $X$. Par le \sref{théorème de Serre}{theoremeSerre}, il existe un entier $n_0$
+  tel que pour tout $n\geq n_0$ et tout $q>0$, $R^qf_*(\mathcal{F}(n))=0$. on fixe un entier $n\geq n_0$.
+  Soit maintenant une surjection $\Ring{X}^r\twoheadrightarrow \mathcal{L}^{\otimes n}$. Son noyau est un fibré vectoriel.
+  En passant au dual la suite exacte obtenue, et en multipliant par $\mathcal{L}^{\otimes n}$, on obtient une suite exacte de fibrés vectoriels~:
+  $$\exa{\Ring{X}}{(\mathcal{L}^{\otimes n})^r}{E}$$
+  Comme $E$ est plat, on obtient, en multipliant par $\mathcal{F}$, une suite exacte~:
+  $$\exa{\mathcal{F}}{\mathcal{F}(n)^r}{E\otimes \mathcal{F}}$$
+  avec $\mathcal{F}(n)^r$ est $f_*$-acyclique.
+\end{proof}
+
+\begin{prop}[transferts en $K'$-théorie des schémas]\label{propositiontransfertschemas}
+  Soit $f:X\ra Y$ un morphisme entre schémas noethériens et séparés tel que \textbf{l'une} des conditions suivantes soit vérifiée~:
+  \begin{description}
+    \item[(a)] le morphisme $f$ est fini, ou~:
+    \item[(b)] le morphisme $f$ est propre et le schéma $X$ admet un fibré en droite ample. 
+  \end{description}
+  
+  Soit $\mathcal{M}$ la sous-catégorie pleine de $\Modf{X}$ des modules $\mathcal{F}$ tels que~:
+  $$R^if_*(\mathcal{F})=0$$
+  Alors l'inclusion $\mathcal{M}\ra \Modf{X}$ induit, pour chaque $i\geq 0$, un isomorphisme~:
+  $$K'_i(\mathcal{M})\ra K'_i(X)$$
+
+  Ainsi le foncteur~:
+  \[
+    \begin{array}{lcl}
+      \M & \ra & \Modf{Y} \\
+      \mathcal{F} &\mapsto& f_*\mathcal{F}
+    \end{array}
+  \]
+  est exact et induit, pour tout $i\geq 0$, un morphisme de groupe~:
+  $$f_*:K'_i(X)\lra K'_i(Y)$$
+\end{prop}
+
+\begin{proof}
+  Si $f$ est fini, le foncteur $f_*$ est exact et on a $\mathcal{M}=\Modf{X}$. Dans le cas (b), il suffit d'appliquer
+  le dual du \sref{théorème}{theoremeresolutionfoncteurderive} au foncteurs $R^nf_*$. Le premier point du théorème est vérifié
+  d'après le \sref{lemme}{lemmetransfertschemas}, et le second point découle du \sref{théorème de Serre}{theoremeSerre}.
+\end{proof}
+
+\subsection{Le théorème de localisation}
+
+[citer pour la définition de catégorie localisée]
+
+[à compléter, citer Quillen pour la preuve et mettre les corollaires en citant Gabriel]
 
 \appendix
 
