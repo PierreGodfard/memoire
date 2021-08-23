@@ -145,7 +145,7 @@
   Outre ce résultat, nous étudions certaines propriétés de la construction $Q$~: fonctorialité, résolution, dévissage et localisation.
   Ces propriétés sont appliquées aux cas de la $K$-théorie et de la $K'$-théorie des anneaux et schémas.
 
-  La \sref{section}{sectionK0} introduit le groupe $K_0$ définit par Alexandre Grothendieck.
+  La \sref{section}{sectionK0} introduit le groupe $K_0$ défini par Alexandre Grothendieck.
   Il est d'abord introduit dans le cadre des anneaux et schémas,
   puis dans le cadre général des catégories exactes. Cette section est aussi l'occasion de définir le groupe $K_1$ d'un anneau.
 
@@ -2299,7 +2299,7 @@ Voir \sref{l'annexe}{annexetopologie} pour plus d'information.
   Donc $H_*(X;f^*L)\ra H_*(X^+;L)$ est un isomorphisme.
 \end{proof}
 
-Nous énonçons ici une propriété de stabilité par produit qui sera utiles par la suite. La démonstration utilise la suite
+Nous énonçons ici une propriété de stabilité par produit qui sera utile par la suite. La démonstration utilise la suite
 spectrale d'une filtration, voir \cite[5.3]{Weib2}.
 
 \begin{prop}\label{propositionconstructionplusproduit}
@@ -2318,9 +2318,9 @@ spectrale d'une filtration, voir \cite[5.3]{Weib2}.
   $$\tilde{X}\times Z\hookrightarrow\tilde{X}^+\times Z$$
   est un isomorphisme en homologie pour tout système de coefficients locaux.
   Or $\tilde{X}^+$ est simplement connexe. Donc tout système de coefficients locaux sur $\tilde{X}^+\times Z$
-  est induit par un système dur $Z$. Soit $L$ un tel système sur $Z$. Par le morphisme d'Eilenberg-Zilber (voir \cite[IV.2.5]{Goer}),
-  il existe un isomorphisme en homologie fonctoriel en $W$ ensemble simplicial~:
-  $$C_*(W;\Z)\otimes C_*(Z;L)\lra C_*(X\times Z;L)$$
+  est induit par un système sur $Z$. Soit $L$ un tel système sur $Z$. Par le morphisme d'Eilenberg-Zilber (voir \cite[IV.2.5]{Goer}),
+  il existe un isomorphisme en homologie fonctoriel en l'ensemble simplicial $W$~:
+  $$C_*(W;\Z)\otimes C_*(Z;L)\lra C_*(W\times Z;L)$$
   De plus, si on filtre $C_*(W;\Z)$ par degrés, on obtient une filtration fonctorielle en $W$ du complexe $C_*(W;\Z)\otimes C_*(Z;L)$,
   dont la suite spectrale associée $E^r_{pq}(W)$ vérifie~:
   \[
@@ -3883,15 +3883,15 @@ est fibré et la fibre au-dessus de $C$ s'identifie à $S^{-1}E_C$.
 \subsection{\texorpdfstring{Rappels: définition des $K$ et $K'$-théories des anneaux et schémas}
 {Rappels: définition des K et K'-théories des anneaux et schémas}}
 
-Dans la \sref{section}{sectionK0}, nous avons introduit la notion de catégorie exacte et montré que les définitions
-du $K_0$ et du $K'_0$ pour les anneaux et les schémas s'interprètent comme le $K_0$ de différentes catégories exactes~:
+Dans la \sref{section}{sectionK0}, nous avons introduit la notion de catégorie exacte et donnée une interprétation
+du $K_0$ et du $K'_0$ pour les anneaux et schémas comme des $K_0$ de différentes catégories exactes~:
 $\Proj{A}$ et $\Modf{A}$ pour un anneau $A$, $\Proj{X}$ et $\Modf{X}$ pour un schéma $X$.
 
-Maintenant, la construction $Q$ étend la construction du $K_0$, et est définie pour n'importe quelle catégorie exacte.
+Maintenant, nous disposons de la construction $Q$ qui étend la construction du $K_0$, et est définie pour n'importe quelle catégorie exacte.
 On peut donc naturellement étendre les définitions.
 
 On rappelle que pour un anneau $A$, $\Proj{A}$ désigne la catégorie des $A$-modules à gauche projectifs de type fini,
-et $\Modf{A}$ désigne la catégorie des $A$-modules de type fini.
+et $\Modf{A}$ désigne la catégorie des $A$-modules à gauche de type fini.
 
 \begin{defi}
   Soit $A$ un anneau, non nécessairement commutatif. Les groupes de $K$-théorie de $A$ sont les groupes~:
@@ -3913,16 +3913,16 @@ et $\Modf{X}$ désigne la catégorie des $\Ring{X}$-modules quasi-cohérents de 
 
 \begin{defi}
   Soit $X$ un schéma. Les groupes de $K$-théorie de $X$ sont les groupes~:
-  $$K_nA:=K_n\Proj{X}\text{ pour }n\geq 0$$
+  $$K_nX:=K_n\Proj{X}\text{ pour }n\geq 0$$
   Les groupes de $K'$-théorie de $X$ sont les groupes~:
-  $$K'_nA:=K_n\Modf{X}\text{ pour }n\geq 0$$
+  $$K'_nX:=K_n\Modf{X}\text{ pour }n\geq 0$$
 \end{defi}
 
 \subsection{Réduction par résolution}\label{soussectionresolution}
 
 Le but de cette sous-section est d'introduire les méthodes de résolution, qui permettent
-notamment d'établir des résultats de fonctorialité de la $K$-théorie ou $K'$-théorie des anneaux ou schémas.
-L'idée général est de pouvoir établir des arguments dans le style de la \sref{proposition}{KprimeTordimfinie} pour les groupes supérieurs.
+notamment d'établir des résultats de fonctorialité des $K$ et $K'$-théories des anneaux et schémas.
+L'idée générale est de pouvoir établir des arguments dans le style de la \sref{proposition}{KprimeTordimfinie} pour les groupes supérieurs.
 
 La proposition suivante découle de la définition d'une catégorie exacte.
 
@@ -3940,11 +3940,11 @@ La proposition suivante découle de la définition d'une catégorie exacte.
 
 \begin{rem}
   En général, $Q\MP$ n'est pas une sous-catégorie pleine de $Q\M$. Par exemple, ce n'est pas le cas pour
-  $\MP:=\Proj{A}$ et $\M:=\Modf{A}$, où $A$ est un anneau.
+  $\MP:=\Proj{A}$ et $\M:=\Modf{A}$, où $A$ est un anneau qui n'est pas un corps.
 \end{rem}
 
 \begin{theo}\label{theoremeresolutionbasique}
-  Soit $\MP$ une sous-catégorie pleine stable par extension d'une catégorie exacte $\M$. On suppose~:
+  Soit $\MP$ une sous-catégorie pleine stable par extension d'une catégorie exacte $\M$. On suppose que~:
   \begin{description}
     \item[(i)] Si $\exac{M'}{M}{M''}$ est une suite exacte dans $\M$, et si $M$ est dans $\MP$, alors $M'$ également~;
     \item[(ii)] Pour tout $M''$ dans $\M$, il existe une suite exacte $\exac{M'}{M}{M''}$ avec $M$ dans $\MP$.
@@ -3957,10 +3957,10 @@ La proposition suivante découle de la définition d'une catégorie exacte.
 \begin{rem}
   Un exemple classique de couple $(\M,\MP)$ vérifiant les hypothèses du \sref{théorème}{theoremeresolutionbasique} est le suivant~:
   \begin{description}
-    \item[$\M$:] modules de dimension projective inférieure ou égale à $n$~;
-    \item[$\MP$:] modules de dimension projective inférieure ou égale à $n-1$~; 
+    \item[$\M$:] $A$-modules à gauche de dimension projective inférieure ou égale à $n$~;
+    \item[$\MP$:] $A$-modules à gauche de dimension projective inférieure ou égale à $n-1$~; 
   \end{description}
-  où $n\geq 1$ est un entier, et les modules considérés sont sur un anneau $A$ ou un schéma $X$. 
+  où $n\geq 1$ est un entier, et $A$ un anneau. 
 \end{rem}
 
 \begin{proof}[Démonstration du théorème]
@@ -3980,11 +3980,11 @@ La proposition suivante découle de la définition d'une catégorie exacte.
   $g$ est une équivalence d'homotopie.
 
   Soit $M$ un objet de $\M$. On pose $\mathcal{F}:=f\uparrow M$. Les objets de $\mathcal{F}$ sont les couples $(P,u)$ avec $P$ dans $\MP$ et $u:M\ra P$
-  une application dans $Q\M$. Soit $\mathcal{F}'$ la sous-catégorie pleine de $\mathcal{F}$ formée des $(P,u)$ où $u$ est une surjection.
+  un morphisme dans $Q\M$. Soit $\mathcal{F}'$ la sous-catégorie pleine de $\mathcal{F}$ formée des $(P,u)$ où $u$ est une surjection.
   Pour $X=(P,u)$ dans $\mathcal{F}$ avec~:
   $$u:M\overset{j}{\twoheadleftarrow} \bar{P}\overset{i}{\rightarrowtail} P$$
   on note $\overline{X}:=(\overline{P},j^!)$ (par \textbf{(i)}, $\overline{P}$ est dans $\MP$). On vérifie aisément que $X\mapsto \overline{X}$
-  est un adjoint à gauche à l'inclusion $\mathcal{F}'\subset \mathcal{F}$.
+  est un adjoint à droite à l'inclusion $\mathcal{F}'\subset \mathcal{F}$.
 
   Donc il suffit de montrer que $\mathcal{F}'$ est contractile. Or la contrainte que $u$ soit une surjection pour tout $(P,u)$
   dans $\mathcal{F}'$ est assez forte. En effet, ceci implique que tout morphisme $(P,u)\ra (P',u')$ dans $\mathcal{F}'$
@@ -3998,23 +3998,23 @@ La proposition suivante découle de la définition d'une catégorie exacte.
   dans ${\mathcal{F}'}\op$, $P_0\times_MP\twoheadrightarrow M$ est également dans ${\mathcal{F}'}\op$. En effet, on dispose d'une suite exacte~:
   $$\exac{\myker{P\twoheadrightarrow M}}{P_0\times_MP}{P_0}$$
   et $\myker{P\twoheadrightarrow M}$ est dans $\MP$ par \textbf{(i)}.
-  Donc, nous avons les morphismes fonctoriels dans ${\mathcal{F}'}\op$~:
+  Donc, nous avons les morphismes fonctoriels suivants dans ${\mathcal{F}'}\op$~:
   $$(P\twoheadrightarrow M)\longleftarrow (P_0\times_MP\twoheadrightarrow M)\lra (P_0\twoheadrightarrow M)$$
   Donc ${\mathcal{F}'}\op$ est contractile.
 \end{proof}
 
 \begin{coro}\label{corollaireresolution}
-  Soit $\MP$ une sous-catégorie pleine stable par extension d'une catégorie exacte $\M$. On suppose~:
+  Soit $\MP$ une sous-catégorie pleine stable par extension d'une catégorie exacte $\M$. On suppose que~:
   \begin{description}
     \item[(a)] pour tout suite exacte $\exac{M'}{M}{M''}$, si $M$ et $M''$ sont dans $\MP$, alors $M'$ aussi~;
     \item[(b)] si $j:M\twoheadrightarrow P$ est un épimorphisme avec $P$ dans $\MP$, alors il existe $P'$ dans $\MP$ et
            un épimorphisme $j':P'\twoheadrightarrow P$ admettant une factorisation~:
            $$P'\overset{f}{\ra} M \overset{j}{\twoheadrightarrow} P$$
   \end{description}
-  Pour $n\geq 1$, on note $\MP_n$ la sous-catégorie pleine de $\M$ formée des $M$ ayant une $\MP$-résolution
+  Pour $n\geq 1$, on note $\MP_n$ la sous-catégorie pleine de $\M$ formée des objets $M$ ayant une $\MP$-résolution
   de longueur inférieure ou égale à $n$. On pose $\MP_\infty:=\bigcup_n\MP_n$. Alors, pour $i\geq 0$, les inclusions naturelles
   induisent des isomorphismes~:
-  $$K_i\MP\simeq K_i\MP_1 \simeq\dotsb\simeq K_i\MP_\infty$$
+  $$K_i\MP\simeq K_i\MP_1 \simeq\dotsb\simeq K_i\MP_n\simeq\dotsb\simeq K_i\MP_\infty$$
 \end{coro}
 
 \begin{lem}\label{lemmeresolution}
@@ -4028,8 +4028,8 @@ La proposition suivante découle de la définition d'une catégorie exacte.
 
 \begin{proof}[Démonstration du corollaire]
   Il s'agit d'appliquer le \sref{théorème}{theoremeresolutionbasique} aux inclusions $\MP_n\subset{\MP_{n+1}}$.
-  D'après le point $(2)$ du \sref{lemme}{lemmeresolution}, ces deux catégories sont exacte et l'inclusion est une inclusion de
-  sous-catégorie pleine exacte. Le point \textbf{(i)} découle directement du point $(1)$ du même du même lemme. Si $M$ est un objet de $\MP_{n+1}$,
+  D'après le point $(2)$ du \sref{lemme}{lemmeresolution}, ces deux catégories sont exactes et l'inclusion est une inclusion de
+  sous-catégorie pleine exacte. Le point \textbf{(i)} découle directement du point $(1)$ du même lemme. Si $M$ est un objet de $\MP_{n+1}$,
   il admet une $\MP$-résolution, et donc en particulier, il existe $P$ dans $\MP$ et $u:P\twoheadrightarrow M$~;
   donc par le point $(1)$ du lemme, $u$ est $\MP_{n+1}$-admissible. Ceci démontre le point \textbf{(ii)}.
 \end{proof}
@@ -4038,7 +4038,7 @@ La proposition suivante découle de la définition d'une catégorie exacte.
   \begin{description}
     \item[(A)] Si $\MP_0,\dotsc,\MP_n$ vérifient le point $(2)$ du lemme, alors $\MP_{n+1}=(\MP_n)_1$.
     
-    Il s'agit de montrer que $(\MP_n)_1\subset \MP_{n+1}$. Soit $M''$ dans $\M$ et une suite exacte $\exac{M'}{M}{M''}$
+    Il s'agit de montrer que $(\MP_n)_1\subset \MP_{n+1}$. Soit $M''$ dans $\M$, et soit une suite exacte $\exac{M'}{M}{M''}$
     avec $M'$ et $M$ dans $\MP_n$. Considérons une présentation $\exac{K}{P}{M}$ de $M$ avec $P$ dans $\MP$ et $K$ dans $\MP_{n-1}$.
     Nous avons alors le diagramme suivant~:
     \begin{center}
@@ -4119,7 +4119,7 @@ La proposition suivante découle de la définition d'une catégorie exacte.
     
     \item[(B.3)] Si $\MP_1$ vérifie $(1)$, alors $\MP_1$ vérifie $(3)$.
 
-    Soit $\exac{M'}{M}{M''}$ avec $M$ et $M''$ dans $\MP$. on peut alors former le diagramme suivant à lignes et colonnes exactes~:
+    Soit $\exac{M'}{M}{M''}$ avec $M$ et $M''$ dans $\MP_1$. On peut alors former le diagramme suivant à lignes et colonnes exactes~:
     \begin{center}
       % https://q.uiver.app/?q=WzAsOSxbMCwyLCJNJyJdLFsxLDIsIk0iXSxbMiwyLCJNJyciXSxbMiwxLCJNJyciXSxbMSwxLCJQIl0sWzAsMSwiSyJdLFsxLDAsIlAnIl0sWzAsMCwiUCciXSxbMiwwLCIwIl0sWzYsNCwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs0LDEsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs0LDMsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxLDIsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFszLDIsImVxdWFsIiwyXSxbNSw0LCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn19fV0sWzAsMSwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs1LDAsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs3LDYsImVxdWFsIl0sWzcsNSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibW9ubyJ9fX1dLFs4LDMsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifX19XSxbNiw4LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XV0=
       \begin{tikzcd}
@@ -4140,7 +4140,7 @@ La proposition suivante découle de la définition d'une catégorie exacte.
         \arrow[two heads, from=1-2, to=1-3]
       \end{tikzcd}
     \end{center}
-    Comme $\MP_1$ vérifie $(1)$, $K$ est dans $\MP$, donc $M'$ est dans $\MP_1$.
+    Comme $\MP_1$ vérifie $(1)$, $K$ est dans $\MP$. Donc $M'$ est dans $\MP_1$.
 
     \item[(B.b)] Si $\MP$ vérifie (b), alors $\MP_1$ vérifie (b).
     
@@ -4165,11 +4165,11 @@ La proposition suivante découle de la définition d'une catégorie exacte.
   \end{description}
 \end{proof}
 
-Nous allons maintenant appliquer ce théorème aux cas particuliers des anneaux et des schémas.
+Nous allons maintenant appliquer ces résultats aux cas particuliers des anneaux et des schémas.
 
 \begin{theo}\label{theoremeresolutionanneaux}
   Soit $A$ un anneau. Pour $n\geq 0$, on note $\Proj{A}_n$ la sous-catégorie pleine de $\Modf{A}$ formée des $A$-modules admettant une $\Proj{A}$-résolution
-  de longueur inférieure ou égale à $n$. On note $\Proj{A}_\infty:=\bigcup_n\Proj{A}_n$. On a alors pour $i\geq 0$~:
+  de longueur inférieure ou égale à $n$. On note $\Proj{A}_\infty:=\bigcup_n\Proj{A}_n$. On a alors, pour $i\geq 0$~:
   $$K_iA\simeq\dotsb\simeq K_i\Proj{A}_n\simeq K_i\Proj{A}_\infty$$
   En particulier, si $A$ est noethérien régulier, on a, pour tout $i\geq 0$~:
   $$K_iA\simeq K'_iA$$
@@ -4177,7 +4177,7 @@ Nous allons maintenant appliquer ce théorème aux cas particuliers des anneaux 
 
 \begin{proof}
   Il s'agit d'appliquer le \sref{corollaire}{corollaireresolution}. Le point (a) découle du fait que les modules projectifs
-  scindent les suites exactes, et le point (b) du fait que tout $A$-module de type fini est quotient d'un $A$-module projectif.
+  scindent les suites exactes, et le point (b) du fait que tout $A$-module de type fini est quotient d'un $A$-module projectif de type fini.
   Pour le cas où $A$ est régulier, il suffit de voir qu'alors $\Proj{A}_\infty=\Modf{A}$.
 \end{proof}
 
@@ -4189,8 +4189,8 @@ Voici un résultat similaire dans le cadre des schémas.
 \end{theo}
 
 \begin{proof}
-  Appliquons le \sref{corollaire}{corollaireresolution}. Le point (a) découle du fait que les fibrés vectorielles scindent localement
-  les suites exactes. Le point (b) découle du \sref{lemme}{RegulierSepareQuotient}. On conclut avec le \sref{lemme}{resolutionsVB}
+  Appliquons le \sref{corollaire}{corollaireresolution}. Le point (a) découle du fait que les fibrés vectoriels scindent localement
+  les suites exactes. Le point (b) découle du \sref{lemme}{RegulierSepareQuotient}. On conclut avec le \sref{lemme}{resolutionsVB},
   qui montre que $\Proj{X}_\infty=\Modf{X}$.
 \end{proof}
 
@@ -4201,8 +4201,8 @@ Dans cette sous-section, nous allons utiliser les résultats de la sous-section 
 la fonctorialité de la $K$-théorie supérieure.
 
 L'obstruction à la construction, par exemple, de $f_*:K_*B\ra K_*A$ pour $f:A\ra B$ un morphisme quelconque d'anneau est essentiellement
-la même que dans le cas du $K_0$. En effet, sur cette exemple, si on cherche naïvement à déduire $f^*$ d'un foncteur exact
-de $\Proj{B}$ dans $\Proj{A}$, il devient nécessaire que $B$ soit un $A$-module projectif.
+la même que dans le cas du $K_0$. En effet, sur cette exemple, si on cherche naïvement à déduire $f_*$ d'un foncteur exact
+de $\Proj{B}$ dans $\Proj{A}$, on souhaiterait que $B$ soit un $A$-module projectif.
 
 \begin{prop}[transferts en $K$-théorie des anneaux]
   Soit $f:A\ra B$ un morphisme fini entre anneaux noethériens (à gauche), tel que $B$ soit de $\Tor$-dimension finie sur $A$.
@@ -4211,7 +4211,7 @@ de $\Proj{B}$ dans $\Proj{A}$, il devient nécessaire que $B$ soit un $A$-module
   Qui induit un morphisme pour tout $i\geq 0$~:
   $$f_*:K_iB\ra K_iA$$
   Appelé application de transfert.
-  Si $g:B\ra C$ est un autre tel morphismes, alors $(gf)_*=f_*g_*$.
+  Si $g:B\ra C$ est un autre tel morphisme, alors $(gf)_*=f_*g_*$.
 \end{prop}
 
 Cette proposition est un corollaire direct du \sref{théorème}{theoremeresolutionanneaux}.
@@ -4219,27 +4219,27 @@ Cette proposition est un corollaire direct du \sref{théorème}{theoremeresoluti
 Nous pouvons de même étendre le cadre où $f^*$ est défini en $K'$-théorie. Pour cela, nous passons par le résultat plus général suivant~:
 
 \begin{theo}\label{theoremeresolutionfoncteurderive}
-  Soit $\M$ une catégorie exacte, $\A$ une catégorie abélienne et soit $\enstq{T_n}{n\geq 1}$ une suite de foncteur exacts
-  de $\M$ dans $\A$. On suppose donné pour chaque suite exacte $\exa{M'}{M}{M''}$ de $\M$ une suite exacte longue~:
+  Soit $\M$ une catégorie exacte, soit $\A$ une catégorie abélienne et soit $\enstq{T_n}{n\geq 1}$ une suite de foncteurs exacts
+  de $\M$ dans $\A$. On suppose donnée pour chaque suite exacte $\exa{M'}{M}{M''}$ de $\M$ une suite exacte longue~:
   $$\dotsb\lra T_2M'\lra T_2M\lra T_2M''\lra T_1M'\lra T_1M\lra T_1M''$$
   tels que ces suites exactes longues soient fonctorielles en la suite courte $\exa{M'}{M}{M''}$.
 
-  Soit $\MP$ la sous-catégorie pleine de $\M$ formée des objets $P$ tels que, pour tout $n\geq 0$, $T_n(P)=0$. On suppose de plus que~:
+  Soit $\MP$ la sous-catégorie pleine de $\M$ formée des objets $P$ tels que, pour tout $n\geq 1$, $T_n(P)=0$. On suppose de plus que~:
   \begin{description}
     \item[$\bullet$] pour tout $M$ dans $\M$, il existe $P\twoheadrightarrow M$ avec $P$ dans $\MP$~;
     \item[$\bullet$] pour tout $M$ dans $\M$, $T_n(M)=0$ pour $n$ assez grand. 
   \end{description}
-  Alors l'inclusion $\MP\subset\M$ induit pour tout $i\geq 0$ un isomorphisme~:
+  Alors l'inclusion $\MP\subset\M$ induit, pour tout $i\geq 0$, un isomorphisme~:
   $$K_i\MP\simeq K_i\M$$
 \end{theo}
 
 \begin{proof}
   Ce théorème est encore un autre corollaire du \sref{théorème}{theoremeresolutionbasique}. En effet, pour $n\geq 0$, on pose~:
   $$\MP_n:=\enstq{M}{T_jM=0\;\forall j>n}$$
-  Alors pour $n\geq 0$, $\MP_n\subset\MP_{n+1}$ vérifie les hypothèses \textbf{(i)} et \textbf{(ii)} du théorème. Pour \textbf{(i)}, il s'agit
-  simplement de calculer sur la suite exacte. L'hypothèse \textbf{(ii)} découle du premier point.
+  Alors pour $n\geq 0$, l'inclusion $\MP_n\subset\MP_{n+1}$ vérifie les hypothèses \textbf{(i)} et \textbf{(ii)} du théorème. Pour \textbf{(i)}, il s'agit
+  simplement de calculer sur la suite exacte. L'hypothèse \textbf{(ii)} découle du premier point de l'énoncé.
 
-  Maintenant, il suffit d'observer que $\MP=MP_0$ et $\M=\colim_n\MP_n$ par le second point.
+  Maintenant, il suffit d'observer que $\MP=\MP_0$ et que $\M=\colim_n\MP_n$, par le second point de l'énoncé.
 \end{proof}
 
 \begin{coro}[tiré en arrière en $K'$-théorie des anneaux]\label{corotireenarriere}
@@ -4248,7 +4248,7 @@ Nous pouvons de même étendre le cadre où $f^*$ est défini en $K'$-théorie. 
   $$\fTor{n}{A}{M}{B}=0$$
   on a un isomorphisme pour tout $i\geq 0$~:
   $$K_i\M\simeq K'_iA$$
-  En particulier, le foncteur $B\otimes_A-:\M\ra\Modf{B}$ induit alors pour tout $i\geq 0$ un morphisme~:
+  En particulier, le foncteur exact $B\otimes_A-:\M\ra\Modf{B}$ induit alors, pour tout $i\geq 0$, un morphisme~:
   $$f^*:K'_iA\lra K'_iB$$
 \end{coro}
 
@@ -4257,13 +4257,13 @@ Nous pouvons de même étendre le cadre où $f^*$ est défini en $K'$-théorie. 
   $$P\otimes_A(-):\Proj{A}\ra\Proj{A}\text{ et }P\otimes_A(-):\Modf{A}\ra\Modf{A}$$
   De plus, on a, pour tout suite exacte $\exa{P'}{P}{P''}$, une suite exacte de foncteurs~:
   $$\exa{P'\otimes_A(-)}{P\otimes_A(-)}{P''\otimes_A(-)}$$
-  Ainsi, par le \sref{corollaire}{corollaireadditivite}, on dispose pour tout $i\geq 0$ de produits~:
+  Ainsi, par le \sref{corollaire}{corollaireadditivite}, on dispose, pour tout $i\geq 0$, de produits~:
   $$K_0A\otimes K_iA\ra K_iA\text{ et }K_0A\otimes K'_iA\ra K'_iA$$
 \end{defi}
 
 \begin{prop}[formule de projection]
   Soit $f:A\ra B$ fini et de $\Tor$-dimension finie, avec $A$ et $B$ commutatifs et $A$ noethérien. Soit $i\geq 0$ un entier.
-  Alors pour tout $a$ dans $K_i'(A)$ et $b$ dans $K_0(B)$~:
+  Alors, pour tout $a$ dans $K_i'(A)$ et $b$ dans $K_0(B)$~:
   $$f_*(b\cdot f^*(a))=f_*(b)\cdot a\text{ dans }K'_i(A)$$
   De même, pour tout $a$ dans $K_i(A)$ et $b$ dans $K_0(B)$~:
   $$f_*(b\cdot f^*(a))=f_*(b)\cdot a\text{ dans }K_i(A)$$
@@ -4272,10 +4272,11 @@ Nous pouvons de même étendre le cadre où $f^*$ est défini en $K'$-théorie. 
 \begin{proof}
   Plaçons nous d'abord dans le cas de la $K'$-théorie. Il suffit de le montrer pour $a$ dans $K_i\M$ et $b=[P]$ avec $\M$ comme 
   dans le \sref{corollaire}{corotireenarriere}. Alors l'énoncé découle de l'isomorphisme de foncteurs~:
-  $$(P\otimes_B(B\otimes_A(-)))_A\simeq (P)_A\otimes_A(-)$$
+  $$(P\otimes_B(B\otimes_A(-)))_A\simeq (P)_A\otimes_A(-):\M\lra \Modf{A}$$
   où $(-)_A:\Modf{B}\ra\Modf{A}$ est le foncteur oubli.
 
-  Le cas de la $K$-théorie découle du même isomorphisme.
+  Le cas de la $K$-théorie découle du même isomorphisme~:
+  $$(P\otimes_B(B\otimes_A(-)))_A\simeq (P)_A\otimes_A(-):\Proj{A}\lra \Proj{A}_\infty$$
 \end{proof}
 
 Passons maintenant au cadre des schémas.
@@ -4286,30 +4287,30 @@ Passons maintenant au cadre des schémas.
   si $Y$ admet un fibré en droite ample.
   Alors, avec $\mathcal{M}$ la sous-catégorie pleine de $\Modf{Y}$ formée des $\Ring{Y}$-modules $\mathcal{F}$ tels que pour tout $n>0$
   et tout point $x$ dans $X$~:
-  $$\fTor{n}{\Ring{Y,f(x)}}{\mathcal{F}_x}{\Ring{X,x}}=0$$
+  $$\fTor{n}{\Ring{Y,f(x)}}{\mathcal{F}_{f(x)}}{\Ring{X,x}}=0$$
   on a un isomorphisme pour tout $i\geq 0$~:
-  $$K_i\M\simeq K'_iA$$
-  En particulier, le foncteur $B\otimes_A-:\M\ra\Modf{B}$ induit alors pour tout $i\geq 0$ un morphisme~:
-  $$f^*:K'_iA\lra K'_iB$$
+  $$K_i\M\simeq K'_iY$$
+  En particulier, le foncteur $f^*:\M\ra\Modf{X}$ induit alors pour tout $i\geq 0$ un morphisme~:
+  $$f^*:K'_iY\lra K'_iX$$
 \end{prop}
 
 \begin{proof}
-  Il suffit d'appliquer le \sref{théorème}{theoremeresolutionfoncteurderive} au foncteurs~:
-  $$T_n(\mathcal{F}):=\prod_{x\in X}\fTor{n}{\Ring{Y,f(x)}}{\mathcal{F}_x}{\Ring{X,x}}$$
+  Il suffit d'appliquer le \sref{théorème}{theoremeresolutionfoncteurderive} aux foncteurs~:
+  $$T_n(\mathcal{F}):=\prod_{x\in X}\fTor{n}{\Ring{Y,f(x)}}{\mathcal{F}_{f(x)}}{\Ring{X,x}}$$
 \end{proof}
 
 \begin{lem}\label{lemmetransfertschemas}
   Soit $f:X\ra Y$ un morphisme propre entre schémas noethériens, et soit $\mathcal{L}$ un fibré en droite ample sur $X$.
-  Alors tout module cohérent $\mathcal{F}$ sur $X$ s'injecte dans une $\Ring{X}$-module cohérent $f_*$-acyclique.
+  Alors tout module cohérent $\mathcal{F}$ sur $X$ s'injecte dans un $\Ring{X}$-module cohérent $f_*$-acyclique.
 \end{lem}
 
 \begin{proof}
   Quitte à changer $\mathcal{L}$ en une de ses puissances, on peut supposer qu'il est engendré par ses sections globales.
   
   Fixons un module cohérent $\mathcal{F}$ sur $X$. Par le \sref{théorème de Serre}{theoremeSerre}, il existe un entier $n_0$
-  tel que pour tout $n\geq n_0$ et tout $q>0$, $R^qf_*(\mathcal{F}(n))=0$. on fixe un entier $n\geq n_0$.
+  tel que pour tout $n\geq n_0$ et tout $q>0$, $R^qf_*(\mathcal{F}(n))=0$. On fixe un entier $n\geq n_0$.
   Soit maintenant une surjection $\Ring{X}^r\twoheadrightarrow \mathcal{L}^{\otimes n}$. Son noyau est un fibré vectoriel.
-  En passant au dual la suite exacte obtenue, et en multipliant par $\mathcal{L}^{\otimes n}$, on obtient une suite exacte de fibrés vectoriels~:
+  En passant au dual la suite exacte obtenue, et en multipliant par $\mathcal{L}^{\otimes n}$, on obtient une suite exacte de fibrés vectoriels de la forme~:
   $$\exa{\Ring{X}}{(\mathcal{L}^{\otimes n})^r}{E}$$
   Comme $E$ est plat, on obtient, en multipliant par $\mathcal{F}$, une suite exacte~:
   $$\exa{\mathcal{F}}{\mathcal{F}(n)^r}{E\otimes \mathcal{F}}$$
@@ -4324,7 +4325,7 @@ Passons maintenant au cadre des schémas.
   \end{description}
   
   Soit $\mathcal{M}$ la sous-catégorie pleine de $\Modf{X}$ des modules $\mathcal{F}$ tels que~:
-  $$R^if_*(\mathcal{F})=0$$
+  $$R^qf_*(\mathcal{F})=0\text{ pour tout }q>0$$
   Alors l'inclusion $\mathcal{M}\ra \Modf{X}$ induit, pour chaque $i\geq 0$, un isomorphisme~:
   $$K'_i(\mathcal{M})\ra K'_i(X)$$
 
@@ -4341,17 +4342,17 @@ Passons maintenant au cadre des schémas.
 
 \begin{proof}
   Si $f$ est fini, le foncteur $f_*$ est exact et on a $\mathcal{M}=\Modf{X}$. Dans le cas (b), il suffit d'appliquer
-  le dual du \sref{théorème}{theoremeresolutionfoncteurderive} au foncteurs $R^nf_*$. Le premier point du théorème est vérifié
+  le dual du \sref{théorème}{theoremeresolutionfoncteurderive} aux foncteurs $R^nf_*$. Le premier point du théorème est vérifié
   d'après le \sref{lemme}{lemmetransfertschemas}, et le second point découle du \sref{théorème de Serre}{theoremeSerre}.
 \end{proof}
 
 \subsection{Le théorème de localisation}
 
-Dans cette sous-section, nous présentons un des résultats principales de l'article de Quillen sur la construction $Q$ \cite{Quil}~:
-le théorème de localisation. Nous renvoyons à l'article pour la démonstration car la preuve est élémentaire et n'utilise que
-les résultats de la \sref{sous-section}{thmAetB} et est relativement longue.
+Dans cette sous-section, nous présentons un des résultats principaux de l'article de Quillen \cite{Quil} sur la construction $Q$~:
+le théorème de localisation. Nous renvoyons à l'article pour la démonstration car la preuve est élémentaire, n'utilisant que
+les résultats de la \sref{sous-section}{thmAetB}, mais est relativement longue.
 
-Pour comprendre ce résultat, il faut savoir ce qu'est une catégorie abélienne quotient. Nous mettons ici la définition.
+Pour comprendre l'énoncé de ce résultat, il faut savoir ce qu'est une catégorie abélienne quotient. Nous mettons ici la définition.
 Pour plus d'information, voir l'article de Gabriel \cite[chp. III]{Gabr}.
 
 \begin{defi}
@@ -4371,7 +4372,7 @@ On a très facilement le fait suivant.
   la catégorie dont les~:
   \begin{description}
     \item[$\bullet$] objets sont les objets de $\A$~;
-    \item[$\bullet$] morphismes de $M$ dans $N$ sont données par~:
+    \item[$\bullet$] morphismes de $M$ dans $N$ sont donnés par~:
     $$\Hom{\A/\mathcal{C}}{M}{N}:=\mathrm{colim}_{\begin{cases}M'\subset M,\;N'\subset N \\ M/M',N'\in\mathcal{C}\end{cases}}\Hom{\A}{M'}{N/N'}$$ 
   \end{description}
 \end{defi}
@@ -4380,8 +4381,8 @@ La composition est définie naturellement, pour plus de détails, voir \cite[chp
 
 \begin{prop}
   Dans le cadre de la définition ci-dessus, $\A/\mathcal{C}$ est abélienne et il existe un foncteur exact $T:\A\ra\A/\mathcal{C}$.
-  De plus, ce foncteur vérifie la propriété universelle suivante. Pour tout $G:\A\ra \mathcal{B}$ foncteur exact tel
-  que $GM$ est nul pour tout $M$ dans $\mathcal{C}$, il existe une unique factorisation de $G$ par $\A/\mathcal{C}$~:
+  De plus, ce foncteur vérifie la propriété universelle suivante. Pour tout foncteur exact $G:\A\ra \mathcal{B}$ tel
+  que $GM$ soit nul pour tout $M$ dans $\mathcal{C}$, il existe une unique factorisation de $G$ par $T$~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXEEiXSxbMiwwLCJcXG1hdGhjYWx7Qn0iXSxbMSwxLCJcXEEvXFxtYXRoY2Fse0N9Il0sWzAsMSwiRyJdLFswLDIsIlQiLDJdLFsyLDEsIlxcZXhpc3RzIUgiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
     \begin{tikzcd}
@@ -4395,7 +4396,7 @@ La composition est définie naturellement, pour plus de détails, voir \cite[chp
   De plus, $TM$ est nul si et seulement si $M$ est dans $\mathcal{C}$.
 \end{prop}
 
-Voir \cite[chp. III]{Gabr} pour la démonstrations.
+Voir \cite[chp. III]{Gabr} pour la démonstration.
 
 \begin{ex}
   \begin{description}
@@ -4445,8 +4446,8 @@ Ces deux exemples découlent de la variante abélienne suivante d'un lemme class
   Quitte à changer $\mathcal{B}$ par une catégorie équivalente, on peut supposer que $\lambda$ induit un isomorphisme sur les objets.
   Maintenant, il suffit de vérifier que $\lambda$ vérifie la propriété universelle de la catégorie quotient.
   
-  Soit $J:\A\ra\mathcal{D}$ un foncteur exact tel que $J(M)$ est nul pour tout $M$ dans $\mathcal{C}$.
-  Alors, soit $w:M\ra N$ un morphisme dans $\mathcal{W}$, alors $\lambda(w)$ est un isomorphisme,
+  Soit $J:\A\ra\mathcal{D}$ un foncteur exact tel que $J(M)$ soit nul pour tout $M$ dans $\mathcal{C}$.
+  Soit $w:M\ra N$ un morphisme dans $\mathcal{W}$, alors $\lambda(w)$ est un isomorphisme,
   donc, comme $\lambda$ est exact, son noyau et son conoyau sont dans $\mathcal{C}$.
   Mais alors, comme $J$ est exact, $J(w)$ est un isomorphisme.
   Donc il existe une factorisation $J:\A\ra\mathcal{B}\ra\mathcal{D}$. On vérifie immédiatement qu'elle est unique.
@@ -4465,13 +4466,13 @@ Ces deux exemples découlent de la variante abélienne suivante d'un lemme class
   \end{center}
   L'exemple rentre dans le cadre du lemme et on a donc le résultat pour la catégorie des $A$-modules.
   Pour le résultat sur la catégorie $\Modf{A}$ des $A$-modules de type fini, il suffit d'observer la définition de la catégorie
-  quotient, $\Hom{}{M}{N}$ pour $M$ et $N$ de type fini est le même que l'on soit dans $\Modf{A}$ ou dans $A-\mathrm{mod}$.
+  quotient~: $\Hom{}{M}{N}$ pour $M$ et $N$ de type fini est le même que l'on soit dans $\Modf{A}$ ou dans $A-\mathrm{mod}$.
 
   On procède de la même manière pour l'exemple du schéma noethériens $X$, avec l'adjonction~:
   \begin{center}
     % https://q.uiver.app/?q=WzAsMixbMCwwLCJcXGxhbWJkYTpcXG1hdGhjYWx7QX0iXSxbMiwwLCJcXG1hdGhjYWx7Qn06RyJdLFswLDEsIiIsMCx7ImN1cnZlIjotMX1dLFsxLDAsIiIsMCx7ImN1cnZlIjotMX1dLFswLDEsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJhZGp1bmN0aW9uIn19XV0=
     \begin{tikzcd}
-      {j^*:\Ring{X}-\mathrm{q.coh.}} && {U-\mathrm{q.coh.}:j_*}
+      {j^*:\Ring{X}-\mathrm{q.coh.}} && {\Ring{U}-\mathrm{q.coh.}:j_*}
       \arrow[bend left=12pt, from=1-1, to=1-3]
       \arrow[bend left=12pt, from=1-3, to=1-1]
       \arrow["\dashv"{anchor=center}, draw=none, from=1-1, to=1-3]
@@ -4506,7 +4507,7 @@ Ces deux exemples découlent de la variante abélienne suivante d'un lemme class
   On définit deux foncteurs~:
   \[
     \begin{array}{llclllcl}
-      r: & J(M)      & \ra     & J(M')                   & s: & J(M)      & \ra     & J(M')            \\
+      r: & J(M)      & \ra     & J(M')                   & s: & J(M)      & \ra     & J(M)            \\
          & (M_0,M_1) & \mapsto & (M_0\cap M',M_1\cap M') &    & (M_0,M_1) & \mapsto & (M_0\cap M',M_1)
     \end{array}
   \]
@@ -4525,12 +4526,12 @@ Ces deux exemples découlent de la variante abélienne suivante d'un lemme class
   Soit $X$ un schéma noethérien et $i:F\hookrightarrow X$ une immersion fermée.
   Soit $\mathcal{C}$ la catégorie des $\Ring{X}$-modules cohérents à support dans l'image de $i$.
   Alors l'inclusion naturelle $i_*:\Modf{F}\ra\mathcal{C}$ induit une équivalence d'homotopie~:
-  $$Q\mathcal{C}\simeq Q\Modf{F}$$
+  $$Q\Modf{F}\simeq Q\mathcal{C}$$
 \end{coro}
 
 \begin{proof}
   Soit $\mathcal{F}$ un module cohérent sur $X$ à support dans $F$. Soit $\mathcal{I}$ l'idéal quasi-cohérent noyau de $i^*$.
-  Comme $X$ est noethérien, il existe une entier $n\geq 0$ tel que $\mathcal{I}^n\mathcal{F}=0$. On dispose alors d'une filtration de $\mathcal{F}$~:
+  Comme $X$ est noethérien, il existe un entier $n\geq 0$ tel que $\mathcal{I}^n\mathcal{F}=0$. On dispose alors d'une filtration de $\mathcal{F}$~:
   $$0=\mathcal{I}^n\mathcal{F}\subseteq\dotsb\subseteq \mathcal{I}^0\mathcal{F}=\mathcal{F}$$
   dont tous les quotients sont des modules sur $\Ring{X}/\mathcal{I}=\Ring{F}$. On conclut avec le \sref{théorème de dévissage}{theoremedevissage}.
 \end{proof}
@@ -5299,9 +5300,10 @@ Introduisons maintenant la structure de modèle sur $\DAb$.
 \begin{coro}
   Il existe une structure de catégorie modèle sur $\Chp$ telle que~:
   \begin{description}
-    \item[(W)] les équivalences faibles soient les applications qui induisent des isomorphismes en homologie~;
-    \item[(F)] les fibrations soient les applications $f:C\ra D$ telles que $f_n:C_n\ra D_n$ soit surjectif pour tout $n\geq 1$~;
-    \item[(C)] les cofibrations soient les monomorphisme $f:C\hookrightarrow D$ dont le conoyau $\coker{f}$ soit un complexe de $\Z$-modules projectifs.
+    \item[(W)] les équivalences faibles sont les applications qui induisent des
+    isomorphismes en homologie~;
+    \item[(F)] les fibrations sont les applications $f:C\ra D$ telles que $f_n:C_n\ra D_n$ soit surjectif pour tout $n\geq 1$~;
+    \item[(C)] les cofibrations sont les monomorphisme $f:C\hookrightarrow D$ dont le conoyau $\coker{f}$ soit un complexe de $\Z$-modules projectifs.
   \end{description}
   Cette structure est celle induite par la correspondance de Dold-Kan et la structure de modèle sur $\DAb$.
 \end{coro}
@@ -5322,11 +5324,11 @@ Introduisons maintenant la structure de modèle sur $\DAb$.
   à l'existence d'un relèvement $\coker{f}_n\ra M$ à $v$. Donc $\coker{f}_n$ est projectif.
 
   Soit $f:C\hookrightarrow D$ tel que son conoyau $\coker{f}$ soit un complexe de $\Z$-modules projectifs. Soit $u: E\ra F$ une cofibration acyclique,
-  et $a,b:f\Rightarrow u$ un morphisme. Montrons, par récurrence sur $n\geq 0$, qu'il existe un relèvement $c:D\ra E$ définit en degrés $m\leq n$
+  et $a,b:f\Rightarrow u$ un morphisme. Montrons, par récurrence sur $n\geq 0$, qu'il existe un relèvement $c:D\ra E$ défini en degrés $m\leq n$
   et compatible aux différentielles. On voit rapidement que $u_0$ est nécessairement une surjection (car $u$ est acyclique).
   Ainsi, pour compléter cette récurrence, il suffit de traiter le cas $n=1$ sachant que $c_0$ existe ($d^2=0$).
   On note $K:=\myker{u}$ et $N:=\coker{f}$. Comme $N_1$ est projectif, on dispose d'un isomorphisme $N_1\oplus C_1 \simeq D_1$.
-  On en déduit un morphisme $N_1\ra F_1$ que l'on relève en $N_1\ra E_1$. On en déduit ainsi un morphisme
+  On en déduit un morphisme $N_1\ra F_1$ que l'on relève en $N_1\ra E_1$. Ainsi, on a un morphisme
   $\alpha: D_1\ra E_1$ tel que $b_1=u_1\alpha$ et $a_1=\alpha f_1$. Maintenant, $d\alpha - \alpha d$
   est nul sur $A$ et est à image dans $K_0$. Il induit donc un morphisme $\beta:N_1\ra K_0$.
   Comme $K$ est acyclique, $K_1\ra K_0$ est une surjection. Donc $\beta$ admet un relèvement $N_1\ra K_1$,
@@ -5349,34 +5351,38 @@ Nous commençons par le théorème des coefficients universels (admis, voir \cit
 
 \begin{theo}[Coefficients universels]\label{coeffsuniv}
   Soit $C_*$ un complexe de chaînes de $\Z$-modules libres
-  en notations homologiques, et soit $M$ un groupe abélien.
+  en notation homologique, et soit $M$ un groupe abélien.
   Alors on a une suite exacte fonctorielle en $C_*$~:
   $$\exa{H_i(C)\otimes M}{H_i(C\otimes M)}{\Tor_1^\Z (H_{i-1}(C),M)}$$
 \end{theo}
 
 \begin{theo}\label{coeffsunivcohom}
   Soit $C_*$ un complexe de chaînes de $\Z$-modules libres
-  en notations homologiques, et soit $M$ un groupe abélien.
+  en notation homologique, et soit $M$ un groupe abélien.
   Alors on a une suite exacte fonctorielle en $C_*$~:
   $$\exa{\mathrm{Ext}^1_\Z(H_{i-1}(C),M)}{H^i(\Hom{}{C}{M})}{\Hom{}{H_{i}(C)}{M}}$$
 \end{theo}
 
 \begin{defi}[homologie et cohomologie]
   Soit $X$ un ensemble simplicial et $n\geq 0$. On appelle $n$-ième groupe d'homologie de $X$ le groupe abélien~:
-  $$H_n(X):=H_n(\Z X)=H_n(NX)=\pi_n(NX)$$
+  $$H_n(X):=H_n(\Z X)=H_n(N\Z X)=\pi_n(N\Z X,0)$$
   Soit $M$ un $\Z$-module. On appelle $n$-ième groupe d'homologie de $X$ à coefficients dans $M$ le groupe abélien~:
-  $$H_n(X;M):=H_n(\Z X\otimes M)=H_n(NX\otimes M)$$
+  $$H_n(X;M):=H_n(\Z X\otimes M)=H_n(N\Z X\otimes M)$$
   On appelle $n$-ième groupe de cohomologie de $X$ à coefficients dans $M$ le groupe abélien~:
-  $$H^n(X;M):=H^n(\Hom{\Z}{\Z X}{M})=H^n(\Hom{\Z}{NX}{M})$$
-  Les groupes $H_n(X)$, $H_n(X;M)$ et $H^n(X;M)$ sont fonctorielles en $X$ (de façon contravariante pour le dernier).
+  $$H^n(X;M):=H^n(\Hom{\Z}{\Z X}{M})=H^n(\Hom{\Z}{N\Z X}{M})$$
+  Les groupes $H_n(X)$, $H_n(X;M)$ et $H^n(X;M)$ sont fonctoriels en $X$ (de façon contravariante pour le dernier).
 \end{defi}
 
 \begin{rem}
-  Les égalités $H_n(\Z X\otimes M)=H_n(NX\otimes M)$ et $H_n(\Hom{\Z}{\Z X}{M})=H_n(\Hom{\Z}{NX}{M})$ découlent du théorème des coefficients universels.
+  Les égalités~:
+  $$H_n(\Z X\otimes M)=H_n(N\Z X\otimes M)$$
+  et~:
+  $$H_n(\Hom{\Z}{\Z X}{M})=H_n(\Hom{\Z}{N\Z X}{M})$$
+  découlent du théorème des coefficients universels.
 \end{rem}
 
 \begin{rem}
-  Dans la suite, on notera $H_*(X)$, $H_*(X;M)$ et $H^*(X;M)$ pour leq groupes abéliens $\N$-gradués formé de respectivement
+  Dans la suite, on notera $H_*(X)$, $H_*(X;M)$ et $H^*(X;M)$ pour les groupes abéliens $\N$-gradués formés de respectivement
   $H_n(X)$, $H_n(X;M)$ et $H^n(X;M)$ en degré $n$.
 \end{rem}
 
@@ -5394,7 +5400,7 @@ suivant.
 \begin{defi}[homologie et cohomologie des paires]
   Soit $A\subset X$ une paire d'ensembles simpliciaux. On définit son homologie par~:
   $$H_*(X,A):=H_*(\Z X/\Z A)$$
-  Pour $M$ un groupe abélien, on définit l'homologie à coefficients dans $M$~:
+  Pour $M$ un groupe abélien, on définit son homologie à coefficients dans $M$~:
   $$H_*(X,A;M):=H_*(\Z X/\Z A\otimes M)$$
   et sa cohomologie à coefficients dans $M$~:
   $$H^*(X,A;M):=H^*(\Hom{\Z}{\Z X/\Z A}{M})$$
@@ -5404,7 +5410,7 @@ suivant.
   On déduit facilement des définitions les suites exactes longues des paires.
 \end{rem}
 
-Le reste de cette sous-section est consacrée à la définition de l'homologie à coefficients locaux pour les ensembles
+Le reste de cette sous-section est consacré à la définition de l'homologie à coefficients locaux pour les ensembles
 simpliciaux et les paires d'ensembles simpliciaux.
 
 \begin{defi}
@@ -5412,17 +5418,17 @@ simpliciaux et les paires d'ensembles simpliciaux.
   $$L:\tau_{\leq 1}X\lra \Ab$$
   Un tel système $L$ est dit inversible si $L$ se factorise par $\tau_{\leq 1}X\lra \pi_{\leq 1}X$.
   Soit $f:Y\ra X$ un morphisme d'ensembles simpliciaux et $L$ un système de coefficients locaux sur $X$.
-  On note $f^*L$ le système de coefficients locaux sur $Y$ définit par~:
+  On note $f^*L$ le système de coefficients locaux sur $Y$ défini par~:
   $$f^*L:\tau_{\leq 1}Y \lra \tau_{\leq 1}X \lra \Ab$$
 \end{defi}
 
 \begin{defi}
   Soit $X$ un ensemble simplicial et $L$ un système de coefficients locaux.
   On définit l'homologie de $X$ dans $L$ comme l'homologie du complexe
-  $C_*(X;L)$ définit par~:
+  $C_*(X;L)$ défini par~:
   $$C_n(X;L):=\bigoplus_{x\in X_n}L(x(0))\cdot x$$
   et tel que $\partial_n$ envoie $l\cdot x$ sur~:
-  $$\partial_n l\cdot x = L(x(0)\ra x(1))(l)\cdot d_0(x) +\sum_{i=1}^n l\cdot (-1)^id_i(x)$$
+  $$\partial_n (l\cdot x) = L(x(0)\ra x(1))(l)\cdot d_0(x) +\sum_{i=1}^n (-1)^i l\cdot d_i(x)$$
   On notera $H_*(X;L)$ pour l'homologie.
   
   Cette définition est fonctorielle en $(X,L)$ au sens suivant. Si $f:Y\ra X$ est une application
@@ -5434,13 +5440,13 @@ simpliciaux et les paires d'ensembles simpliciaux.
 \end{defi}
 
 \begin{rem}
-  En général, on inclus l'hypothèse inversible dans la définition de système de coefficients locaux. Nous choisissons d'étendre la définition
+  En général, on inclut l'hypothèse inversible dans la définition de système de coefficients locaux. Nous choisissons d'étendre la définition
   pour prendre en compte le cas étudié dans la \sref{sous-section}{soussectioncalculhomologielocalises}.
 \end{rem}
 
 \begin{defi}
   Soit $i:A\subset X$ une paire d'ensembles simpliciaux, et $L$ un système de coefficients locaux strict sur $X$.
-  Alors $C_*(A;i^*L)$ est une sous-complexe de $C_*(X;L)$. On définit l'homologie de la paire $(X,A)$ à coefficients dans $L$ comme
+  Alors $C_*(A;i^*L)$ est un sous-complexe de $C_*(X;L)$. On définit l'homologie de la paire $(X,A)$ à coefficients dans $L$ comme
   l'homologie du complexe quotient~:
   $$H_*(X,A;L):=H_*(C_*(X;L)/C_*(A;i^*L))$$
 
